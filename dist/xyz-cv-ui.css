@@ -1,0 +1,9 @@
+input,
+textarea,
+button {
+  font: inherit;
+}
+
+body {
+  background-color: red;
+}
