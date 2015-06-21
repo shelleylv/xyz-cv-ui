@@ -18,7 +18,7 @@
                 url: '/',
                 config: {
                     templateUrl: 'components/dashboard/dashboard.html',
-                    controller: 'Dashboard',
+                    controller: 'DashboardController',
                     controllerAs: 'vm',
                     title: 'dashboard',
                     settings: {

@@ -2,15 +2,16 @@
     'use strict';
 
     angular
-        .module('xyz-cv-ui.profile')
-        .controller('Profile', Profile);
+        .module('xyz-cv-ui.dashboard')
+        .controller('DashboardController', DashboardController);
 
-        //Profile.$inject = [];
-        function Profile() {
+        //Dashboard.$inject = [];
+
+        function DashboardController() {
             /* jshint validthis: true */
             var vm = this;
 
-            vm.hello = [6, 7, 8, 9, 10];
+            vm.hello = [1, 2, 3, 4, 5];
 
             //////////////
 

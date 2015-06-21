@@ -18,7 +18,7 @@
                 url: '/profile',
                 config: {
                     templateUrl: 'components/profile/profile.html',
-                    controller: 'Profile',
+                    controller: 'ProfileController',
                     controllerAs: 'vm',
                     title: 'profile',
                     settings: {
