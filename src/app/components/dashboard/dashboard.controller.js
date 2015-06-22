@@ -8,7 +8,6 @@
         //Dashboard.$inject = [];
 
         function DashboardController() {
-            /* jshint validthis: true */
             var vm = this;
 
             vm.hello = [1, 2, 3, 4, 5];
