@@ -5,9 +5,6 @@
         .module('xyz-cv-ui.profile')
         .run(appRun);
 
-    // appRun.$inject = ['routehelper'];
-
-    /* @ngInject */
     function appRun(routehelper) {
         routehelper.configureRoutes(getRoutes());
     }

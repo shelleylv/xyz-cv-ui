@@ -5,8 +5,6 @@
         .module('xyz-cv-ui.dashboard')
         .controller('DashboardController', DashboardController);
 
-        //Dashboard.$inject = [];
-
         function DashboardController() {
             var vm = this;
 

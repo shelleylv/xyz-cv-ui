@@ -32,7 +32,6 @@
      * Accessible via config.appErrorPrefix (via config value).
      * @param  {[type]} $provide
      * @return {[type]}
-     * @ngInject
      */
     function config($provide) {
         $provide.decorator('$exceptionHandler', extendExceptionHandler);

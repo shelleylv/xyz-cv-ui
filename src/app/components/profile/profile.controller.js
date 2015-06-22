@@ -5,7 +5,6 @@
         .module('xyz-cv-ui.profile')
         .controller('ProfileController', ProfileController);
 
-        //Profile.$inject = [];
         function ProfileController() {
             var vm = this;
 

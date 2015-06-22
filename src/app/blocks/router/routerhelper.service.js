@@ -6,8 +6,6 @@
         .provider('routehelperConfig', routehelperConfig)
         .factory('routehelper', routehelper);
 
-    routehelper.$inject = ['$location', '$rootScope', '$route', 'logger', 'routehelperConfig'];
-
     // Must configure via the routehelperConfigProvider
     function routehelperConfig() {
         /* jshint validthis:true */

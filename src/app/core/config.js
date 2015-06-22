@@ -5,7 +5,6 @@
 
     core.config(toastrConfig);
 
-    /* @ngInject */
     function toastrConfig(toastr) {
         toastr.options.timeOut = 4000;
         toastr.options.positionClass = 'toast-bottom-right';
@@ -21,7 +20,6 @@
 
     core.config(configure);
 
-    /* @ngInject */
     function configure ($logProvider, $routeProvider, routehelperConfigProvider, exceptionHandlerProvider) {
         // turn debugging off/on (no info or warn)
         if ($logProvider.debugEnabled) {
