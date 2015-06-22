@@ -1,23 +1,84 @@
 <!DOCTYPE html>
-<html ng-app="xyzCvUi">
-  <head>
-    <meta charset="utf-8"/>
+<html ng-app="xyz-cv-ui">
+
+<head>
+    <meta charset="utf-8" />
     <title>xyzCvUi</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
     <!-- inject:vendor:css -->
     <link rel="stylesheet" href="/fontawesome/css/font-awesome.css">
+    <link rel="stylesheet" href="/toastr/toastr.css">
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
     <!-- endinject -->
     <!-- inject:css -->
     <link rel="stylesheet" href="/css/app.css">
     <!-- endinject -->
-  </head>
-  <body>
-    <div class="container">
-        <div class="jumbotron">
-            Rasmus!<i class="fa fa-user"></i>
+</head>
+
+<body>
+    <div class="wrapper" ng-class="{'toggled': toggled}">
+        <!-- Sidebar -->
+        <div class="sidebar-wrapper">
+            <!--<div class="sidebar-topbar">
+                Hemir Mogensen
+            </div>-->
+            <div class="sidebar-brand">
+                <div class="profile-image">
+                    <i class="fa fa-user"></i>
+                </div>John Doe
+            </div>
+            <ul class="sidebar-nav">
+                <li>
+                    <a ng-href="#/">
+                        <div class="sidebar-icon pull-left">
+                            <i class="fa fa-dashboard"></i>
+                        </div>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a ng-href="#/profile">
+                        <div class="sidebar-icon pull-left">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        Profile
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="sidebar-icon pull-left">
+                            <i class="fa fa-line-chart"></i>
+                        </div>
+                        Reports
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="sidebar-icon pull-left">
+                            <i class="fa fa-cog"></i>
+                        </div>
+                        Settings
+                    </a>
+                </li>
+            </ul>
         </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div class="page-content-wrapper">
+            <div class="topbar">
+                <div class="menubutton pull-left" ng-click="toggled = !toggled">
+                    <i class="fa fa-bars"></i>
+                </div>
+                CVDB
+            </div>
+            <div class="container">
+                <div ng-view></div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
     </div>
-    <ng-view></ng-view>
+    <!-- /#wrapper -->
     <!-- inject:vendor:js -->
     <script src="/angular/angular.js"></script>
     <script src="/angular-route/angular-route.js"></script>
@@ -25,10 +86,33 @@
     <script src="/angular-strap/dist/angular-strap.js"></script>
     <script src="/angular-strap/dist/angular-strap.tpl.js"></script>
     <script src="/boostrap-sass/assets/javascripts/bootstrap.js"></script>
+    <script src="/toastr/toastr.js"></script>
+    <script src="/moment/moment.js"></script>
+    <script src="/angular-animate/angular-animate.js"></script>
+    <script src="/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/extras.angular.plus/ngplus-overlay.js"></script>
     <script src="/bootstrap/dist/js/bootstrap.js"></script>
     <!-- endinject -->
     <!-- inject:js -->
-    <script src="/app.js"></script>
+    <script src="/components/profile/profile.module.js"></script>
+    <script src="/components/profile/route-config.js"></script>
+    <script src="/components/profile/profile.controller.js"></script>
+    <script src="/components/dashboard/dashboard.module.js"></script>
+    <script src="/components/dashboard/route-config.js"></script>
+    <script src="/components/dashboard/dashboard.controller.js"></script>
+    <script src="/blocks/router/router.module.js"></script>
+    <script src="/blocks/router/routerhelper.service.js"></script>
+    <script src="/blocks/logger/logger.module.js"></script>
+    <script src="/blocks/logger/logger.service.js"></script>
+    <script src="/blocks/exception/exception.module.js"></script>
+    <script src="/blocks/exception/exception.service.js"></script>
+    <script src="/blocks/exception/exception-handler.provider.js"></script>
+    <script src="/core/core.module.js"></script>
+    <script src="/core/constants.js"></script>
+    <script src="/core/config.js"></script>
+    <script src="/app.module.js"></script>
+    <script src="/xyz-cv-ui-templates.js"></script>
     <!-- endinject -->
-  </body>
+</body>
+
 </html>
