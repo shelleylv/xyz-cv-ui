@@ -17,11 +17,7 @@
                     templateUrl: 'components/profile/profile.html',
                     controller: 'ProfileController',
                     controllerAs: 'vm',
-                    title: 'profile',
-                    settings: {
-                        nav: 1,
-                        content: '<i class="fa fa-user"></i> Profile'
-                    }
+                    title: 'profile'
                 }
             }
         ];

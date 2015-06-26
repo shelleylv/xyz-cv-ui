@@ -17,11 +17,7 @@
                     templateUrl: 'components/access/access.html',
                     controller: 'AccessController',
                     controllerAs: 'vm',
-                    title: 'access',
-                    settings: {
-                        nav: 1,
-                        content: '<i class="fa fa-access"></i> Access'
-                    }
+                    title: 'access'
                 }
             }
         ];

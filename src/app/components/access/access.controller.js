@@ -5,17 +5,11 @@
         .module('xyz-cv-ui.access')
         .controller('AccessController', AccessController);
 
-        function AccessController(Access) {
+        function AccessController(Accesses) {
             var vm = this;
-
-            vm.hello = [10, 20, 30, 40, 50];
-
-            getAccesses();
+            vm.accesses = Accesses.query();
 
             //////////////
-            function getAccesses() {
-                vm.hello = Access.query();
-            }
 
             function refresh() {
                 /* */
