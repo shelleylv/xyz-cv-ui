@@ -21,7 +21,8 @@
          * Feature areas
          */
         'xyz-cv-ui.dashboard',
-        'xyz-cv-ui.profile'
+        'xyz-cv-ui.profile',
+        'xyz-cv-ui.access'
     ]);
 
 })();

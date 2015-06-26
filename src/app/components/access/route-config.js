@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('xyz-cv-ui.profile')
+        .module('xyz-cv-ui.access')
         .run(appRun);
 
     function appRun(routehelper) {
@@ -12,12 +12,12 @@
     function getRoutes() {
         return [
             {
-                url: '/profile',
+                url: '/',
                 config: {
-                    templateUrl: 'components/profile/profile.html',
-                    controller: 'ProfileController',
+                    templateUrl: 'components/access/access.html',
+                    controller: 'AccessController',
                     controllerAs: 'vm',
-                    title: 'profile'
+                    title: 'access'
                 }
             }
         ];
