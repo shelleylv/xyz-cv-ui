@@ -1,11 +1,14 @@
 # Use the standard nodejs image as a base
-FROM node:0.10-onbuild
+FROM shawnzhu/ruby-nodejs:0.12.5
 
 # Install production dependencies.
 ADD package.json /app/package.json
 ADD src /app/src
+ADD server /app/server
 ADD gulpfile.js /app/gulpfile.js
 ADD bower.json /app/bower.json
+ADD config.rb /app/config.rb
+RUN cd /app && gem install compass
 RUN cd /app && npm install
 RUN cd /app && npm install -g gulp
 RUN cd /app && npm install -g bower
