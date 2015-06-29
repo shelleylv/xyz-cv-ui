@@ -14,7 +14,7 @@
             {
                 url: '/',
                 config: {
-                    templateUrl: 'components/dashboard/dashboard.html',
+                    templateUrl: '/xyz-cv-ui/components/dashboard/dashboard.html',
                     controller: 'DashboardController',
                     controllerAs: 'vm',
                     title: 'dashboard'

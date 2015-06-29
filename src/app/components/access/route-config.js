@@ -12,9 +12,9 @@
     function getRoutes() {
         return [
             {
-                url: '/',
+                url: '/access',
                 config: {
-                    templateUrl: 'components/access/access.html',
+                    templateUrl: '/xyz-cv-ui/components/access/access.html',
                     controller: 'AccessController',
                     controllerAs: 'vm',
                     title: 'access'
