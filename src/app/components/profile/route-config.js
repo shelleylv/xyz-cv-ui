@@ -14,7 +14,7 @@
             {
                 url: '/profile',
                 config: {
-                    templateUrl: 'components/profile/profile.html',
+                    templateUrl: '/xyz-cv-ui/components/profile/profile.html',
                     controller: 'ProfileController',
                     controllerAs: 'vm',
                     title: 'profile'

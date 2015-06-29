@@ -12,10 +12,10 @@
 
     var config = {
         appErrorPrefix: '[NG-Modular Error] ', //Configure the exceptionHandler decorator
-        appTitle: 'Angular Modular Demo',
+        appTitle: 'CV',
         version: '1.0.0',
 
-        API_URL: 'http://localhost:9000/api'
+        API_URL: 'http://xyz.softhouse.se/cv-api'
     };
 
     core.value('config', config);

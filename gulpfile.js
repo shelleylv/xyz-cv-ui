@@ -13,7 +13,8 @@ var gulp = require('gulp'),
     bower = require('./bower'),
     compass = require('gulp-compass'),
     path = require('path'),
-    isWatching = false;
+    isWatching = false,
+    flatten = require('gulp-flatten');
 
 var htmlminOpts = {
   removeComments: true,
@@ -34,6 +35,12 @@ gulp.task('jshint', function () {
     .pipe(g.cached('jshint'))
     .pipe(jshint('./.jshintrc'))
     .pipe(livereload());
+});
+
+gulp.task('fonts', function() {
+    return gulp.src('./bower_components/**/fonts/*')
+      .pipe(flatten())
+      .pipe(gulp.dest('./dist/fonts'));
 });
 
 /**
@@ -142,7 +149,7 @@ gulp.task('assets', function () {
 /**
  * Dist
  */
-gulp.task('dist', ['vendors', 'assets', 'styles-dist', 'scripts-dist'], function () {
+gulp.task('dist', ['vendors', 'assets', 'styles-dist', 'scripts-dist', 'fonts'], function () {
   return gulp.src('./src/app/index.html')
     .pipe(g.inject(gulp.src('./dist/vendors.min.{js,css}'), {ignorePath: 'dist', starttag: '<!-- inject:vendor:{{ext}} -->'}))
     .pipe(g.inject(gulp.src('./dist/' + bower.name + '.min.{js,css}'), {ignorePath: 'dist'}))

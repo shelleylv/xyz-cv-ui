@@ -7,7 +7,8 @@
     "test": "gulp test"
   },
   "dependencies": {
-    "angular-resource": "^1.4.1"
+    "angular-resource": "^1.4.1",
+    "express": "~4.12.4"
   },
   "devDependencies": {
     "compass": "^0.1.1",
