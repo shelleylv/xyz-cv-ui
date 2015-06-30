@@ -347,6 +347,6 @@ function jshint (jshintfile) {
   * Remove all root slashes in the given file
   */
 function removeRootSlashes(content, done) {
-  content = content.replace(/\.\.\//, '');
+  content = content.replace(/\.\.\//g, '');
   done(null, content);
 }
