@@ -14,7 +14,9 @@ var gulp = require('gulp'),
     compass = require('gulp-compass'),
     path = require('path'),
     isWatching = false,
-    flatten = require('gulp-flatten');
+    flatten = require('gulp-flatten'),
+    change = require('gulp-change'),
+    foreach = require('gulp-foreach');
 
 var htmlminOpts = {
   removeComments: true,
@@ -41,6 +43,12 @@ gulp.task('fonts', function() {
     return gulp.src('./bower_components/**/fonts/*')
       .pipe(flatten())
       .pipe(gulp.dest('./dist/fonts'));
+});
+
+gulp.task('remove-root-slash', function() {
+  return gulp.src('./dist/*.{js,css}')
+    .pipe(change(removeRootSlashes))
+    .pipe(gulp.dest('./dist/'));
 });
 
 /**
@@ -76,7 +84,8 @@ gulp.task('styles', ['clean-css'], function() {
 //});
 
 gulp.task('styles-dist', ['styles'], function () {
-  return cssFiles().pipe(dist('css', bower.name));
+  return cssFiles()
+    .pipe(dist('css', bower.name))
 });
 
 gulp.task('csslint', ['styles'], function () {
@@ -149,7 +158,7 @@ gulp.task('assets', function () {
 /**
  * Dist
  */
-gulp.task('dist', ['vendors', 'assets', 'styles-dist', 'scripts-dist', 'fonts'], function () {
+gulp.task('dist', ['vendors', 'assets', 'styles-dist', 'scripts-dist', 'fonts', 'remove-root-slash'], function () {
   return gulp.src('./src/app/index.html')
     .pipe(g.inject(gulp.src('./dist/vendors.min.{js,css}'), {ignorePath: 'dist', starttag: '<!-- inject:vendor:{{ext}} -->', addRootSlash: false}))
     .pipe(g.inject(gulp.src('./dist/' + bower.name + '.min.{js,css}'), {ignorePath: 'dist', addRootSlash: false}))
@@ -333,4 +342,12 @@ function jshint (jshintfile) {
   return lazypipe()
     .pipe(g.jshint, jshintfile)
     .pipe(g.jshint.reporter, stylish)();
+}
+
+/**
+  * Remove all root slashes in the given file
+  */
+function removeRootSlashes(content, done) {
+  content = content.replace(/\.\.\//, '');
+  done(null, content);
 }
