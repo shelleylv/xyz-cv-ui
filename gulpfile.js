@@ -44,12 +44,6 @@ gulp.task('fonts', function() {
       .pipe(gulp.dest('./dist/fonts'));
 });
 
-gulp.task('remove-root-slash', function() {
-  return gulp.src('./dist/*.{js,css}')
-    .pipe(change(removeRootSlashes))
-    .pipe(gulp.dest('./dist/'));
-});
-
 /**
  * CSS
  */
@@ -84,6 +78,7 @@ gulp.task('styles', ['clean-css'], function() {
 
 gulp.task('styles-dist', ['styles'], function () {
   return cssFiles()
+    .pipe(change(removeRootSlashes))
     .pipe(dist('css', bower.name))
 });
 
@@ -157,7 +152,7 @@ gulp.task('assets', function () {
 /**
  * Dist
  */
-gulp.task('dist', ['vendors', 'assets', 'styles-dist', 'scripts-dist', 'fonts', 'remove-root-slash'], function () {
+gulp.task('dist', ['vendors', 'assets', 'styles-dist', 'scripts-dist', 'fonts'], function () {
   return gulp.src('./src/app/index.html')
     .pipe(g.inject(gulp.src('./dist/vendors.min.{js,css}'), {ignorePath: 'dist', starttag: '<!-- inject:vendor:{{ext}} -->', addRootSlash: false}))
     .pipe(g.inject(gulp.src('./dist/' + bower.name + '.min.{js,css}'), {ignorePath: 'dist', addRootSlash: false}))
@@ -323,6 +318,7 @@ function dist (ext, name, opt) {
     .pipe(opt.ngAnnotate ? gulp.dest : noop, './dist')
     .pipe(ext === 'js' ? g.uglify : g.minifyCss)
     .pipe(g.rename, name + '.min.' + ext)
+    .pipe(change, removeRootSlashes)
     .pipe(gulp.dest, './dist')();
 }
 
@@ -348,5 +344,5 @@ function jshint (jshintfile) {
   */
 function removeRootSlashes(content, done) {
   content = content.replace(/\.\.\//g, '');
-  done(null, content);
+  return done(null, content);
 }
