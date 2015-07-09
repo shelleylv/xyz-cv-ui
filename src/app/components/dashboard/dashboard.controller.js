@@ -15,12 +15,11 @@
         $scope.$on('sail-resize', redraw, 100);
 
         function redraw(waitTime) {
-            console.log("resizing");
             vm.loadchart = false;
             $timeout(function() {
                 vm.loadchart = true;
             }, waitTime);
-        };
+        }
 
         $timeout(function() {
             vm.loadchart = true;
@@ -189,28 +188,19 @@
             onAnimationComplete: function() {},
             //String - A legend template
             legendTemplate: '<ul class="tc-chart-js-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
-        }
+        };
 
         vm.newsArticles = [{
             title: 'Sydost hires 4 junior developers',
-            teaser: 'Softhouse Sydost has hired four new \
-                    junior developers following a summer project \
-                    resulting in three successful in-house projects, \
-                    one of which was awarded with the prestigious',
+            teaser: 'Softhouse Sydost has hired four new junior developers following a summer project resulting in three successful in-house projects, one of which was awarded with the prestigious',
             date: 'Oct. 15, 2015'
         }, {
             title: 'Sail has been released',
-            teaser: 'The crack team of prodigiously gifted \
-                    developers in the Karlskrona office working \
-                    on Sail have released the first stable version \
-                    of their notorious application monitoring software.',
+            teaser: 'The crack team of prodigiously gifted developers in the Karlskrona office working on Sail have released the first stable version of their notorious application monitoring software.',
             date: 'Aug. 3, 2015'
         }, {
             title: 'Softhouse ranked #1 in ICT magazine',
-            teaser: 'An ICT magazine in Sweden has ranked Softhouse #1 \
-            employer in the ICT sector. This comes as no surprise since \
-            Softhouse has ranked #1 for every year the past decade. \
-            Bengt Gustavsson, CEO of Sydost, says: ',
+            teaser: 'An ICT magazine in Sweden has ranked Softhouse #1 employer in the ICT sector. This comes as no surprise since Softhouse has ranked #1 for every year the past decade. Bengt Gustavsson, CEO of Sydost, says: ',
             date: 'Sep. 7, 2015'
         }];
 
@@ -228,7 +218,7 @@
             img: 'rasmusletterkrantz106.jpeg'
         }];
 
-        $scope.$on('menuToggleFinished', function(event, args) {
+        $scope.$on('menuToggleFinished', function() {
             $scope.loadchart = false;
             $scope.$apply();
             $scope.loadchart = true;
