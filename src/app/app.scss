@@ -55,12 +55,12 @@ body {
 }
 
 .sidebar-nav-list {
-	color: #999999;
-	background-color: darken($menubackground, 4%);
+	color: $sidebarnavlisttextcolor;
+	background-color: $sidebarnavlistbackground;
 	>.list-item {
 		padding-left: 48px;
 		&:hover {
-			background-color: lighten($menubackground, 10%);
+			background-color: $sidebarnavlisthoverbackground;
 		}
 	}
 	>.buttons {

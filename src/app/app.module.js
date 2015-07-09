@@ -22,7 +22,8 @@
          */
         'xyz-cv-ui.dashboard',
         'xyz-cv-ui.profile',
-        'xyz-cv-ui.access'
+        'xyz-cv-ui.access',
+        'xyz-cv-ui.menu'
     ]);
 
 })();
