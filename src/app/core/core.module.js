@@ -12,6 +12,7 @@
         'blocks.exception', 'blocks.logger', 'blocks.router',
 
         'resource',
+        'directives',
         /*
          * 3rd Party modules
          */

@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>xyzCvUi</title>
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
@@ -16,7 +17,7 @@
     <!-- endinject -->
 </head>
 
-<body>
+<body resize>
     <div class="wrapper" ng-class="{'toggled': toggled}">
         <!-- Sidebar -->
         <div class="sidebar-wrapper">
@@ -72,7 +73,7 @@
                 </div>
                 CVDB
             </div>
-            <div class="container">
+            <div class="container-fluid">
                 <div ng-view></div>
             </div>
         </div>
@@ -92,7 +93,9 @@
     <script src="/angular-sanitize/angular-sanitize.js"></script>
     <script src="/extras.angular.plus/ngplus-overlay.js"></script>
     <script src="/angular-resource/angular-resource.js"></script>
+    <script src="/Chart.js/Chart.js"></script>
     <script src="/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/tc-angular-chartjs/dist/tc-angular-chartjs.min.js"></script>
     <!-- endinject -->
     <!-- inject:js -->
     <script src="/components/profile/profile.module.js"></script>
@@ -106,15 +109,17 @@
     <script src="/components/access/access.controller.js"></script>
     <script src="/blocks/router/router.module.js"></script>
     <script src="/blocks/router/routerhelper.service.js"></script>
-    <script src="/blocks/logger/logger.module.js"></script>
-    <script src="/blocks/logger/logger.service.js"></script>
     <script src="/blocks/exception/exception.module.js"></script>
     <script src="/blocks/exception/exception.service.js"></script>
     <script src="/blocks/exception/exception-handler.provider.js"></script>
+    <script src="/blocks/logger/logger.module.js"></script>
+    <script src="/blocks/logger/logger.service.js"></script>
     <script src="/resources/resource.module.js"></script>
     <script src="/resources/skills.resource.js"></script>
     <script src="/resources/resource.js"></script>
     <script src="/resources/accesses.resource.js"></script>
+    <script src="/directives/directives.module.js"></script>
+    <script src="/directives/resize.directives.js"></script>
     <script src="/core/core.module.js"></script>
     <script src="/core/constants.js"></script>
     <script src="/core/config.js"></script>

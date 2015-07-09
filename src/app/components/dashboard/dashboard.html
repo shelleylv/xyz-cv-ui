@@ -1,8 +1,75 @@
-<div class="jumbotron">
-    HERE IS YOUR DASHBOARD
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel">
+			<div class="panel-body">
+				<div class="facts">
+					<div class="fact col-md-3" ng-repeat="chart in vm.charts">
+						<div class="title">
+							{{chart.title}}
+						</div>
+						<div ng-switch="chart.type">
+							<canvas class="chart" tc-chartjs chart-type="line" chart-options="vm.myOptions" chart-data="chart.data" ng-if="vm.loadchart" ng-switch-when="line" auto-legend></canvas>
+							<canvas class="chart" tc-chartjs chart-type="radar" chart-options="vm.myOptions" chart-data="chart.data" ng-if="vm.loadchart" ng-switch-when="radar" auto-legend></canvas>
+							<canvas class="chart" tc-chartjs chart-type="bar" chart-options="vm.myOptions" chart-data="chart.data" ng-if="vm.loadchart" ng-switch-when="bar" auto-legend></canvas>
+							<canvas class="chart" tc-chartjs chart-type="pie" chart-options="vm.piechartOptions" chart-data="chart.data" ng-if="vm.loadchart" ng-switch-when="pie" auto-legend></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer">
+				Interesting facts
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6 col-lg-6">
+		<div class="panel panel-default">
+			<div class="news-article" ng-repeat="article in vm.newsArticles">
+				<div class="titlebar">
+					<div class="title">
+						{{article.title}}
+					</div>
+					<div class="date pull-right">
+						{{article.date}}
+					</div>
+				</div>
+				<div class="teaser">
+					{{article.teaser}} ...
+				</div>
+				<div class="social">
+					<i class="fa fa-facebook-official"></i>
+					<i class="fa fa-twitter"></i>
+				</div>
+			</div>
+			<div class="panel-footer">
+				News
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6 col-lg-6">
+		<div class="panel panel-default">
+			<div class="facecard" ng-repeat="face in vm.newFaces">
+				<div class="image-box">
+					<img ng-src="assets/{{face.img}}">
+				</div>
+				<div class="data-box">
+					<div class="name">
+						{{face.name}}
+					</div>
+					<div class="office pull-right">
+						{{face.office}}
+					</div>
+					<div class="title">
+						{{face.title}}
+					</div>
+					Skills:
+					<div class="skilltag" ng-repeat="skill in face.skills">
+						{{skill}}
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer">
+				New faces
+			</div>
+		</div>
+	</div>
 </div>
-<ul>
-    <li ng-repeat="num in vm.hello">
-        {{ num }}
-    </li>
-</ul>

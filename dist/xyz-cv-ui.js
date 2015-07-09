@@ -61,6 +61,82 @@
 (function() {
     'use strict';
 
+    angular.module('xyz-cv-ui.dashboard', []);
+})();
+
+(function() {
+    'use strict';
+
+    angular
+        .module('xyz-cv-ui.dashboard')
+        .run(appRun);
+
+    function appRun(routehelper) {
+        routehelper.configureRoutes(getRoutes());
+    }
+
+    function getRoutes() {
+        return [
+            {
+                url: '/',
+                config: {
+                    templateUrl: '/xyz-cv-ui/components/dashboard/dashboard.html',
+                    controller: 'DashboardController',
+                    controllerAs: 'vm',
+                    title: 'dashboard'
+                }
+            }
+        ];
+    }
+})();
+
+(function() {
+    'use strict';
+
+    angular
+        .module('xyz-cv-ui.dashboard')
+        .controller('DashboardController', DashboardController);
+
+    function DashboardController() {
+        var vm = this;
+
+        vm.newsArticles = [{
+            title: 'Sydost hires 4 junior developers',
+            teaser: 'Softhouse Sydost has hired four new \
+                    junior developers following a summer project \
+                    resulting in three successful in-house projects, \
+                    one of which was awarded with the prestigious',
+            date: 'Oct. 15, 2015'
+        }, {
+            title: 'Sail has been released',
+            teaser: 'The crack team of prodigiously gifted \
+                    developers in the Karlskrona office working \
+                    on Sail have released the first stable version \
+                    of their notorious application monitoring software.',
+            date: 'Aug. 3, 2015'
+        }];
+
+        vm.newFaces = [{
+            name: 'Gustav Pihl Bohlin',
+            skills: ['C++', 'Python', 'HTML5', 'CSS', 'Angular'],
+            office: 'Karlskrona'
+        }, {
+            name: 'Rasmus Letterkrantz',
+            skills: ['Ruby', 'Angular', 'HTML5', 'Haskell', 'Hockey'],
+            office: 'Karlskrona'
+        }];
+
+        //////////////
+
+        function refresh() {
+            /* */
+        }
+    }
+})();
+
+(function() {
+    'use strict';
+
     angular.module('xyz-cv-ui.access', []);
 })();
 
@@ -100,58 +176,6 @@
         function AccessController(Accesses) {
             var vm = this;
             vm.accesses = Accesses.query();
-
-            //////////////
-
-            function refresh() {
-                /* */
-            }
-        }
-})();
-
-(function() {
-    'use strict';
-
-    angular.module('xyz-cv-ui.dashboard', []);
-})();
-
-(function() {
-    'use strict';
-
-    angular
-        .module('xyz-cv-ui.dashboard')
-        .run(appRun);
-
-    function appRun(routehelper) {
-        routehelper.configureRoutes(getRoutes());
-    }
-
-    function getRoutes() {
-        return [
-            {
-                url: '/',
-                config: {
-                    templateUrl: '/xyz-cv-ui/components/dashboard/dashboard.html',
-                    controller: 'DashboardController',
-                    controllerAs: 'vm',
-                    title: 'dashboard'
-                }
-            }
-        ];
-    }
-})();
-
-(function() {
-    'use strict';
-
-    angular
-        .module('xyz-cv-ui.dashboard')
-        .controller('DashboardController', DashboardController);
-
-        function DashboardController() {
-            var vm = this;
-
-            vm.hello = [1, 2, 3, 4, 5];
 
             //////////////
 
@@ -278,6 +302,58 @@
 (function() {
     'use strict';
 
+    angular.module('blocks.logger', []);
+})();
+
+
+(function() {
+    'use strict';
+
+    angular
+        .module('blocks.logger')
+        .factory('logger', logger);
+
+    function logger($log, toastr) {
+        var service = {
+            showToasts: true,
+
+            error   : error,
+            info    : info,
+            success : success,
+            warning : warning,
+
+            // straight to console; bypass toastr
+            log     : $log.log
+        };
+
+        return service;
+        /////////////////////
+
+        function error(message, data, title) {
+            toastr.error(message, title);
+            $log.error('Error: ' + message, data);
+        }
+
+        function info(message, data, title) {
+            toastr.info(message, title);
+            $log.info('Info: ' + message, data);
+        }
+
+        function success(message, data, title) {
+            toastr.success(message, title);
+            $log.info('Success: ' + message, data);
+        }
+
+        function warning(message, data, title) {
+            toastr.warning(message, title);
+            $log.warn('Warning: ' + message, data);
+        }
+    }
+}());
+
+(function() {
+    'use strict';
+
     angular.module('blocks.exception', ['blocks.logger']);
 })();
 
@@ -367,58 +443,6 @@
         };
     }
 })();
-
-(function() {
-    'use strict';
-
-    angular.module('blocks.logger', []);
-})();
-
-
-(function() {
-    'use strict';
-
-    angular
-        .module('blocks.logger')
-        .factory('logger', logger);
-
-    function logger($log, toastr) {
-        var service = {
-            showToasts: true,
-
-            error   : error,
-            info    : info,
-            success : success,
-            warning : warning,
-
-            // straight to console; bypass toastr
-            log     : $log.log
-        };
-
-        return service;
-        /////////////////////
-
-        function error(message, data, title) {
-            toastr.error(message, title);
-            $log.error('Error: ' + message, data);
-        }
-
-        function info(message, data, title) {
-            toastr.info(message, title);
-            $log.info('Info: ' + message, data);
-        }
-
-        function success(message, data, title) {
-            toastr.success(message, title);
-            $log.info('Success: ' + message, data);
-        }
-
-        function warning(message, data, title) {
-            toastr.warning(message, title);
-            $log.warn('Warning: ' + message, data);
-        }
-    }
-}());
 
 (function() {
     'use strict';
@@ -529,10 +553,10 @@
 
     var config = {
         appErrorPrefix: '[NG-Modular Error] ', //Configure the exceptionHandler decorator
-        appTitle: 'Angular Modular Demo',
+        appTitle: 'CV',
         version: '1.0.0',
 
-        API_URL: 'http://localhost:9000/api'
+        API_URL: 'http://xyz.softhouse.se/cv-api'
     };
 
     core.value('config', config);
@@ -591,7 +615,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/xyz-cv-ui/components/access/access.html',
-    '<div class="jumbotron">HERE IS YOUR ACCESS</div><ul><li ng-repeat="access in vm.accesses">{{ access }}</li></ul>');
+    '<div class="panel panel-default"><div class="panel-body"><br><ul><li ng-repeat="access in vm.accesses">{{ access }}</li></ul></div><div class="panel-footer">Accesses</div></div>');
 }]);
 })();
 
@@ -603,7 +627,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/xyz-cv-ui/components/dashboard/dashboard.html',
-    '<div class="jumbotron">HERE IS YOUR DASHBOARD</div><ul><li ng-repeat="num in vm.hello">{{ num }}</li></ul>');
+    '<div class="row"><div class="col-md-4"><div class="panel panel-default"><div class="news-article" ng-repeat="article in vm.newsArticles"><div class="titlebar"><div class="title">{{article.title}}</div><div class="date pull-right">{{article.date}}</div></div><div class="teaser">{{article.teaser}} ...</div></div><div class="panel-footer">News</div></div></div><div class="col-md-4"><div class="panel panel-default"><div class="facecard" ng-repeat="face in vm.newFaces"><img src="assets/rasmusletterkrantz106.jpg"> {{face.name}}<div class="skilltag" ng-repeat="skill in face.skills">{{skill}}</div></div><div class="panel-footer">New faces</div></div></div></div>');
 }]);
 })();
 
