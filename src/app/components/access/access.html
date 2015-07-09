@@ -1,8 +1,13 @@
-<div class="jumbotron">
-    HERE IS YOUR ACCESS
+<div class="panel panel-default">
+	<div class="panel-body">
+		<br>
+		<ul>
+			<li ng-repeat="access in vm.accesses">
+				{{ access }}
+			</li>
+		</ul>
+	</div>
+	<div class="panel-footer">
+		Accesses
+	</div>
 </div>
-<ul>
-    <li ng-repeat="access in vm.accesses">
-        {{ access }}
-    </li>
-</ul>

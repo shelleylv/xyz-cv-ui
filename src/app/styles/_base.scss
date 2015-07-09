@@ -1,7 +1,39 @@
 @import "compass";
 
+body, html {
+  height: 100%;
+}
+
 input,
 textarea,
 button {
   font: inherit;
+}
+
+.social {
+	.fa-facebook-official {
+		color: #3b5998;
+	}
+	.fa-twitter {
+		color: #55acee;
+	}
+}
+
+.tc-chart-js-legend {
+  list-style-type: none;
+  padding-left: 0px;
+  text-align: center;
+}
+.tc-chart-js-legend li {
+  padding:10px;
+  position: relative;
+  display: inline-block;
+}
+.tc-chart-js-legend li span {
+  width:15px;
+  height:15px;
+  @include border-radius(100%);
+  float:left;
+  margin-right:10px;
+  margin-top: 2px;
 }
