@@ -15,7 +15,7 @@
         appTitle: 'CV',
         version: '1.0.0',
 
-        API_URL: 'http://xyz.softhouse.se/cv-api'
+        API_URL: 'http://xyz/cv-api'
     };
 
     core.value('config', config);
