@@ -90,7 +90,7 @@ gulp.task('csslint', ['styles'], function () {
 /**
  * Scripts
  */
-gulp.task('scripts-dist', ['templates-dist'], function () {
+gulp.task('scripts-dist', ['config','templates-dist'], function () {
   return appFiles().pipe(dist('js', bower.name, {ngAnnotate: true}));
 });
 
@@ -150,7 +150,7 @@ gulp.task('assets', function () {
 /**
  * Dist
  */
-gulp.task('dist', ['config', 'vendors', 'assets', 'styles-dist', 'scripts-dist', 'fonts'], function () {
+gulp.task('dist', ['vendors', 'assets', 'styles-dist', 'scripts-dist', 'fonts'], function () {
   return gulp.src('./src/app/index.html')
     .pipe(g.inject(gulp.src('./dist/vendors.min.{js,css}'), {ignorePath: 'dist', starttag: '<!-- inject:vendor:{{ext}} -->', addRootSlash: false}))
     .pipe(g.inject(gulp.src('./dist/' + bower.name + '.min.{js,css}'), {ignorePath: 'dist', addRootSlash: false}))
@@ -348,10 +348,11 @@ function removeRootSlashes(content, done) {
 /**
   * Create a config module based on ./app-config.json
   */
-function buildConfig() {
+function buildConfig(cb) {
   var env = process.env.NODE_ENV || 'development';
-  return gulp.src('./config/' + env + '.json')
+  gulp.src('./config/' + env + '.json')
     .pipe(gulpNgConfig('xyz-cv-ui.config'))
     .pipe(rename('constant.config.js'))
     .pipe(gulp.dest('./src/app/'));
+  return cb();
 }
