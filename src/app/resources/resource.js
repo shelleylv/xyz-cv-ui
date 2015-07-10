@@ -5,7 +5,7 @@
         .module('resource')
         .factory('Resource', Resource);
 
-    function Resource($resource, config) {
+    function Resource($resource, API_URL) {
 
         return function(path, params, methods) {
             var defaults = {
@@ -15,7 +15,7 @@
 
             methods = angular.extend(defaults, methods);
 
-            var resource = $resource(config.API_URL + path, params, methods);
+            var resource = $resource(API_URL + path, params, methods);
 
             resource.prototype.$save = function() {
                 if(!this.id) {

@@ -5,7 +5,7 @@
         .module('model')
         .factory('Model', Model);
 
-    function Model($resource, config) {
+    function Model($resource, MODEL_URL) {
 
         return function(path, params, methods) {
             var defaults = {
@@ -15,7 +15,7 @@
 
             methods = angular.extend(defaults, methods);
 
-            var model = $resource(config.MODEL_URL + path, params, methods);
+            var model = $resource(MODEL_URL + path, params, methods);
 
             model.prototype.$save = function() {
                 if(!this.id) {

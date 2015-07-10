@@ -17,7 +17,7 @@ RUN npm install
 RUN npm install -g gulp
 RUN npm install -g bower
 RUN bower update --allow-root
-RUN gulp dist
+RUN NODE_ENV=production gulp dist
 
 # Expose the correct port for your app. This will be picked up by "Katalog" who
 # will make sure Nginx redirects to this port.

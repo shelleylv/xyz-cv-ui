@@ -1,0 +1,4 @@
+{
+    "API_URL": "http://xyz/cv-api",
+    "MODEL_URL": "http://xyz/cv-model"
+}

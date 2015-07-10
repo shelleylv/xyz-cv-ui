@@ -9,7 +9,7 @@
         /*
          * Our reusable cross app code modules
          */
-        'blocks.exception', 'blocks.logger', 'blocks.router',
+        'blocks.exception', 'blocks.logger', 'blocks.router', 'xyz-cv-ui.config',
 
         'resource', 'directives', 'model',
         /*

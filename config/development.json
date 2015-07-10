@@ -1,0 +1,4 @@
+{
+    "API_URL": "http://localhost:9000/cv-api",
+    "MODEL_URL": "http://localhost:9000/cv-model"
+}
