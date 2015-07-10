@@ -23,7 +23,8 @@
         'xyz-cv-ui.dashboard',
         'xyz-cv-ui.profile',
         'xyz-cv-ui.access',
-        'xyz-cv-ui.menu'
+        'xyz-cv-ui.menu',
+        'xyz-cv-ui.office'
     ]);
 
 })();

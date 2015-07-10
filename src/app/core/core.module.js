@@ -5,14 +5,13 @@
         /*
          * Angular modules
          */
-        'ngAnimate', 'ngRoute', 'ngSanitize', 'ngResource',
+        'ngAnimate', 'ngRoute', 'ngSanitize', 'ngResource', 'angular-loading-bar',
         /*
          * Our reusable cross app code modules
          */
         'blocks.exception', 'blocks.logger', 'blocks.router',
 
-        'resource',
-        'directives',
+        'resource', 'directives', 'model',
         /*
          * 3rd Party modules
          */

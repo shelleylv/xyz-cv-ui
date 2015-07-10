@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel">
+            <div class="panel-body">
+                <div class="facts">
+                    <div class="fact col-md-4 col-md-offset-1" ng-repeat="chart in vm.charts">
+                        <div class="title">
+                            {{chart.title}}
+                        </div>
+                        <div ng-switch="chart.type">
+                            <canvas class="chart" tc-chartjs chart-type="radar" chart-options="vm.myOptions" chart-data="chart.data" ng-if="vm.loadchart" ng-switch-when="radar"></canvas>
+                            <canvas class="chart" tc-chartjs chart-type="bar" chart-options="vm.myOptions" chart-data="chart.data" ng-if="vm.loadchart" ng-switch-when="bar"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div ng-show="vm.model">
+                    Displaying competence for the {{vm.model.office.name}} office.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

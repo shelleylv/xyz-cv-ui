@@ -14,8 +14,9 @@
         appErrorPrefix: '[NG-Modular Error] ', //Configure the exceptionHandler decorator
         appTitle: 'CV',
         version: '1.0.0',
-
-        API_URL: 'http://xyz/cv-api'
+        API_URL: 'http://localhost:9000/cv-api',
+        MODEL_URL: 'http://localhost:9000/cv-model'
+        //API_URL: 'http://xyz/cv-api'
     };
 
     core.value('config', config);
