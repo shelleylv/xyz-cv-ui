@@ -8,10 +8,10 @@
 	function resize($window, $timeout, $rootScope) {
 		var directive = {
 			link: link
-		}
+		};
 		return directive;
 
-		function link (scope) {
+		function link () {
 			var broadcastTimer;
 
 			function broadcast() {

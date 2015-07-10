@@ -133,8 +133,8 @@ gulp.task('build-all', ['styles', 'templates'], index);
 function index () {
   var opt = {read: false};
   return gulp.src('./src/app/index.html')
-    .pipe(g.inject(gulp.src(bowerFiles(), opt), {ignorePath: 'bower_components', starttag: '<!-- inject:vendor:{{ext}} -->'}))
-    .pipe(g.inject(es.merge(appFiles(), cssFiles(opt)), {ignorePath: ['.tmp', 'src/app']}))
+    .pipe(g.inject(gulp.src(bowerFiles(), opt), {ignorePath: 'bower_components', starttag: '<!-- inject:vendor:{{ext}} -->', addRootSlash: false}))
+    .pipe(g.inject(es.merge(appFiles(), cssFiles(opt)), {ignorePath: ['.tmp', 'src/app'], addRootSlash: false}))
     .pipe(gulp.dest('./src/app/'))
     .pipe(g.embedlr())
     .pipe(gulp.dest('./.tmp/'))
@@ -164,7 +164,7 @@ gulp.task('dist', ['vendors', 'assets', 'styles-dist', 'scripts-dist', 'fonts'],
  * Static file server
  */
 gulp.task('statics', g.serve({
-  port: 3000,
+  port: 9292,
   root: ['./.tmp', './.tmp/src/app', './src/app', './bower_components']
 }));
 
