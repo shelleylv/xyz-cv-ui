@@ -8,7 +8,6 @@
   },
   "dependencies": {
     "add-stream": "^1.0.0",
-    "angular-resource": "^1.4.1",
     "express": "~4.12.4",
     "gulp-change": "^1.0.0",
     "gulp-concat": "^2.6.0",
