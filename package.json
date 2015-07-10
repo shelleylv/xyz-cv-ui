@@ -7,9 +7,13 @@
     "test": "gulp test"
   },
   "dependencies": {
+    "add-stream": "^1.0.0",
     "angular-resource": "^1.4.1",
     "express": "~4.12.4",
-    "gulp-change": "^1.0.0"
+    "gulp-change": "^1.0.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-ng-config": "^1.2.1",
+    "gulp-rename": "^1.2.2"
   },
   "devDependencies": {
     "compass": "^0.1.1",

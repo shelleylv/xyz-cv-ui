@@ -15,7 +15,9 @@ var gulp = require('gulp'),
     path = require('path'),
     isWatching = false,
     flatten = require('gulp-flatten'),
-    change = require('gulp-change');
+    change = require('gulp-change'),
+    gulpNgConfig = require('gulp-ng-config'),
+    rename = require('gulp-rename');
 
 var htmlminOpts = {
   removeComments: true,
@@ -24,6 +26,13 @@ var htmlminOpts = {
   collapseBooleanAttributes: true,
   removeRedundantAttributes: true
 };
+
+/**
+ *  CONFIG
+ */
+gulp.task('config', buildConfig);
+
+
 
 /**
  * JS Hint
@@ -64,17 +73,6 @@ gulp.task('styles', ['clean-css'], function() {
     .pipe(g.cached('built-css'))
     .pipe(livereload());
 });
-
-//gulp.task('styles', ['clean-css'], function () {
-//  return gulp.src([
-//    './src/app/**/*.scss',
-//    '!./src/app/**/_*.scss'
-//  ])
-//    .pipe(g.sass())
-//    .pipe(gulp.dest('./.tmp/css/'))
-//    .pipe(g.cached('built-css'))
-//    .pipe(livereload());
-//});
 
 gulp.task('styles-dist', ['styles'], function () {
   return cssFiles()
@@ -152,7 +150,7 @@ gulp.task('assets', function () {
 /**
  * Dist
  */
-gulp.task('dist', ['vendors', 'assets', 'styles-dist', 'scripts-dist', 'fonts'], function () {
+gulp.task('dist', ['config', 'vendors', 'assets', 'styles-dist', 'scripts-dist', 'fonts'], function () {
   return gulp.src('./src/app/index.html')
     .pipe(g.inject(gulp.src('./dist/vendors.min.{js,css}'), {ignorePath: 'dist', starttag: '<!-- inject:vendor:{{ext}} -->', addRootSlash: false}))
     .pipe(g.inject(gulp.src('./dist/' + bower.name + '.min.{js,css}'), {ignorePath: 'dist', addRootSlash: false}))
@@ -172,7 +170,7 @@ gulp.task('statics', g.serve({
  * Watch
  */
 gulp.task('serve', ['watch']);
-gulp.task('watch', ['statics', 'default'], function () {
+gulp.task('watch', ['config', 'statics', 'default'], function () {
   isWatching = true;
   // Initiate livereload server:
   g.livereload.listen();
@@ -345,4 +343,15 @@ function jshint (jshintfile) {
 function removeRootSlashes(content, done) {
   content = content.replace(/\.\.\//g, '');
   return done(null, content);
+}
+
+/**
+  * Create a config module based on ./app-config.json
+  */
+function buildConfig() {
+  var env = process.env.NODE_ENV || 'development';
+  return gulp.src('./config/' + env + '.json')
+    .pipe(gulpNgConfig('xyz-cv-ui.config'))
+    .pipe(rename('constant.config.js'))
+    .pipe(gulp.dest('./src/app/'));
 }
