@@ -8,6 +8,7 @@ WORKDIR /app
 ADD package.json package.json
 ADD src src
 ADD server server
+ADD config config
 ADD gulpfile.js gulpfile.js
 ADD bower.json bower.json
 ADD config.rb config.rb

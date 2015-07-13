@@ -12,8 +12,7 @@
     "gulp-change": "^1.0.0",
     "gulp-concat": "^2.6.0",
     "gulp-ng-config": "^1.2.1",
-    "gulp-rename": "^1.2.2",
-    "merge-stream": "^0.1.8"
+    "gulp-rename": "^1.2.2"
   },
   "devDependencies": {
     "compass": "^0.1.1",

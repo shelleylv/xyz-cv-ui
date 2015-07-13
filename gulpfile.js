@@ -17,8 +17,7 @@ var gulp = require('gulp'),
     flatten = require('gulp-flatten'),
     change = require('gulp-change'),
     gulpNgConfig = require('gulp-ng-config'),
-    rename = require('gulp-rename'),
-    merge = require('merge-stream');
+    rename = require('gulp-rename');
 
 var htmlminOpts = {
   removeComments: true,
@@ -31,7 +30,13 @@ var htmlminOpts = {
 /**
  *  CONFIG
  */
-gulp.task('config', buildConfig);
+gulp.task('config', function() {
+  var env = process.env.NODE_ENV || 'development';
+  return gulp.src('./config/' + env + '.json')
+    .pipe(gulpNgConfig('xyz-cv-ui.config'))
+    .pipe(rename('constant.config.js'))
+    .pipe(gulp.dest('./src/app/'));
+});
 
 
 
@@ -92,8 +97,7 @@ gulp.task('csslint', ['styles'], function () {
  * Scripts
  */
 gulp.task('scripts-dist', ['config', 'templates-dist'], function () {
-  return appFiles()
-  .pipe(dist('js', bower.name, {ngAnnotate: true}));
+  return appFiles().pipe(dist('js', bower.name, {ngAnnotate: true}));
 });
 
 /**
@@ -152,7 +156,7 @@ gulp.task('assets', function () {
 /**
  * Dist
  */
-gulp.task('dist', ['vendors', 'assets', 'styles-dist', 'scripts-dist', 'fonts'], function () {
+gulp.task('dist', ['config', 'vendors', 'assets', 'styles-dist', 'scripts-dist', 'fonts'], function () {
   return gulp.src('./src/app/index.html')
     .pipe(g.inject(gulp.src('./dist/vendors.min.{js,css}'), {ignorePath: 'dist', starttag: '<!-- inject:vendor:{{ext}} -->', addRootSlash: false}))
     .pipe(g.inject(gulp.src('./dist/' + bower.name + '.min.{js,css}'), {ignorePath: 'dist', addRootSlash: false}))
@@ -345,15 +349,4 @@ function jshint (jshintfile) {
 function removeRootSlashes(content, done) {
   content = content.replace(/\.\.\//g, '');
   return done(null, content);
-}
-
-/**
-  * Create a config module based on ./app-config.json
-  */
-function buildConfig() {
-  var env = process.env.NODE_ENV || 'development';
-  return gulp.src('./config/' + env + '.json')
-    .pipe(gulpNgConfig('xyz-cv-ui.config'))
-    .pipe(rename('constant.config.js'))
-    .pipe(gulp.dest('./src/app/'));
 }
