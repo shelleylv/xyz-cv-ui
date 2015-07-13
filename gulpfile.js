@@ -91,10 +91,8 @@ gulp.task('csslint', ['styles'], function () {
 /**
  * Scripts
  */
-gulp.task('scripts-dist', ['templates-dist'], function () {
-  var files = appFiles();
-  var config = buildConfigStream();
-  return merge(config, files)
+gulp.task('scripts-dist', ['config', 'templates-dist'], function () {
+  return appFiles()
   .pipe(dist('js', bower.name, {ngAnnotate: true}));
 });
 
@@ -262,7 +260,6 @@ function appFiles () {
     './.tmp/src/app/**/*.js',
     '!./.tmp/src/app/**/*_test.js',
     './src/app/**/*.js',
-    '!./src/app/constant.config.js',
     '!./src/app/**/*_test.js'
   ];
   return gulp.src(files)
@@ -359,14 +356,4 @@ function buildConfig() {
     .pipe(gulpNgConfig('xyz-cv-ui.config'))
     .pipe(rename('constant.config.js'))
     .pipe(gulp.dest('./src/app/'));
-}
-
-/**
-  * Create a config module based on ./app-config.json
-  */
-function buildConfigStream() {
-  var env = process.env.NODE_ENV || 'development';
-  return gulp.src('./config/' + env + '.json')
-    .pipe(gulpNgConfig('xyz-cv-ui.config'))
-    .pipe(rename('constant.config.js'));
 }
