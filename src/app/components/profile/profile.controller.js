@@ -5,19 +5,22 @@
         .module('xyz-cv-ui.profile')
         .controller('ProfileController', ProfileController);
 
-        function ProfileController(Skills) {
+        function ProfileController(ProfileModel, $routeParams) {
             var vm = this;
 
-            vm.skills = Skills.query();
+            vm.model = ProfileModel.get({'id': 'current'});
+            vm.skills = [];
+
+            activate();
 
             //////////////
 
-            function createSkill(skill) {
-                skill.$save();
-            }
-
-            function deleteSkill(skill) {
-                skill.$delete();
+            function activate() {
+                ProfileModel.get({id: $routeParams.userId})
+                    .$promise.then(function(value) {
+                        vm.skills = value.user.skills;
+                        vm.model = value;
+                    });
             }
 
             function refresh() {
