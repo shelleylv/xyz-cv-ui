@@ -24,10 +24,6 @@
                 $scope.$apply();
             });
 
-            $timeout(function() {
-                vm.loadchart = true;
-            }, 300);
-
             //////////////
 
             function activate() {
@@ -44,8 +40,9 @@
             }
 
             function redraw(waitTime) {
+                vm.loadchart = false;
                 $timeout(function() {
-                    activate();
+                    vm.loadchart = true;
                 }, waitTime);
             }
 

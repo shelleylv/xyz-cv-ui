@@ -12,7 +12,7 @@
     function getRoutes() {
         return [
             {
-                url: '/profile',
+                url: '/profile/:userId',
                 config: {
                     templateUrl: '/xyz-cv-ui/components/profile/profile.html',
                     controller: 'ProfileController',
