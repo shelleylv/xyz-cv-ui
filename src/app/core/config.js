@@ -20,7 +20,7 @@
 
     core.config(configure);
 
-    function configure ($logProvider, $routeProvider, routehelperConfigProvider, exceptionHandlerProvider) {
+    function configure ($logProvider, $routeProvider, routehelperConfigProvider, exceptionHandlerProvider, $httpProvider) {
         // turn debugging off/on (no info or warn)
         if ($logProvider.debugEnabled) {
             $logProvider.debugEnabled(true);
@@ -32,5 +32,8 @@
 
         // Configure the common exception handler
         exceptionHandlerProvider.configure(config.appErrorPrefix);
+
+        // Configure $httpProvider to allow CORS
+        $httpProvider.defaults.useXDomain = true;
     }
 })();
