@@ -36,7 +36,6 @@
         // Configure $httpProvider to allow CORS
         $httpProvider.defaults.useXDomain = true;
         $httpProvider.defaults.withCredentials = true;
-        console.log($httpProvider);
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
     }
 })();
