@@ -10,6 +10,7 @@
 
             vm.model = ProfileModel.get({'id': 'current'});
             vm.skills = [];
+            vm.words = [];
 
             activate();
 
@@ -20,7 +21,17 @@
                     .$promise.then(function(value) {
                         vm.skills = value.user.skills;
                         vm.model = value;
+                        generateCloud();
                     });
+            }
+
+            function generateCloud() {
+                vm.skills.forEach(function(skill) {
+                    var word = {};
+                    word.text = skill.name;
+                    word.weight = Math.floor((Math.random()*4)+1);
+                    vm.words.push(word);
+                });
             }
 
             function refresh() {

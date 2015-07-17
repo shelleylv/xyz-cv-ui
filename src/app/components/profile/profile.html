@@ -1,8 +1,139 @@
-<div class="jumbotron">
-    HERE IS YOUR PROFILE
+<div class="row">
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="profile-default">
+                        <img ng-src="assets/legolas-cage.jpg">
+                        <div class="data-box">
+                            <div class="name">
+                                Basic Info
+                            </div>
+                            <div class="office pull-right">
+                                Office Cage
+                            </div>
+                            <div class="title">
+                                CEO of Cage corp.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="profile-default">
+                        <div class="data-box">
+                            <div class="name">
+                                Skills
+                            </div>
+                            <div class="office pull-right">
+                                Office Cage
+                            </div>
+                            <div class="title">
+                                Technologies
+                            </div>
+                            <div class="skilltag" ng-repeat="skill in vm.skills">
+                                {{skill.name}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="profile-default">
+                        <div class="data-box">
+                            <div class="name">
+                                Certificates
+                            </div>
+                            <div class="office pull-right">
+                                Office Cage
+                            </div>
+                            <div class="title">
+                                Master of Archery
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="profile-default">
+                        <div class="data-box">
+                            <div class="name">
+                                Assignments
+                            </div>
+                            <div class="office pull-right">
+                                Office Cage
+                            </div>
+                            <div class="title">
+                                Master of Archery
+                            </div>
+                            Skills:
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="profile-cloud">
+                <tagcloud words="vm.words" width="500" height="350" steps="7"></tagcloud>
+            </div>
+        </div>
+    </div>
+
+<!--     <div class="col-md-6 col-lg-6">
+        <div class="panel panel-default">
+            <div class="news-article" ng-repeat="article in vm.newsArticles">
+                <div class="titlebar">
+                    <div class="title">
+                        {{article.title}}
+                    </div>
+                    <div class="date pull-right">
+                        {{article.date}}
+                    </div>
+                </div>
+                <div class="teaser">
+                    {{article.teaser}} ...
+                </div>
+                <div class="social">
+                    <i class="fa fa-facebook-official"></i>
+                    <i class="fa fa-twitter"></i>
+                </div>
+            </div>
+            <div class="panel-footer">
+                News
+            </div>
+        </div>
+    </div> -->
+<!--     <div class="col-md-6 col-lg-6">
+        <div class="panel panel-default">
+            <div class="facecard" ng-repeat="face in vm.newFaces">
+                <div class="image-box">
+                    <img ng-src="assets/{{face.img}}">
+                </div>
+                <div class="data-box">
+                    <div class="name">
+                        {{face.name}}
+                    </div>
+                    <div class="office pull-right">
+                        {{face.office}}
+                    </div>
+                    <div class="title">
+                        {{face.title}}
+                    </div>
+                    Skills:
+                    <div class="skilltag" ng-repeat="skill in face.skills">
+                        {{skill}}
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                New faces
+            </div>
+        </div>
+    </div> -->
 </div>
-<ul>
-    <li ng-repeat="skill in vm.skills">
-        {{ skill.name }}
-    </li>
-</ul>
