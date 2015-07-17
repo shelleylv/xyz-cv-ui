@@ -20,7 +20,7 @@
 
     core.config(configure);
 
-    function configure ($logProvider, $routeProvider, routehelperConfigProvider, exceptionHandlerProvider) {
+    function configure ($logProvider, $routeProvider, routehelperConfigProvider, exceptionHandlerProvider, $httpProvider) {
         // turn debugging off/on (no info or warn)
         if ($logProvider.debugEnabled) {
             $logProvider.debugEnabled(true);

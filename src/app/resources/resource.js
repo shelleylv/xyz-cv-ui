@@ -9,8 +9,13 @@
 
         return function(path, params, methods) {
             var defaults = {
-                update: { method: 'put', isArray: false },
-                create: { method: 'post' }
+                update: { method: 'PUT', isArray: false, withCredentials: true },
+                create: { method: 'POST', withCredentials: true},
+                get: {method: 'GET', withCredentials: true},
+                save: {method: 'POST', withCredentials: true},
+                query: {method: 'GET', isArray: true, withCredentials: true},
+                remove: {method: 'DELETE', withCredentials: true},
+                'delete': {method: 'DELETE', withCredentials: true}
             };
 
             methods = angular.extend(defaults, methods);
