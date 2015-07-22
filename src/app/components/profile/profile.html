@@ -1,139 +1,197 @@
 <div class="row">
-    <div class="col-md-8">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="profile-default">
-                        <img ng-src="assets/legolas-cage.jpg">
-                        <div class="data-box">
-                            <div class="name">
-                                Basic Info
-                            </div>
-                            <div class="office pull-right">
-                                Office Cage
-                            </div>
-                            <div class="title">
-                                CEO of Cage corp.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="profile-default">
-                        <div class="data-box">
-                            <div class="name">
-                                Skills
-                            </div>
-                            <div class="office pull-right">
-                                Office Cage
-                            </div>
-                            <div class="title">
-                                Technologies
-                            </div>
-                            <div class="skilltag" ng-repeat="skill in vm.skills">
-                                {{skill.name}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="profile-default">
-                        <div class="data-box">
-                            <div class="name">
-                                Certificates
-                            </div>
-                            <div class="office pull-right">
-                                Office Cage
-                            </div>
-                            <div class="title">
-                                Master of Archery
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="profile-default">
-                        <div class="data-box">
-                            <div class="name">
-                                Assignments
-                            </div>
-                            <div class="office pull-right">
-                                Office Cage
-                            </div>
-                            <div class="title">
-                                Master of Archery
-                            </div>
-                            Skills:
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="profile-cloud">
-                <tagcloud words="vm.words" width="500" height="350" steps="7"></tagcloud>
-            </div>
-        </div>
-    </div>
+    <!-- GENERAL INFO -->
 
-<!--     <div class="col-md-6 col-lg-6">
-        <div class="panel panel-default">
-            <div class="news-article" ng-repeat="article in vm.newsArticles">
-                <div class="titlebar">
-                    <div class="title">
-                        {{article.title}}
-                    </div>
-                    <div class="date pull-right">
-                        {{article.date}}
-                    </div>
-                </div>
-                <div class="teaser">
-                    {{article.teaser}} ...
-                </div>
-                <div class="social">
-                    <i class="fa fa-facebook-official"></i>
-                    <i class="fa fa-twitter"></i>
-                </div>
-            </div>
-            <div class="panel-footer">
-                News
-            </div>
-        </div>
-    </div> -->
-<!--     <div class="col-md-6 col-lg-6">
-        <div class="panel panel-default">
-            <div class="facecard" ng-repeat="face in vm.newFaces">
-                <div class="image-box">
-                    <img ng-src="assets/{{face.img}}">
+    <div class="col-md-6 col-md-offset-3 col-sm-12">
+        <div id="general-info" class="panel-wrapper">
+            <div class="panel panel-default profile-default">
+                <div class="panel image-panel">
+                    <img ng-src="assets/legolas-cage.jpg">
                 </div>
                 <div class="data-box">
                     <div class="name">
-                        {{face.name}}
+                        Legolas Cage
                     </div>
-                    <div class="office pull-right">
-                        {{face.office}}
+                    <div class="role pull-right">
+                        Admin
                     </div>
                     <div class="title">
-                        {{face.title}}
+                        CEO of Cage corp.
                     </div>
-                    Skills:
-                    <div class="skilltag" ng-repeat="skill in face.skills">
-                        {{skill}}
+                    <div class="location">
+                       0739826240 | Legolas.Cage@softhouse.se | New York, US | Bengt Gustavsson
                     </div>
+                    <br>
+                    <table class="employee">
+                        <tbody>
+                            <tr class="number">
+                                <th>
+                                    Employee
+                                </th>
+                                <td class="value">
+                                    # 133777331
+                                </td>
+                            </tr>
+                            <tr class="date">
+                                <th>
+                                    From
+                                </th>
+                                <td class="value">
+                                    2011-07-06
+                                </td>
+                            </tr>
+                            <tr class="date">
+                                <th>
+                                    To
+                                </th>
+                                <td class="value">
+                                    2015-08-01
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    Interests: Kite surfing
+                    <br>
+                    Description: Gillar att skjuta med pil och båge.
+                </div>
+                <div class="panel-footer">
+                    <b>General Info</b>
                 </div>
             </div>
-            <div class="panel-footer">
-                New faces
+        </div>
+    </div>
+
+    <!-- PRIVATE INFO -->
+
+    <div class="col-md-6 col-md-offset-3 col-sm-12">
+        <div id="private-info" class="panel-wrapper">
+            <div class="panel panel-default profile-default">
+                <div class="panel image-panel">
+                    <i class="fa fa-lock"></i>
+                </div>
+                <div class="data-box">
+                    ID Number: 19920331xxxx
+                    <br>
+                    Address: Kestorpsvägen 4
+                    <br>
+                    City: Karlskrona
+                    <br>
+                    ZIP: 37030
+                    <br>
+                    ICE Phone: 0739826240
+                    <br>
+                    ICE name: Some Cage
+                    <br>
+                    Shirt Size: M
+                    <br>
+                    Food Preferences: Alergic against noobs.
+                    <br>
+                </div>
+                <div class="panel-footer">
+                    <b>Private Info</b>
+                </div>
             </div>
         </div>
-    </div> -->
+    </div>
+
+    <!-- SKILLS -->
+
+    <div class="col-md-6 col-md-offset-3 col-sm-12">
+        <div id="skills" class="panel-wrapper">
+            <div class="panel panel-default profile-default">
+                <div class="panel image-panel">
+                    <i class="fa fa-flask"></i>
+                </div>
+                <div class="itemrow skillrow" ng-repeat="word in vm.words">
+                    <div class="image-box">
+                        <i class="devicon-nodejs-plain"></i>
+                    </div>
+                    <div class="data-box">
+                        <div class="name">
+                            {{word.text}}
+                        </div>
+                        <div class="year pull-right">
+                            3 years
+                        </div>
+                        <div class="level">
+                            {{word.weight}}
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <b>Skills</b>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CERTIFICATES -->
+
+    <div class="col-md-6 col-md-offset-3 col-sm-12">
+        <div id="certificates" class="panel-wrapper">
+            <div class="panel panel-default profile-default">
+                <div class="panel image-panel">
+                    <i class="fa fa-graduation-cap"></i>
+                </div>
+                <div class="itemrow certificaterow" ng-repeat="certificate in vm.certificates">
+                    <div class="image-box">
+                        <i class="fa fa-graduation-cap"></i>
+                    </div>
+                    <div class="data-box">
+                        <div class="name">
+                            {{certificate.name}}
+                        </div>
+                        <div class="date pull-right">
+                            {{certificate.date}}
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <b>Certificates</b>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ASSIGNMENTS-->
+
+    <div class="col-md-6 col-md-offset-3 col-sm-12">
+        <div id="assignments" class="panel-wrapper">
+            <div class="panel panel-default profile-default">
+                <div class="panel image-panel">
+                    <i class="fa fa-suitcase"></i>
+                </div>
+                <div class="itemrow assignmentrow" ng-repeat="assignment in vm.assignments">
+                    <div class="image-box">
+                        <i class="fa fa-suitcase"></i>
+                    </div>
+                    <div class="data-box">
+                        <div class="name">
+                            {{assignment.name}}
+                        </div>
+                        <div class="skilltag pull-right" ng-repeat="skill in assignment.skills">
+                            {{skill.name}}
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <b>Assignments</b>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CLOUD -->
+
+    <div class="col-md-6 col-md-offset-3 col-sm-12">
+        <div id="cloud" class="panel-wrapper">
+            <div class="panel panel-default">
+                <div class="panel image-panel">
+                    <i class="fa fa-cloud"></i>
+                </div>
+                <tagcloud class="profile-cloud" autoResize="true" words="vm.words" steps="7"></tagcloud>
+            </div>
+        </div>
+    </div>
 </div>

@@ -39,6 +39,7 @@
                     jqcOptions.push(opt);
                 }
             }
+            console.log(jqcOptions);
         }
 
         function generateLink($scope, $elem, $attr) {
@@ -50,6 +51,9 @@
                     options[opt] = $parse($attr[opt])();
                 }
             }
+
+            options.autoResize = true;
+            console.log(options);
 
             $elem = $($elem).jQCloud($scope.words, options);
 
