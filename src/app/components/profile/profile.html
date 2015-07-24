@@ -10,50 +10,64 @@
                 </div>
                 <div class="data-box">
                     <div class="name">
-                        Legolas Cage
+                        {{ vm.name }}
                     </div>
                     <div class="role pull-right">
-                        Admin
+                        {{ vm.role.name }}
                     </div>
                     <div class="title">
-                        CEO of Cage corp.
+                        {{ vm.position }}
                     </div>
                     <div class="location">
-                       0739826240 | Legolas.Cage@softhouse.se | New York, US | Bengt Gustavsson
+                       {{ vm.phoneNumber }} | {{ vm.email }} | {{ vm.office.name }} | {{ vm.country }} | {{ vm.closestSuperior }}
                     </div>
                     <br>
                     <table class="employee">
                         <tbody>
-                            <tr class="number">
+                            <tr>
                                 <th>
-                                    Employee
+                                    Employee#
                                 </th>
-                                <td class="value">
-                                    # 133777331
+                                <td>
+                                    {{ vm.employeeNumber }}
                                 </td>
                             </tr>
-                            <tr class="date">
+                            <tr>
                                 <th>
                                     From
                                 </th>
-                                <td class="value">
-                                    2011-07-06
+                                <td>
+                                    {{ vm.startDateOfEmployment }}
                                 </td>
                             </tr>
-                            <tr class="date">
+                            <tr>
                                 <th>
                                     To
                                 </th>
-                                <td class="value">
-                                    2015-08-01
+                                <td>
+                                    {{ vm.endDateOfEmployment }}
+                                </td>
+                            </tr>
+                            <tr class="spacer"><td></td></tr>
+                            <tr>
+                                <th>
+                                    Interests
+                                </th>
+                                <td>
+                                    {{ vm.personalInterests }}
+                                </td>
+                            </tr>
+                            <tr class="spacer"><td></td></tr>
+                            <tr>
+                                <th>
+                                    Description
+                                </th>
+                                <td>
+                                    {{ vm.description }}
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <br>
-                    Interests: Kite surfing
-                    <br>
-                    Description: Gillar att skjuta med pil och båge.
                 </div>
                 <div class="panel-footer">
                     <b>General Info</b>
@@ -71,22 +85,51 @@
                     <i class="fa fa-lock"></i>
                 </div>
                 <div class="data-box">
-                    ID Number: 19920331xxxx
-                    <br>
-                    Address: Kestorpsvägen 4
-                    <br>
-                    City: Karlskrona
-                    <br>
-                    ZIP: 37030
-                    <br>
-                    ICE Phone: 0739826240
-                    <br>
-                    ICE name: Some Cage
-                    <br>
-                    Shirt Size: M
-                    <br>
-                    Food Preferences: Alergic against noobs.
-                    <br>
+                    <table class="employee">
+                        <tbody>
+                            <tr>
+                                <th>
+                                    Personal ID Number
+                                </th>
+                                <td>
+                                    {{ vm.personalIdNumber }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Address
+                                </th>
+                                <td>
+                                    {{ vm.address }} | {{ vm.ZIP }} | {{ vm.city }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    ICE
+                                </th>
+                                <td>
+                                    {{ vm.ICEName }} | {{ vm.ICEPhone }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Shirt Size
+                                </th>
+                                <td>
+                                    {{ vm.shirtSize }}
+                                </td>
+                            </tr>
+                            <tr class="spacer"><td></td></tr>
+                            <tr>
+                                <th>
+                                    Food Preferences
+                                </th>
+                                <td>
+                                    {{ vm.foodPreferences }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="panel-footer">
                     <b>Private Info</b>
@@ -103,19 +146,19 @@
                 <div class="image-panel hidden-xs hidden-sm">
                     <i class="fa fa-flask"></i>
                 </div>
-                <div class="itemrow skillrow" ng-class="{'removeTopBorder': $first}" ng-repeat="word in vm.words">
+                <div class="itemrow skillrow" ng-class="{'removeTopBorder': $first}" ng-repeat="skill in vm.skills">
                     <div class="image-box">
-                        <i class="devicon-nodejs-plain"></i>
+                        <i class="{{ skill.icon }}"></i>
                     </div>
                     <div class="data-box">
                         <div class="name">
-                            {{word.text}}
+                            {{ skill.name }}
                         </div>
                         <div class="year pull-right">
-                            3 years
+                            {{ skill.years }}
                         </div>
                         <div class="level">
-                            {{word.weight}}
+                            {{ skill.level }}
                         </div>
                     </div>
                 </div>
@@ -140,10 +183,7 @@
                     </div>
                     <div class="data-box">
                         <div class="name">
-                            {{certificate.name}}
-                        </div>
-                        <div class="date pull-right">
-                            {{certificate.date}}
+                            {{ certificate }}
                         </div>
                     </div>
                 </div>
@@ -168,10 +208,10 @@
                     </div>
                     <div class="data-box">
                         <div class="name">
-                            {{assignment.name}}
+                            {{ assignment.name }}
                         </div>
                         <div class="skilltag pull-right" ng-repeat="skill in assignment.skills">
-                            {{skill.name}}
+                            {{ skill.name }}
                         </div>
                     </div>
                 </div>
@@ -182,16 +222,30 @@
         </div>
     </div>
 
+    <!-- TAGS -->
+
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12">
+        <div class="panel-wrapper">
+            <div id="tags" class="panel panel-default">
+                <div class="image-panel hidden-xs hidden-sm">
+                    <i class="fa fa-cloud"></i>
+                </div>
+                <div class="tag" ng-repeat="word in vm.cloud.words" ng-style="{ opacity: {{word.opacity}} }"> {{word.text}} </div>
+            </div>
+        </div>
+    </div>
+
     <!-- CLOUD -->
 
     <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12">
         <div id="cloud" class="panel-wrapper">
-            <div class="panel-default">
+            <div class="panel panel-default">
                 <div class="image-panel hidden-xs hidden-sm">
                     <i class="fa fa-cloud"></i>
                 </div>
-                <tagcloud class="profile-cloud" autoResize="true" words="vm.words" steps="7"></tagcloud>
+                <tagcloud class="profile-cloud" autoResize="true" words="vm.cloud.words" steps="7"></tagcloud>
             </div>
         </div>
     </div>
+
 </div>

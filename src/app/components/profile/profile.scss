@@ -164,7 +164,7 @@
     }
 }
 
-#general-info {
+#general-info, #private-info {
     .name {
         font-size: 200%;
         font-weight: bold;
@@ -181,11 +181,7 @@
             display: block;
         }
     .employee {
-        .value {
-            text-align: center;
-        }
-        .title {
-        }
+
     }
     table {
         tbody {
@@ -195,25 +191,33 @@
             font-size: 100%;
             vertical-align: baseline;
             tr {
+                &.spacer {
+                    height: 20px;
+                    color: transparent;
+                }
                 th {
                     font-size: 11px;
                     color: #999;
-                    vertical-align: middle;
+                    vertical-align: top;
                     padding: 2px 20px 0 0;
                     white-space: nowrap;
                     text-align: left;
                 }
                 td {
                     font-size: 12px;
-                    line-height: 12px;
+                    line-height: 14px;
                     color: #333;
                     font-weight: normal;
                     text-decoration: none;
                     text-align: left;
-                    font-weight: normal;
                     vertical-align: middle;
+                    padding-top: 3px;
                 }
             }
         }
     }
+}
+
+#tags {
+    min-height: 232px;
 }
