@@ -8,11 +8,54 @@
         function ProfileController(ProfileModel, $routeParams) {
             var vm = this;
 
-            vm.model = ProfileModel.get({'id': 'current'});
+            /* GENERAL INFO */
+            vm.profileImage = '';
+            vm.name = '';
+            vm.email = '';
+            vm.role = {};
+            vm.office = {};
+            vm.phoneNumber = '';
+            vm.employeeNumber = '';
+            vm.position = '';
+            vm.country = '';
+            vm.closestSuperior = '';
+            vm.startDateOfEmployment = '';
+            vm.endDateOfEmployment = '';
+            vm.sex = '';
+            vm.description = '';
+            vm.personalInterests = '';
+
+            /* PRIVATE INFO */
+            vm.personalIdNumber = '';
+            vm.address = '';
+            vm.city = '';
+            vm.ZIP = '';
+            vm.ICEName = '';
+            vm.ICEPhone = '';
+            vm.foodPreferences = '';
+            vm.shirtSize = '';
+
+            /* SKILLS */
             vm.skills = [];
-            vm.words = [];
+
+            /* CERTIFICATES */
+            vm.certificates= [];
+
+            /* ASSIGNMENTS */
             vm.assignments = [];
-            vm.certificates = [];
+
+            /* CUSTOM HEADERS */
+            vm.customHeaders= [];
+
+            /* SOCIAL MEDIA */
+            vm.linkedin = '';
+            vm.facebook = '';
+            vm.twitter = '';
+
+            /* CLOUD */
+            vm.cloud = {};
+            vm.cloud.words = [];
+            vm.cloud.maxWeight = 1;
 
             activate();
 
@@ -20,22 +63,60 @@
 
             function activate() {
                 ProfileModel.get({id: $routeParams.userId})
-                    .$promise.then(function(value) {
-                        vm.skills = value.user.skills;
-                        vm.model = value;
-                        vm.assignments = [{name: 'CVDB', skills:[{name: 'NodeJS'}, {name: 'Javascript'}, {name: 'Angular'}, {name: 'CSS'}]}, {name: 'SAIL', skills:[{name: 'Java'}, {name: 'Django'}, {name: 'Angular'}, {name: 'CSS'}]}]
-                        vm.certificates = [{name: 'Master of Archery', date: "2012-07-02"}, {name: 'Bachelor of Cageness', date: '1995-11-13'}];
-                        generateCloud();
+                    .$promise.then(function(model) {
+                        //model.user.office = {name: 'Karlskrona'};
+                        setGeneralInfo(model);
+                        setPrivateInfo(model);
+                        setSkills(model);
+                        setCertificates(model);
+                        setAssignments(model);
+                        setCloud(model);
                     });
             }
 
-            function generateCloud() {
-                vm.skills.forEach(function(skill) {
-                    var word = {};
-                    word.text = skill.name;
-                    word.weight = Math.floor((Math.random()*4)+1);
-                    vm.words.push(word);
-                });
+            function setGeneralInfo(model) {
+                vm.profileImage = model.user.profileImage;
+                vm.name = model.user.name;
+                vm.email = model.user.email;
+                vm.role = model.user.role;
+                vm.office = model.user.office;
+                vm.phoneNumber = model.user.phoneNumber;
+                vm.employeeNumber = model.user.employeeNumber;
+                vm.position = model.user.position;
+                vm.country = model.user.country;
+                vm.closestSuperior = model.user.closestSuperior;
+                vm.startDateOfEmployment = model.user.startDateOfEmployment;
+                vm.endDateOfEmployment = model.user.endDateOfEmployment;
+                vm.sex = model.user.sex;
+                vm.description = model.user.description;
+                vm.personalInterests = model.user.personalInterests.join(', ');
+            }
+
+            function setPrivateInfo(model) {
+                vm.personalIdNumber = '197403237271'//model.user.personalIdNumber;
+                vm.address = model.user.address;
+                vm.city = model.user.city;
+                vm.ZIP = model.user.ZIP;
+                vm.ICEName = model.user.ICEName;
+                vm.ICEPhone = model.user.ICEPhone;
+                vm.foodPreferences = model.user.foodPreferences;
+                vm.shirtSize = model.user.shirtSize;
+            }
+
+            function setSkills(model) {
+                vm.skills = model.user.skills;
+            }
+
+            function setCertificates(model) {
+                vm.certificates = model.user.certificates;
+            }
+
+            function setAssignments(model) {
+                vm.assignments = model.user.assignments;
+            }
+
+            function setCloud(model) {
+                vm.cloud = model.cloud;
             }
 
             function refresh() {
