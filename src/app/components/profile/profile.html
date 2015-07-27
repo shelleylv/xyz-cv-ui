@@ -6,7 +6,8 @@
         <div id="general-info" class="panel-wrapper">
             <div class="panel panel-default profile-default">
                 <div class="image-panel">
-                    <img ng-src="assets/legolas-cage.jpg">
+                    <img ng-show="vm.profileImage" ng-src="http://localhost:9000/cv-api/file/{{ vm.profileImage }}">
+                    <img ng-hide="vm.profileImage" ng-src="assets/legolas-cage.jpg">
                 </div>
                 <div class="data-box">
                     <div class="name">
@@ -19,7 +20,7 @@
                         {{ vm.position }}
                     </div>
                     <div class="location">
-                       {{ vm.phoneNumber }} | {{ vm.email }} | {{ vm.office.name }} | {{ vm.country }} | {{ vm.closestSuperior }}
+                       {{ vm.contactInfo }}
                     </div>
                     <br>
                     <table class="employee">
@@ -100,7 +101,7 @@
                                     Address
                                 </th>
                                 <td>
-                                    {{ vm.address }} | {{ vm.ZIP }} | {{ vm.city }}
+                                    {{ vm.addressInfo }}
                                 </td>
                             </tr>
                             <tr>
@@ -108,7 +109,7 @@
                                     ICE
                                 </th>
                                 <td>
-                                    {{ vm.ICEName }} | {{ vm.ICEPhone }}
+                                    {{ vm.ICEInfo }}
                                 </td>
                             </tr>
                             <tr>
@@ -156,6 +157,11 @@
                         </div>
                         <div class="year pull-right">
                             {{ skill.years }}
+                            <ng-pluralize
+                                count=skill.years
+                                when="{'1': 'year',
+                                       'other': 'years'}" >
+                            </ng-pluralize>
                         </div>
                         <div class="level">
                             {{ skill.level }}
