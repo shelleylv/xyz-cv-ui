@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" ng-show="vm.activated">
 
     <!-- GENERAL INFO -->
 
@@ -6,7 +6,7 @@
         <div id="general-info" class="panel-wrapper">
             <div class="panel panel-default profile-default">
                 <div class="image-panel">
-                    <img ng-show="vm.profileImage" ng-src="http://localhost:9000/cv-api/file/{{ vm.profileImage }}">
+                    <img ng-show="vm.profileImage" ng-src="{{ vm.API_URL }}/file/{{ vm.profileImage }}">
                     <img ng-hide="vm.profileImage" ng-src="assets/legolas-cage.jpg">
                 </div>
                 <div class="data-box">

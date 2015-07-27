@@ -5,8 +5,11 @@
         .module('xyz-cv-ui.profile')
         .controller('ProfileController', ProfileController);
 
-        function ProfileController(ProfileModel, $routeParams) {
+        function ProfileController(ProfileModel, $routeParams, API_URL) {
             var vm = this;
+
+            vm.API_URL = API_URL;
+            vm.activated = false;
 
             /* GENERAL INFO */
             vm.profileImage = '';
@@ -74,6 +77,7 @@
                         setCertificates(model);
                         setAssignments(model);
                         setCloud(model);
+                        vm.activated = true;
                     });
             }
 
