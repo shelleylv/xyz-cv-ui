@@ -24,6 +24,7 @@
             vm.sex = '';
             vm.description = '';
             vm.personalInterests = '';
+            vm.contactInfo = '';
 
             /* PRIVATE INFO */
             vm.personalIdNumber = '';
@@ -34,6 +35,8 @@
             vm.ICEPhone = '';
             vm.foodPreferences = '';
             vm.shirtSize = '';
+            vm.addressInfo = '';
+            vm.ICEInfo = '';
 
             /* SKILLS */
             vm.skills = [];
@@ -90,6 +93,7 @@
                 vm.sex = model.user.sex;
                 vm.description = model.user.description;
                 vm.personalInterests = model.user.personalInterests.join(', ');
+                vm.contactInfo = getContactInfo(model);
             }
 
             function setPrivateInfo(model) {
@@ -101,6 +105,8 @@
                 vm.ICEPhone = model.user.ICEPhone;
                 vm.foodPreferences = model.user.foodPreferences;
                 vm.shirtSize = model.user.shirtSize;
+                vm.addressInfo = getAddressInfo(model);
+                vm.ICEInfo = getICEInfo(model);
             }
 
             function setSkills(model) {
@@ -117,6 +123,51 @@
 
             function setCloud(model) {
                 vm.cloud = model.cloud;
+            }
+
+            function getContactInfo(model) {
+                var items = [];
+                if (model.user.phoneNumber) {
+                    items.push(model.user.phoneNumber);
+                }
+                if (model.user.email) {
+                    items.push(model.user.email);
+                }
+                if (model.user.office) {
+                    items.push(model.user.office.name)
+                }
+                if (model.user.country) {
+                    items.push(model.user.country);
+                }
+                if (model.user.closestSuperior) {
+                    items.push(model.user.closestSuperior);
+                }
+                return items.join(' | ');
+            }
+
+            function getAddressInfo(model) {
+                var items = [];
+                if (model.user.address) {
+                    items.push(model.user.address);
+                }
+                if (model.user.ZIP) {
+                    items.push(model.user.ZIP);
+                }
+                if (model.user.city) {
+                    items.push(model.user.city)
+                }
+                return items.join(' | ');
+            }
+
+            function getICEInfo(model) {
+                var items = [];
+                if (model.user.ICEName) {
+                    items.push(model.user.ICEName);
+                }
+                if (model.user.ICEPhone) {
+                    items.push(model.user.ICEPhone);
+                }
+                return items.join(' | ');
             }
 
             function refresh() {
