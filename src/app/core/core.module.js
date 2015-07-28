@@ -6,6 +6,7 @@
          * Angular modules
          */
         'ngAnimate', 'ngRoute', 'ngSanitize', 'ngResource', 'angular-loading-bar',
+        'ngRetina',
         /*
          * Our reusable cross app code modules
          */

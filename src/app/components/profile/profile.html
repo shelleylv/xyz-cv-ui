@@ -6,8 +6,8 @@
         <div id="general-info" class="panel-wrapper">
             <div class="panel panel-default profile-default">
                 <div class="image-panel">
-                    <img ng-show="vm.profileImage" ng-src="{{ vm.API_URL }}/file/{{ vm.profileImage }}">
-                    <img ng-hide="vm.profileImage" ng-src="assets/legolas-cage.jpg">
+                    <img ng-if="vm.profileImage" ng-src="{{ vm.API_URL }}/file/{{ vm.profileImage }}">
+                    <img ng-if="!vm.profileImage" ng-src="assets/legolas-cage.jpg">
                 </div>
                 <div class="data-box">
                     <div class="name">
