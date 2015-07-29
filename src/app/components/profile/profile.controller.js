@@ -5,8 +5,54 @@
         .module('xyz-cv-ui.profile')
         .controller('ProfileController', ProfileController);
 
-        function ProfileController(ProfileModel, $routeParams, API_URL) {
+        function ProfileController(ProfileModel, $routeParams, API_URL, $modal, $scope) {
             var vm = this;
+            window.vm = this;
+            window.scope = $scope;
+            vm.editGeneralInfoModal = $modal({
+                template: '/xyz-cv-ui/components/profile/editGeneralInfo.html',
+                show: false,
+                scope: $scope
+            });
+            vm.showModal = function(modal) {
+                $scope.profile = {
+                    name: vm.name,
+                    email: vm.email,
+                    role: vm.role,
+                    office: vm.office,
+                    phoneNumber: vm.phoneNumber,
+                    employeeNumber: vm.employeeNumber,
+                    position: vm.position,
+                    country: vm.country,
+                    closestSuperior: vm.closestSuperior,
+                    startDateOfEmployment: vm.startDateOfEmployment,
+                    endDateOfEmployment: vm.endDateOfEmployment,
+                    sex: vm.sex,
+                    description: vm.description,
+                    personalInterests: vm.personalInterests,
+                    contactInfo: vm.contactInfo
+                };
+                $scope.offices = [
+                    {value: 'Stockholm', label: '<span class="flag-icon flag-icon-se"></span> Stockholm'},
+                    {value: 'Malmö', label: '<span class="flag-icon flag-icon-se"></span> Malmö'},
+                    {value: 'Karlskrona', label: '<span class="flag-icon flag-icon-se"></span> Karlskrona'},
+                    {value: 'Sarajevo', label: '<span class="flag-icon flag-icon-ba"></span> Sarajevo'}
+                ];
+                $scope.countries = [
+                    {value: 'Sweden', label: '<span class="flag-icon flag-icon-se"></span> Sweden'},
+                    {value: 'Finland', label: '<span class="flag-icon flag-icon-fi"></span> Finland'},
+                    {value: 'Denmark', label: '<span class="flag-icon flag-icon-dk"></span> Denmark'},
+                    {value: 'Norway', label: '<span class="flag-icon flag-icon-no"></span> Norway'},
+                    {value: 'Bosnia', label: '<span class="flag-icon flag-icon-ba"></span> Bosnia & Herzegovina'}
+                ];
+                modal.scope = $scope;
+                vm.currentModal = modal;
+                modal.$promise.then(modal.show);
+            };
+            vm.hideModal = function(modal) {
+                console.log("modal");
+                modal.$promise.then(modal.hide);
+            };
 
             vm.API_URL = API_URL;
             vm.activated = false;
