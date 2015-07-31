@@ -6,7 +6,7 @@
          * Angular modules
          */
         'ngAnimate', 'ngRoute', 'ngSanitize', 'ngResource', 'angular-loading-bar',
-        'ngRetina', 'mgcrea.ngStrap',
+        'ngRetina', 'mgcrea.ngStrap', 'btford.modal',
         /*
          * Our reusable cross app code modules
          */

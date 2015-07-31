@@ -5,93 +5,57 @@
         .module('xyz-cv-ui.profile')
         .controller('ProfileController', ProfileController);
 
-        function ProfileController(ProfileModel, $routeParams, API_URL, $modal, $scope) {
+        function ProfileController(ProfileModel, $routeParams, API_URL, GeneralInfoModal) {
             var vm = this;
-            window.vm = this;
-            window.scope = $scope;
-            vm.editGeneralInfoModal = $modal({
-                template: '/xyz-cv-ui/components/profile/editGeneralInfo.html',
-                show: false,
-                scope: $scope
-            });
-            vm.showModal = function(modal) {
-                $scope.profile = {
-                    name: vm.name,
-                    email: vm.email,
-                    role: vm.role,
-                    office: vm.office,
-                    phoneNumber: vm.phoneNumber,
-                    employeeNumber: vm.employeeNumber,
-                    position: vm.position,
-                    country: vm.country,
-                    closestSuperior: vm.closestSuperior,
-                    startDateOfEmployment: vm.startDateOfEmployment,
-                    endDateOfEmployment: vm.endDateOfEmployment,
-                    sex: vm.sex,
-                    description: vm.description,
-                    personalInterests: vm.personalInterests,
-                    contactInfo: vm.contactInfo
-                };
-                $scope.offices = [
-                    {value: 'Stockholm', label: '<span class="flag-icon flag-icon-se"></span> Stockholm'},
-                    {value: 'Malmö', label: '<span class="flag-icon flag-icon-se"></span> Malmö'},
-                    {value: 'Karlskrona', label: '<span class="flag-icon flag-icon-se"></span> Karlskrona'},
-                    {value: 'Sarajevo', label: '<span class="flag-icon flag-icon-ba"></span> Sarajevo'}
-                ];
-                $scope.countries = [
-                    {value: 'Sweden', label: '<span class="flag-icon flag-icon-se"></span> Sweden'},
-                    {value: 'Finland', label: '<span class="flag-icon flag-icon-fi"></span> Finland'},
-                    {value: 'Denmark', label: '<span class="flag-icon flag-icon-dk"></span> Denmark'},
-                    {value: 'Norway', label: '<span class="flag-icon flag-icon-no"></span> Norway'},
-                    {value: 'Bosnia', label: '<span class="flag-icon flag-icon-ba"></span> Bosnia & Herzegovina'}
-                ];
-                modal.scope = $scope;
-                vm.currentModal = modal;
-                modal.$promise.then(modal.show);
-            };
-            vm.hideModal = function(modal) {
-                console.log("modal");
-                modal.$promise.then(modal.hide);
-            };
 
             vm.API_URL = API_URL;
             vm.activated = false;
+            vm.user = {};
+
+            /* MODAL */
+            vm.generalInfoModal = {};
+            vm.showModal = showModal;
+            vm.hideModal = hideModal;
 
             /* GENERAL INFO */
-            vm.profileImage = '';
-            vm.name = '';
-            vm.email = '';
-            vm.role = {};
-            vm.office = {};
-            vm.phoneNumber = '';
-            vm.employeeNumber = '';
-            vm.position = '';
-            vm.country = '';
-            vm.closestSuperior = '';
-            vm.startDateOfEmployment = '';
-            vm.endDateOfEmployment = '';
-            vm.sex = '';
-            vm.description = '';
-            vm.personalInterests = '';
-            vm.contactInfo = '';
+            vm.generalInfo = {
+                profileImage: '',
+                name: '',
+                email: '',
+                role: {},
+                office: {},
+                phoneNumber: '',
+                employeeNumber: '',
+                position: '',
+                country: '',
+                closestSuperior: '',
+                startDateOfEmployment: '',
+                endDateOfEmployment: '',
+                sex: '',
+                description: '',
+                personalInterests: '',
+                contactInfo: ''
+            };
 
             /* PRIVATE INFO */
-            vm.personalIdNumber = '';
-            vm.address = '';
-            vm.city = '';
-            vm.ZIP = '';
-            vm.ICEName = '';
-            vm.ICEPhone = '';
-            vm.foodPreferences = '';
-            vm.shirtSize = '';
-            vm.addressInfo = '';
-            vm.ICEInfo = '';
+            vm.privateInfo = {
+                personalIdNumber: '',
+                address: '',
+                city: '',
+                ZIP: '',
+                ICEName: '',
+                ICEPhone: '',
+                foodPreferences: '',
+                shirtSize: '',
+                addressInfo: '',
+                ICEInfo: ''
+            };
 
             /* SKILLS */
             vm.skills = [];
 
             /* CERTIFICATES */
-            vm.certificates= [];
+            vm.certificates = [];
 
             /* ASSIGNMENTS */
             vm.assignments = [];
@@ -100,21 +64,24 @@
             vm.customHeaders= [];
 
             /* SOCIAL MEDIA */
-            vm.linkedin = '';
-            vm.facebook = '';
-            vm.twitter = '';
+            vm.socialMedia = {
+                linkedin: '',
+                facebook: '',
+                twitter: ''
+            };
 
             /* CLOUD */
-            vm.cloud = {};
-            vm.cloud.words = [];
-            vm.cloud.maxWeight = 1;
+            vm.cloud = {
+                words: [],
+                maxWeight: 1
+            };
 
             activate();
 
             //////////////
 
             function activate() {
-                ProfileModel.get({id: $routeParams.userId})
+                ProfileModel.get({_id: $routeParams.userId})
                     .$promise.then(function(model) {
                         //model.user.office = {name: 'Karlskrona'};
                         setGeneralInfo(model);
@@ -123,40 +90,46 @@
                         setCertificates(model);
                         setAssignments(model);
                         setCloud(model);
+                        setUser(model);
+                        setGeneralInfoModal();
                         vm.activated = true;
                     });
             }
 
             function setGeneralInfo(model) {
-                vm.profileImage = model.user.profileImage;
-                vm.name = model.user.name;
-                vm.email = model.user.email;
-                vm.role = model.user.role;
-                vm.office = model.user.office;
-                vm.phoneNumber = model.user.phoneNumber;
-                vm.employeeNumber = model.user.employeeNumber;
-                vm.position = model.user.position;
-                vm.country = model.user.country;
-                vm.closestSuperior = model.user.closestSuperior;
-                vm.startDateOfEmployment = model.user.startDateOfEmployment;
-                vm.endDateOfEmployment = model.user.endDateOfEmployment;
-                vm.sex = model.user.sex;
-                vm.description = model.user.description;
-                vm.personalInterests = model.user.personalInterests.join(', ');
-                vm.contactInfo = getContactInfo(model);
+                vm.generalInfo = {
+                    profileImage: model.user.profileImage,
+                    name: model.user.name,
+                    email: model.user.email,
+                    role: model.user.role,
+                    office: model.user.office,
+                    phoneNumber: model.user.phoneNumber,
+                    employeeNumber: model.user.employeeNumber,
+                    position: model.user.position,
+                    country: model.user.country,
+                    closestSuperior: model.user.closestSuperior,
+                    startDateOfEmployment: model.user.startDateOfEmployment,
+                    endDateOfEmployment: model.user.endDateOfEmployment,
+                    sex: model.user.sex,
+                    description: model.user.description,
+                    personalInterests: model.user.personalInterests.join(', '),
+                    contactInfo: getContactInfo(model)
+                };
             }
 
             function setPrivateInfo(model) {
-                vm.personalIdNumber = '197403237271'//model.user.personalIdNumber;
-                vm.address = model.user.address;
-                vm.city = model.user.city;
-                vm.ZIP = model.user.ZIP;
-                vm.ICEName = model.user.ICEName;
-                vm.ICEPhone = model.user.ICEPhone;
-                vm.foodPreferences = model.user.foodPreferences;
-                vm.shirtSize = model.user.shirtSize;
-                vm.addressInfo = getAddressInfo(model);
-                vm.ICEInfo = getICEInfo(model);
+                vm.privateInfo = {
+                    personalIdNumber: '197403237271',//model.user.personalIdNumber;
+                    address: model.user.address,
+                    city: model.user.city,
+                    ZIP: model.user.ZIP,
+                    ICEName: model.user.ICEName,
+                    ICEPhone: model.user.ICEPhone,
+                    foodPreferences: model.user.foodPreferences,
+                    shirtSize: model.user.shirtSize,
+                    addressInfo: getAddressInfo(model),
+                    ICEInfo: getICEInfo(model),
+                };
             }
 
             function setSkills(model) {
@@ -175,6 +148,10 @@
                 vm.cloud = model.cloud;
             }
 
+            function setUser(model) {
+                vm.user = model.user;
+            }
+
             function getContactInfo(model) {
                 var items = [];
                 if (model.user.phoneNumber) {
@@ -184,7 +161,7 @@
                     items.push(model.user.email);
                 }
                 if (model.user.office) {
-                    items.push(model.user.office.name)
+                    items.push(model.user.office.name);
                 }
                 if (model.user.country) {
                     items.push(model.user.country);
@@ -204,7 +181,7 @@
                     items.push(model.user.ZIP);
                 }
                 if (model.user.city) {
-                    items.push(model.user.city)
+                    items.push(model.user.city);
                 }
                 return items.join(' | ');
             }
@@ -218,6 +195,35 @@
                     items.push(model.user.ICEPhone);
                 }
                 return items.join(' | ');
+            }
+
+            function getGeneralInfo() {
+                return vm.generalInfo;
+            }
+
+            function getUser() {
+                return vm.user;
+            }
+
+            /* MODAL */
+
+            function showModal(modal, block) {
+                vm.currentModal = modal;
+                var locals = {
+                    block: block,
+                    user: getUser(),
+                    callback: activate
+                };
+                vm.currentModal.activate(locals);
+            }
+
+            function hideModal(modal) {
+                vm.currentModal.deactivate();
+                //modal.$promise.then(modal.hide);
+            }
+
+            function setGeneralInfoModal() {
+                vm.generalInfoModal = GeneralInfoModal;
             }
 
             function refresh() {
