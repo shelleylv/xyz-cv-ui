@@ -12,10 +12,10 @@
          */
         'blocks.exception', 'blocks.logger', 'blocks.router', 'xyz-cv-ui.config',
 
-        'resource', 'directives', 'model',
+        'resource', 'directives', 'model', 'blocks.session',
         /*
          * 3rd Party modules
          */
-        'ngplus'
+        'ngplus', 'ngStorage'
     ]);
 })();
