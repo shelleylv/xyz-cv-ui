@@ -1,5 +1,5 @@
 (function() {
     'use strict';
 
-    angular.module('xyz-cv-ui.profile', []);
+    angular.module('xyz-cv-ui.profile', ['xyz-cv-ui.profile.modal']);
 })();

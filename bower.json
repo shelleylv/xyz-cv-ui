@@ -38,6 +38,7 @@
     "jqcloud2": "~2.0.1",
     "angular-retina": "~0.3.1",
     "flag-icon-css": "~0.7.1",
+    "angular-modal": "~0.5.0",
     "ngstorage": "~0.3.7"
   },
   "overrides": {

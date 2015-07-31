@@ -2,6 +2,7 @@
 
     <!-- GENERAL INFO -->
 
+    </div>
     <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated">
         <div id="general-info" class="panel-wrapper">
             <div class="panel panel-default profile-default">
@@ -11,16 +12,16 @@
                 </div>
                 <div class="data-box">
                     <div class="name">
-                        {{ vm.name }}
+                        {{ vm.generalInfo.name }}
                     </div>
                     <div class="role pull-right">
-                        {{ vm.role.name }}
+                        {{ vm.generalInfo.role.name }}
                     </div>
                     <div class="title">
-                        {{ vm.position }}
+                        {{ vm.generalInfo.position }}
                     </div>
                     <div class="location">
-                       {{ vm.contactInfo }}
+                       {{ vm.generalInfo.contactInfo }}
                     </div>
                     <br>
                     <table class="employee">
@@ -30,7 +31,7 @@
                                     Employee#
                                 </th>
                                 <td>
-                                    {{ vm.employeeNumber }}
+                                    {{ vm.generalInfo.employeeNumber }}
                                 </td>
                             </tr>
                             <tr>
@@ -38,7 +39,7 @@
                                     From
                                 </th>
                                 <td>
-                                    {{ vm.startDateOfEmployment }}
+                                    {{ vm.generalInfo.startDateOfEmployment }}
                                 </td>
                             </tr>
                             <tr>
@@ -46,7 +47,7 @@
                                     To
                                 </th>
                                 <td>
-                                    {{ vm.endDateOfEmployment }}
+                                    {{ vm.generalInfo.endDateOfEmployment }}
                                 </td>
                             </tr>
                             <tr class="spacer"><td></td></tr>
@@ -55,7 +56,7 @@
                                     Interests
                                 </th>
                                 <td>
-                                    {{ vm.personalInterests }}
+                                    {{ vm.generalInfo.personalInterests }}
                                 </td>
                             </tr>
                             <tr class="spacer"><td></td></tr>
@@ -64,7 +65,7 @@
                                     Description
                                 </th>
                                 <td>
-                                    {{ vm.description }}
+                                    {{ vm.generalInfo.description }}
                                 </td>
                             </tr>
                         </tbody>
@@ -72,7 +73,7 @@
                 </div>
                 <div class="panel-footer">
                     <b>General Info</b>
-                    <button class="btn btn-default btn-sm" ng-click="vm.showModal(vm.editGeneralInfoModal)">Edit</button>
+                    <button class="btn btn-default btn-sm" ng-click="vm.showModal(vm.generalInfoModal, vm.generalInfo)">Edit</button>
                 </div>
             </div>
         </div>
@@ -94,7 +95,7 @@
                                     Personal ID Number
                                 </th>
                                 <td>
-                                    {{ vm.personalIdNumber }}
+                                    {{ vm.privateInfo.personalIdNumber }}
                                 </td>
                             </tr>
                             <tr>
@@ -102,7 +103,7 @@
                                     Address
                                 </th>
                                 <td>
-                                    {{ vm.addressInfo }}
+                                    {{ vm.privateInfo.addressInfo }}
                                 </td>
                             </tr>
                             <tr>
@@ -110,7 +111,7 @@
                                     ICE
                                 </th>
                                 <td>
-                                    {{ vm.ICEInfo }}
+                                    {{ vm.privateInfo.ICEInfo }}
                                 </td>
                             </tr>
                             <tr>
@@ -118,7 +119,7 @@
                                     Shirt Size
                                 </th>
                                 <td>
-                                    {{ vm.shirtSize }}
+                                    {{ vm.privateInfo.shirtSize }}
                                 </td>
                             </tr>
                             <tr class="spacer"><td></td></tr>
@@ -127,7 +128,7 @@
                                     Food Preferences
                                 </th>
                                 <td>
-                                    {{ vm.foodPreferences }}
+                                    {{ vm.privateInfo.foodPreferences }}
                                 </td>
                             </tr>
                         </tbody>

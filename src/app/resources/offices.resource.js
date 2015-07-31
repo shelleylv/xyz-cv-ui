@@ -6,7 +6,7 @@
         .factory('Offices', Offices);
 
     function Offices(Resource) {
-        return Resource('/office/:id', { id: '@id' });
+        return Resource('/office/:_id', { _id: '@_id' });
     }
 
 })();
