@@ -25,6 +25,7 @@
         'xyz-cv-ui.access',
         'xyz-cv-ui.menu',
         'xyz-cv-ui.office'
+
     ]);
 
 })();
