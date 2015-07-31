@@ -3,10 +3,80 @@
 
     angular
         .module('xyz-cv-ui.profile')
+        .filter('flag', function() {
+            return function(countryName) {
+                if(!countryName)
+                {
+                    console.log('no country name');
+                    return 'se';
+                }
+                var countries = [{
+                    name: 'bosnia',
+                    flag: 'ba'
+                },
+                {
+                    name: 'denmark',
+                    flag: 'dk'
+                },
+                {
+                    name: 'sweden',
+                    flag: 'se'
+                },
+                {
+                    name: 'bolivia',
+                    flag: 'bo'
+                }];
+
+                var country = _.find(countries, function(country) {
+                    return country.name.toLowerCase().indexOf(countryName.toLowerCase()) > -1;
+                });
+
+                if(country)
+                    return country.flag;
+                else
+                    return 'se';
+            };
+        });
+
+    angular
+        .module('xyz-cv-ui.profile')
+        .filter('country', function() {
+            return function(officeName) {
+                if(!officeName) {
+                    console.log('no office name');
+                    return 'bolivia';
+                }
+                var countries = [{
+                    name: 'bosnia',
+                    offices: ['sarajevo']
+                },
+                {
+                    name: 'sweden',
+                    offices: ['karlskrona', 'malmö', 'stockholm']
+                }];
+                
+                
+                var countryMatch = _.find(countries, function(country) {
+                    var match = country.offices.some(function(office) {
+                        return office.toLowerCase().indexOf(officeName.toLowerCase() > -1);
+                    });
+                    return match;
+                });
+                
+                if(countryMatch)
+                    return countryMatch.name;
+                else
+                    return 'bolivia';
+            };
+        });
+
+    angular
+        .module('xyz-cv-ui.profile')
         .controller('ProfileController', ProfileController);
 
         function ProfileController(ProfileModel, $routeParams, API_URL, GeneralInfoModal) {
             var vm = this;
+            window.vm = vm;
 
             vm.API_URL = API_URL;
             vm.activated = false;
@@ -112,8 +182,7 @@
                     endDateOfEmployment: model.user.endDateOfEmployment,
                     sex: model.user.sex,
                     description: model.user.description,
-                    personalInterests: model.user.personalInterests.join(', '),
-                    contactInfo: getContactInfo(model)
+                    personalInterests: model.user.personalInterests.join(', ')
                 };
             }
 
@@ -150,26 +219,6 @@
 
             function setUser(model) {
                 vm.user = model.user;
-            }
-
-            function getContactInfo(model) {
-                var items = [];
-                if (model.user.phoneNumber) {
-                    items.push(model.user.phoneNumber);
-                }
-                if (model.user.email) {
-                    items.push(model.user.email);
-                }
-                if (model.user.office) {
-                    items.push(model.user.office.name);
-                }
-                if (model.user.country) {
-                    items.push(model.user.country);
-                }
-                if (model.user.closestSuperior) {
-                    items.push(model.user.closestSuperior);
-                }
-                return items.join(' | ');
             }
 
             function getAddressInfo(model) {

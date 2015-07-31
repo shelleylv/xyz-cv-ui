@@ -6,74 +6,84 @@
     <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated">
         <div id="general-info" class="panel-wrapper">
             <div class="panel panel-default profile-default">
-                <div class="image-panel">
+                <div class="image-panel hidden-xs hidden-sm">
                     <img ng-if="vm.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ vm.profileImage.generatedName }}">
-                    <img ng-if="!vm.profileImage" ng-src="assets/legolas-cage.jpg">
+                    <img ng-if="!vm.profileImage" ng-src="assets/profilepic.png">
                 </div>
+
                 <div class="data-box">
-                    <div class="name">
-                        {{ vm.generalInfo.name }}
+                    <div class="data-header">
+                        <div class="image-panel hidden-md hidden-lg">
+                            <img ng-if="vm.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ vm.profileImage.generatedName }}">
+                            <img ng-if="!vm.profileImage" ng-src="assets/profilepic.png">
+                        </div>
+                        <div class="data-panel">
+                            <div class="name">
+                                <span class="flag-icon" ng-class="'flag-icon-' + (vm.generalInfo.country | flag)"></span> {{ vm.generalInfo.name }}
+                            </div>
+                            <div class="role pull-right">
+                                {{ vm.generalInfo.role.name }}
+                            </div>
+                            <div class="title">
+                                {{ vm.generalInfo.position }}
+                            </div>
+                            <div class="location">
+                                <span ng-if="vm.generalInfo.phoneNumber"><i class="fa fa-phone"></i> {{ vm.generalInfo.phoneNumber }}</span>
+                                <span ng-if="vm.generalInfo.email"><i class="fa fa-envelope"></i> {{ vm.generalInfo.email }}</span>
+                                <span ng-if="vm.generalInfo.office"><span class="flag-icon" ng-if="vm.generalInfo.office.name" ng-class="'flag-icon-' + (vm.generalInfo.office.name | country | flag)"></span> {{ vm.generalInfo.office.name }}</span>
+                                <span ng-if="vm.generalInfo.closestSuperior"><i class="fa fa-sitemap"></i> {{ vm.generalInfo.closestSuperior }}</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="role pull-right">
-                        {{ vm.generalInfo.role.name }}
+
+                    <div class="row">
+                        <div class="col-sm-3 col-md-2 sheet-label">
+                            Employee Number
+                        </div>
+                        <div class="col-sm-9 col-md-10 sheet-value">
+                            {{ vm.generalInfo.employeeNumber }}
+                        </div>
                     </div>
-                    <div class="title">
-                        {{ vm.generalInfo.position }}
+
+                    <div class="row" ng-if="vm.generalInfo.startDateOfEmployment">
+                        <div class="col-sm-3 col-md-2 sheet-label">
+                            From
+                        </div>
+                        <div class="col-sm-9 col-md-10 sheet-value">
+                            {{ vm.generalInfo.startDateOfEmployment | date}}
+                        </div>
                     </div>
-                    <div class="location">
-                       {{ vm.generalInfo.contactInfo }}
+
+                    <div class="row" ng-if="vm.generalInfo.endDateOfEmployment">
+                        <div class="col-sm-3 col-md-2 sheet-label">
+                            To
+                        </div>
+                        <div class="col-sm-9 col-md-10 sheet-value">
+                            {{ vm.generalInfo.endDateOfEmployment | date}}
+                        </div>
                     </div>
-                    <br>
-                    <table class="employee">
-                        <tbody>
-                            <tr>
-                                <th>
-                                    Employee#
-                                </th>
-                                <td>
-                                    {{ vm.generalInfo.employeeNumber }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    From
-                                </th>
-                                <td>
-                                    {{ vm.generalInfo.startDateOfEmployment }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    To
-                                </th>
-                                <td>
-                                    {{ vm.generalInfo.endDateOfEmployment }}
-                                </td>
-                            </tr>
-                            <tr class="spacer"><td></td></tr>
-                            <tr>
-                                <th>
-                                    Interests
-                                </th>
-                                <td>
-                                    {{ vm.generalInfo.personalInterests }}
-                                </td>
-                            </tr>
-                            <tr class="spacer"><td></td></tr>
-                            <tr>
-                                <th>
-                                    Description
-                                </th>
-                                <td>
-                                    {{ vm.generalInfo.description }}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                    <div class="row" ng-if="vm.generalInfo.personalInterests">
+                        <div class="col-sm-3 col-md-2 sheet-label">
+                            Interests
+                        </div>
+                        <div class="col-sm-9 col-md-10 sheet-value">
+                            {{ vm.generalInfo.personalInterests }}
+                        </div>
+                    </div>
+
+                    <div class="row" ng-if="vm.generalInfo.description">
+                        <div class="col-sm-3 col-md-2 sheet-label" >
+                            Description
+                        </div>
+                        <div class="col-sm-9 col-md-10 sheet-value">
+                            {{ vm.generalInfo.description }}
+                        </div>
+                    </div>
                 </div>
                 <div class="panel-footer">
                     <b>General Info</b>
-                    <button class="btn btn-default btn-sm" ng-click="vm.showModal(vm.generalInfoModal, vm.generalInfo)">Edit</button>
+                    <i class="fa fa-edit" ng-click="vm.showModal(vm.generalInfoModal, vm.generalInfo)"></i>
                 </div>
             </div>
         </div>
@@ -88,51 +98,46 @@
                     <i class="fa fa-lock"></i>
                 </div>
                 <div class="data-box">
-                    <table class="employee">
-                        <tbody>
-                            <tr>
-                                <th>
-                                    Personal ID Number
-                                </th>
-                                <td>
-                                    {{ vm.privateInfo.personalIdNumber }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    Address
-                                </th>
-                                <td>
-                                    {{ vm.privateInfo.addressInfo }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    ICE
-                                </th>
-                                <td>
-                                    {{ vm.privateInfo.ICEInfo }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    Shirt Size
-                                </th>
-                                <td>
-                                    {{ vm.privateInfo.shirtSize }}
-                                </td>
-                            </tr>
-                            <tr class="spacer"><td></td></tr>
-                            <tr>
-                                <th>
-                                    Food Preferences
-                                </th>
-                                <td>
-                                    {{ vm.privateInfo.foodPreferences }}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="row">
+                        <div class="col-sm-3 col-md-2 sheet-label">
+                            Personal ID Number
+                        </div>
+                        <div class="col-sm-9 col-md-10 sheet-value">
+                            {{ vm.privateInfo.personalIdNumber }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 col-md-2 sheet-label">
+                            Address
+                        </div>
+                        <div class="col-sm-9 col-md-10 sheet-value">
+                            {{ vm.privateInfo.addressInfo }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 col-md-2 sheet-label">
+                            ICE
+                        </div>
+                        <div class="col-sm-9 col-md-10 sheet-value">
+                            {{ vm.privateInfo.ICEInfo }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 col-md-2 sheet-label">
+                            Shirt Size
+                        </div>
+                        <div class="col-sm-9 col-md-10 sheet-value">
+                            {{ vm.privateInfo.shirtSize }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 col-md-2 sheet-label">
+                            Food Preferences
+                        </div>
+                        <div class="col-sm-9 col-md-10 sheet-value">
+                            {{ vm.privateInfo.foodPreferences }}
+                        </div>
+                    </div>
                 </div>
                 <div class="panel-footer">
                     <b>Private Info</b>
@@ -155,6 +160,9 @@
                     </div>
                     <div class="data-box">
                         <div class="name">
+                            <div class="level">
+                                {{ skill.level }}
+                            </div>
                             {{ skill.name }}
                         </div>
                         <div class="year pull-right">
@@ -165,9 +173,7 @@
                                        'other': 'years'}" >
                             </ng-pluralize>
                         </div>
-                        <div class="level">
-                            {{ skill.level }}
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="panel-footer">
