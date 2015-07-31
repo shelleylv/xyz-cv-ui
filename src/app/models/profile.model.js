@@ -6,7 +6,7 @@
         .factory('ProfileModel', ProfileModel);
 
     function ProfileModel(Model) {
-        return Model('/profile/:id', { id: '@id' });
+        return Model('/profile/:_id', { _id: '@_id' });
     }
 
 })();

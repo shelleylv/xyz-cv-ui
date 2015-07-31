@@ -6,7 +6,7 @@
         .factory('OfficeModel', OfficeModel);
 
     function OfficeModel(Model) {
-        return Model('/office/:id', { id: '@id' });
+        return Model('/office/:_id', { '_id': '@_id' });
     }
 
 })();
