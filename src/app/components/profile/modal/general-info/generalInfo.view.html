@@ -1,74 +1,105 @@
-<div class="modal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				Edit General Info
-				<button class="close" ng-click="vm.hideModal()">&times;</button>
-			</div>
-			<div class="modal-body">
-				<form class="form-horizontal">
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Name</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" placeholder="Name" ng-model="vm.generalInfo.name">
+<div class="modal-open">
+	<div class="modal-backdrop" ng-if="vm.exists"></div>
+	<div class="modal" ng-if="vm.exists">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					Edit General Info
+					<button class="close" ng-click="vm.hideModal()">&times;</button>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" name="form" novalidate>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Name</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="name" placeholder="Name" ng-model="vm.generalInfo.name" validatewords>
+								<span ng-messages="form.name.$error" ng-show="form.name.$dirty">
+									<span class="alert alert-danger" ng-message="validatewords">Please use a maximum of 100 characters.</span>
+								</span>
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Office</label>
-						<div class="col-sm-10">
-							<button type="button" class="btn btn-default" ng-model="vm.generalInfo.office" data-html="1" bs-options="office.value as office.label for office in vm.offices" bs-select>
-							  Action <span class="caret"></span>
-							</button>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Office</label>
+							<div class="col-sm-10">
+								<button type="button" class="btn btn-default" ng-model="vm.generalInfo.office" data-html="1" bs-options="office.value as office.label for office in vm.offices" bs-select>
+								  Action <span class="caret"></span>
+								</button>
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Closest Superior</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" placeholder="" ng-model="vm.generalInfo.closestSuperior">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Closest Superior</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="closestSuperior" placeholder="" ng-model="vm.generalInfo.closestSuperior" validatewords>
+								<span ng-messages="form.closestSuperior.$error" ng-show="form.closestSuperior.$dirty">
+									<span class="alert alert-danger" ng-message="validatewords">Please use a maximum of 100 characters.</span>
+								</span>
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Phone</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" placeholder="" ng-model="vm.generalInfo.phoneNumber">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Phone</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="phone" placeholder="" ng-model="vm.generalInfo.phoneNumber" validatephone>
+								<span ng-messages="form.phone.$error" ng-show="form.phone.$dirty">
+									<span class="alert alert-danger" ng-message="validatenumber">Please use numbers only. A maximum of 20 digits allowed.</span>
+								</span>
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Employee number</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" placeholder="" ng-model="vm.generalInfo.employeeNumber">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Employee number</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="employeeNumber" placeholder="" ng-model="vm.generalInfo.employeeNumber" validatenumber>
+								<span ng-messages="form.employeeNumber.$error" ng-show="form.employeeNumber.$dirty">
+									<span class="alert alert-danger" ng-message="validatenumber">Please use numbers only. A maximum of 20 digits allowed.</span>
+								</span>
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Position</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" placeholder="" ng-model="vm.generalInfo.position">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Position</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" placeholder="" name="position" ng-model="vm.generalInfo.position" validatewords>
+								<span ng-messages="form.position.$error" ng-show="form.position.$dirty">
+									<span class="alert alert-danger" ng-message="validatewords">Please use a maximum of 100 characters.</span>
+								</span>
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Country</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" ng-model="vm.generalInfo.country" data-min-length="0" data-html="1" data-auto-select="true" data-animation="am-flip-x" bs-options="country as country.label for country in vm.countries" placeholder="Enter country" bs-typeahead>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Country</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" ng-model="vm.generalInfo.country" data-min-length="0" data-html="1" data-auto-select="true" data-animation="am-flip-x" bs-options="country as country.label for country in vm.countries" placeholder="Enter country" bs-typeahead>
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Personal Interests</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" placeholder="" ng-model="vm.generalInfo.personalInterests">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Personal Interests</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" placeholder="" ng-model="vm.generalInfo.personalInterests">
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Description</label>
-						<div class="col-sm-10">
-							<textarea class="form-control" placeholder="" ng-model="vm.generalInfo.description"></textarea>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Description</label>
+							<div class="col-sm-10">
+								<textarea class="form-control" placeholder="" ng-model="vm.generalInfo.description"></textarea>
+							</div>
 						</div>
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button class="btn btn-default" ng-click="vm.hideModal()">Close</button>
-				<button class="btn btn-primary" ng-click="vm.save()">Save changes</button>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"><i class="fa fa-calendar"></i> Employed From </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" ng-model="vm.generalInfo.startDateOfEmployment" name="fromDate" bs-datepicker>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"><i class="fa fa-calendar"></i> Employed Until </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" ng-model="vm.generalInfo.endDateOfEmployment" name="toDate" bs-datepicker>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-default" ng-click="vm.hideModal()">Close</button>
+					<button class="btn btn-primary" ng-click="vm.save()" ng-disabled="form.$dirty && !form.$valid || !form.$dirty">Save changes</button>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
+

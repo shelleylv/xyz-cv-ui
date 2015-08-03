@@ -1,0 +1,66 @@
+<div class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                Edit Private Info
+                <button class="close" ng-click="vm.hideModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Personal ID number</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="" ng-model="vm.privateInfo.personalIdNumber">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Address</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="Name" ng-model="vm.privateInfo.address">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">ZIP</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="" ng-model="vm.privateInfo.ZIP">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">City</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="" ng-model="vm.privateInfo.city">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">ICE Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="" ng-model="vm.privateInfo.ICEName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">ICE Phone</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="" ng-model="vm.privateInfo.ICEPhone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Shirt Size</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="" ng-model="vm.privateInfo.shirtSize">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Food Preferences</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="" ng-model="vm.privateInfo.foodPreferences">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" ng-click="vm.hideModal()">Close</button>
+                <button class="btn btn-primary" ng-click="vm.save()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

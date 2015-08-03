@@ -5,8 +5,7 @@
         .module('xyz-cv-ui.profile')
         .filter('flag', function() {
             return function(countryName) {
-                if(!countryName)
-                {
+                if(!countryName) {
                     console.log('no country name');
                     return 'se';
                 }
@@ -31,10 +30,11 @@
                     return country.name.toLowerCase().indexOf(countryName.toLowerCase()) > -1;
                 });
 
-                if(country)
+                if(country) {
                     return country.flag;
-                else
+                } else {
                     return 'se';
+                }
             };
         });
 
@@ -54,19 +54,20 @@
                     name: 'sweden',
                     offices: ['karlskrona', 'malmö', 'stockholm']
                 }];
-                
-                
+
+
                 var countryMatch = _.find(countries, function(country) {
                     var match = country.offices.some(function(office) {
                         return office.toLowerCase().indexOf(officeName.toLowerCase() > -1);
                     });
                     return match;
                 });
-                
-                if(countryMatch)
+
+                if(countryMatch) {
                     return countryMatch.name;
-                else
+                } else {
                     return 'bolivia';
+                }
             };
         });
 
@@ -74,7 +75,7 @@
         .module('xyz-cv-ui.profile')
         .controller('ProfileController', ProfileController);
 
-        function ProfileController(ProfileModel, $routeParams, API_URL, GeneralInfoModal) {
+        function ProfileController(ProfileModel, $routeParams, API_URL, GeneralInfoModal, PrivateInfoModal) {
             var vm = this;
             window.vm = vm;
 
@@ -162,6 +163,7 @@
                         setCloud(model);
                         setUser(model);
                         setGeneralInfoModal();
+                        setPrivateInfoModal();
                         vm.activated = true;
                     });
             }
@@ -259,7 +261,7 @@
             function showModal(modal, block) {
                 vm.currentModal = modal;
                 var locals = {
-                    block: block,
+                    block: angular.copy(block),
                     user: getUser(),
                     callback: activate
                 };
@@ -273,6 +275,10 @@
 
             function setGeneralInfoModal() {
                 vm.generalInfoModal = GeneralInfoModal;
+            }
+
+            function setPrivateInfoModal() {
+                vm.privateInfoModal = PrivateInfoModal;
             }
 
             function refresh() {

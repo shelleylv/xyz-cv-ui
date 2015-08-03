@@ -3,23 +3,17 @@
 
     angular
         .module('xyz-cv-ui.profile.modal')
-        .controller('GeneralInfoController', GeneralInfoController);
+        .controller('PrivateInfoController', PrivateInfoController);
 
-        function GeneralInfoController(GeneralInfoModal, Users, Offices, block, user, callback, $timeout) {
+        function PrivateInfoController(PrivateInfoModal, Users, Offices, block, user, callback) {
             var vm = this;
 
             vm.offices = [];
             vm.countries = [];
             vm.user = {};
-            vm.generalInfo = block;
-            vm.hideModal = function() {
-                vm.exists = false;
-                $timeout(function() {
-                    GeneralInfoModal.deactivate();
-                }, 150);
-            };
+            vm.privateInfo = block;
+            vm.hideModal = PrivateInfoModal.deactivate;
             vm.save = save;
-            vm.exists = false;
 
             activate();
 
@@ -29,7 +23,6 @@
                         vm.user = user;
                         setCountries();
                         setOffices();
-                        vm.exists = true;
                     })
             }
 
@@ -54,15 +47,7 @@
             }
 
             function save() {
-                vm.generalInfo.personalInterests = vm.generalInfo.personalInterests.split(', ');
-
-                vm.user = angular.extend(vm.user, vm.generalInfo);
-
-                delete vm.user.office;
-                delete vm.user.skills;
-                delete vm.user.assignments;
-                delete vm.user.role;
-                delete vm.user.profileImage;
+                vm.user = angular.extend(vm.user, vm.privateInfo);
 
                 vm.user.$save()
                     .then(vm.hideModal)

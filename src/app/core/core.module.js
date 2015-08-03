@@ -16,6 +16,6 @@
         /*
          * 3rd Party modules
          */
-        'ngplus', 'ngStorage'
+        'ngplus', 'ngStorage', 'ngMessages'
     ]);
 })();
