@@ -1,0 +1,46 @@
+<div class="panel panel-default">
+    <div class="panel-body" style="min-height:1000px;overflow:auto;">
+        <br>
+        <div style="position:fixed;top:100px;left:300px;max-height:200px;overflow:hidden;">
+            Office:
+            </br>
+       
+            <span ng-repeat="office in vm.offices[0].offices" >
+                <input type="checkbox" name="{{office}}" value="{{office}}" ng-change="vm.setCompetenceData()" ng-model="vm.office[office]"/>{{office}}<br>
+            </span>
+        </div>
+
+        <div style="position:fixed;top:100px;left:500px;max-height:150px;min-height:150px;max-width:706px;overflow:auto;">
+            <span ng-repeat="skill in vm.skills[0].skills" >
+                <input type="checkbox" name="{{skill}}" value="{{skill}}" ng-change="vm.setCompetenceData()" ng-model="vm.skill[skill]"/>{{skill}}
+            </span>
+        </div>
+
+        <div style="position:fixed;top:300px;left:300px;">
+            <button type="button" ng-csv="vm.getUserSkillCSV()" csv-header="vm.getUserNamesInSelectedOfficesCSV()" filename="CompetenceMatrix.csv">Export</button>
+        </div>
+
+        <div style="position:fixed;top:350px;left:300px;max-width:1300px;overflow:auto;">
+            <table border="1">
+                <tr>
+                    <th>
+                    </th>
+                    <th ng-repeat="obj in vm.competenceData[0].users">
+                        <a ng-href="#/profile/{{obj.userId}}">{{ obj.name }}</a>
+                    </th>
+                </tr>
+                <tr ng-repeat="obj in vm.competenceData">
+                    <td>
+                        {{ obj.skill }}
+                    </td>
+                    <td ng-repeat="lvl in obj.users">
+                        {{ lvl.level }}
+                    </td>
+                    <td >
+                        {{ lvl.level }}
+                    </td>
+                </tr>
+            </table> 
+        </div>
+    </div>
+</div>
