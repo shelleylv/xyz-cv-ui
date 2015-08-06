@@ -5,17 +5,18 @@
         /*
          * Angular modules
          */
-        'ngAnimate', 'ngRoute', 'ngSanitize', 'ngResource', 'angular-loading-bar',
-        'ngRetina', 'mgcrea.ngStrap', 'btford.modal',
+        'ngAnimate', 'ngRoute', 'ngSanitize', 'ngResource',
         /*
-         * Our reusable cross app code modules
+         * Our core cross app code modules
          */
-        'blocks.exception', 'blocks.logger', 'blocks.router', 'xyz-cv-ui.config',
+        'core.exception', 'core.logger', 'core.router',
 
-        'resource', 'directives', 'model', 'blocks.session',
+        'core.directives', 'core.session',
         /*
          * 3rd Party modules
          */
-        'ngplus', 'ngStorage', 'ngMessages'
+        'ngplus', 'ngStorage', 'ngMessages', 'angular-loading-bar',
+        'ngRetina', 'mgcrea.ngStrap', 'btford.modal', 'angularFileUpload',
+        'ngImgCrop'
     ]);
 })();

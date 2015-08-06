@@ -24,7 +24,7 @@
             activate();
 
             function activate() {
-                Users.get(user).$promise
+                Users.get({_id: user._id}).$promise
                     .then(function(user) {
                         vm.user = user;
                         setCountries();

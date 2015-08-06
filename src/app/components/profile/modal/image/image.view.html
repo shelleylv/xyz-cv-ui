@@ -1,0 +1,34 @@
+<div class="modal-open">
+    <div class="modal-backdrop" ng-if="vm.exists" ng-click="vm.hideModal()"></div>
+    <div class="modal" ng-if="vm.exists">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Upload new image
+                    <button class="close" ng-click="vm.hideModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <label class="btn btn-default"> Choose file
+                        <input type="file" nv-file-select="" uploader="vm.uploader" ng-hide="true">
+                    </label>
+                    <div class="image-upload" ng-repeat="item in vm.uploader.queue">
+                        <div class="cropArea">
+                            <img-crop image="item.image"
+                                result-image="item.croppedImage"
+                                area-type="square"
+                                result-image-size="232"
+                                result-image-quality="1.0"
+                                area-min-size="232">
+                            </img-crop>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" ng-click="vm.hideModal()">Close</button>
+                    <button class="btn btn-primary" ng-click="vm.upload()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

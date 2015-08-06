@@ -6,16 +6,16 @@
     <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated">
         <div id="general-info" class="panel-wrapper">
             <div class="panel panel-default profile-default">
-                <div class="image-panel hidden-xs hidden-sm">
-                    <img ng-if="vm.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ vm.profileImage.generatedName }}">
-                    <img ng-if="!vm.profileImage" ng-src="assets/profilepic.png">
+                <div class="image-panel hidden-xs hidden-sm" ng-click="vm.showModal(vm.imageModal, vm.generalInfo)">
+                    <img ng-if="vm.generalInfo.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ vm.generalInfo.profileImage.generatedName }}">
+                    <img ng-if="!vm.generalInfo.profileImage" ng-src="assets/profilepic.png">
                 </div>
 
                 <div class="data-box">
                     <div class="data-header">
                         <div class="image-panel hidden-md hidden-lg">
-                            <img ng-if="vm.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ vm.profileImage.generatedName }}">
-                            <img ng-if="!vm.profileImage" ng-src="assets/profilepic.png">
+                            <img ng-if="vm.generalInfo.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ vm.generalInfo.profileImage.generatedName }}">
+                            <img ng-if="!vm.generalInfo.profileImage" ng-src="assets/profilepic.png">
                         </div>
                         <div class="data-panel">
                             <div class="name">
@@ -174,7 +174,7 @@
                                        'other': 'years'}" >
                             </ng-pluralize>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="panel-footer">

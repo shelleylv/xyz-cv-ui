@@ -3,79 +3,9 @@
 
     angular
         .module('xyz-cv-ui.profile')
-        .filter('flag', function() {
-            return function(countryName) {
-                if(!countryName) {
-                    console.log('no country name');
-                    return 'se';
-                }
-                var countries = [{
-                    name: 'bosnia',
-                    flag: 'ba'
-                },
-                {
-                    name: 'denmark',
-                    flag: 'dk'
-                },
-                {
-                    name: 'sweden',
-                    flag: 'se'
-                },
-                {
-                    name: 'bolivia',
-                    flag: 'bo'
-                }];
-
-                var country = _.find(countries, function(country) {
-                    return country.name.toLowerCase().indexOf(countryName.toLowerCase()) > -1;
-                });
-
-                if(country) {
-                    return country.flag;
-                } else {
-                    return 'se';
-                }
-            };
-        });
-
-    angular
-        .module('xyz-cv-ui.profile')
-        .filter('country', function() {
-            return function(officeName) {
-                if(!officeName) {
-                    console.log('no office name');
-                    return 'bolivia';
-                }
-                var countries = [{
-                    name: 'bosnia',
-                    offices: ['sarajevo']
-                },
-                {
-                    name: 'sweden',
-                    offices: ['karlskrona', 'malmö', 'stockholm']
-                }];
-
-
-                var countryMatch = _.find(countries, function(country) {
-                    var match = country.offices.some(function(office) {
-                        return office.toLowerCase().indexOf(officeName.toLowerCase() > -1);
-                    });
-                    return match;
-                });
-
-                if(countryMatch) {
-                    return countryMatch.name;
-                } else {
-                    return 'bolivia';
-                }
-            };
-        });
-
-    angular
-        .module('xyz-cv-ui.profile')
         .controller('ProfileController', ProfileController);
 
-        function ProfileController(ProfileModel, $routeParams, API_URL, GeneralInfoModal, PrivateInfoModal) {
+        function ProfileController(ProfileModel, $routeParams, API_URL, GeneralInfoModal, ImageModal, PrivateInfoModal) {
             var vm = this;
             window.vm = vm;
 
@@ -163,6 +93,7 @@
                         setCloud(model);
                         setUser(model);
                         setGeneralInfoModal();
+                        setImageModal();
                         setPrivateInfoModal();
                         vm.activated = true;
                     });
@@ -279,6 +210,10 @@
 
             function setPrivateInfoModal() {
                 vm.privateInfoModal = PrivateInfoModal;
+            }
+
+            function setImageModal() {
+                vm.imageModal = ImageModal;
             }
 
             function refresh() {
