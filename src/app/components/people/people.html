@@ -1,0 +1,46 @@
+
+<div class="row">
+
+    <!-- GENERAL INFO -->
+    <div class="col-md-6 col-lg-6 col-sm-12" ng-show="vm.activated">
+        <div id="general-info" class="panel-wrapper">
+            <div class="panel panel-default profile-default">
+                <div class="data-box">
+                    <div style="height:{{vm.height}};overflow:auto;">
+                        <table>
+                            <tr>
+                            <th>Name</th>
+                            <th>Office</th>
+                            </tr>
+                          <tr ng-repeat="people in vm.people | filter:vm.selectedOffice | filter:test | orderBy:'user.name'">
+                            <th ng-if="$odd" style="background-color:#CCCCCC"><div class="people"><a ng-href="{{vm.itemUrl}}{{people.user._id}}">{{people.user.name}}</a></div></th>
+                            <th ng-if="$odd" style="background-color:#CCCCCC"><div class="people">{{people.office.name}}</div></th>
+                            <th ng-if="$even"><div class="people"><a ng-href="{{vm.itemUrl}}{{people.user._id}}">{{people.user.name}}</a></div></th>
+                            <th ng-if="$even"><div class="people">{{people.office.name}}</div></th>
+                          </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-6" ng-show="vm.activated">
+        <div id="general-info" class="panel-wrapper">
+            <div class="panel panel-default profile-default">
+                <div class="data-box">
+                Office filter:
+                <select ng-model="vm.selectedOffice">
+                    <option title="All"value="">All offices</option>
+                    <option ng-repeat="operator in vm.office" title="{{operator}}"value="{{operator}}">{{operator}}</option>
+                </select>
+                <p>
+                <p>
+                Name filter:
+                <input type="text" ng-model="test.user.name"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
