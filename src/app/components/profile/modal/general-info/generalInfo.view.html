@@ -1,6 +1,6 @@
 <div class="modal-open">
-	<div class="modal-backdrop" ng-if="vm.exists" ng-click="vm.hideModal()"></div>
-	<div class="modal" ng-if="vm.exists">
+	<div class="modal-backdrop" ng-if="vm.active" ng-click="vm.hideModal()"></div>
+	<div class="modal" ng-if="vm.active">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -9,6 +9,9 @@
 				</div>
 				<div class="modal-body">
 					<form class="form-horizontal" name="form" novalidate>
+
+						<!-- NAME -->
+
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Name</label>
 							<div class="col-sm-10">
@@ -18,14 +21,20 @@
 								</span>
 							</div>
 						</div>
+
+						<!-- OFFICE -->
+
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Office</label>
 							<div class="col-sm-10">
-								<button type="button" class="btn btn-default" ng-model="vm.generalInfo.office" data-html="1" bs-options="office.value as office.label for office in vm.offices" bs-select>
+								<button type="button" class="btn btn-default" ng-model="vm.generalInfo.office" data-html="1" bs-options="office as office.label for office in vm.offices" bs-select>
 								  Action <span class="caret"></span>
 								</button>
 							</div>
 						</div>
+
+						<!-- CLOSEST SUPERIOR -->
+
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Closest Superior</label>
 							<div class="col-sm-10">
@@ -35,6 +44,9 @@
 								</span>
 							</div>
 						</div>
+
+						<!-- PHONE-->
+
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Phone</label>
 							<div class="col-sm-10">
@@ -44,6 +56,9 @@
 								</span>
 							</div>
 						</div>
+
+						<!-- EMPLOYEE NUMBER-->
+
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Employee number</label>
 							<div class="col-sm-10">
@@ -53,6 +68,9 @@
 								</span>
 							</div>
 						</div>
+
+						<!-- POSITION -->
+
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Position</label>
 							<div class="col-sm-10">
@@ -62,36 +80,34 @@
 								</span>
 							</div>
 						</div>
+
+						<!-- COUNTRY -->
+
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Country</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" ng-model="vm.generalInfo.country" data-min-length="0" data-html="1" data-auto-select="true" data-animation="am-flip-x" bs-options="country.value as country.label for country in vm.countries" placeholder="Enter country" bs-typeahead>
 							</div>
 						</div>
+
+						<!-- PERSONAL INTERESTs-->
+
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Personal Interests</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" placeholder="" ng-model="vm.generalInfo.personalInterests">
 							</div>
 						</div>
+
+						<!-- DESCRIPTION -->
+
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Description</label>
 							<div class="col-sm-10">
 								<textarea class="form-control" placeholder="" ng-model="vm.generalInfo.description"></textarea>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label"><i class="fa fa-calendar"></i> Employed From </label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" ng-model="vm.generalInfo.startDateOfEmployment" name="fromDate" bs-datepicker>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label"><i class="fa fa-calendar"></i> Employed Until </label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" ng-model="vm.generalInfo.endDateOfEmployment" name="toDate" bs-datepicker>
-							</div>
-						</div>
+
 					</form>
 				</div>
 				<div class="modal-footer">

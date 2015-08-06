@@ -5,14 +5,30 @@
         .module('xyz-cv-ui.profile.modal')
         .controller('PrivateInfoController', PrivateInfoController);
 
-        function PrivateInfoController(PrivateInfoModal, Users, Offices, block, user, callback) {
+        function PrivateInfoController(PrivateInfoModal, Users, Offices, block, user, callback, $timeout) {
             var vm = this;
 
             vm.offices = [];
             vm.countries = [];
             vm.user = {};
-            vm.privateInfo = block;
-            vm.hideModal = PrivateInfoModal.deactivate;
+            vm.active = false;
+
+            vm.privateInfo = {
+                personalIdNumber: '',
+                address: '',
+                city: '',
+                ZIP: '',
+                ICEName: '',
+                ICEPhone: '',
+                startDateOfEmployment: '',
+                endDateOfEmployment: '',
+                shirtSize: '',
+                foodPreferences: '',
+                addressInfo: '',
+                ICEInfo: ''
+            };
+
+            vm.hideModal = hideModal;
             vm.save = save;
 
             activate();
@@ -20,30 +36,17 @@
             function activate() {
                 Users.get(user).$promise
                     .then(function(user) {
+                        vm.privateInfo = block;
                         vm.user = user;
-                        setCountries();
-                        setOffices();
+                        vm.active = true;
                     })
             }
 
-            function setCountries() {
-                vm.countries = [
-                    {value: 'Sweden', label: '<span class="flag-icon flag-icon-se"></span> Sweden'},
-                    {value: 'Finland', label: '<span class="flag-icon flag-icon-fi"></span> Finland'},
-                    {value: 'Denmark', label: '<span class="flag-icon flag-icon-dk"></span> Denmark'},
-                    {value: 'Norway', label: '<span class="flag-icon flag-icon-no"></span> Norway'},
-                    {value: 'Bosnia', label: '<span class="flag-icon flag-icon-ba"></span> Bosnia & Herzegovina'}
-                ];
-            }
-
-            function setOffices() {
-                //Offices.query();
-                vm.offices = [
-                    {value: 'Stockholm', label: '<span class="flag-icon flag-icon-se"></span> Stockholm'},
-                    {value: 'Malmö', label: '<span class="flag-icon flag-icon-se"></span> Malmö'},
-                    {value: 'Karlskrona', label: '<span class="flag-icon flag-icon-se"></span> Karlskrona'},
-                    {value: 'Sarajevo', label: '<span class="flag-icon flag-icon-ba"></span> Sarajevo'}
-                ];
+            function hideModal() {
+                vm.active = false;
+                $timeout(function() {
+                    PrivateInfoModal.deactivate();
+                }, 150);
             }
 
             function save() {

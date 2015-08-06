@@ -21,7 +21,7 @@
 
                 var countryMatch = _.find(countries, function(country) {
                     var match = country.offices.some(function(office) {
-                        return office.toLowerCase().indexOf(officeName.toLowerCase() > -1);
+                        return office.toLowerCase().indexOf(officeName.toLowerCase()) > -1;
                     });
                     return match;
                 });

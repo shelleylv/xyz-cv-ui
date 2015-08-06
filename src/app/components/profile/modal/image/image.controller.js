@@ -11,7 +11,7 @@
             vm.user = {};
             vm.uploader = {};
             vm.profileImage = '';
-            vm.exists = false;
+            vm.active = false;
 
             vm.upload = upload;
             vm.save = save;
@@ -24,7 +24,7 @@
                     .then(function(user) {
                         vm.user = user;
                         setUploader();
-                        vm.exists = true;
+                        vm.active = true;
                     })
             }
 
@@ -39,7 +39,7 @@
             }
 
             function hideModal() {
-                vm.exists = false;
+                vm.active = false;
                 $timeout(function() {
                     ImageModal.deactivate();
                 }, 150);

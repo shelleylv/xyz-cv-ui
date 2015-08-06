@@ -26,8 +26,8 @@
         'xyz-cv-ui.profile',
         'xyz-cv-ui.access',
         'xyz-cv-ui.menu',
-        'xyz-cv-ui.office'
-
+        'xyz-cv-ui.office',
+        'xyz-cv-ui.people'
     ]);
 
 })();

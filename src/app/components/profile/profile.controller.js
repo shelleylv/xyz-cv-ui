@@ -16,7 +16,6 @@
             /* MODAL */
             vm.generalInfoModal = {};
             vm.showModal = showModal;
-            vm.hideModal = hideModal;
 
             /* GENERAL INFO */
             vm.generalInfo = {
@@ -30,8 +29,6 @@
                 position: '',
                 country: '',
                 closestSuperior: '',
-                startDateOfEmployment: '',
-                endDateOfEmployment: '',
                 sex: '',
                 description: '',
                 personalInterests: '',
@@ -46,10 +43,12 @@
                 ZIP: '',
                 ICEName: '',
                 ICEPhone: '',
-                foodPreferences: '',
+                startDateOfEmployment: '',
+                endDateOfEmployment: '',
                 shirtSize: '',
+                foodPreferences: '',
                 addressInfo: '',
-                ICEInfo: ''
+                ICEInfo: '',
             };
 
             /* SKILLS */
@@ -111,8 +110,6 @@
                     position: model.user.position,
                     country: model.user.country,
                     closestSuperior: model.user.closestSuperior,
-                    startDateOfEmployment: model.user.startDateOfEmployment,
-                    endDateOfEmployment: model.user.endDateOfEmployment,
                     sex: model.user.sex,
                     description: model.user.description,
                     personalInterests: model.user.personalInterests.join(', ')
@@ -127,6 +124,8 @@
                     ZIP: model.user.ZIP,
                     ICEName: model.user.ICEName,
                     ICEPhone: model.user.ICEPhone,
+                    startDateOfEmployment: model.user.startDateOfEmployment,
+                    endDateOfEmployment: model.user.endDateOfEmployment,
                     foodPreferences: model.user.foodPreferences,
                     shirtSize: model.user.shirtSize,
                     addressInfo: getAddressInfo(model),
@@ -197,11 +196,6 @@
                     callback: activate
                 };
                 vm.currentModal.activate(locals);
-            }
-
-            function hideModal(modal) {
-                vm.currentModal.deactivate();
-                //modal.$promise.then(modal.hide);
             }
 
             function setGeneralInfoModal() {

@@ -27,7 +27,7 @@
             //////////////
 
             function activate() {
-                OfficeModel.get({id: $routeParams.officeId})
+                OfficeModel.get({_id: $routeParams.officeId})
                     .$promise.then(function(value) {
                         vm.charts = getCharts(value);
                         vm.loadchart = true;

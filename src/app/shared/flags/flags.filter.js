@@ -1,40 +1,20 @@
 (function() {
+    'use strict';
+
     angular
         .module('shared.flags')
-        .filter('flag', function() {
+        .filter('flag', flag);
+
+        function flag(CountriesService) {
+            var alpha2CodesHash = CountriesService.getAlpha2CodesHash();
             return function(countryName) {
                 if(!countryName) {
-                    console.log('no country name');
                     return 'se';
                 }
-                var countries = [{
-                    name: 'bosnia',
-                    flag: 'ba'
-                },
-                {
-                    name: 'denmark',
-                    flag: 'dk'
-                },
-                {
-                    name: 'sweden',
-                    flag: 'se'
-                },
-                {
-                    name: 'bolivia',
-                    flag: 'bo'
-                }];
 
-                var country = _.find(countries, function(country) {
-                    return country.name.toLowerCase().indexOf(countryName.toLowerCase()) > -1;
-                });
-
-                if(country) {
-                    return country.flag;
-                } else {
-                    return 'se';
-                }
+                return alpha2CodesHash[countryName.toLowerCase()] || 'se';
             };
-        });
+        };
 
 })();
 

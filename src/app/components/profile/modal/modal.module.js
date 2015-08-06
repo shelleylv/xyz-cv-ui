@@ -4,7 +4,9 @@
     angular.module('xyz-cv-ui.profile.modal', [
         'shared.flags',
         'shared.users',
-        'shared.uploader'
+        'shared.offices',
+        'shared.userToOffice',
+        'shared.uploader',
     ]);
 
 })();

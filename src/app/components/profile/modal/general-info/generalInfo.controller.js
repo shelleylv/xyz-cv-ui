@@ -5,31 +5,35 @@
         .module('xyz-cv-ui.profile.modal')
         .controller('GeneralInfoController', GeneralInfoController);
 
-        function GeneralInfoController(GeneralInfoModal, Users, Offices, block, user, callback, $timeout) {
+        function GeneralInfoController(GeneralInfoModal, Users, Offices, UserToOfficeByUser, UserToOffice, flagFilter, block, user, callback, $timeout, $q) {
             var vm = this;
 
             vm.offices = [];
             vm.countries = [];
             vm.user = {};
             vm.generalInfo = block;
-            vm.hideModal = function() {
-                vm.exists = false;
-                $timeout(function() {
-                    GeneralInfoModal.deactivate();
-                }, 150);
-            };
+            vm.hideModal = hideModal;
             vm.save = save;
-            vm.exists = false;
+            vm.active = false;
 
             activate();
 
             function activate() {
-                Users.get({_id: user._id}).$promise
-                    .then(function(user) {
-                        vm.user = user;
+
+                var promises = {
+                    offices: Offices.query().$promise,
+                    user: Users.get({_id: user._id}).$promise,
+                    connector: UserToOfficeByUser.query({userId: user._id}).$promise
+                };
+
+                $q.all(promises)
+                    .then(function(values) {
+                        vm.user = values.user;
+                        vm.connector = values.connector;
+                        setOffices(values.offices);
+                        setConnector();
                         setCountries();
-                        setOffices();
-                        vm.exists = true;
+                        vm.active = true;
                     })
             }
 
@@ -43,14 +47,26 @@
                 ];
             }
 
-            function setOffices() {
-                //Offices.query();
-                vm.offices = [
-                    {value: 'Stockholm', label: '<span class="flag-icon flag-icon-se"></span> Stockholm'},
-                    {value: 'Malmö', label: '<span class="flag-icon flag-icon-se"></span> Malmö'},
-                    {value: 'Karlskrona', label: '<span class="flag-icon flag-icon-se"></span> Karlskrona'},
-                    {value: 'Sarajevo', label: '<span class="flag-icon flag-icon-ba"></span> Sarajevo'}
-                ];
+            function setOffices(offices) {
+                offices.forEach(function(office) {
+                    office.country = 'Sweden';
+                    office.label = '<span class="flag-icon flag-icon-' + flagFilter(office.country) + '"></span> ' + office.name;
+                    if (vm.generalInfo.office && office._id === vm.generalInfo.office._id) {
+                        vm.generalInfo.office = office;
+                    }
+                });
+                vm.offices = offices;
+            }
+
+            function setConnector() {
+                vm.connector = vm.connector.length ? vm.connector[0] : null;
+            }
+
+            function hideModal() {
+                vm.active = false;
+                $timeout(function() {
+                    GeneralInfoModal.deactivate();
+                }, 150);
             }
 
             function save() {
@@ -58,15 +74,36 @@
 
                 vm.user = angular.extend(vm.user, vm.generalInfo);
 
-                delete vm.user.office;
-                delete vm.user.skills;
-                delete vm.user.assignments;
-                delete vm.user.role;
-                delete vm.user.profileImage;
+                saveOffice(vm.user)
+                    .then(function(user) {
+                        vm.user = user;
 
-                vm.user.$save()
-                    .then(vm.hideModal)
-                    .then(callback);
+                        delete vm.user.skills;
+                        delete vm.user.assignments;
+                        delete vm.user.role;
+                        delete vm.user.profileImage;
+
+                        vm.user.$save()
+                            .then(vm.hideModal)
+                            .then(callback);
+                    });
+            }
+
+            function saveOffice(user) {
+                return $q(function(resolve) {
+                    if (user.office._id) {
+                        if (!vm.connector) {
+                            vm.connector = new UserToOffice({userId: user._id, officeId: user.office._id});
+                        } else {
+                            vm.connector.officeId = user.office._id;
+                            vm.connector = new UserToOffice(vm.connector);
+                        }
+                        delete user.office
+                        return vm.connector.$save().then(resolve(user))
+                    }
+                    delete user.office
+                    return resolve(user);
+                })
             }
 
             function refresh() {

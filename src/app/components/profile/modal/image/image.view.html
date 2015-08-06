@@ -1,6 +1,6 @@
 <div class="modal-open">
-    <div class="modal-backdrop" ng-if="vm.exists" ng-click="vm.hideModal()"></div>
-    <div class="modal" ng-if="vm.exists">
+    <div class="modal-backdrop" ng-if="vm.active" ng-click="vm.hideModal()"></div>
+    <div class="modal" ng-if="vm.active">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -25,7 +25,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-default" ng-click="vm.hideModal()">Close</button>
-                    <button class="btn btn-primary" ng-click="vm.upload()">Save changes</button>
+                    <button class="btn btn-primary" ng-click="vm.upload()" ng-disabled="!vm.uploader.queue.length">Save changes</button>
                 </div>
             </div>
         </div>

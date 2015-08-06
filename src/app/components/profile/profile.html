@@ -45,24 +45,6 @@
                         </div>
                     </div>
 
-                    <div class="row" ng-if="vm.generalInfo.startDateOfEmployment">
-                        <div class="col-sm-3 col-md-2 sheet-label">
-                            From
-                        </div>
-                        <div class="col-sm-9 col-md-10 sheet-value">
-                            {{ vm.generalInfo.startDateOfEmployment | date}}
-                        </div>
-                    </div>
-
-                    <div class="row" ng-if="vm.generalInfo.endDateOfEmployment">
-                        <div class="col-sm-3 col-md-2 sheet-label">
-                            To
-                        </div>
-                        <div class="col-sm-9 col-md-10 sheet-value">
-                            {{ vm.generalInfo.endDateOfEmployment | date}}
-                        </div>
-                    </div>
-
                     <div class="row" ng-if="vm.generalInfo.personalInterests">
                         <div class="col-sm-3 col-md-2 sheet-label">
                             Interests
@@ -122,6 +104,22 @@
                             {{ vm.privateInfo.ICEInfo }}
                         </div>
                     </div>
+                    <div class="row" ng-if="vm.privateInfo.startDateOfEmployment">
+                        <div class="col-sm-3 col-md-2 sheet-label">
+                            From
+                        </div>
+                        <div class="col-sm-9 col-md-10 sheet-value">
+                            {{ vm.privateInfo.startDateOfEmployment | date}}
+                        </div>
+                    </div>
+                    <div class="row" ng-if="vm.privateInfo.endDateOfEmployment">
+                        <div class="col-sm-3 col-md-2 sheet-label">
+                            To
+                        </div>
+                        <div class="col-sm-9 col-md-10 sheet-value">
+                            {{ vm.privateInfo.endDateOfEmployment | date}}
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-sm-3 col-md-2 sheet-label">
                             Shirt Size
@@ -141,7 +139,7 @@
                 </div>
                 <div class="panel-footer">
                     <b>Private Info</b>
-                    <button class="btn btn-default btn-sm" ng-click="vm.showModal(vm.privateInfoModal, vm.privateInfo)">Edit</button>
+                    <i class="fa fa-edit" ng-click="vm.showModal(vm.privateInfoModal, vm.privateInfo)"></i>
                 </div>
             </div>
         </div>
