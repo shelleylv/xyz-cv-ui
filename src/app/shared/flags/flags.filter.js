@@ -14,7 +14,7 @@
 
                 return alpha2CodesHash[countryName.toLowerCase()] || 'se';
             };
-        };
+        }
 
 })();
 
