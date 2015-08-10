@@ -1,8 +1,9 @@
+<div ng-include="'/xyz-cv-ui/components/profile/modal/skills/skills.view.html'"></div>
+
 <div class="row">
 
     <!-- GENERAL INFO -->
 
-    </div>
     <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated">
         <div id="general-info" class="panel-wrapper">
             <div class="panel panel-default profile-default">
@@ -19,7 +20,8 @@
                         </div>
                         <div class="data-panel">
                             <div class="name">
-                                <span class="flag-icon" ng-class="'flag-icon-' + (vm.generalInfo.country | flag)"></span> {{ vm.generalInfo.name }}
+                                <span class="flag-icon" ng-class="'flag-icon-' + (vm.generalInfo.country | flag)"></span> 
+                                {{ vm.generalInfo.name }}
                             </div>
                             <div class="role pull-right">
                                 {{ vm.generalInfo.role.name }}
@@ -154,30 +156,45 @@
                 <div class="image-panel hidden-xs hidden-sm">
                     <i class="fa fa-flask"></i>
                 </div>
-                <div class="itemrow skillrow" ng-class="{'removeTopBorder': $first}" ng-repeat="skill in vm.skills">
-                    <div class="image-box">
-                        <i class="{{ skill.icon }}"></i>
-                    </div>
-                    <div class="data-box">
-                        <div class="name">
-                            <div class="level">
-                                {{ skill.level }}
+                <div>
+                    <div class="itemrow skillrow" ng-class="{'removeTopBorder': $first}" ng-repeat="skill in vm.skills">
+                        <div class="image-box">
+                            <i class="{{ skill.icon }}"></i>
+                        </div>
+                        <div class="data-box">
+                            <div class="row">
+                                <div class="col-xs-6 col-md-3">
+                                    <div class="name">
+                                        {{ skill.name }}
+                                    </div><br>
+                                    <div class="level" ng-class="'l' + skill.level">
+                                        Level {{ skill.level }}
+                                    </div><br>
+                                    <div class="year">
+                                        {{ skill.years }}
+                                        <ng-pluralize
+                                            count=skill.years
+                                            when="{'1': 'year',
+                                                   'other': 'years'}" >
+                                        </ng-pluralize>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-md-9">
+                                    <div class="endorsements">
+                                        <div class="count">5 <i class="fa fa-thumbs-up"></i></div>
+                                        <div class="endorsement" ng-repeat="pic in ['profilepic.png', 'gimli-cage.jpg', 'legolas-cage.jpg', 'gustavpihl.jpeg']">
+                                            <img ng-src="{{'assets/' + pic}}">
+                                        </div>
+                                        ...
+                                    </div>
+                                </div>
                             </div>
-                            {{ skill.name }}
                         </div>
-                        <div class="year pull-right">
-                            {{ skill.years }}
-                            <ng-pluralize
-                                count=skill.years
-                                when="{'1': 'year',
-                                       'other': 'years'}" >
-                            </ng-pluralize>
-                        </div>
-                        
                     </div>
                 </div>
                 <div class="panel-footer">
                     <b>Skills</b>
+                    <i class="fa fa-edit" ng-click="vm.showModal(vm.skillsModal, vm.skills)"></i>
                 </div>
             </div>
         </div>
@@ -191,13 +208,15 @@
                 <div class="image-panel hidden-xs hidden-sm">
                     <i class="fa fa-graduation-cap"></i>
                 </div>
-                <div class="itemrow certificaterow" ng-class="{'removeTopBorder': $first}" ng-repeat="certificate in vm.certificates">
-                    <div class="image-box">
-                        <i class="fa fa-graduation-cap"></i>
-                    </div>
-                    <div class="data-box">
-                        <div class="name">
-                            {{ certificate }}
+                <div>
+                    <div class="itemrow certificaterow" ng-class="{'removeTopBorder': $first}" ng-repeat="certificate in vm.certificates">
+                        <div class="image-box">
+                            <i class="fa fa-graduation-cap"></i>
+                        </div>
+                        <div class="data-box">
+                            <div class="name">
+                                {{ certificate }}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -216,35 +235,24 @@
                 <div class="image-panel hidden-xs hidden-sm">
                     <i class="fa fa-suitcase"></i>
                 </div>
-                <div class="itemrow assignmentrow" ng-class="{'removeTopBorder': $first}" ng-repeat="assignment in vm.assignments">
-                    <div class="image-box">
-                        <i class="fa fa-suitcase"></i>
-                    </div>
-                    <div class="data-box">
-                        <div class="name">
-                            {{ assignment.name }}
+                <div>
+                    <div class="itemrow assignmentrow" ng-class="{'removeTopBorder': $first}" ng-repeat="assignment in vm.assignments">
+                        <div class="image-box">
+                            <i class="fa fa-suitcase"></i>
                         </div>
-                        <div class="skilltag pull-right" ng-repeat="skill in assignment.skills">
-                            {{ skill.name }}
+                        <div class="data-box">
+                            <div class="name">
+                                {{ assignment.name }}
+                            </div>
+                            <div class="skilltag pull-right" ng-repeat="skill in assignment.skills">
+                                {{ skill.name }}
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="panel-footer">
                     <b>Assignments</b>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- TAGS -->
-
-    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated">
-        <div class="panel-wrapper">
-            <div id="tags" class="panel panel-default">
-                <div class="image-panel hidden-xs hidden-sm">
-                    <i class="fa fa-cloud"></i>
-                </div>
-                <div class="tag" ng-repeat="word in vm.cloud.words" ng-style="{ opacity: {{word.opacity}} }"> {{word.text}} </div>
             </div>
         </div>
     </div>
