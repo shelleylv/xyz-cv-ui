@@ -76,11 +76,14 @@ body {
 
 .sidebar-nav-list {
 	color: $sidebarnavlisttextcolor;
-	background-color: $sidebarnavlistbackground;
+	background: $sidebarnavlistbackground;
 	>.list-item {
 		padding-left: 48px;
+		&:first-of-type {
+			@include background-image(linear-gradient(to bottom, darken($sidebarnavlistbackground, 8%) 0%, $sidebarnavlistbackground 25%));
+		}
 		&:hover {
-			background-color: $sidebarnavlisthoverbackground;
+			background: $sidebarnavlisthoverbackground;
 		}
 	}
 	>.buttons {
@@ -125,7 +128,6 @@ body {
 .sidebar-nav li a:hover {
 	text-decoration: none;
 	color: lighten($menutextcolor, 5%);
-	background: rgba(255, 255, 255, 0.2);
 }
 
 .sidebar-nav li a:active,
