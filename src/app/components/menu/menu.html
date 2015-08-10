@@ -1,0 +1,87 @@
+<div class="wrapper" ng-controller="MenuController as vm" ng-class="{'toggled': vm.toggled}">
+    <!-- Sidebar -->
+    <div class="sidebar-wrapper">
+        <!--<div class="sidebar-topbar">
+            Hemir Mogensen
+        </div>-->
+        <div class="sidebar-brand">
+            <div class="profile-image">
+                <i class="fa fa-user"></i>
+            </div>John Doe
+        </div>
+        <ul class="sidebar-nav" ng-model="vm.panels.activePanel" data-allow-multiple="true" bs-collapse>
+            <li>
+                <a ng-href="#/">
+                    <div class="sidebar-icon pull-left">
+                        <i class="fa fa-dashboard"></i>
+                    </div>
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a ng-href="#/profile/current">
+                    <div class="sidebar-icon pull-left">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    Profile
+                </a>
+            </li>
+            <li>
+                <a ng-href="#/people/">
+                    <div class="sidebar-icon pull-left">
+                        <i class="fa fa-users"></i>
+                    </div>
+                    People
+                </a>
+            </li>
+            <li ng-repeat="panel in vm.panels">
+                <a ng-href="{{panel.url}}" bs-collapse-toggle>
+                    <div class="sidebar-icon pull-left">
+                        <i class="fa" ng-class="panel.icon"></i>
+                    </div>
+                    {{panel.title}}
+                    <i class="fa fa-sort-down list-toggle" ng-class="{'toggled': vm.panels.activePanel.indexOf($index) != -1}"></i>
+                </a>
+                <div ng-if="!vm.toggled" class="sidebar-nav-list panel-collapse" bs-collapse-target>
+                    <div class="list-item" ng-repeat="item in panel.items">
+                        <a ng-href="{{panel.itemUrl}}{{item._id}}">
+                            <i class="fa" ng-class="panel.itemIcon"></i> {{item.name}}
+                        </a>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <a ng-href="#/access">
+                    <div class="sidebar-icon pull-left">
+                        <i class="fa fa-shield"></i>
+                    </div>
+                    Access
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div class="sidebar-icon pull-left">
+                        <i class="fa fa-cog"></i>
+                    </div>
+                    Settings
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+    <!-- Page Content -->
+    <div class="page-content-wrapper">
+        <div class="topbar">
+            <div class="menubutton pull-left" ng-click="vm.toggled = !vm.toggled">
+                <i class="fa fa-bars"></i>
+            </div>
+            CVDB
+        </div>
+        <div class="container-fluid">
+            <div ng-view></div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+</div>
+<!-- /#wrapper -->

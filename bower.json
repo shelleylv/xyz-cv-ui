@@ -41,6 +41,9 @@
     "angular-modal": "~0.5.0",
     "ngstorage": "~0.3.7",
     "underscore": "~1.8.3",
+    "angular-messages": "~1.4.3",
+    "ngImgCrop": "~0.3.2",
+    "angular-file-upload": "~1.2.0",
     "angular-utils-pagination": "~0.8.3"
   },
   "overrides": {
@@ -59,6 +62,6 @@
     "angular-mocks": "~1.2.14"
   },
   "resolutions": {
-    "angular": "~1.4.2"
+    "angular": "1.4.3"
   }
 }

@@ -15,6 +15,8 @@
          * but this is easier to maintain.
          */
         'xyz-cv-ui.core',
+        'xyz-cv-ui.config',
+
         //'app.widgets',
 
         /*
