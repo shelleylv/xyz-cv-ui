@@ -5,7 +5,7 @@
         .module('xyz-cv-ui.profile.modal')
         .controller('GeneralInfoController', GeneralInfoController);
 
-        function GeneralInfoController(GeneralInfoModal, Users, Offices, UserToOfficeByUser, UserToOffice, flagFilter, block, user, callback, $timeout, $q) {
+        function GeneralInfoController(GeneralInfoModal, Users, Offices, UserToOffice, flagFilter, block, user, callback, $timeout, $q) {
             var vm = this;
 
             vm.offices = [];
@@ -23,7 +23,7 @@
                 var promises = {
                     offices: Offices.query().$promise,
                     user: Users.get({_id: user._id}).$promise,
-                    connector: UserToOfficeByUser.query({userId: user._id}).$promise
+                    connector: UserToOffice.query({userId: user._id}).$promise
                 };
 
                 $q.all(promises)
@@ -82,6 +82,8 @@
                         delete vm.user.assignments;
                         delete vm.user.role;
                         delete vm.user.profileImage;
+                        delete vm.user.email;
+                        delete vm.user.hidden;
 
                         vm.user.$save()
                             .then(vm.hideModal)

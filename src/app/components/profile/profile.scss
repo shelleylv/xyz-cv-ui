@@ -283,6 +283,8 @@
         opacity: 1.0;
         &.ng-leave-active {
             opacity: 0;
+        }
+    }
     .modal-body {
         >.list-group {
             margin: 0;
