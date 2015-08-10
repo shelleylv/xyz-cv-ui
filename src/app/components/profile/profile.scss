@@ -84,64 +84,91 @@
 }
 
 .itemrow {
-    line-height: 10px;
-    min-height: 40px;
-    max-height: 40px;
     overflow: hidden;
     display: flex;
+    border-top: 1px solid #ddd;
+    &:first-of-type {
+        border-top: none;
+    }
     .image-box {
+        margin: 15px;
         color: #e0e0e0;
-        border-top: 1px solid #ddd;
         display: inline-block;
         font-size: 2em;
         font-weight: bold;
         text-align: center;
         line-height: 40px;
         height: 40px;
-        width: 50px;
+        width: 40px;
         >img {
             height: 40px;
             width: 40px;
         }
     }
     .data-box {
-        min-height: 40px;
-        max-height: 40px;
         width: 100%;
-        border-top: 1px solid #ddd;
     }
 
     &.skillrow {
         .data-box {
+            padding-left: 0;
             .name {
                 font-weight: bold;
-                font-size: 75%;
-                background-color: $tagcolor;
-                @include border-radius(100px);
-                padding: 2px 6px 2px 18px;
-                margin: 0 2px;
+            }
+            .level {
                 display: inline-block;
-                position: relative;
-                .level {
-                    position: absolute;
-                    top: 0;
-                    left: -4px;
-                    font-weight: bold;
-                    font-size: 75%;
-                    background-color: antiquewhite;
-                    @include border-radius(100px);
-                    padding: 2px 6px;
-                    margin: 0 2px;
-                    display: inline-block;
+                /*padding: 0 5px;
+                @include border-radius(3px);
+                @include box-shadow(0px 1px 0px rgba(0, 0, 0, 0.2));
+
+                &.l1 {
+                    background-color: #FFE5B0;
                 }
+                &.l2 {
+                    background-color: #EEFFA2;
+                }
+                &.l3 {
+                    background-color: #C7FFA3;
+                }
+                &.l4 {
+                    background-color: #8CFF8C;
+                }
+                &.l5 {
+                    background-color: #8BFFC4;
+                }*/
             }
             .year {
                 display: inline-block;
             }
         }
+        .endorsements {
+            text-align: right;
+            line-height: 60px;
+            .count {
+                background-color: #B0D3E0;
+                @include border-radius(5px);
+                display: inline-block;
+                color: grey;
+                max-height: 24px;
+                min-height: 24px;
+                line-height: 1em;
+                padding: 4px;
+            }
+            .endorsement {
+                display: inline-block;
+                img {
+                    min-height: 24px;
+                    max-height: 24px;
+                    max-width: 24px;
+                    @include border-radius(5px);
+                    margin-left: 1px;
+                }
+            }
+        }
     }
 
     &.assignmentrow {
+        min-height: 75px;
         .data-box {
             .name {
                 font-weight: bold;
@@ -163,15 +190,6 @@
         }
         .date {
 
-        }
-    }
-
-    &.removeTopBorder {
-        .image-box {
-            border-top: none;
-        }
-        .data-box {
-            border-top: none;
         }
     }
 }
@@ -221,15 +239,15 @@
     }
 }
 
-#tags {
-    min-height: 232px;
-}
-
-
 .modal {
     display: block;
     .modal-content {
         @include border-radius(0);
+    }
+    .modal-body {
+        >.list-group {
+            margin: 0;
+        }
     }
 }
 
