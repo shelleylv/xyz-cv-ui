@@ -5,7 +5,7 @@
         .module('xyz-cv-ui.profile')
         .controller('ProfileController', ProfileController);
 
-        function ProfileController(ProfileModel, $routeParams, API_URL, GeneralInfoModal, ImageModal, PrivateInfoModal) {
+        function ProfileController(ProfileModel, $routeParams, API_URL, GeneralInfoModal, ImageModal, PrivateInfoModal, SkillsModal) {
             var vm = this;
             window.vm = vm;
 
@@ -15,6 +15,7 @@
 
             /* MODAL */
             vm.generalInfoModal = {};
+            vm.skillsModal = {};
             vm.showModal = showModal;
 
             /* GENERAL INFO */
@@ -77,7 +78,6 @@
             };
 
             activate();
-
             //////////////
 
             function activate() {
@@ -94,6 +94,7 @@
                         setGeneralInfoModal();
                         setImageModal();
                         setPrivateInfoModal();
+                        setSkillsModal();
                         vm.activated = true;
                     });
             }
@@ -210,8 +211,8 @@
                 vm.imageModal = ImageModal;
             }
 
-            function refresh() {
-                /* */
+            function setSkillsModal() {
+                vm.skillsModal = SkillsModal;
             }
         }
 })();

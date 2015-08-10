@@ -228,8 +228,8 @@ body {
 	overflow: hidden;
 	will-change: box-shadow, transform;
 	transition: box-shadow 0.2s $animation-curve-fast-out-linear-in,
-	          background-color 0.2s $animation-curve-default,
-	          color 0.2s $animation-curve-default;
+			  background-color 0.2s $animation-curve-default,
+			  color 0.2s $animation-curve-default;
 	outline: none;
 	cursor: pointer;
 	text-decoration: none;
@@ -351,5 +351,31 @@ body {
 				width: 100% !important;
 			}
 		}
+	}
+}
+
+.pagination-container {
+	text-align: center;
+	margin-top: 15px;
+
+	transition: all .5s ease;
+	&.ng-enter {
+		margin-top: -30px;
+		opacity: 0;
+		&.ng-enter-active {
+			margin-top: 15px;
+			opacity: 1;
+		}
+	}
+	&.ng-leave {
+		margin-top: 15px;
+		opacity: 1;
+		&.ng-leave-active {
+			margin-top: -30px;
+			opacity: 0;
+		}
+	}
+	.pagination {
+		margin: 0;
 	}
 }

@@ -7,6 +7,7 @@
         'shared.offices',
         'shared.userToOffice',
         'shared.uploader',
+        'angularUtils.directives.dirPagination'
     ]);
 
 })();
