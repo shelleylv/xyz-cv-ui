@@ -260,12 +260,8 @@
   }
 }
 
-.modal-open {
-    overflow-y: visible !important;
-    position: relative;
-}
-
 .modal {
+    overflow-y: visible !important;
     display: block;
     .modal-content {
         @include border-radius(0);

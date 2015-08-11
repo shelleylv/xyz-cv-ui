@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('model')
+        .module('xyz-cv-ui.competence')
         .factory('CompetenceModel', CompetenceModel);
 
     function CompetenceModel(Model) {

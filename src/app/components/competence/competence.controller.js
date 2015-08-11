@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('xyz-cv-ui.access')
+        .module('xyz-cv-ui.competence')
         .controller('CompetenceController', CompetenceController);
 
         function CompetenceController(CompetenceModel) {
@@ -64,7 +64,7 @@
 
                     resultArr.push({skills: arr});
                 });
-                
+
                 return resultArr;
             }
 
