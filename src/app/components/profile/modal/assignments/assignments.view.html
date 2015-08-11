@@ -1,0 +1,45 @@
+<div class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				Edit Assignments
+				<button class="close" ng-click="vm.hideModal()">&times;</button>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-md-2 control-label">Name</label>
+						<div class="col-md-10">
+							<input type="text" class="form-control" placeholder="Name" ng-model="blork">
+						</div>
+					</div>
+				</form>
+				<div class="row buffer-down">
+					<div class="col-md-12">
+						<button class="btn btn-primary pull-right">Save</button>
+					</div>
+					
+				</div>
+
+				<ul class="list-group edit-assignments-list">
+					<li class="list-group-item edit-assignments-list-item" dir-paginate="assignment in vm.assignments | itemsPerPage:10">
+						<div class="deletebutton">
+							<i class="fa fa-minus-circle"></i>
+						</div>
+						<div class="name">{{assignment.name}}</div>
+						<div class="editbutton">
+							<i class="fa fa-edit"></i>
+						</div>
+					</li>
+				</ul>
+				<div class="pagination-container" ng-if="vm.assignments.length > 10">
+					<dir-pagination-controls></dir-pagination-controls>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-default" ng-click="vm.hideModal()">Close</button>
+				<button class="btn btn-primary" ng-click="vm.save()">Confirm changes</button>
+			</div>
+		</div>
+	</div>
+</div>
