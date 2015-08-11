@@ -6,7 +6,7 @@
         .factory('Skills', Skills);
 
     function Skills(Resource) {
-        return Resource('/skill/:_id', { _id: '@_id' });
+        return new Resource('/skill/:_id', { _id: '@_id' });
     }
 
 })();

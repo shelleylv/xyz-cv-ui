@@ -6,7 +6,7 @@
         .factory('Users', Users);
 
     function Users(Resource) {
-        return Resource('/user/:_id', { _id: '@_id' });
+        return new Resource('/user/:_id', { _id: '@_id' });
     }
 
 })();

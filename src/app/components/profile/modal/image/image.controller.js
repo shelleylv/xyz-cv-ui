@@ -19,13 +19,15 @@
 
             activate();
 
+            //////////////
+
             function activate() {
                 Users.get({_id: user._id}).$promise
                     .then(function(user) {
                         vm.user = user;
                         setUploader();
                         vm.active = true;
-                    })
+                    });
             }
 
             function save() {
@@ -46,7 +48,7 @@
             }
 
             function setUploader() {
-                vm.uploader = ImageUploader($scope);
+                vm.uploader = new ImageUploader($scope);
                 vm.uploader.onSuccessItem = onSuccessItem;
             }
 
@@ -55,8 +57,5 @@
                 save();
             }
 
-            function refresh() {
-                /* */
-            }
         }
 })();

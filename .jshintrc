@@ -17,5 +17,11 @@
   "smarttabs": true,
   "globals": {
     "angular": false
-  }
+  },
+  "predef": [
+    "console",
+    "_",
+    "jQuery",
+    "$"
+  ]
 }

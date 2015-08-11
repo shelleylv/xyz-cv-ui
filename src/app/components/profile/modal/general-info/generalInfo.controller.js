@@ -34,7 +34,7 @@
                         setConnector();
                         setCountries();
                         vm.active = true;
-                    })
+                    });
             }
 
             function setCountries() {
@@ -100,16 +100,13 @@
                             vm.connector.officeId = user.office._id;
                             vm.connector = new UserToOffice(vm.connector);
                         }
-                        delete user.office
-                        return vm.connector.$save().then(resolve(user))
+                        delete user.office;
+                        return vm.connector.$save().then(resolve(user));
                     }
-                    delete user.office
+                    delete user.office;
                     return resolve(user);
-                })
+                });
             }
 
-            function refresh() {
-                /* */
-            }
         }
 })();

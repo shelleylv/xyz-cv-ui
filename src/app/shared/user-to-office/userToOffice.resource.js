@@ -6,7 +6,7 @@
         .factory('UserToOffice', UserToOffice);
 
     function UserToOffice(Resource) {
-        return Resource('/userToOfficeConnector/:_id', { _id: '@_id' });
+        return new Resource('/userToOfficeConnector/:_id', { _id: '@_id' });
     }
 
 })();

@@ -83,7 +83,7 @@ gulp.task('styles', ['clean-css'], function() {
 gulp.task('styles-dist', ['styles'], function () {
   return cssFiles()
     .pipe(change(removeRootSlashes))
-    .pipe(dist('css', bower.name))
+    .pipe(dist('css', bower.name));
 });
 
 gulp.task('csslint', ['styles'], function () {

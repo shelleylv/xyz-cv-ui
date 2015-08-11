@@ -6,7 +6,7 @@
         .factory('PeopleModel', PeopleModel);
 
     function PeopleModel(Model) {
-        return Model('/people/:id', { id: '@id' });
+        return new Model('/people/:id', { id: '@id' });
     }
 
 })();

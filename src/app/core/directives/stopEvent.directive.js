@@ -10,8 +10,10 @@
                 restrict: 'A',
                 link: link
 
-            }
+            };
             return directive;
+
+            //////////////
 
             function link(scope, element, attr) {
                 if(attr && attr.stopEvent) {

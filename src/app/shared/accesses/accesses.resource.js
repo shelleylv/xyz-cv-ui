@@ -6,7 +6,7 @@
         .factory('Accesses', Accesses);
 
     function Accesses(Resource) {
-        return Resource('/roleToAttributeConnector/');
+        return new Resource('/roleToAttributeConnector/');
     }
 
  })();

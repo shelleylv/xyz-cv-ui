@@ -6,7 +6,7 @@
         .factory('Authentication', Authentication);
 
     function Authentication(Resource) {
-       return Resource('/authentication/:id', { id: '@id' });
+       return new Resource('/authentication/:id', { id: '@id' });
     }
 
 })();

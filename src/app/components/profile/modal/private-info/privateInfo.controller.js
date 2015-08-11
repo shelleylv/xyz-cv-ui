@@ -33,13 +33,15 @@
 
             activate();
 
+            //////////////
+
             function activate() {
                 Users.get(user).$promise
                     .then(function(user) {
                         vm.privateInfo = block;
                         vm.user = user;
                         vm.active = true;
-                    })
+                    });
             }
 
             function hideModal() {
@@ -55,10 +57,6 @@
                 vm.user.$save()
                     .then(vm.hideModal)
                     .then(callback);
-            }
-
-            function refresh() {
-                /* */
             }
         }
 })();

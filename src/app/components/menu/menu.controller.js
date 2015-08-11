@@ -22,7 +22,7 @@
                 OfficesService.get().then(function(offices){
                     vm.offices = offices;
                     setPanels();
-                })
+                });
             }
 
             function setPanels() {
