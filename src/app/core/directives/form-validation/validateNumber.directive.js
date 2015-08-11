@@ -14,6 +14,8 @@
 
         return directive;
 
+        //////////////
+
         function link (scope, elem, attr, ngModel) {
             var regex = /^[0-9]{1,20}$/;
             ngModel.$parsers.unshift(function(value) {

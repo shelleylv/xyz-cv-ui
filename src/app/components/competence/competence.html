@@ -4,7 +4,7 @@
         <div style="position:fixed;top:100px;left:300px;max-height:200px;overflow:hidden;">
             Office:
             </br>
-       
+
             <span ng-repeat="office in vm.offices[0].offices" >
                 <input type="checkbox" name="{{office}}" value="{{office}}" ng-change="vm.setCompetenceData()" ng-model="vm.office[office]"/>{{office}}<br>
             </span>
@@ -40,7 +40,7 @@
                         {{ lvl.level }}
                     </td>
                 </tr>
-            </table> 
+            </table>
         </div>
     </div>
 </div>

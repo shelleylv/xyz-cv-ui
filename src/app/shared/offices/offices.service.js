@@ -27,7 +27,7 @@
                             return resolve(offices);
                         });
                 }
-            })
+            });
         }
     }
 

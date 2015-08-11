@@ -7,6 +7,9 @@
 
         function PeopleController(PeopleModel) {
             var vm = this;
+
+            //////////////
+
             PeopleModel.get({id: ''})
                 .$promise.then(function(model) {
                     vm.people = model.people;
@@ -16,9 +19,6 @@
                     vm.height = '' + window.innerHeight + 'px';
             });
 
-            function refresh() {
-                /* */
-            }
         }
 })();
 

@@ -12,6 +12,8 @@
         window.vm = vm;
         window.scope = $scope;
 
+        //////////////
+
         $scope.$on('sail-resize', redraw, 100);
 
         function redraw(waitTime) {
@@ -225,10 +227,5 @@
             $scope.$apply();
         });
 
-        //////////////
-
-        function refresh() {
-            /* */
-        }
     }
 })();

@@ -14,6 +14,8 @@
 
         return directive;
 
+        //////////////
+
         function link (scope, elem, attr, ngModel) {
             var regex = /^[A-Z åäöÅÄÖ]{1,100}$/i;
             ngModel.$parsers.unshift(function(value) {

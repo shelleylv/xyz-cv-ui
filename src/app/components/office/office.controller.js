@@ -35,10 +35,6 @@
                     });
             }
 
-            function refresh() {
-                /* */
-            }
-
             function redraw(waitTime) {
                 vm.loadchart = false;
                 $timeout(function() {

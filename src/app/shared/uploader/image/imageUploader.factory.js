@@ -26,14 +26,13 @@
             uploader.onCancelItem = onCancelItem;
             uploader.onCompleteItem = onCompleteItem;
 
-            return uploader
+            return uploader;
 
             function getImageFilter() {
                 return {
                     name: 'imageFilter',
-                    fn: function (item /*{File|FileLikeObject}*/, options) {
+                    fn: function (item /*{File|FileLikeObject}*/) {
                         var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-                        console.log('|jpg|png|'.indexOf(type) !==1);
                         return '|jpg|png|'.indexOf(type) !==1;
                     }
                 };
@@ -54,7 +53,7 @@
                     $scope.$apply(function() {
                         item.image = event.target.result;
                     });
-                }
+                };
                 reader.readAsDataURL(item._file);
             }
 
@@ -80,39 +79,36 @@
 
             function onWhenAddingFileFailed(item /*{File|FileLikeObject}*/, filter, options) {
                 console.info('onWhenAddingFileFailed', item, filter, options);
-            };
+            }
 
             function onAfterAddingAll(addedFileItems) {
                 console.info('onAfterAddingAll', addedFileItems);
-            };
+            }
 
             function onProgressItem(fileItem, progress) {
                 console.info('onProgressItem', fileItem, progress);
-            };
+            }
 
             function onProgressAll(progress) {
                 console.info('onProgressAll', progress);
-            };
+            }
 
             function onSuccessItem(fileItem, response, status, headers) {
                 console.info('onSuccessItem', fileItem, response, status, headers);
-            };
+            }
 
             function onErrorItem(fileItem, response, status, headers) {
                 console.info('onErrorItem', fileItem, response, status, headers);
-            };
+            }
 
             function onCancelItem(fileItem, response, status, headers) {
                 console.info('onCancelItem', fileItem, response, status, headers);
-            };
+            }
 
             function onCompleteItem(fileItem, response, status, headers) {
                 console.info('onCompleteItem', fileItem, response, status, headers);
-            };
-
-            function onCompleteAll() {
-                console.info('onCompleteAll');
             }
+
         }
 
     }

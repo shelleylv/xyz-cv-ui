@@ -79,6 +79,7 @@
             };
 
             activate();
+
             //////////////
 
             function activate() {
@@ -179,10 +180,6 @@
                     items.push(model.user.ICEPhone);
                 }
                 return items.join(' | ');
-            }
-
-            function getGeneralInfo() {
-                return vm.generalInfo;
             }
 
             function getUser() {

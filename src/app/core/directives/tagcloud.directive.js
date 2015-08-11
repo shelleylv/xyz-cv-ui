@@ -24,7 +24,7 @@
                 words: '=words'
             },
             link: generateLink
-        }
+        };
 
         setJQCOptions();
 
@@ -67,7 +67,7 @@
                 $elem.jQCloud('destroy');
             });
         }
-    };
+    }
 
 })();
 

@@ -10,9 +10,5 @@
             vm.accesses = Accesses.query();
 
             //////////////
-
-            function refresh() {
-                /* */
-            }
         }
 })();

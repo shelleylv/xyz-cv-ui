@@ -10,7 +10,7 @@
 					<div class="form-group">
 						<label class="col-md-2 control-label">Name</label>
 						<div class="col-md-10">
-							<input type="text" class="form-control" placeholder="Name" ng-model="blork">
+							<input type="text" class="form-control" ng-model="vm.currentConnector.name" bs-options="skill.name as skill.name for skill in vm.skills" placeholder="Name" bs-typeahead>
 						</div>
 					</div>
 					<div class="form-group">
@@ -20,7 +20,7 @@
 								<div class="col-md-6">
 									<div class="input-group">
 										<label class="input-group-addon">Level</label>
-										<select class="form-control" ng-model="blork" data-html="1" bs-options="level.value as level.label for level in vm.levels" bs-select placeholder="Choose level...">
+										<select class="form-control" ng-model="vm.currentConnector.level" data-html="1" bs-options="level.value as level.label for level in vm.levels" bs-select placeholder="Choose level...">
 									  		Action <span class="caret"></span>
 										</select>
 									</div>
@@ -28,41 +28,38 @@
 								<div class="col-md-6">
 									<div class="input-group">
 										<label class="input-group-addon">Years</label>
-										<input type="number" class="form-control">
+										<input type="number" class="form-control" ng-model="vm.currentConnector.years">
 									</div>
 								</div>
 							</div>
-								
 						</div>
 					</div>
 				</form>
 				<div class="row buffer-down">
 					<div class="col-md-12">
-						<button class="btn btn-primary pull-right">Save</button>
+						<button class="btn btn-primary pull-right" ng-click="vm.addConnector(vm.currentConnector)">Save</button>
 					</div>
-					
 				</div>
-
 				<ul class="list-group compact edit-skills-list">
-					<li class="list-group-item edit-skills-list-item" dir-paginate="skill in vm.skills | itemsPerPage:10">
+					<li class="list-group-item edit-skills-list-item" dir-paginate="connector in vm.connectors | itemsPerPage:10">
 						<div class="item-buttons">
-							<div class="deletebutton">
+							<div class="deletebutton" ng-click="vm.removeConnector(connector)">
 								<i class="fa fa-minus-circle"></i>
 							</div>
 						</div>
 						<div class="item-content">
-							<div class="name">{{skill.name}}</div>
-							<div class="level">Level: {{skill.level}}</div>
-							<div class="years">Years: {{skill.years}}</div>
+							<div class="name">{{connector.name}}</div>
+							<div class="level">Level: {{connector.level}}</div>
+							<div class="years">Years: {{connector.years}}</div>
 						</div>
-						<div class="item-buttons">						
-							<div class="editbutton">
+						<div class="item-buttons">
+							<div class="editbutton" ng-click="vm.setConnectorForEditing(connector)">
 								<i class="fa fa-edit"></i>
 							</div>
 						</div>
 					</li>
 				</ul>
-				<div class="pagination-container" ng-if="vm.skills.length > 10">
+				<div class="pagination-container" ng-if="vm.connectors.length > 10">
 					<dir-pagination-controls></dir-pagination-controls>
 				</div>
 			</div>
