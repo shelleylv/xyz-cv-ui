@@ -3,78 +3,9 @@
 
     angular
         .module('xyz-cv-ui.profile')
-        .filter('flag', function() {
-            return function(countryName) {
-                if(!countryName)
-                {
-                    console.log('no country name');
-                    return 'se';
-                }
-                var countries = [{
-                    name: 'bosnia',
-                    flag: 'ba'
-                },
-                {
-                    name: 'denmark',
-                    flag: 'dk'
-                },
-                {
-                    name: 'sweden',
-                    flag: 'se'
-                },
-                {
-                    name: 'bolivia',
-                    flag: 'bo'
-                }];
-
-                var country = _.find(countries, function(country) {
-                    return country.name.toLowerCase().indexOf(countryName.toLowerCase()) > -1;
-                });
-
-                if(country)
-                    return country.flag;
-                else
-                    return 'se';
-            };
-        });
-
-    angular
-        .module('xyz-cv-ui.profile')
-        .filter('country', function() {
-            return function(officeName) {
-                if(!officeName) {
-                    console.log('no office name');
-                    return 'bolivia';
-                }
-                var countries = [{
-                    name: 'bosnia',
-                    offices: ['sarajevo']
-                },
-                {
-                    name: 'sweden',
-                    offices: ['karlskrona', 'malmö', 'stockholm']
-                }];
-                
-                
-                var countryMatch = _.find(countries, function(country) {
-                    var match = country.offices.some(function(office) {
-                        return office.toLowerCase().indexOf(officeName.toLowerCase() > -1);
-                    });
-                    return match;
-                });
-                
-                if(countryMatch)
-                    return countryMatch.name;
-                else
-                    return 'bolivia';
-            };
-        });
-
-    angular
-        .module('xyz-cv-ui.profile')
         .controller('ProfileController', ProfileController);
 
-        function ProfileController(ProfileModel, $routeParams, API_URL, GeneralInfoModal) {
+        function ProfileController(ProfileModel, $routeParams, API_URL, GeneralInfoModal, ImageModal, PrivateInfoModal, SkillsModal, AssignmentsModal) {
             var vm = this;
             window.vm = vm;
 
@@ -84,8 +15,9 @@
 
             /* MODAL */
             vm.generalInfoModal = {};
+            vm.skillsModal = {};
+            vm.assignmentsModal = {};
             vm.showModal = showModal;
-            vm.hideModal = hideModal;
 
             /* GENERAL INFO */
             vm.generalInfo = {
@@ -99,8 +31,6 @@
                 position: '',
                 country: '',
                 closestSuperior: '',
-                startDateOfEmployment: '',
-                endDateOfEmployment: '',
                 sex: '',
                 description: '',
                 personalInterests: '',
@@ -115,10 +45,12 @@
                 ZIP: '',
                 ICEName: '',
                 ICEPhone: '',
-                foodPreferences: '',
+                startDateOfEmployment: '',
+                endDateOfEmployment: '',
                 shirtSize: '',
+                foodPreferences: '',
                 addressInfo: '',
-                ICEInfo: ''
+                ICEInfo: '',
             };
 
             /* SKILLS */
@@ -147,7 +79,6 @@
             };
 
             activate();
-
             //////////////
 
             function activate() {
@@ -162,6 +93,10 @@
                         setCloud(model);
                         setUser(model);
                         setGeneralInfoModal();
+                        setImageModal();
+                        setPrivateInfoModal();
+                        setSkillsModal();
+                        setAssignmentsModal();
                         vm.activated = true;
                     });
             }
@@ -178,8 +113,6 @@
                     position: model.user.position,
                     country: model.user.country,
                     closestSuperior: model.user.closestSuperior,
-                    startDateOfEmployment: model.user.startDateOfEmployment,
-                    endDateOfEmployment: model.user.endDateOfEmployment,
                     sex: model.user.sex,
                     description: model.user.description,
                     personalInterests: model.user.personalInterests.join(', ')
@@ -194,6 +127,8 @@
                     ZIP: model.user.ZIP,
                     ICEName: model.user.ICEName,
                     ICEPhone: model.user.ICEPhone,
+                    startDateOfEmployment: model.user.startDateOfEmployment,
+                    endDateOfEmployment: model.user.endDateOfEmployment,
                     foodPreferences: model.user.foodPreferences,
                     shirtSize: model.user.shirtSize,
                     addressInfo: getAddressInfo(model),
@@ -259,24 +194,31 @@
             function showModal(modal, block) {
                 vm.currentModal = modal;
                 var locals = {
-                    block: block,
+                    block: angular.copy(block),
                     user: getUser(),
                     callback: activate
                 };
                 vm.currentModal.activate(locals);
             }
 
-            function hideModal(modal) {
-                vm.currentModal.deactivate();
-                //modal.$promise.then(modal.hide);
-            }
-
             function setGeneralInfoModal() {
                 vm.generalInfoModal = GeneralInfoModal;
             }
 
-            function refresh() {
-                /* */
+            function setPrivateInfoModal() {
+                vm.privateInfoModal = PrivateInfoModal;
+            }
+
+            function setImageModal() {
+                vm.imageModal = ImageModal;
+            }
+
+            function setSkillsModal() {
+                vm.skillsModal = SkillsModal;
+            }
+
+            function setAssignmentsModal() {
+                vm.assignmentsModal = AssignmentsModal;
             }
         }
 })();

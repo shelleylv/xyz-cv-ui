@@ -76,11 +76,14 @@ body {
 
 .sidebar-nav-list {
 	color: $sidebarnavlisttextcolor;
-	background-color: $sidebarnavlistbackground;
+	background: $sidebarnavlistbackground;
 	>.list-item {
 		padding-left: 48px;
+		&:first-of-type {
+			@include background-image(linear-gradient(to bottom, darken($sidebarnavlistbackground, 8%) 0%, $sidebarnavlistbackground 25%));
+		}
 		&:hover {
-			background-color: $sidebarnavlisthoverbackground;
+			background: $sidebarnavlisthoverbackground;
 		}
 	}
 	>.buttons {
@@ -125,7 +128,6 @@ body {
 .sidebar-nav li a:hover {
 	text-decoration: none;
 	color: lighten($menutextcolor, 5%);
-	background: rgba(255, 255, 255, 0.2);
 }
 
 .sidebar-nav li a:active,
@@ -226,8 +228,8 @@ body {
 	overflow: hidden;
 	will-change: box-shadow, transform;
 	transition: box-shadow 0.2s $animation-curve-fast-out-linear-in,
-	          background-color 0.2s $animation-curve-default,
-	          color 0.2s $animation-curve-default;
+			  background-color 0.2s $animation-curve-default,
+			  color 0.2s $animation-curve-default;
 	outline: none;
 	cursor: pointer;
 	text-decoration: none;
@@ -350,4 +352,59 @@ body {
 			}
 		}
 	}
+}
+
+.pagination-container {
+	text-align: center;
+	margin-top: 15px;
+
+	transition: all .5s ease;
+	&.ng-enter {
+		margin-top: -30px;
+		opacity: 0;
+		&.ng-enter-active {
+			margin-top: 15px;
+			opacity: 1;
+		}
+	}
+	&.ng-leave {
+		margin-top: 15px;
+		opacity: 1;
+		&.ng-leave-active {
+			margin-top: -30px;
+			opacity: 0;
+		}
+	}
+	.pagination {
+		margin: 0;
+	}
+}
+
+.compact {
+	border: 1px solid #ddd;
+	background-color: #eee;
+	.list-group-item {
+		display: flex;
+		border:none;
+		padding: 10px;
+		@include border-radius(0);
+		border-top: 1px solid #ddd;
+		&:first-child {
+			border-top: none;
+		}
+		&:last-child {
+			border-bottom: 1px solid #ddd;
+		}
+
+	}
+	.item-buttons {
+		width: 20px;
+	}
+	.item-content {
+		width: 100%;
+	}
+}
+
+.buffer-down {
+	margin-bottom: 15px;
 }
