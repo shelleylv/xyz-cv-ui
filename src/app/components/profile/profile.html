@@ -1,5 +1,3 @@
-<div ng-include="'/xyz-cv-ui/components/profile/modal/assignments/assignments.view.html'"></div>
-
 <div class="row">
 
     <!-- GENERAL INFO -->
@@ -254,6 +252,7 @@
                 </div>
                 <div class="panel-footer">
                     <b>Assignments</b>
+                    <i class="fa fa-edit" ng-click="vm.showModal(vm.assignmentsModal, vm.assignments)"></i>
                 </div>
             </div>
         </div>

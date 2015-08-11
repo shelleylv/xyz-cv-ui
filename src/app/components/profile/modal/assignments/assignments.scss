@@ -2,21 +2,22 @@
 @import "styles/_colors";
 
 .edit-assignments-list {
-	min-height: 391px;
-	background-color: #ddd;
-	@include border-radius(5px);
+	min-height: 400px;
+	border: 1px solid #ddd;
+	background-color: #eee;
 	.edit-assignments-list-item {
+		display: flex;
 		border:none;
 		padding: 10px;
+		@include border-radius(0);
+		border-top: 1px solid #ddd;
 		&:first-child {
-			@include border-top-radius(5px);
+			border-top: none;
 		}
 		&:last-child {
-			@include border-radius(0);
+			border-bottom: 1px solid #ddd;
 		}
-		&:nth-child(odd) {
-			background-color: #F1F1F1;
-		}
+		min-height: 100px;
 		.deletebutton {
 			display: inline-block;
 			color: red;
@@ -30,12 +31,7 @@
 			font-weight: bold;
 			width: 175px;
 		}
-		.level {
-			display: inline-block;
-			width: 100px;
-		}
-		.years {
-			display: inline-block;
+		.description {
 		}
 	}
 }

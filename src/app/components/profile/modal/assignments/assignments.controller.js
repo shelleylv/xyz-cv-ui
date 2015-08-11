@@ -5,7 +5,7 @@
         .module('xyz-cv-ui.profile.modal')
         .controller('AssignmentsController', AssignmentsController);
 
-        function AssignmentsController(AssignmentsModal, block, user, callback) {
+        function AssignmentsController(AssignmentsModal, Users, block, user, callback) {
             var vm = this;
             window.vm2 = vm;
 

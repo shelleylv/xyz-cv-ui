@@ -43,16 +43,22 @@
 					
 				</div>
 
-				<ul class="list-group edit-skills-list">
+				<ul class="list-group compact edit-skills-list">
 					<li class="list-group-item edit-skills-list-item" dir-paginate="skill in vm.skills | itemsPerPage:10">
-						<div class="deletebutton">
-							<i class="fa fa-minus-circle"></i>
+						<div class="item-buttons">
+							<div class="deletebutton">
+								<i class="fa fa-minus-circle"></i>
+							</div>
 						</div>
-						<div class="name">{{skill.name}}</div>
-						<div class="level">Level: {{skill.level}}</div>
-						<div class="years">Years: {{skill.years}}</div>
-						<div class="editbutton">
-							<i class="fa fa-edit"></i>
+						<div class="item-content">
+							<div class="name">{{skill.name}}</div>
+							<div class="level">Level: {{skill.level}}</div>
+							<div class="years">Years: {{skill.years}}</div>
+						</div>
+						<div class="item-buttons">						
+							<div class="editbutton">
+								<i class="fa fa-edit"></i>
+							</div>
 						</div>
 					</li>
 				</ul>

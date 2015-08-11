@@ -21,15 +21,28 @@
 					
 				</div>
 
-				<ul class="list-group edit-assignments-list">
+				<ul class="list-group compact edit-assignments-list">
 					<li class="list-group-item edit-assignments-list-item" dir-paginate="assignment in vm.assignments | itemsPerPage:10">
-						<div class="deletebutton">
+						<!--<div class="deletebutton">
 							<i class="fa fa-minus-circle"></i>
+						</div>-->
+						<div class="item-buttons">
+							<div class="deletebutton">
+								<i class="fa fa-minus-circle"></i>
+							</div>
 						</div>
-						<div class="name">{{assignment.name}}</div>
-						<div class="editbutton">
+						<div class="item-content">
+							<div class="name">{{assignment.name}}</div>
+							<div class="description">{{assignment.description}}</div>
+						</div>
+						<div class="item-buttons">
+							<div class="editbutton">
+								<i class="fa fa-edit"></i>
+							</div>
+						</div>
+						<!--<div class="editbutton">
 							<i class="fa fa-edit"></i>
-						</div>
+						</div>-->
 					</li>
 				</ul>
 				<div class="pagination-container" ng-if="vm.assignments.length > 10">
