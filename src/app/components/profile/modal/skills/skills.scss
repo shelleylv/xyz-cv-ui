@@ -3,20 +3,7 @@
 
 .edit-skills-list {
 	min-height: 391px;
-	background-color: #ddd;
-	@include border-radius(5px);
 	.edit-skills-list-item {
-		border:none;
-		padding: 10px;
-		&:first-child {
-			@include border-top-radius(5px);
-		}
-		&:last-child {
-			@include border-radius(0);
-		}
-		&:nth-child(odd) {
-			background-color: #F1F1F1;
-		}
 		.deletebutton {
 			display: inline-block;
 			color: red;
@@ -38,8 +25,4 @@
 			display: inline-block;
 		}
 	}
-}
-
-.buffer-down {
-	margin-bottom: 15px;
 }

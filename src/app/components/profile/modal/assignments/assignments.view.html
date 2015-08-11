@@ -2,7 +2,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				Edit Skills
+				Edit Assignments
 				<button class="close" ng-click="vm.hideModal()">&times;</button>
 			</div>
 			<div class="modal-body">
@@ -13,28 +13,6 @@
 							<input type="text" class="form-control" placeholder="Name" ng-model="blork">
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="col-md-2 control-label">Experience</label>
-						<div class="col-md-10">
-							<div class="row">
-								<div class="col-md-6">
-									<div class="input-group">
-										<label class="input-group-addon">Level</label>
-										<select class="form-control" ng-model="blork" data-html="1" bs-options="level.value as level.label for level in vm.levels" bs-select placeholder="Choose level...">
-									  		Action <span class="caret"></span>
-										</select>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="input-group">
-										<label class="input-group-addon">Years</label>
-										<input type="number" class="form-control">
-									</div>
-								</div>
-							</div>
-								
-						</div>
-					</div>
 				</form>
 				<div class="row buffer-down">
 					<div class="col-md-12">
@@ -43,26 +21,31 @@
 					
 				</div>
 
-				<ul class="list-group compact edit-skills-list">
-					<li class="list-group-item edit-skills-list-item" dir-paginate="skill in vm.skills | itemsPerPage:10">
+				<ul class="list-group compact edit-assignments-list">
+					<li class="list-group-item edit-assignments-list-item" dir-paginate="assignment in vm.assignments | itemsPerPage:10">
+						<!--<div class="deletebutton">
+							<i class="fa fa-minus-circle"></i>
+						</div>-->
 						<div class="item-buttons">
 							<div class="deletebutton">
 								<i class="fa fa-minus-circle"></i>
 							</div>
 						</div>
 						<div class="item-content">
-							<div class="name">{{skill.name}}</div>
-							<div class="level">Level: {{skill.level}}</div>
-							<div class="years">Years: {{skill.years}}</div>
+							<div class="name">{{assignment.name}}</div>
+							<div class="description">{{assignment.description}}</div>
 						</div>
-						<div class="item-buttons">						
+						<div class="item-buttons">
 							<div class="editbutton">
 								<i class="fa fa-edit"></i>
 							</div>
 						</div>
+						<!--<div class="editbutton">
+							<i class="fa fa-edit"></i>
+						</div>-->
 					</li>
 				</ul>
-				<div class="pagination-container" ng-if="vm.skills.length > 10">
+				<div class="pagination-container" ng-if="vm.assignments.length > 10">
 					<dir-pagination-controls></dir-pagination-controls>
 				</div>
 			</div>

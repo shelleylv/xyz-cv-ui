@@ -379,3 +379,32 @@ body {
 		margin: 0;
 	}
 }
+
+.compact {
+	border: 1px solid #ddd;
+	background-color: #eee;
+	.list-group-item {
+		display: flex;
+		border:none;
+		padding: 10px;
+		@include border-radius(0);
+		border-top: 1px solid #ddd;
+		&:first-child {
+			border-top: none;
+		}
+		&:last-child {
+			border-bottom: 1px solid #ddd;
+		}
+
+	}
+	.item-buttons {
+		width: 20px;
+	}
+	.item-content {
+		width: 100%;
+	}
+}
+
+.buffer-down {
+	margin-bottom: 15px;
+}
