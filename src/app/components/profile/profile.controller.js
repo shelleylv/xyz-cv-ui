@@ -5,7 +5,7 @@
         .module('xyz-cv-ui.profile')
         .controller('ProfileController', ProfileController);
 
-        function ProfileController(ProfileModel, $routeParams, API_URL, GeneralInfoModal, ImageModal, PrivateInfoModal, SkillsModal, AssignmentsModal) {
+        function ProfileController(ProfileModel, $routeParams, session, API_URL, GeneralInfoModal, ImageModal, PrivateInfoModal, SkillsModal, AssignmentsModal) {
             var vm = this;
             window.vm = vm;
 
