@@ -12,7 +12,7 @@
     function getRoutes() {
         return [
             {
-                url: '/dashboar',
+                url: '/dashboard',
                 config: {
                     templateUrl: '/xyz-cv-ui/components/dashboard/dashboard.html',
                     controller: 'DashboardController',
