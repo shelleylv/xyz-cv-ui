@@ -11,7 +11,7 @@
          */
         'core.exception', 'core.logger', 'core.router',
 
-        'core.directives', 'core.session',
+        'core.directives', 'core.session', 'core.filters',
         /*
          * 3rd Party modules
          */

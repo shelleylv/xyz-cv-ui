@@ -68,8 +68,5 @@
                 return resultArr;
             }
 
-            function refresh() {
-                /* */
-            }
         }
 })();
