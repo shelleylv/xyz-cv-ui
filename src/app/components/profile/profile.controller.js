@@ -13,6 +13,11 @@
             vm.activated = false;
             vm.user = {};
 
+            /* SESSION */
+            vm.isAllowed = session.isAllowed;
+            vm.isSelf = session.isSelf;
+            vm.canView = session.canView;
+
             /* MODAL */
             vm.generalInfoModal = {};
             vm.skillsModal = {};
