@@ -26,7 +26,7 @@
 					</div>
 				</div>
 				<ul class="list-group compact edit-assignments-list">
-					<li class="list-group-item edit-assignments-list-item" dir-paginate="assignment in vm.assignments | itemsPerPage:10">
+					<li class="list-group-item edit-assignments-list-item" dir-paginate="assignment in vm.assignments | itemsPerPage:4">
 						<!--<div class="deletebutton">
 							<i class="fa fa-minus-circle"></i>
 						</div>-->
@@ -49,7 +49,7 @@
 						</div>-->
 					</li>
 				</ul>
-				<div class="pagination-container" ng-if="vm.assignments.length > 10">
+				<div class="pagination-container" ng-if="vm.assignments.length > 4">
 					<dir-pagination-controls></dir-pagination-controls>
 				</div>
 			</div>
