@@ -5,11 +5,14 @@
         .module('xyz-cv-ui.menu')
         .controller('MenuController', MenuController);
 
-        function MenuController(OfficesService) {
+        function MenuController(OfficesService, Users, Files, API_URL, $q) {
             var vm = this;
+            vm.API_URL = API_URL;
+            window.vm5 = vm;
 
             vm.toggled = false;
 
+            vm.user = {};
             vm.offices = [];
             vm.panels = [];
             vm.panels.activePanel = [];
@@ -19,10 +22,20 @@
             //////////////
 
             function activate() {
-                OfficesService.get().then(function(offices){
-                    vm.offices = offices;
-                    setPanels();
-                });
+                var promises = {
+                    user: Users.get({ _id: 'current' }).$promise,
+                    offices: OfficesService.get()
+                };
+
+                $q.all(promises)
+                    .then(function(values) {
+                        vm.user = values.user;
+                        vm.offices = values.offices;
+                        setProfileImage()
+                            .then(function() {
+                                setPanels();
+                            })
+                    })
             }
 
             function setPanels() {
@@ -38,6 +51,20 @@
                     itemUrl: '#/office/',
                     items: vm.offices
                 };
+            }
+
+            function setProfileImage() {
+                return $q(function(resolve) {
+                    if (vm.user.profileImage) {
+                        Files.get({_id: vm.user.profileImage }).$promise
+                            .then(function(file) {
+                                vm.user.profileImage = file;
+                                return resolve();
+                            })
+                    } else {
+                        return resolve();
+                    }
+                })
             }
 
         }

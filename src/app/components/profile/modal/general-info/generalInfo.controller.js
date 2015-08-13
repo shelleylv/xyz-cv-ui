@@ -93,7 +93,7 @@
 
             function saveOffice(user) {
                 return $q(function(resolve) {
-                    if (user.office._id) {
+                    if (user.office && user.office._id) {
                         if (!vm.connector) {
                             vm.connector = new UserToOffice({userId: user._id, officeId: user.office._id});
                         } else {

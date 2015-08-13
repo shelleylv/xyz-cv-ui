@@ -22,13 +22,6 @@
 
         return service;
 
-        function getUserProperties() {
-            return Authentication.get()
-                .$promise.then(function(userAttributes) {
-                    return userAttributes;
-            });
-        }
-
         function sessionExists() {
             return (sessionScope.$storage.userAttributes && sessionScope.$storage.userId);
         }
@@ -37,6 +30,13 @@
             getUserProperties().then(function(properties) {
                 sessionScope.$storage.userAttributes = properties.attributes;
                 sessionScope.$storage.userId = properties.userId;
+            });
+        }
+
+        function getUserProperties() {
+            return Authentication.get()
+                .$promise.then(function(userAttributes) {
+                    return userAttributes;
             });
         }
 

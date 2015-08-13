@@ -34,7 +34,7 @@
 					<!-- CLOSEST SUPERIOR -->
 
 					<div class="form-group">
-						<label class="col-sm-2 control-label">Closest Superior</label>
+						<label class="col-sm-2 control-label">Manager Name</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" name="closestSuperior" placeholder="" ng-model="vm.generalInfo.closestSuperior" validatewords>
 							<span ng-messages="form.closestSuperior.$error" ng-show="form.closestSuperior.$dirty">
@@ -90,7 +90,7 @@
 
 					<!-- PERSONAL INTERESTs-->
 
-					<div class="form-group">
+					<div class="form-group" ng-hide="true">
 						<label class="col-sm-2 control-label">Personal Interests</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" placeholder="" ng-model="vm.generalInfo.personalInterests">
@@ -99,7 +99,7 @@
 
 					<!-- DESCRIPTION -->
 
-					<div class="form-group">
+					<div class="form-group" ng-hide="true">
 						<label class="col-sm-2 control-label">Description</label>
 						<div class="col-sm-10">
 							<textarea class="form-control" placeholder="" ng-model="vm.generalInfo.description"></textarea>

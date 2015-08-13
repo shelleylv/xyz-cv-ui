@@ -6,12 +6,13 @@
         </div>-->
         <div class="sidebar-brand">
             <div class="profile-image">
-                <i class="fa fa-user"></i>
-            </div>John Doe
+                <i class="fa fa-user" ng-hide="vm.user.profileImage"></i>
+                <img ng-if="vm.user.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ vm.user.profileImage.generatedName }}">
+            </div>{{ vm.user.name | capitalize }}
         </div>
         <ul class="sidebar-nav" ng-model="vm.panels.activePanel" data-allow-multiple="true" bs-collapse>
             <li>
-                <a ng-href="#/">
+                <a ng-href="#/" ng-hide="true">
                     <div class="sidebar-icon pull-left">
                         <i class="fa fa-dashboard"></i>
                     </div>
@@ -57,7 +58,7 @@
             </li>
 
             <li>
-                <a ng-href="#/access">
+                <a ng-href="#/access" ng-hide="true">
                     <div class="sidebar-icon pull-left">
                         <i class="fa fa-shield"></i>
                     </div>
@@ -65,7 +66,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="#" ng-hide="true">
                     <div class="sidebar-icon pull-left">
                         <i class="fa fa-cog"></i>
                     </div>

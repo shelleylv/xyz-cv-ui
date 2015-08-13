@@ -5,13 +5,18 @@
         .module('xyz-cv-ui.profile')
         .controller('ProfileController', ProfileController);
 
-        function ProfileController(ProfileModel, $routeParams, API_URL, GeneralInfoModal, ImageModal, PrivateInfoModal, SkillsModal, AssignmentsModal) {
+        function ProfileController(ProfileModel, $routeParams, session, API_URL, GeneralInfoModal, ImageModal, PrivateInfoModal, SkillsModal, AssignmentsModal) {
             var vm = this;
             window.vm = vm;
 
             vm.API_URL = API_URL;
             vm.activated = false;
             vm.user = {};
+
+            /* SESSION */
+            vm.isAllowed = session.isAllowed;
+            vm.isSelf = session.isSelf;
+            vm.canView = session.canView;
 
             /* MODAL */
             vm.generalInfoModal = {};

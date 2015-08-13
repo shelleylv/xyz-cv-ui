@@ -59,6 +59,11 @@ gulp.task('fonts', function() {
       .pipe(gulp.dest('./dist/fonts'));
 });
 
+gulp.task('flags', function() {
+    return gulp.src('./bower_components/flag-icon-css/flags/**/*')
+      .pipe(gulp.dest('./dist/flags'));
+});
+
 /**
  * CSS
  */
@@ -156,7 +161,7 @@ gulp.task('assets', function () {
 /**
  * Dist
  */
-gulp.task('dist', ['config', 'vendors', 'assets', 'styles-dist', 'scripts-dist', 'fonts'], function () {
+gulp.task('dist', ['config', 'vendors', 'assets', 'styles-dist', 'scripts-dist', 'fonts', 'flags'], function () {
   return gulp.src('./src/app/index.html')
     .pipe(g.inject(gulp.src('./dist/vendors.min.{js,css}'), {ignorePath: 'dist', starttag: '<!-- inject:vendor:{{ext}} -->', addRootSlash: false}))
     .pipe(g.inject(gulp.src('./dist/' + bower.name + '.min.{js,css}'), {ignorePath: 'dist', addRootSlash: false}))
