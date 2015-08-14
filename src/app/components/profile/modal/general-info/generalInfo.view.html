@@ -25,7 +25,7 @@
 					<div class="form-group">
 						<label class="col-sm-4 control-label">Office</label>
 						<div class="col-sm-8">
-							<button type="button" class="btn btn-default" ng-model="vm.generalInfo.office" data-html="1" bs-options="office as office.label for office in vm.offices" bs-select>
+							<button type="button" class="btn btn-default" ng-model="vm.generalInfo.office" data-html="1" bs-options="office as office.name for office in vm.offices" bs-select>
 							  Action <span class="caret"></span>
 							</button>
 						</div>
@@ -48,10 +48,7 @@
 					<div class="form-group">
 						<label class="col-sm-4 control-label">Phone</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" name="phone" placeholder="" ng-model="vm.generalInfo.phoneNumber" validatephone>
-							<span ng-messages="form.phone.$error" ng-show="form.phone.$dirty">
-								<span class="alert alert-danger" ng-message="validatenumber">Please use numbers only. A maximum of 20 digits allowed.</span>
-							</span>
+							<input type="text" class="form-control" name="phone" placeholder="" ng-model="vm.generalInfo.phoneNumber">
 						</div>
 					</div>
 
