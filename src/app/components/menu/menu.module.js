@@ -5,7 +5,8 @@
     	'mgcrea.ngStrap',
 		'mgcrea.ngStrap.collapse',
         'shared.offices',
-        'shared.files'
+        'shared.files',
+        'shared.users'
     ]);
 
 })();
