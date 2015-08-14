@@ -83,7 +83,8 @@
                 maxWeight: 1
             };
 
-            activate();
+            session.isLoaded()
+                .then(activate);
 
             //////////////
 

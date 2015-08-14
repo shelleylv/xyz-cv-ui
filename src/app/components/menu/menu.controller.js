@@ -5,7 +5,7 @@
         .module('xyz-cv-ui.menu')
         .controller('MenuController', MenuController);
 
-        function MenuController(OfficesService, Users, Files, API_URL, $q) {
+        function MenuController(OfficesService, UsersService, Files, API_URL, $q, session) {
             var vm = this;
             vm.API_URL = API_URL;
             window.vm5 = vm;
@@ -17,13 +17,14 @@
             vm.panels = [];
             vm.panels.activePanel = [];
 
-            activate();
+            session.isLoaded()
+                .then(activate);
 
             //////////////
 
             function activate() {
                 var promises = {
-                    user: Users.get({ _id: 'current' }).$promise,
+                    user: UsersService.getCurrent(),
                     offices: OfficesService.get()
                 };
 
