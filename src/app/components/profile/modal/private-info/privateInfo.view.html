@@ -13,10 +13,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Personal ID Number</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="personalIdNumber" placeholder="personalIdNumber" ng-model="vm.privateInfo.personalIdNumber" validatewords>
-                            <span ng-messages="form.name.$error" ng-show="form.name.$dirty">
-                                <span class="alert alert-danger" ng-message="validatenumber">A maximum of 20 digits allowed.</span>
-                            </span>
+                            <input type="text" class="form-control" name="personalIdNumber" placeholder="YYYYMMDD-XXXX" ng-model="vm.privateInfo.personalIdNumber">
                         </div>
                     </div>
 

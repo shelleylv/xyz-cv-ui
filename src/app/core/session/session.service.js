@@ -23,10 +23,6 @@
             activated.resolve();
         }
 
-        activated.promise.then(function() {
-            console.log('done')
-        })
-
         return service;
 
         function sessionExists() {
@@ -71,12 +67,10 @@
         }
 
         function isSelf(id) {
-            console.log(sessionScope.$storage.userId);
             return (sessionScope.$storage.userId === id);
         }
 
         function isLoaded() {
-            console.log('returning a promise');
             return activated.promise;
         }
     }

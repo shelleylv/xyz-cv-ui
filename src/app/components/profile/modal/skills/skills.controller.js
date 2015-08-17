@@ -12,6 +12,7 @@
             vm.user = {};
             vm.connectors = [];
             vm.skills = [];
+            vm.isValidConnector = isValidConnector;
             vm.hideModal = SkillsModal.deactivate;
             vm.save = save;
             vm.addConnector = addConnector;
@@ -19,8 +20,8 @@
             vm.setConnectorForEditing = setConnectorForEditing;
             vm.levels = [];
             vm.connectorHash = {};
-            vm.connectorsToRemove = [];
-            vm.connectorsToSave = [];
+            vm.connectorsToRemove = {};
+            vm.connectorsToSave = {};
             vm.currentConnector = {};
 
             activate();
@@ -44,6 +45,10 @@
                     });
             }
 
+            function isValidConnector(connector) {
+                return connector.name && connector.name.length && connector.years && connector.level;
+            }
+
             function addConnector(connector) {
                 if (connector && connector.name) {
                     var existingConnector = vm.connectorHash[connector.name];
@@ -55,15 +60,15 @@
                     }
                     connector
                         .then(function(connector) {
-                            vm.connectorsToSave.push(connector);
+                            vm.connectorsToSave[connector.name] = connector;
                             updateConnectorList();
                         });
                 }
             }
 
-            function removeConnector(skill) {
-                vm.connectorsToRemove.push(vm.connectorHash[skill.name]);
-                delete vm.connectorHash[skill.name];
+            function removeConnector(connector) {
+                vm.connectorsToRemove[connector.name] = vm.connectorHash[connector.name];
+                delete vm.connectorHash[connector.name];
                 updateConnectorList();
             }
 
@@ -162,8 +167,8 @@
             function saveSkills() {
                 return $q(function(resolve) {
                     var promises = [];
-                    vm.connectorsToSave.forEach(function(skill) {
-                        promises.push(skill.$save());
+                    Object.keys(vm.connectorsToSave).map(function(key) {
+                        promises.push(vm.connectorsToSave[key].$save());
                     });
                     return $q.all(promises)
                         .then(resolve);
@@ -173,8 +178,8 @@
             function removeSkills() {
                 return $q(function(resolve) {
                     var promises = [];
-                    vm.connectorsToRemove.forEach(function(skill) {
-                        promises.push(skill.$delete());
+                    Object.keys(vm.connectorsToRemove).map(function(key) {
+                        promises.push(vm.connectorsToRemove[key].$delete());
                     });
                     return $q.all(promises)
                         .then(resolve);

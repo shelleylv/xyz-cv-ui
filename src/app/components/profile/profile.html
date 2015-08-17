@@ -41,28 +41,28 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-3 col-md-2 sheet-label">
+                        <div class="col-sm-4 col-md-3 sheet-label">
                             Employee Number
                         </div>
-                        <div class="col-sm-9 col-md-10 sheet-value">
+                        <div class="col-sm-8 col-md-9 sheet-value">
                             {{ vm.generalInfo.employeeNumber }}
                         </div>
                     </div>
 
                     <div class="row" ng-if="vm.generalInfo.personalInterests" ng-hide="true">
-                        <div class="col-sm-3 col-md-2 sheet-label">
+                        <div class="col-sm-4 col-md-3 sheet-label">
                             Interests
                         </div>
-                        <div class="col-sm-9 col-md-10 sheet-value">
+                        <div class="col-sm-8 col-md-9 sheet-value">
                             {{ vm.generalInfo.personalInterests }}
                         </div>
                     </div>
 
                     <div class="row" ng-if="vm.generalInfo.description" ng-hide="true">
-                        <div class="col-sm-3 col-md-2 sheet-label" >
+                        <div class="col-sm-4 col-md-3 sheet-label" >
                             Description
                         </div>
-                        <div class="col-sm-9 col-md-10 sheet-value">
+                        <div class="col-sm-8 col-md-9 sheet-value">
                             {{ vm.generalInfo.description }}
                         </div>
                     </div>
@@ -85,58 +85,58 @@
                 </div>
                 <div class="data-box">
                     <div class="row">
-                        <div class="col-sm-3 col-md-2 sheet-label">
+                        <div class="col-sm-4 col-md-3 sheet-label">
                             Personal ID Number
                         </div>
-                        <div class="col-sm-9 col-md-10 sheet-value">
+                        <div class="col-sm-8 col-md-9 sheet-value">
                             {{ vm.privateInfo.personalIdNumber }}
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-3 col-md-2 sheet-label">
+                        <div class="col-sm-4 col-md-3 sheet-label">
                             Address
                         </div>
-                        <div class="col-sm-9 col-md-10 sheet-value">
+                        <div class="col-sm-8 col-md-9 sheet-value">
                             {{ vm.privateInfo.addressInfo }}
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-3 col-md-2 sheet-label">
+                        <div class="col-sm-4 col-md-3 sheet-label">
                             ICE
                         </div>
-                        <div class="col-sm-9 col-md-10 sheet-value">
+                        <div class="col-sm-8 col-md-9 sheet-value">
                             {{ vm.privateInfo.ICEInfo }}
                         </div>
                     </div>
                     <div class="row" ng-if="vm.privateInfo.startDateOfEmployment">
-                        <div class="col-sm-3 col-md-2 sheet-label">
+                        <div class="col-sm-4 col-md-3 sheet-label">
                             From
                         </div>
-                        <div class="col-sm-9 col-md-10 sheet-value">
+                        <div class="col-sm-8 col-md-9 sheet-value">
                             {{ vm.privateInfo.startDateOfEmployment | date}}
                         </div>
                     </div>
                     <div class="row" ng-if="vm.privateInfo.endDateOfEmployment">
-                        <div class="col-sm-3 col-md-2 sheet-label">
+                        <div class="col-sm-4 col-md-3 sheet-label">
                             To
                         </div>
-                        <div class="col-sm-9 col-md-10 sheet-value">
+                        <div class="col-sm-8 col-md-9 sheet-value">
                             {{ vm.privateInfo.endDateOfEmployment | date}}
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-3 col-md-2 sheet-label">
+                        <div class="col-sm-4 col-md-3 sheet-label">
                             Shirt Size
                         </div>
-                        <div class="col-sm-9 col-md-10 sheet-value">
+                        <div class="col-sm-8 col-md-9 sheet-value">
                             {{ vm.privateInfo.shirtSize }}
                         </div>
                     </div>
                     <div class="row" ng-hide="true">
-                        <div class="col-sm-3 col-md-2 sheet-label">
+                        <div class="col-sm-4 col-md-3 sheet-label">
                             Food Preferences
                         </div>
-                        <div class="col-sm-9 col-md-10 sheet-value">
+                        <div class="col-sm-8 col-md-9 sheet-value">
                             {{ vm.privateInfo.foodPreferences }}
                         </div>
                     </div>

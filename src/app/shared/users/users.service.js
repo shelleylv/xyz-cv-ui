@@ -48,7 +48,7 @@
                                     current = res;
                                     return resolve(current);
                                 });
-                        })
+                        });
                 }
             });
         }
@@ -61,7 +61,7 @@
                     }, 150);
                 }
                 return resolve();
-            })
+            });
         }
     }
 
