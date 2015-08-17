@@ -28,7 +28,8 @@
         'xyz-cv-ui.menu',
         'xyz-cv-ui.office',
         'xyz-cv-ui.competence',
-        'xyz-cv-ui.people'
+        'xyz-cv-ui.people',
+        'xyz-cv-ui.advancedSearch'
     ]);
 
 })();

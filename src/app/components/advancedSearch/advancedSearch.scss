@@ -1,0 +1,41 @@
+@import "styles/_base";
+@import "styles/_colors";
+
+.parameter-window {
+    padding: 10px;
+}
+
+.tagField {
+    width: 40%;
+}
+
+.advanced-search-list
+{
+    .list-group-item {
+        padding: 15px 0;
+        display: flex;
+        .profile-image {
+            text-align: center;
+            min-width: 40px;
+            max-width: 40px;
+            min-height: 40px;
+            max-height: 40px;
+            overflow: hidden;
+            background-color: #ddd;
+            .fa.fa-user {
+                line-height: 40px;
+                font-size: 32px;
+                color: white;
+            }
+            img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+        .content {
+            width: 100%;
+        }
+    }
+}
+
+

@@ -188,16 +188,26 @@ body {
 }
 
 .topbar {
+	display: flex;
 	color: $topbartextcolor;
 	background-color: $topbarbackground;
 	height: 64px;
 	line-height: 64px;
 	.menubutton {
-		height: 64px;
-		width: 64px;
+		min-height: 64px;
+		min-width: 64px;
 		text-align: center;
 		display: inline-block;
 		font-size: 32px;
+	}
+	.title {
+		width: 100%;
+	}
+	.search {
+		min-width: 200px;
+		max-width: 200px;
+		padding: 15px;
+
 	}
 }
 
