@@ -17,6 +17,8 @@
             vm.panels = [];
             vm.panels.activePanel = [];
 
+            vm.isAllowed = session.isAllowed;
+
             session.isLoaded()
                 .then(activate);
 
@@ -35,8 +37,8 @@
                         setProfileImage()
                             .then(function() {
                                 setPanels();
-                            })
-                    })
+                            });
+                    });
             }
 
             function setPanels() {
@@ -61,11 +63,11 @@
                             .then(function(file) {
                                 vm.user.profileImage = file;
                                 return resolve();
-                            })
+                            });
                     } else {
                         return resolve();
                     }
-                })
+                });
             }
 
         }

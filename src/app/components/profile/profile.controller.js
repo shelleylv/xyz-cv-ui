@@ -91,7 +91,6 @@
             function activate() {
                 ProfileModel.get({_id: $routeParams.userId})
                     .$promise.then(function(model) {
-                        //model.user.office = {name: 'Karlskrona'};
                         setGeneralInfo(model);
                         setPrivateInfo(model);
                         setSkills(model);
@@ -128,7 +127,7 @@
 
             function setPrivateInfo(model) {
                 vm.privateInfo = {
-                    personalIdNumber: '197403237271',//model.user.personalIdNumber;
+                    personalIdNumber: model.user.personalIdNumber,
                     address: model.user.address,
                     city: model.user.city,
                     ZIP: model.user.ZIP,

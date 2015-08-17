@@ -28,7 +28,7 @@
                 </a>
             </li>
             <li>
-                <a ng-href="#/competence">
+                <a ng-href="#/competence" ng-show="vm.isAllowed('canViewCompetence')">
                     <div class="sidebar-icon pull-left">
                         <i class="fa fa-user"></i>
                     </div>
