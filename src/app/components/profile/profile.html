@@ -31,10 +31,11 @@
                                 <span ng-if="vm.generalInfo.phoneNumber"><i class="fa fa-phone"></i> {{ vm.generalInfo.phoneNumber }}</span>
                                 <span ng-if="vm.generalInfo.email"><i class="fa fa-envelope"></i> {{ vm.generalInfo.email }}</span>
                                 <span ng-if="vm.generalInfo.office">
-                                <!--
-                                <span class="flag-icon" ng-if="vm.generalInfo.office.name" ng-class="'flag-icon-' + (vm.generalInfo.office.name | country | flag)"></span> </span>
-                                -->
-                                {{ vm.generalInfo.office.name }}
+                                    <!--
+                                    <span class="flag-icon" ng-if="vm.generalInfo.office.name" ng-class="'flag-icon-' + (vm.generalInfo.office.name | country | flag)"></span>
+                                    -->
+                                    {{ vm.generalInfo.office.name }}
+                                </span>
                                 <span ng-if="vm.generalInfo.closestSuperior"><i class="fa fa-sitemap"></i> {{ vm.generalInfo.closestSuperior }}</span>
                             </div>
                         </div>
