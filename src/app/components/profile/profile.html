@@ -7,14 +7,14 @@
             <div class="panel panel-default profile-default">
                 <div class="image-panel hidden-xs hidden-sm" ng-click="vm.showModal(vm.imageModal, vm.generalInfo)">
                     <img ng-if="vm.generalInfo.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ vm.generalInfo.profileImage.generatedName }}">
-                    <img ng-if="!vm.generalInfo.profileImage" ng-src="assets/profilepic.png">
+                    <i class="fa fa-user" ng-if="!vm.generalInfo.profileImage"></i>
                 </div>
 
                 <div class="data-box">
                     <div class="data-header">
                         <div class="image-panel hidden-md hidden-lg">
                             <img ng-if="vm.generalInfo.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ vm.generalInfo.profileImage.generatedName }}">
-                            <img ng-if="!vm.generalInfo.profileImage" ng-src="assets/profilepic.png">
+                            <i class="fa fa-user" ng-if="!vm.generalInfo.profileImage"></i>
                         </div>
                         <div class="data-panel">
                             <div class="name">
