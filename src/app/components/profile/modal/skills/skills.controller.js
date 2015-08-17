@@ -60,7 +60,7 @@
                     }
                     connector
                         .then(function(connector) {
-                            vm.connectorsToSave[connector.name] = connector;
+                            vm.connectorsToSave[connector.name] = angular.copy(connector);
                             updateConnectorList();
                         });
                 }
@@ -193,6 +193,7 @@
             function updateSkillList() {
                 vm.skills = Object.keys(vm.skillHash).map(function(key){return vm.skillHash[key];});
             }
+
         }
 
 })();
