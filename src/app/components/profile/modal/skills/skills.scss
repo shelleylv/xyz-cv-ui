@@ -2,7 +2,7 @@
 @import "styles/_colors";
 
 .edit-skills-list {
-	min-height: 391px;
+	min-height: 420px;
 	.edit-skills-list-item {
 		.deletebutton {
 			display: inline-block;
@@ -13,9 +13,8 @@
 			float: right;
 		}
 		.name {
-			display: inline-block;
+			display: block;
 			font-weight: bold;
-			width: 175px;
 		}
 		.level {
 			display: inline-block;

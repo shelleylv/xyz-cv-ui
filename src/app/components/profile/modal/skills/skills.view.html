@@ -8,14 +8,14 @@
 			<div class="modal-body">
 				<form class="form-horizontal">
 					<div class="form-group">
-						<label class="col-md-2 control-label">Name</label>
-						<div class="col-md-10">
+						<label class="col-md-3 control-label">Name</label>
+						<div class="col-md-9">
 							<input type="text" class="form-control" ng-model="vm.currentConnector.name" bs-options="skill.name as skill.name for skill in vm.skills" placeholder="Name" bs-typeahead>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-md-2 control-label">Experience</label>
-						<div class="col-md-10">
+						<label class="col-md-3 control-label">Experience</label>
+						<div class="col-md-9">
 							<div class="row">
 								<div class="col-md-6">
 									<div class="input-group">
@@ -28,7 +28,7 @@
 								<div class="col-md-6">
 									<div class="input-group">
 										<label class="input-group-addon">Years</label>
-										<input type="number" class="form-control" ng-model="vm.currentConnector.years">
+										<input type="number" min="0" class="form-control" ng-model="vm.currentConnector.years">
 									</div>
 								</div>
 							</div>
@@ -37,11 +37,11 @@
 				</form>
 				<div class="row buffer-down">
 					<div class="col-md-12">
-						<button class="btn btn-primary pull-right" ng-click="vm.addConnector(vm.currentConnector)">Save</button>
+						<button class="btn btn-primary pull-right" ng-disabled="!vm.isValidConnector(vm.currentConnector)" ng-click="vm.addConnector(vm.currentConnector)">Save</button>
 					</div>
 				</div>
 				<ul class="list-group compact edit-skills-list">
-					<li class="list-group-item edit-skills-list-item" dir-paginate="connector in vm.connectors | itemsPerPage:10">
+					<li class="list-group-item edit-skills-list-item" dir-paginate="connector in vm.connectors | itemsPerPage:7">
 						<div class="item-buttons">
 							<div class="deletebutton" ng-click="vm.removeConnector(connector)">
 								<i class="fa fa-minus-circle"></i>
@@ -59,7 +59,7 @@
 						</div>
 					</li>
 				</ul>
-				<div class="pagination-container" ng-if="vm.connectors.length > 10">
+				<div class="pagination-container" ng-if="vm.connectors.length > 7">
 					<dir-pagination-controls></dir-pagination-controls>
 				</div>
 			</div>
