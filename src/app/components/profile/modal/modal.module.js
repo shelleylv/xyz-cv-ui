@@ -8,7 +8,8 @@
         'shared.userToOffice',
         'shared.userToSkill',
         'shared.uploader',
-        'angularUtils.directives.dirPagination'
+        'angularUtils.directives.dirPagination',
+        'textAngular'
     ]);
 
 })();

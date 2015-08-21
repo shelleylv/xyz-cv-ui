@@ -3,6 +3,8 @@
 
 .edit-skills-list {
 	min-height: 420px;
+	max-height: 420px;
+	overflow: hidden;
 	.edit-skills-list-item {
 		.deletebutton {
 			display: inline-block;

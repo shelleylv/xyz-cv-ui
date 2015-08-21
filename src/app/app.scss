@@ -401,17 +401,19 @@ body {
 	background-color: #eee;
 	.list-group-item {
 		display: flex;
-		border:none;
+		border: none;
+		border-top: 1px solid #ddd;
 		padding: 10px;
 		@include border-radius(0);
-		border-top: 1px solid #ddd;
+		margin-top: -1px;
 		&:first-child {
-			border-top: none;
+			margin-top: 0px;
+			border: none;
 		}
 		&:last-child {
 			border-bottom: 1px solid #ddd;
+			margin-bottom: -1px;
 		}
-
 	}
 	.item-buttons {
 		width: 20px;
@@ -423,4 +425,25 @@ body {
 
 .buffer-down {
 	margin-bottom: 15px;
+}
+
+.ta-toolbar {
+	margin-bottom: 5px;
+}
+
+.ta-editor {
+    min-height: 100px;
+    height: auto;
+    overflow: auto;
+    font-family: inherit;
+    font-size: 100%;
+}
+
+.ta-scroll-window {
+	>.ta-bind {
+		min-height: 100px;
+	}
+	&.form-control {
+		min-height: 100px;
+	}
 }
