@@ -7,14 +7,14 @@
             <div class="panel panel-default profile-default">
                 <div class="image-panel hidden-xs hidden-sm" ng-click="vm.showModal(vm.imageModal, vm.generalInfo)">
                     <img ng-if="vm.generalInfo.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ vm.generalInfo.profileImage.generatedName }}">
-                    <img ng-if="!vm.generalInfo.profileImage" ng-src="assets/profilepic.png">
+                    <i class="fa fa-user" ng-if="!vm.generalInfo.profileImage"></i>
                 </div>
 
                 <div class="data-box">
                     <div class="data-header">
                         <div class="image-panel hidden-md hidden-lg">
                             <img ng-if="vm.generalInfo.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ vm.generalInfo.profileImage.generatedName }}">
-                            <img ng-if="!vm.generalInfo.profileImage" ng-src="assets/profilepic.png">
+                            <i class="fa fa-user" ng-if="!vm.generalInfo.profileImage"></i>
                         </div>
                         <div class="data-panel">
                             <div class="name">
@@ -30,42 +30,47 @@
                             <div class="location">
                                 <span ng-if="vm.generalInfo.phoneNumber"><i class="fa fa-phone"></i> {{ vm.generalInfo.phoneNumber }}</span>
                                 <span ng-if="vm.generalInfo.email"><i class="fa fa-envelope"></i> {{ vm.generalInfo.email }}</span>
-                                <span ng-if="vm.generalInfo.office"><span class="flag-icon" ng-if="vm.generalInfo.office.name" ng-class="'flag-icon-' + (vm.generalInfo.office.name | country | flag)"></span> {{ vm.generalInfo.office.name }}</span>
+                                <span ng-if="vm.generalInfo.office">
+                                    <!--
+                                    <span class="flag-icon" ng-if="vm.generalInfo.office.name" ng-class="'flag-icon-' + (vm.generalInfo.office.name | country | flag)"></span>
+                                    -->
+                                    {{ vm.generalInfo.office.name }}
+                                </span>
                                 <span ng-if="vm.generalInfo.closestSuperior"><i class="fa fa-sitemap"></i> {{ vm.generalInfo.closestSuperior }}</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-3 col-md-2 sheet-label">
+                        <div class="col-sm-4 col-md-3 sheet-label">
                             Employee Number
                         </div>
-                        <div class="col-sm-9 col-md-10 sheet-value">
+                        <div class="col-sm-8 col-md-9 sheet-value">
                             {{ vm.generalInfo.employeeNumber }}
                         </div>
                     </div>
 
                     <div class="row" ng-if="vm.generalInfo.personalInterests" ng-hide="true">
-                        <div class="col-sm-3 col-md-2 sheet-label">
+                        <div class="col-sm-4 col-md-3 sheet-label">
                             Interests
                         </div>
-                        <div class="col-sm-9 col-md-10 sheet-value">
+                        <div class="col-sm-8 col-md-9 sheet-value">
                             {{ vm.generalInfo.personalInterests }}
                         </div>
                     </div>
 
                     <div class="row" ng-if="vm.generalInfo.description" ng-hide="true">
-                        <div class="col-sm-3 col-md-2 sheet-label" >
+                        <div class="col-sm-4 col-md-3 sheet-label" >
                             Description
                         </div>
-                        <div class="col-sm-9 col-md-10 sheet-value">
+                        <div class="col-sm-8 col-md-9 sheet-value">
                             {{ vm.generalInfo.description }}
                         </div>
                     </div>
                 </div>
                 <div class="panel-footer">
                     <b>General Info</b>
-                    <i class="fa fa-edit" ng-click="vm.showModal(vm.generalInfoModal, vm.generalInfo)"></i>
+                    <i class="fa fa-edit" ng-click="vm.showModal(vm.generalInfoModal, vm.generalInfo)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)"></i>
                 </div>
             </div>
         </div>
@@ -73,7 +78,8 @@
 
     <!-- PRIVATE INFO -->
 
-    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated && (vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id))">
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-hide="true">
+    <!-- ng-show="vm.activated && (vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id))" -->
         <div id="private-info" class="panel-wrapper">
             <div class="panel panel-default profile-default">
                 <div class="image-panel hidden-xs hidden-sm">
@@ -81,65 +87,65 @@
                 </div>
                 <div class="data-box">
                     <div class="row">
-                        <div class="col-sm-3 col-md-2 sheet-label">
+                        <div class="col-sm-4 col-md-3 sheet-label">
                             Personal ID Number
                         </div>
-                        <div class="col-sm-9 col-md-10 sheet-value">
+                        <div class="col-sm-8 col-md-9 sheet-value">
                             {{ vm.privateInfo.personalIdNumber }}
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-3 col-md-2 sheet-label">
+                        <div class="col-sm-4 col-md-3 sheet-label">
                             Address
                         </div>
-                        <div class="col-sm-9 col-md-10 sheet-value">
+                        <div class="col-sm-8 col-md-9 sheet-value">
                             {{ vm.privateInfo.addressInfo }}
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-3 col-md-2 sheet-label">
+                        <div class="col-sm-4 col-md-3 sheet-label">
                             ICE
                         </div>
-                        <div class="col-sm-9 col-md-10 sheet-value">
+                        <div class="col-sm-8 col-md-9 sheet-value">
                             {{ vm.privateInfo.ICEInfo }}
                         </div>
                     </div>
                     <div class="row" ng-if="vm.privateInfo.startDateOfEmployment">
-                        <div class="col-sm-3 col-md-2 sheet-label">
+                        <div class="col-sm-4 col-md-3 sheet-label">
                             From
                         </div>
-                        <div class="col-sm-9 col-md-10 sheet-value">
+                        <div class="col-sm-8 col-md-9 sheet-value">
                             {{ vm.privateInfo.startDateOfEmployment | date}}
                         </div>
                     </div>
                     <div class="row" ng-if="vm.privateInfo.endDateOfEmployment">
-                        <div class="col-sm-3 col-md-2 sheet-label">
+                        <div class="col-sm-4 col-md-3 sheet-label">
                             To
                         </div>
-                        <div class="col-sm-9 col-md-10 sheet-value">
+                        <div class="col-sm-8 col-md-9 sheet-value">
                             {{ vm.privateInfo.endDateOfEmployment | date}}
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-3 col-md-2 sheet-label">
+                        <div class="col-sm-4 col-md-3 sheet-label">
                             Shirt Size
                         </div>
-                        <div class="col-sm-9 col-md-10 sheet-value">
+                        <div class="col-sm-8 col-md-9 sheet-value">
                             {{ vm.privateInfo.shirtSize }}
                         </div>
                     </div>
                     <div class="row" ng-hide="true">
-                        <div class="col-sm-3 col-md-2 sheet-label">
+                        <div class="col-sm-4 col-md-3 sheet-label">
                             Food Preferences
                         </div>
-                        <div class="col-sm-9 col-md-10 sheet-value">
+                        <div class="col-sm-8 col-md-9 sheet-value">
                             {{ vm.privateInfo.foodPreferences }}
                         </div>
                     </div>
                 </div>
                 <div class="panel-footer">
                     <b>Private Info</b>
-                    <i class="fa fa-edit" ng-click="vm.showModal(vm.privateInfoModal, vm.privateInfo)"></i>
+                    <i class="fa fa-edit" ng-click="vm.showModal(vm.privateInfoModal, vm.privateInfo)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)"></i>
                 </div>
             </div>
         </div>
@@ -189,12 +195,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel-body" ng-if="vm.skills.length === 0" ng-click="vm.showModal(vm.skillsModal, vm.skills)">
+                <div class="panel-body" ng-if="vm.skills.length === 0" ng-click="vm.showModal(vm.skillsModal, vm.skills)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
                     You have not added any skills yet. To add a skill, press the <i class="fa fa-edit"></i> button below.
                 </div>
                 <div class="panel-footer">
                     <b>Skills</b>
-                    <i class="fa fa-edit" ng-click="vm.showModal(vm.skillsModal, vm.skills)"></i>
+                    <i class="fa fa-edit" ng-click="vm.showModal(vm.skillsModal, vm.skills)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)"></i>
                 </div>
             </div>
         </div>
@@ -202,7 +208,7 @@
 
     <!-- CERTIFICATES -->
 
-    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated" ng-hide="true">
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="false">
         <div id="certificates" class="panel-wrapper">
             <div class="panel panel-default profile-default">
                 <div class="image-panel hidden-xs hidden-sm">
@@ -229,7 +235,7 @@
 
     <!-- ASSIGNMENTS-->
 
-    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated" ng-hide="true">
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="false">
         <div id="assignments" class="panel-wrapper">
             <div class="panel panel-default profile-default">
                 <div class="image-panel hidden-xs hidden-sm">

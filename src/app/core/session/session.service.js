@@ -5,19 +5,22 @@
         .module('core.session')
         .factory('session', session);
 
-    function session($rootScope, Authentication, $sessionStorage) {
+    function session($rootScope, Authentication, $sessionStorage, $q) {
 
         var sessionScope = $rootScope.$new(true);
         sessionScope.$storage = $sessionStorage;
-
+        var activated = $q.defer();
         var service = {
             isAllowed: isAllowed,
             canView: canView,
-            isSelf: isSelf
+            isSelf: isSelf,
+            isLoaded: isLoaded
         };
 
         if (!sessionExists()) {
             setUserPropertiesInSession();
+        } else {
+            activated.resolve();
         }
 
         return service;
@@ -30,6 +33,7 @@
             getUserProperties().then(function(properties) {
                 sessionScope.$storage.userAttributes = properties.attributes;
                 sessionScope.$storage.userId = properties.userId;
+                activated.resolve();
             });
         }
 
@@ -64,6 +68,10 @@
 
         function isSelf(id) {
             return (sessionScope.$storage.userId === id);
+        }
+
+        function isLoaded() {
+            return activated.promise;
         }
     }
 })();
