@@ -1,0 +1,162 @@
+@import "styles/_base";
+@import "styles/_colors";
+
+.parameter-window {
+    .select-width-hack {
+        button {
+            width: 100%;
+            .caret {
+                float: right;
+                margin-top: 9px;
+            }
+            text-align: left;
+        }
+    }
+}
+
+.tags {
+    @include border-radius(0);
+    box-shadow: none;
+    width: flex;
+}
+
+.tagField {
+    width: 100%;
+}
+
+input + .typeahead.ng-hide { display: block !important; visibility: hidden !important; overflow: hidden; }
+
+.advanced-search-list
+{
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 0;
+    .list-group-item {
+        @include border-radius(0);
+        padding: 0;
+        border: none;
+        > a {
+            text-decoration: none;
+            color: $textcolor;
+            padding: 0;
+            display: flex;
+            width: 100%;
+            .profile-image {
+                text-align: center;
+                min-width: 116px;
+                max-width: 116px;
+                min-height: 116px;
+                max-height: 116px;
+                overflow: hidden;
+                background-color: white;
+                .fa.fa-user {
+                    line-height: 116px;
+                    font-size: 64px;
+                    color: #ddd;
+                }
+                img {
+                    width: 116px;
+                    height: 116px;
+                }
+            }
+            .content {
+                width: 100%;
+                padding: 10px;
+                border-top: 1px solid #ddd;
+                .fa.fa-phone {
+                    padding-right: 2px;
+                    color: #3D606E;
+                }
+                .fa.fa-building {
+                    padding-right: 2px;
+                    color: #3D606E;
+                }
+                .fa.fa-envelope {
+                    padding-right: 2px;
+                    color: #3D606E;
+                }
+                .office-container {
+                    opacity: 0.65;
+                }
+                .phone-container {
+                    opacity: 0.65;
+                }
+                .mail-container {
+                    opacity: 0.65;
+                }
+            }
+            &:hover {
+                background-color: #fbfbfb;
+            }
+        }
+        &:first-child {
+            .content {
+                border: none;
+            }
+        }
+        &:last-child {
+            .content {
+            }
+        }
+    }
+}
+
+.skillFilters {
+    padding: 3px;
+}
+
+.search-dropdown {
+}
+
+.edit-skills-list-search {
+    min-height: 201px;
+    .edit-skills-list-item {
+        .deletebutton {
+            display: inline-block;
+            color: red;
+        }
+        .editbutton {
+            display: inline-block;
+            float: right;
+        }
+        .name {
+            display: inline-block;
+            font-weight: bold;
+            width: 175px;
+        }
+        .level {
+            display: inline-block;
+            width: 100px;
+        }
+        .years {
+            display: inline-block;
+        }
+    }
+}
+
+.refinedParameters {
+    padding: 15px;
+    border-top: solid 1px #ddd;
+}
+
+.search-result-paginate-container {
+    text-align: center;
+}
+
+.filter-heading {
+    font-size: 120%;
+}
+
+.no-results {
+    border-top: solid 1px #ddd;
+}
+
+.select.dropdown-menu {
+    max-height: 250px;
+    overflow: auto;
+}
+
+.typeahead {
+    max-height: 250px;
+    overflow: auto;
+}

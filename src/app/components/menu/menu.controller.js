@@ -8,7 +8,6 @@
         function MenuController(OfficesService, UsersService, Files, API_URL, $q, session) {
             var vm = this;
             vm.API_URL = API_URL;
-            window.vm5 = vm;
 
             vm.toggled = false;
 

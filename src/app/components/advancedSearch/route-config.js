@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('xyz-cv-ui.people')
+        .module('xyz-cv-ui.advancedSearch')
         .run(appRun);
 
     function appRun(routehelper) {
@@ -12,12 +12,12 @@
     function getRoutes() {
         return [
             {
-                url: '/people/',
+                url: '/advancedSearch',
                 config: {
-                    templateUrl: '/xyz-cv-ui/components/people/people.html',
-                    controller: 'PeopleController',
+                    templateUrl: '/xyz-cv-ui/components/advancedSearch/advancedSearch.html',
+                    controller: 'AdvancedSearchController',
                     controllerAs: 'vm',
-                    title: 'people'
+                    title: 'search'
                 }
             }
         ];
