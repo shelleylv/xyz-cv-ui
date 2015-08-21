@@ -3,6 +3,7 @@
 
     angular.module('xyz-cv-ui.advancedSearch', [
         'shared.users',
-        'shared.assignments'
+        'shared.assignments',
+        'shared.roles'
         ]);
 })();

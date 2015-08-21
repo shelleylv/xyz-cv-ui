@@ -1,69 +1,124 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12">
         <div class="panel panel-default" ng-show="vm.activated">
-            <div class="parameter-window">
+            <div class="panel-body">
                 <div class="form-group">
-                    <tags-input class="tagField" ng-model="vm.tagList" placeholder="Search keywords" replace-spaces-with-dashes="false" min-length="0" on-tag-added="vm.doAdvancedSearch()" on-tag-removed="vm.doAdvancedSearch()">
+                    <tags-input class="tagField" ng-model="vm.tagList" placeholder="Enter keywords..." replace-spaces-with-dashes="false" min-length="0" on-tag-added="vm.doAdvancedSearch()" on-tag-removed="vm.doAdvancedSearch()">
                         <auto-complete source="vm.getSuggestedTags($query)" min-length="1" max-results="10"></auto-complete>
                     </tags-input>
-                    <div class="refinedParameters" ng-show="vm.refinedIsShown">
-                        <br><br>
-                        <label>Roles: </label>
-                        <button type="button" class="btn btn-default" ng-model="vm.refinedRoles" ng-change="vm.doAdvancedSearch()" data-html="1" data-multiple="1" all-none-buttons="1" icon-checkmark="fa fa-check" data-animation="am-flip-x" bs-options="role.name for role in vm.suggestedRoles" placeholder="Select roles..." ng-change="vm.doAdvancedSearch()" bs-select>
-                        </button>
-                        <br><br>
+                </div>
 
-                        <label>Offices: </label>
-                        <button type="button" class="btn btn-default" ng-model="vm.refinedOffices" ng-change="vm.doAdvancedSearch()" data-html="1" data-multiple="1" all-none-buttons="1" icon-checkmark="fa fa-check" data-animation="am-flip-x" bs-options="office.name for office in vm.suggestedOffices" placeholder="Select offices..." ng-change="vm.doAdvancedSearch()" bs-select>
-                        </button>
-                        <br><br>
+                <span ng-click="vm.toggleRefined()" style="cursor:pointer">Advanced options <i class="fa fa-sort-down list-toggle" ng-class="{'toggled': vm.refinedIsShown}"></i></span>
+            </div>
 
-                        <label>Assignments: </label>
-                        <button type="button" class="btn btn-default" ng-model="vm.refinedAssignments" ng-change="vm.doAdvancedSearch()" data-html="1" data-multiple="1" all-none-buttons="1" icon-checkmark="fa fa-check" data-animation="am-flip-x" bs-options="assignment.name for assignment in vm.suggestedAssignments" placeholder="Select assignments..." ng-change="vm.doAdvancedSearch()" bs-select>
-                        </button>
-                        <br><br>
+            <div class="parameter-window">
 
-                        <label>Skills: </label>
-                        <div class="skillFilters" ng-repeat="row in vm.refinedSkills">
-                            <input type="text" id="skillName" ng-model="row.name" placeholder="skill" bs-options="skill.name as skill.name for skill in vm.suggestedSkills" ng-change="vm.doAdvancedSearch()" ng-model-options="{debounce:1000}" bs-typeahead>
-                            <input type="number" id="skillLevel1" ng-model="row.level" placeholder="level" ng-change="vm.doAdvancedSearch()" ng-model-options="{debounce:1000}">
-                            <input type="number" id="skillYears1" ng-model="row.years" placeholder="years" ng-change="vm.doAdvancedSearch()" ng-model-options="{debounce:1000}">
+                <div class="refinedParameters" ng-show="vm.refinedIsShown">
+                    <div class="filter-heading">Filter by skill</div>
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <label class="input-group-addon">Skill</label>
+                                    <input type="text" class="form-control" ng-model="vm.newSkill.name" placeholder="Enter skill..." bs-options="skill.name as skill.name for skill in vm.suggestedSkills" min-length="2" auto-select="true" bs-typeahead>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group select-width-hack">
+                                    <label class="input-group-addon">Level</label>
+                                    <select class="form-control" ng-model="vm.newSkill.level" data-html="1" bs-options="level.value as level.label for level in vm.levels" bs-select placeholder="">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <label class="input-group-addon">Years</label>
+                                    <input type="number" class="form-control" ng-model="vm.newSkill.years">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary pull-right" ng-click="vm.addSkill(skill)">Add filter</button>
+                            </div>
                         </div>
-                        <br>
-                        <button type="button" class="btn btn-success btn-number" ng-click="vm.addFilterRow()">
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-number" ng-click="vm.removeFilterRow()">
-                            <span class="glyphicon glyphicon-minus"></span>
-                        </button>
+                    </form>
+
+                    <ul class="list-group compact edit-skills-list-search">
+                        <li class="list-group-item edit-skills-list-item" dir-paginate="skill in vm.refinedSkills | itemsPerPage:5">
+                            <div class="item-buttons">
+                                <div class="deletebutton" ng-click="vm.removeSkill(skill)">
+                                    <i class="fa fa-minus-circle"></i>
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <div class="name">{{skill.name}}</div>
+                                <div class="level">Level: {{skill.level}}</div>
+                                <div class="years">Years: {{skill.years}}</div>
+                            </div>
+                            <div class="item-buttons">
+                                <div class="editbutton" ng-click="vm.editSkill(skill)">
+                                    <i class="fa fa-edit"></i>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="pagination-container" ng-if="vm.refinedSkills.length > 5">
+                        <dir-pagination-controls></dir-pagination-controls>
                     </div>
-                    <br>
-                    <button class="btn btn-default" ng-click="vm.doAdvancedSearch()">Search</button>
-                    <button class="btn btn-default" ng-click="vm.toggleRefined()">{{ vm.buttonTextRefined }}</button>
-                    <button class="btn btn-default" ng-click="vm.clearAll()">Clear options</button>
+
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="filter-heading">Filter by role</div>
+                            <button type="button" class="btn btn-default search-dropdown" ng-model="vm.refinedRoles" ng-change="vm.doAdvancedSearch()" data-html="1" icon-checkmark="fa fa-check" data-animation="am-flip-x" bs-options="role.name as role.name for role in vm.suggestedRoles" placeholder="Select role..." ng-change="vm.doAdvancedSearch()" all-none-buttons="1" bs-select>
+                            </button>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="filter-heading">Filter by offices</div>
+                            <button type="button" class="btn btn-default search-dropdown" ng-model="vm.refinedOffices" ng-change="vm.doAdvancedSearch()" data-html="1" icon-checkmark="fa fa-check" data-multiple="1" data-animation="am-flip-x" bs-options="office.name as office.name for office in vm.suggestedOffices" placeholder="Select office..." ng-change="vm.doAdvancedSearch()" max-length="2" bs-select>
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="filter-heading">Filter by assignments</div>
+                            <button type="button" class="btn btn-default search-dropdown" ng-model="vm.refinedAssignments" ng-change="vm.doAdvancedSearch()" data-html="1" data-multiple="1" icon-checkmark="fa fa-check" data-animation="am-flip-x" bs-options="assignment._id as assignment.name for assignment in vm.suggestedAssignments" placeholder="Select assignments..." ng-change="vm.doAdvancedSearch()" max-length="1" bs-select>
+                            </button>
+                        </div>
+                    </div>
+
+
+
                 </div>
             </div>
-            <div class="search-results-window">
-                <div ng-show="vm.result.length > 0">
-                    <ul class="list-group advanced-search-list">
-                        <li class="list-group-item" dir-paginate="person in vm.result | orderBy:'name' | itemsPerPage:10">
+            <div ng-show="vm.result.length > 0">
+                <div class="list-group advanced-search-list">
+                    <li class="list-group-item" dir-paginate="person in vm.result | orderBy:'name' | itemsPerPage:10">
+                        <a ng-href="{{ vm.baseUrl }}{{ person._id }}">
                             <div class="profile-image">
                                 <i class="fa fa-user" ng-hide="person.profileImage"></i>
                                 <img ng-if="person.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ person.profileImage.generatedName }}">
                             </div>
                             <div class="content">
-                                <a ng-href="{{ vm.baseUrl }}{{ person._id }}">{{ person.name }}</a>
+                                {{ person.name }}
+                                <div class="mail-container" ng-show="person.email">
+                                    <i class="fa fa-envelope"></i>{{ person.email }}
+                                </div>
+                                <div class="phone-container" ng-show="person.phoneNumber">
+                                    <i class="fa fa-phone"></i>{{ person.phoneNumber }}
+                                </div>
+                                <div class="office-container" ng-show="person.office">
+                                    <i class="fa fa-building"></i>{{ person.office }}
+                                </div>
                             </div>
-                        </li>
-                    </ul>
+                        </a>
+                    </li>
+                </div>
 
-                    <div class="search-result-paginate-container" ng-if="vm.result.length > 10">
-                        <dir-pagination-controls></dir-pagination-controls>
-                    </div>
+                <div class="search-result-paginate-container" ng-if="vm.result.length > 10">
+                    <dir-pagination-controls></dir-pagination-controls>
                 </div>
-                <div ng-show="vm.result.length <= 0">
+            </div>
+            <div class="panel-body no-results" ng-show="vm.result.length <= 0">
                 No matches were found for your selected combination of parameters and tags.
-                </div>
             </div>
         </div>
     </div>

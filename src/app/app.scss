@@ -111,17 +111,23 @@ body {
 		float: right;
 		position: relative;
 		font-size: 150%;
-		@include rotateZ(-90deg);
 		top: 14px;
 		right: 12px;
-		@include transition-property(all);
-		@include transition-duration(0.1s);
-		@include transition-timing-function(ease);
 		&.toggled {
-			@include rotateZ(0deg);
 			top: 11px;
 			right: 9px;
 		}
+	}
+}
+
+.list-toggle {
+	display: inline-block;
+	@include rotateZ(-90deg);
+	@include transition-property(all);
+	@include transition-duration(0.1s);
+	@include transition-timing-function(ease);
+	&.toggled {
+		@include rotateZ(0deg);
 	}
 }
 

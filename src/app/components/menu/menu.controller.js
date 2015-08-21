@@ -8,7 +8,6 @@
         function MenuController(OfficesService, Users, Files, API_URL, $q) {
             var vm = this;
             vm.API_URL = API_URL;
-            window.vm5 = vm;
 
             vm.toggled = false;
 
@@ -34,8 +33,8 @@
                         setProfileImage()
                             .then(function() {
                                 setPanels();
-                            })
-                    })
+                            });
+                    });
             }
 
             function setPanels() {
@@ -60,11 +59,11 @@
                             .then(function(file) {
                                 vm.user.profileImage = file;
                                 return resolve();
-                            })
+                            });
                     } else {
                         return resolve();
                     }
-                })
+                });
             }
 
         }
