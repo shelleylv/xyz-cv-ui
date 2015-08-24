@@ -7,6 +7,7 @@
 
         function CompetenceController(CompetenceModel) {
             var vm = this;
+            window.vm9 = vm;
 
              CompetenceModel.get()
                 .$promise.then(function(model) {
@@ -19,6 +20,7 @@
                     vm.getUserSkillCSV = getUserSkillCSV;
                     vm.setCompetenceData = setCompetenceData;
                     vm.competenceData = [];
+                    defaultSkillsToValue(true)
                     vm.activated = true;
             });
 
@@ -66,6 +68,13 @@
                 });
 
                 return resultArr;
+            }
+
+            function defaultSkillsToValue(value) {
+                vm.skills[0].skills.map(function(skill) {
+                    vm.skill[skill] = value;
+                })
+                setCompetenceData();
             }
 
         }
