@@ -26,6 +26,36 @@
 
 input + .typeahead.ng-hide { display: block !important; visibility: hidden !important; overflow: hidden; }
 
+.advanced-search-view-buttons {
+    padding: 15px;
+    color: $brandbackground;
+    .btn {
+        background-color: white;
+    }
+}
+
+.advanced-search-table {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 0;
+    .list-group-item {
+        @include border-radius(0);
+        padding: 0 15px;
+        border: none;
+        > a {
+            text-decoration: none;
+            color: $textcolor;
+        }
+        .email  {
+            font-size: 80%;
+        }
+
+        &:hover {
+            background-color: #f0f0f0;
+        }
+    }
+}
+
 .advanced-search-list
 {
     border-top: 1px solid #ddd;

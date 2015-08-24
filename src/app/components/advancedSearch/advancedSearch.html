@@ -91,9 +91,14 @@
             </div>
             <div ng-show="vm.result.length > 0">
                 <div class="advanced-search-view-buttons">
-                    
+                    <button class="btn" ng-click="vm.displayMode = 'list'">
+                        <i class="fa fa-th-list"></i>
+                    </button>
+                    <button class="btn" ng-click="vm.displayMode = 'table'">
+                        <i class="fa fa-list"></i>
+                    </button>
                 </div>
-                <div class="list-group advanced-search-list">
+                <div class="list-group advanced-search-list" ng-if="vm.displayMode == 'list'">
                     <li class="list-group-item" dir-paginate="person in vm.result | orderBy:'name' | itemsPerPage:10">
                         <a ng-href="{{ vm.baseUrl }}{{ person._id }}">
                             <div class="profile-image">
@@ -130,7 +135,36 @@
                     </li>
                 </div>
 
-                <div class="search-result-paginate-container" ng-if="vm.result.length > 10">
+                <div class="list-group advanced-search-table" ng-if="vm.displayMode == 'table'">
+                    <li class="list-group-item" ng-repeat="person in vm.result | orderBy:'name'">
+                        <a ng-href="{{ vm.baseUrl }}{{ person._id }}">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="name">
+                                        {{ person.name }}
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="office-container" ng-show="person.office">
+                                        {{ person.office }}
+                                    </div>                              
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="phone-container" ng-show="person.phoneNumber">
+                                        {{ person.phoneNumber }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-right">
+                                    <div class="email" ng-show="person.email">
+                                        {{ person.email }}
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </div>
+
+                <div class="search-result-paginate-container" ng-if="vm.result.length > 10 && vm.displayMode == 'list'">
                     <dir-pagination-controls></dir-pagination-controls>
                 </div>
                 <div class="row">
