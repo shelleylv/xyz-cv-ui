@@ -6,7 +6,7 @@
         .factory('SearchModel', SearchModel);
 
     function SearchModel(Model) {
-        return Model('/search/:searchType');
+        return new Model('/search/:searchType');
     }
 
 })();
