@@ -16,6 +16,7 @@
             vm.hideModal = SkillsModal.deactivate;
             vm.save = save;
             vm.addConnector = addConnector;
+            vm.saveConnector = saveConnector;
             vm.removeConnector = removeConnector;
             vm.setConnectorForEditing = setConnectorForEditing;
             vm.levels = [];
@@ -50,38 +51,22 @@
                 return connector.name && connector.name.length && connector.years && connector.level;
             }
 
-            function addConnector(connector) {
-                if (connector && connector.name) {
-                    var existingConnector = vm.connectorHash[connector.name];
-                    if(!existingConnector) {
-                        connector = createSkillIfNotExists(connector)
-                            .then(createConnector);
-                    } else {
-                        connector = editConnector(connector, existingConnector);
-                    }
-                    connector
-                        .then(function(connector) {
-                            vm.connectorsToSave[connector.name] = angular.copy(connector);
-                            updateConnectorList();
-                        });
-                }
-            }
-
-            function removeConnector(connector) {
-                vm.connectorsToRemove[connector.name] = vm.connectorHash[connector.name];
-                delete vm.connectorHash[connector.name];
-                updateConnectorList();
-            }
-
             function isEditMode() {
                 return connectorExists(vm.currentConnector);
             }
 
-            function connectorExists(connector) {
-                if(vm.connectorHash[connector.name]) {
-                    return true;
-                } else {
-                    return false;
+            // ADD
+            //==================================================================
+
+            function addConnector(connector) {
+                if (connector && connector.name && !vm.connectorHash[connector.name]) {
+                    createSkillIfNotExists(connector)
+                        .then(createConnector)
+                        .then(function(connector) {
+                            vm.connectorsToSave[connector.name] = angular.copy(connector);
+                            vm.currentConnector = angular.copy(connector);
+                            updateConnectorList();
+                        });
                 }
             }
 
@@ -93,7 +78,7 @@
                         var skill = new Skills({name: connector.name});
                         skill.$save()
                             .then(function(skill) {
-                                vm.skillHash[skill.name] = skill;
+                                vm.skillHash[skill.name] = angular.copy(skill);
                                 updateSkillList();
                                 return resolve(connector);
                             });
@@ -106,18 +91,48 @@
                     var skill = vm.skillHash[connector.name];
                     connector.userId = vm.user._id;
                     connector.skillId = skill._id;
-                    vm.currentConnector = new UserToSkill(connector);
-                    vm.connectorHash[skill.name] = angular.copy(vm.currentConnector);
-                    return resolve(vm.currentConnector);
+                    connector = new UserToSkill(connector);
+                    vm.connectorHash[skill.name] = angular.copy(connector);
+                    return resolve(connector);
                 });
             }
 
-            function editConnector(connector, existingConnector) {
+            // EDIT
+            //==================================================================
+
+            function saveConnector(connector) {
+                if (connector && connector.name && vm.connectorHash[connector.name]) {
+                    editConnector(connector)
+                        .then(function(connector) {
+                            vm.connectorsToSave[connector.name] = angular.copy(connector);
+                            delete connector._id;
+                            vm.currentConnector = angular.copy(connector);
+                            updateConnectorList();
+                        });
+                }
+            }
+
+            function editConnector(connector) {
                 return $q(function(resolve) {
-                    vm.currentConnector = angular.extend(existingConnector, connector);
-                    vm.connectorHash[vm.currentConnector.name] = angular.copy(vm.currentConnector);
-                    return resolve(vm.currentConnector);
+                    var existingConnector = vm.connectorHash[connector.name];
+                    connector = angular.extend(existingConnector, connector);
+                    vm.connectorHash[connector.name] = angular.copy(connector);
+                    return resolve(connector);
                 });
+            }
+
+            function removeConnector(connector) {
+                vm.connectorsToRemove[connector.name] = vm.connectorHash[connector.name];
+                delete vm.connectorHash[connector.name];
+                updateConnectorList();
+            }
+
+            function connectorExists(connector) {
+                if(vm.connectorHash[connector.name]) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
 
             function setConnectorForEditing(connector) {
