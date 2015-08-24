@@ -39,6 +39,7 @@
             vm.editSkill = editSkill;
 
             vm.activated = false;
+            vm.displayMode = 'list';
 
             activate();
 
