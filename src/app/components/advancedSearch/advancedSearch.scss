@@ -43,37 +43,33 @@ input + .typeahead.ng-hide { display: block !important; visibility: hidden !impo
             width: 100%;
             .profile-image {
                 text-align: center;
-                min-width: 116px;
-                max-width: 116px;
-                min-height: 116px;
-                max-height: 116px;
+                min-width: 61px;
+                max-width: 61px;
+                min-height: 61px;
+                max-height: 61px;
                 overflow: hidden;
                 background-color: white;
                 .fa.fa-user {
-                    line-height: 116px;
-                    font-size: 64px;
+                    line-height: 61px;
+                    font-size: 32px;
                     color: #ddd;
                 }
                 img {
-                    width: 116px;
-                    height: 116px;
+                    width: 61px;
+                    height: 61px;
                 }
             }
             .content {
                 width: 100%;
                 padding: 10px;
                 border-top: 1px solid #ddd;
-                .fa.fa-phone {
+                .fa {
                     padding-right: 2px;
                     color: #3D606E;
                 }
-                .fa.fa-building {
-                    padding-right: 2px;
-                    color: #3D606E;
-                }
-                .fa.fa-envelope {
-                    padding-right: 2px;
-                    color: #3D606E;
+                .name {
+                    display: inline-block;
+                    margin-right: 15px;
                 }
                 .office-container {
                     opacity: 0.65;
@@ -82,6 +78,7 @@ input + .typeahead.ng-hide { display: block !important; visibility: hidden !impo
                     opacity: 0.65;
                 }
                 .mail-container {
+                    display: inline-block;
                     opacity: 0.65;
                 }
             }
