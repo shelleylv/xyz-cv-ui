@@ -90,6 +90,9 @@
                 </div>
             </div>
             <div ng-show="vm.result.length > 0">
+                <div class="advanced-search-view-buttons">
+                    
+                </div>
                 <div class="list-group advanced-search-list">
                     <li class="list-group-item" dir-paginate="person in vm.result | orderBy:'name' | itemsPerPage:10">
                         <a ng-href="{{ vm.baseUrl }}{{ person._id }}">
@@ -98,15 +101,29 @@
                                 <img ng-if="person.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ person.profileImage.generatedName }}">
                             </div>
                             <div class="content">
-                                {{ person.name }}
-                                <div class="mail-container" ng-show="person.email">
-                                    <i class="fa fa-envelope"></i>{{ person.email }}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="name">
+                                            {{ person.name }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mail-container" ng-show="person.email">
+                                            {{ person.email }}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="phone-container" ng-show="person.phoneNumber">
-                                    <i class="fa fa-phone"></i>{{ person.phoneNumber }}
-                                </div>
-                                <div class="office-container" ng-show="person.office">
-                                    <i class="fa fa-building"></i>{{ person.office }}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="phone-container" ng-show="person.phoneNumber">
+                                            <i class="fa fa-phone"></i>{{ person.phoneNumber }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="office-container" ng-show="person.office">
+                                            <i class="fa fa-building"></i>{{ person.office }}
+                                        </div>                              
+                                    </div>
                                 </div>
                             </div>
                         </a>
@@ -115,6 +132,11 @@
 
                 <div class="search-result-paginate-container" ng-if="vm.result.length > 10">
                     <dir-pagination-controls></dir-pagination-controls>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p>{{vm.result.length}} matches found.</p>
+                    </div>
                 </div>
             </div>
             <div class="panel-body no-results" ng-show="vm.result.length <= 0">
