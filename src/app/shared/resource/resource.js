@@ -16,7 +16,6 @@
             methods = angular.extend(defaults, methods);
 
             var resource = $resource(API_URL + path, params, methods);
-
             resource.prototype.$save = function() {
                 if(!this._id) {
                     return this.$create();

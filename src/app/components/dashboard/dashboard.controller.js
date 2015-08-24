@@ -8,10 +8,6 @@
     function DashboardController($timeout, $rootScope, $scope) {
         var vm = this;
 
-        //DEBUGGING
-        window.vm = vm;
-        window.scope = $scope;
-
         //////////////
 
         $scope.$on('sail-resize', redraw, 100);

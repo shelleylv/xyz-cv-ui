@@ -6,13 +6,13 @@
             </br>
 
             <span ng-repeat="office in vm.offices[0].offices" >
-                <input type="checkbox" name="{{office}}" value="{{office}}" ng-change="vm.setCompetenceData()" ng-model="vm.office[office]"/>{{office}}<br>
+                <input type="checkbox" name="{{office}}" value="{{office}}" ng-change="vm.setCompetenceData()" ng-model="vm.office[office]">{{office}}<br>
             </span>
         </div>
 
         <div style="position:fixed;top:100px;left:500px;max-height:150px;min-height:150px;max-width:706px;overflow:auto;">
             <span ng-repeat="skill in vm.skills[0].skills" >
-                <input type="checkbox" name="{{skill}}" value="{{skill}}" ng-change="vm.setCompetenceData()" ng-model="vm.skill[skill]"/>{{skill}}
+                <input type="checkbox" name="{{skill}}" value="{{skill}}" ng-change="vm.setCompetenceData()" ng-model="vm.skill[skill]">{{skill}}
             </span>
         </div>
 

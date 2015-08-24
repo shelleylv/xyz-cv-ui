@@ -6,6 +6,7 @@
          * Angular modules
          */
         'ngAnimate', 'ngRoute', 'ngSanitize', 'ngResource',
+        'ngTagsInput',
         /*
          * Our core cross app code modules
          */
