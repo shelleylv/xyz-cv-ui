@@ -37,7 +37,7 @@
 				</form>
 				<div class="row buffer-down">
 					<div class="col-md-12">
-						<button class="btn btn-primary pull-right" ng-disabled="!vm.isValidConnector(vm.currentConnector)" ng-click="vm.addConnector(vm.currentConnector)">Save</button>
+						<button class="btn btn-primary pull-right" ng-disabled="!vm.isValidConnector(vm.currentConnector)" ng-click="vm.addConnector(vm.currentConnector)">{{vm.isEditMode() ? 'Save' : 'Add'}}</button>
 					</div>
 				</div>
 				<ul class="list-group compact edit-skills-list">

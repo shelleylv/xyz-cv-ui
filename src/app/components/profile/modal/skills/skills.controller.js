@@ -23,6 +23,7 @@
             vm.connectorsToRemove = {};
             vm.connectorsToSave = {};
             vm.currentConnector = {};
+            vm.isEditMode = isEditMode;
 
             activate();
 
@@ -72,6 +73,18 @@
                 updateConnectorList();
             }
 
+            function isEditMode() {
+                return connectorExists(vm.currentConnector);
+            }
+
+            function connectorExists(connector) {
+                if(vm.connectorHash[connector.name]) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
             function createSkillIfNotExists(connector) {
                 return $q(function(resolve) {
                     if (vm.skillHash[connector.name]) {
@@ -109,6 +122,7 @@
 
             function setConnectorForEditing(connector) {
                 vm.currentConnector = angular.copy(connector);
+                vm.editMode = true;
             }
 
             function save() {
