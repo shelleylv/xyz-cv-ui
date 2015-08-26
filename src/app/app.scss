@@ -171,7 +171,7 @@ body {
 	font-size: 18px;
 	overflow: hidden;
 	white-space: nowrap;
-	padding: 20px 20px 20px 0;
+	display: block;
 	.fa {
 		color: #aaaaaa;
 		font-size: 40px;
@@ -197,6 +197,11 @@ body {
 		text-decoration: none;
 		color: white;
 		background-color: lighten($menutextcolor, 5%);
+	}
+	&:focus {
+		outline: none;
+		text-decoration: none;
+		color: white;
 	}
 }
 
