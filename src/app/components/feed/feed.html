@@ -1,0 +1,75 @@
+<div class="row feed">
+	<div class="col-md-12" ng-hide="true">
+		<div class="panel">
+			<div class="panel-body">
+				<div class="facts">
+					<div class="fact col-md-3" ng-repeat="chart in vm.charts">
+						<div class="title">
+							{{chart.title}}
+						</div>
+						<div ng-switch="chart.type">
+							<canvas class="chart" tc-chartjs chart-type="line" chart-options="vm.myOptions" chart-data="chart.data" ng-if="vm.loadchart" ng-switch-when="line" auto-legend></canvas>
+							<canvas class="chart" tc-chartjs chart-type="radar" chart-options="vm.myOptions" chart-data="chart.data" ng-if="vm.loadchart" ng-switch-when="radar" auto-legend></canvas>
+							<canvas class="chart" tc-chartjs chart-type="bar" chart-options="vm.myOptions" chart-data="chart.data" ng-if="vm.loadchart" ng-switch-when="bar" auto-legend></canvas>
+							<canvas class="chart" tc-chartjs chart-type="pie" chart-options="vm.piechartOptions" chart-data="chart.data" ng-if="vm.loadchart" ng-switch-when="pie" auto-legend></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer">
+				Interesting facts
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6 col-lg-6">
+		<div class="panel panel-default">
+			<div class="skillcard" ng-repeat="skill in vm.latestSkills">
+				<div class="image-box">
+					<i class="{{skill.icon}}"></i>
+				</div>
+				<div class="data-box">
+					<div class="name">
+						{{ skill.name }}
+					</div>
+					<div class="date pull-right">
+						<span am-time-ago="skill.updatedAt"></span>
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer">
+				Recent skills
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6 col-lg-6">
+		<div class="panel panel-default">
+			<a class="facecard" ng-repeat="user in vm.latestUsers" ng-href="#/profile/{{ user._id }}">
+				<div class="image-box">
+					<i class="fa fa-user" ng-hide="user.profileImage"></i>
+                	<img ng-if="user.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ user.profileImage.generatedName }}">
+				</div>
+				<div class="data-box">
+					<div class="name">
+						{{ user.name }}
+					</div>
+					<div class="office pull-right" ng-if="user.office">
+						{{ user.office.name }}
+					</div>
+					<div class="title">
+						{{ user.position }}
+					</div>
+					Skills:
+					<div class="skilltag" ng-repeat="skill in user.skills">
+						{{ skill.name }}
+					</div>
+					<div class="date pull-right">
+						<span am-time-ago="user.updatedAt"></span>
+					</div>
+				</div>
+			</a>
+			<div class="panel-footer">
+				Recent profiles
+			</div>
+		</div>
+	</div>
+</div>

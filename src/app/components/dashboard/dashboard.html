@@ -1,75 +1,48 @@
-<div class="row">
-	<div class="col-md-12">
-		<div class="panel">
-			<div class="panel-body">
-				<div class="facts">
-					<div class="fact col-md-3" ng-repeat="chart in vm.charts">
-						<div class="title">
-							{{chart.title}}
-						</div>
-						<div ng-switch="chart.type">
-							<canvas class="chart" tc-chartjs chart-type="line" chart-options="vm.myOptions" chart-data="chart.data" ng-if="vm.loadchart" ng-switch-when="line" auto-legend></canvas>
-							<canvas class="chart" tc-chartjs chart-type="radar" chart-options="vm.myOptions" chart-data="chart.data" ng-if="vm.loadchart" ng-switch-when="radar" auto-legend></canvas>
-							<canvas class="chart" tc-chartjs chart-type="bar" chart-options="vm.myOptions" chart-data="chart.data" ng-if="vm.loadchart" ng-switch-when="bar" auto-legend></canvas>
-							<canvas class="chart" tc-chartjs chart-type="pie" chart-options="vm.piechartOptions" chart-data="chart.data" ng-if="vm.loadchart" ng-switch-when="pie" auto-legend></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="panel-footer">
-				Interesting facts
-			</div>
-		</div>
-	</div>
-	<div class="col-md-6 col-lg-6">
-		<div class="panel panel-default">
-			<div class="news-article" ng-repeat="article in vm.newsArticles">
-				<div class="titlebar">
-					<div class="title">
-						{{article.title}}
-					</div>
-					<div class="date pull-right">
-						{{article.date}}
-					</div>
-				</div>
-				<div class="teaser">
-					{{article.teaser}} ...
-				</div>
-				<div class="social">
-					<i class="fa fa-facebook-official"></i>
-					<i class="fa fa-twitter"></i>
-				</div>
-			</div>
-			<div class="panel-footer">
-				News
-			</div>
-		</div>
-	</div>
-	<div class="col-md-6 col-lg-6">
-		<div class="panel panel-default">
-			<div class="facecard" ng-repeat="face in vm.newFaces">
-				<div class="image-box">
-					<img ng-src="assets/{{face.img}}">
-				</div>
-				<div class="data-box">
-					<div class="name">
-						{{face.name}}
-					</div>
-					<div class="office pull-right">
-						{{face.office}}
-					</div>
-					<div class="title">
-						{{face.title}}
-					</div>
-					Skills:
-					<div class="skilltag" ng-repeat="skill in face.skills">
-						{{skill}}
-					</div>
-				</div>
-			</div>
-			<div class="panel-footer">
-				New faces
-			</div>
-		</div>
-	</div>
+<div class="panel panel-default">
+    <div class="panel-body" style="min-height:1000px;overflow:auto;">
+        <div class="row">
+            <br>
+            <div class="col-lg-2" style="max-height:200px;overflow:hidden;">
+                Office:
+                </br>
+
+                <span ng-repeat="office in vm.offices[0].offices" >
+                    <input type="checkbox" name="{{office}}" value="{{office}}" ng-change="vm.setCompetenceData()" ng-model="vm.office[office]">{{office}}<br>
+                </span>
+            </div>
+
+            <div class="col-lg-10" style="max-height:150px;min-height:150px;max-width:706px;overflow:auto;">
+                <span ng-repeat="skill in vm.skills[0].skills" >
+                    <input type="checkbox" name="{{skill}}" value="{{skill}}" ng-change="vm.setCompetenceData()" ng-model="vm.skill[skill]">{{skill}}
+                </span>
+            </div>
+            <br>
+            <div class="col-md-12">
+                <button type="button" ng-csv="vm.getUserSkillCSV()" csv-header="vm.getUserNamesInSelectedOfficesCSV()" filename="CompetenceMatrix.csv">Export</button>
+            </div>
+            <br>
+            <div class="col-md-12" style="min-height:100px;max-width:1300px;overflow:show;">
+                <table border="1">
+                    <tr>
+                        <th>
+                        </th>
+                        <th ng-repeat="obj in vm.competenceData[0].users">
+                            <a ng-href="#/profile/{{obj.userId}}">{{ obj.name }}</a>
+                        </th>
+                    </tr>
+                    <tr ng-repeat="obj in vm.competenceData">
+                        <td>
+                            {{ obj.skill }}
+                        </td>
+                        <td ng-repeat="lvl in obj.users">
+                            {{ lvl.level }}
+                        </td>
+                        <td >
+                            {{ lvl.level }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

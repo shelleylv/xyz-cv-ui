@@ -1,22 +1,19 @@
 <div class="wrapper" ng-controller="MenuController as vm" ng-class="{'toggled': vm.toggled}">
     <!-- Sidebar -->
     <div class="sidebar-wrapper">
-        <!--<div class="sidebar-topbar">
-            Hemir Mogensen
-        </div>-->
-        <div class="sidebar-brand">
+        <a class="sidebar-brand" ng-href="#/profile/current">
             <div class="profile-image">
                 <i class="fa fa-user" ng-hide="vm.user.profileImage"></i>
                 <img ng-if="vm.user.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ vm.user.profileImage.generatedName }}">
             </div>{{ vm.user.name | capitalize }}
-        </div>
+        </a>
         <ul class="sidebar-nav" ng-model="vm.panels.activePanel" data-allow-multiple="true" bs-collapse>
             <li>
-                <a ng-href="#/" ng-hide="true">
+                <a ng-href="#/feed">
                     <div class="sidebar-icon pull-left">
-                        <i class="fa fa-dashboard"></i>
+                        <i class="fa fa-rss"></i>
                     </div>
-                    Dashboard
+                    Feed
                 </a>
             </li>
             <li>
@@ -28,14 +25,14 @@
                 </a>
             </li>
             <li>
-                <a ng-href="#/competence" ng-show="vm.isAllowed('canViewCompetence')">
+                <a ng-href="#/dashboard" ng-show="vm.isAllowed('canViewDashboard')">
                     <div class="sidebar-icon pull-left">
-                        <i class="fa fa-user"></i>
+                        <i class="fa fa-dashboard"></i>
                     </div>
-                    Competence
+                    Dashboard
                 </a>
             </li>
-            <li ng-repeat="panel in vm.panels">
+            <li ng-repeat="panel in vm.panels" ng-hide="true">
                 <a ng-href="{{panel.url}}" bs-collapse-toggle>
                     <div class="sidebar-icon pull-left">
                         <i class="fa" ng-class="panel.icon"></i>
