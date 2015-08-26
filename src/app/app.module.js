@@ -27,7 +27,7 @@
         'xyz-cv-ui.access',
         'xyz-cv-ui.menu',
         'xyz-cv-ui.office',
-        'xyz-cv-ui.competence',
+        'xyz-cv-ui.feed',
         'xyz-cv-ui.advancedSearch'
     ]);
 

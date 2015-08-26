@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('xyz-cv-ui.competence')
+        .module('xyz-cv-ui.feed')
         .run(appRun);
 
     function appRun(routehelper) {
@@ -12,14 +12,14 @@
     function getRoutes() {
         return [
             {
-                url: '/competence/',
+                url: '/feed',
                 config: {
-                    templateUrl: '/xyz-cv-ui/components/competence/competence.html',
-                    controller: 'CompetenceController',
+                    templateUrl: '/xyz-cv-ui/components/feed/feed.html',
+                    controller: 'FeedController',
                     controllerAs: 'vm',
-                    title: 'competence'
+                    title: 'feed'
                 }
             }
         ];
     }
-})(); 
+})();

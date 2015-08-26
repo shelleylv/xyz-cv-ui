@@ -18,6 +18,6 @@
          */
         'ngplus', 'ngStorage', 'ngMessages', 'angular-loading-bar',
         'ngRetina', 'mgcrea.ngStrap', 'btford.modal', 'angularFileUpload',
-        'ngImgCrop'
+        'ngImgCrop', 'angularMoment'
     ]);
 })();

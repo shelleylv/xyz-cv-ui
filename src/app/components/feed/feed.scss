@@ -1,0 +1,186 @@
+@import "styles/_base";
+@import "styles/_colors";
+
+.feed {
+    .image-panel {
+        >img {
+            vertical-align: top;
+        }
+        >i {
+            @media(max-width: 992px) {
+                font-size: 80px;
+                margin-top: 20px;
+                margin-left: 20px;
+            }
+        }
+        overflow: hidden;
+        @media(min-width: 992px) {
+            @include box-shadow(0 1px 2px rgba(0,0,0,0.2));
+            height: 116px;
+            width: 116px;
+            position: absolute;
+            left: -111px;
+            font-size: 80px;
+            line-height: 116px;
+            >img {
+                height: 116px;
+                width: 116px;
+            }
+        }
+        text-align: center;
+        color: $bodybackground;
+        background-color: white;
+    }
+
+    .skillcard {
+        min-height: 58px;
+        max-height: 58px;
+        overflow: hidden;
+        display: flex;
+        color: black;
+        text-decoration: none;
+        .image-box {
+            display: flex;
+            min-height: 58px;
+            max-height: 58px;
+            min-width: 58px;
+            max-width: 58px;
+            text-align: center;
+            color: $bodybackground;
+            line-height: 58px;
+            border-top: 1px solid #ddd;
+            >i {
+                background-color: white;
+                font-size: 40px;
+                margin-top: 10px;
+                margin-left: 15px;
+            }
+        }
+
+        .data-box {
+            padding: 0 15px;
+            line-height: 58px;
+            position: relative;
+            min-height: 58px;
+            max-height: 58px;
+            width: 100%;
+            border-top: 1px solid #ddd;
+            .name {
+                font-weight: bold;
+                display: inline-block;
+            }
+
+            .office {
+                display: inline-block;
+            }
+
+            .skilltag {
+                font-size: 75%;
+                background-color: #B0D3E0;
+                @include border-radius(100px);
+                padding: 2px 6px;
+                margin: 0 2px;
+                display: inline-block;
+            }
+        }
+        &:first-of-type {
+            .data-box {
+                border-top: none;
+            }
+            .image-box {
+                border-top: none;
+            }
+        }
+    }
+
+    .facecard {
+        min-height: 116px;
+        max-height: 116px;
+        overflow: hidden;
+        display: flex;
+        color: black;
+        text-decoration: none;
+        .image-box {
+            display: flex;
+            min-height: 116px;
+            max-height: 116px;
+            min-width: 116px;
+            max-width: 116px;
+            text-align: center;
+            color: $bodybackground;
+            line-height: 116px;
+            >img {
+                height: 116px;
+                width: 116px;
+            }
+            >i {
+                background-color: white;
+                font-size: 80px;
+                margin-top: 20px;
+                margin-left: 30px;
+            }
+        }
+
+        .data-box {
+            position: relative;
+            padding: 15px;
+            min-height: 116px;
+            max-height: 116px;
+            width: 100%;
+            border-top: 1px solid #ddd;
+            .name {
+                font-weight: bold;
+                display: inline-block;
+            }
+
+            .office {
+                display: inline-block;
+            }
+
+            .skilltag {
+                font-size: 75%;
+                background-color: #B0D3E0;
+                @include border-radius(100px);
+                padding: 2px 6px;
+                margin: 0 2px;
+                display: inline-block;
+            }
+            .date {
+                right: 10px;
+                bottom: 10px;
+                position: absolute;
+            }
+        }
+        &:first-of-type {
+            .data-box {
+                border-top: none;
+            }
+        }
+    }
+
+
+    .facts {
+        margin: -15px;
+        .fact {
+            content: " ";
+            min-height: 200px;
+            padding: 10px;
+
+            .title {
+                font-size: 125%;
+                text-align: center;
+                margin-top: 10px;
+                margin-bottom: 25px;
+            }
+            .chart {
+                min-height: 200px;
+                height: 100% !important;
+                width: 100% !important;
+                canvas {
+                    height: 100% !important;
+                    width: 100% !important;
+                }
+            }
+        }
+    }
+}

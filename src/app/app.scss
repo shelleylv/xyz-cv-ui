@@ -171,6 +171,7 @@ body {
 	font-size: 18px;
 	overflow: hidden;
 	white-space: nowrap;
+	padding: 20px 20px 20px 0;
 	.fa {
 		color: #aaaaaa;
 		font-size: 40px;
@@ -190,6 +191,12 @@ body {
 			margin: 2px;
 			vertical-align: top;
 		}
+	}
+
+	&:hover {
+		text-decoration: none;
+		color: white;
+		background-color: lighten($menutextcolor, 5%);
 	}
 }
 
@@ -259,114 +266,6 @@ body {
 
 	&:hover {
 		background-color: $sidebarnavlisthoverbackground;
-	}
-}
-
-.news-article {
-	padding: 15px;
-	border-top: 1px solid #ddd;
-	min-height: 116px;
-	max-height: 116px;
-	overflow: hidden;
-	position: relative;
-	&:first-of-type {
-		border-top: 0;
-		min-height: 116px;
-		max-height: 116px;
-	}
-	.titlebar {
-		line-height: 120%;
-		margin-bottom: 10px;
-		.title {
-			font-size: 120%;
-			display: inline-block;
-		}
-		.date {
-		}
-	}
-	.teaser {
-		color: lighten($textcolor, 20%);
-		max-height: 44px;
-		overflow: hidden;
-	}
-	.social {
-		position: absolute;
-		bottom: 10px;
-		display: inline-block;
-		font-size: 120%;
-	}
-}
-
-.facecard {
-	min-height: 116px;
-	max-height: 116px;
-	overflow: hidden;
-	display: flex;
-	.image-box {
-		display: inline-block;
-		min-height: 116px;
-		max-height: 116px;
-		min-width: 116px;
-		max-width: 116px;
-		>img {
-			height: 116px;
-			width: 116px;
-		}
-	}
-
-	.data-box {
-		padding: 15px;
-		min-height: 116px;
-		max-height: 116px;
-		width: 100%;
-		border-top: 1px solid #ddd;
-		.name {
-			font-weight: bold;
-			display: inline-block;
-		}
-
-		.office {
-			display: inline-block;
-		}
-
-		.skilltag {
-			font-size: 75%;
-			background-color: #B0D3E0;
-			@include border-radius(100px);
-			padding: 2px 6px;
-			margin: 0 2px;
-			display: inline-block;
-		}
-	}
-	&:first-of-type {
-		.data-box {
-			border-top: none;
-		}
-	}
-}
-
-.facts {
-	margin: -15px;
-	.fact {
-		content: " ";
-		min-height: 200px;
-		padding: 10px;
-
-		.title {
-			font-size: 125%;
-			text-align: center;
-			margin-top: 10px;
-			margin-bottom: 25px;
-		}
-		.chart {
-			min-height: 200px;
-			height: 100% !important;
-			width: 100% !important;
-			canvas {
-				height: 100% !important;
-				width: 100% !important;
-			}
-		}
 	}
 }
 
