@@ -14,6 +14,8 @@
             vm.hideModal = AssignmentsModal.deactivate;
             vm.save = save;
 
+            vm.skillSuggestions = {data: ['Excelling', 'Being best', 'Winning']};
+
             activate();
 
             function activate() {
