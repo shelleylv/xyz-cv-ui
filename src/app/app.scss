@@ -414,3 +414,8 @@ tags-input {
     padding: 6px;
   }
 }
+
+[collapse] {
+    transition-timing-function: ease !important;
+    transition-duration: 0.15s;    
+}

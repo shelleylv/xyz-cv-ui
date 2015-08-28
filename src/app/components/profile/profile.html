@@ -11,7 +11,7 @@
                         <img ng-if="vm.generalInfo.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ vm.generalInfo.profileImage.generatedName }}">
                         <i class="fa fa-user" ng-if="!vm.generalInfo.profileImage"></i>
                         <div class="image-overlay" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)" ng-click="vm.showModal(vm.imageModal, vm.generalInfo)">
-                            <span><i class="fa fa-picture-o"></i><span>
+                            <i class="fa fa-picture-o"></i>
                         </div>
                     </div>
                 </div>

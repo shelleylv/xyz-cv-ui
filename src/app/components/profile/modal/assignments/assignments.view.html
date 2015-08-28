@@ -23,7 +23,7 @@
 						<label class="col-md-3 control-label">Skills</label>
 						<div class="col-md-9">
 							<tags-input class="tagField" ng-model="vm.tagList" placeholder="Enter skills..." replace-spaces-with-dashes="false" min-length="0" on-tag-added="vm.doAdvancedSearch()" on-tag-removed="vm.doAdvancedSearch()">
-                        		<auto-complete source="vm.skillSuggestions" min-length="1" max-results="10"></auto-complete>
+                        		<auto-complete source="vm.loadTags($query, vm.skillSuggestions)" min-length="1" max-results="10"></auto-complete>
                     		</tags-input>
 						</div>
 					</div>

@@ -53,6 +53,7 @@
                 line-height: 116px;
             }
             >.image-overlay {
+                display: flex;
                 z-index: 1;
                 position: absolute;
                 height: 116px;
@@ -67,10 +68,11 @@
                     opacity: 1;
                 }
                 >i {
-                    font-family:Helvetica;
-                    font-weight:900;
+                    width: 100%;
+                    text-align: center;
+                    line-height: 116px;
                     color:rgba(255,255,255,.85);
-                    font-size:96px;
+                    font-size:80px;
                 }
             }
         }

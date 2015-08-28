@@ -11,9 +11,9 @@
                 <span ng-click="vm.toggleRefined()" style="cursor:pointer">Advanced options <i class="fa fa-sort-down list-toggle" ng-class="{'toggled': vm.refinedIsShown}"></i></span>
             </div>
 
-            <div class="parameter-window">
+            <div class="parameter-window" collapse="!vm.refinedIsShown">
 
-                <div class="refinedParameters" ng-show="vm.refinedIsShown">
+                <div class="refinedParameters">
                     <div class="filter-heading">Filter by skill</div>
                     <form class="form-horizontal">
                         <div class="form-group">
