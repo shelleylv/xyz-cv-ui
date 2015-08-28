@@ -280,7 +280,7 @@
                 </div>
                 <div class="panel-footer">
                     <b>Assignments</b>
-                    <i class="fa fa-edit" ng-click="vm.showModal(vm.assignmentsModal, vm.assignments)"></i>
+                    <i class="fa fa-edit" ng-click="vm.showModal(vm.assignmentsModal, vm.assignments)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)"></i>
                 </div>
             </div>
         </div>

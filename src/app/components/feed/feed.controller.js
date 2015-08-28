@@ -13,9 +13,24 @@
 
         vm.latestUsers = [];
         vm.latestSkills = [];
+        vm.charts = [];
+
+        vm.options = getOptions();
+        vm.pieOptions = getPieOptions();
+        vm.loadchart = false;
+        vm.activated = false;
 
         session.isLoaded()
             .then(activate);
+
+        $scope.$on('sail-resize', redraw, 100);
+
+        $scope.$on('menuToggleFinished', function() {
+            $scope.loadchart = false;
+            $scope.$apply();
+            $scope.loadchart = true;
+            $scope.$apply();
+        });
 
         //////////////
 
@@ -24,7 +39,141 @@
                 .then(function(model) {
                     setLatestUsers(model);
                     setLatestSkills(model);
+                    vm.charts = getCharts(model);
+                    vm.loadchart = true;
+                    vm.activated = true;
+                    redraw();
                 });
+        }
+
+        function redraw(waitTime) {
+            vm.loadchart = false;
+            $timeout(function() {
+                vm.loadchart = true;
+            }, waitTime);
+        }
+
+        function getOptions() {
+            return {
+                // Chart.js options can go here.
+                // Sets the chart to be responsive
+                responsive: false,
+                ///Boolean - Whether grid lines are shown across the chart
+                scaleShowGridLines: true,
+                //String - Colour of the grid lines
+                scaleGridLineColor: 'rgba(0,50,100,.2)',
+                //Number - Width of the grid lines
+                scaleGridLineWidth: 1,
+                //Boolean - Whether the line is curved between points
+                bezierCurve: true,
+                //Number - Tension of the bezier curve between points
+                bezierCurveTension: 0.4,
+                //Boolean - Whether to show a dot for each point
+                pointDot: true,
+                //Number - Radius of each point dot in pixels
+                pointDotRadius: 3,
+                //Number - Pixel width of point dot stroke
+                pointDotStrokeWidth: 1,
+                //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+                pointHitDetectionRadius: 20,
+                //Boolean - Whether to show a stroke for datasets
+                datasetStroke: true,
+                //Number - Pixel width of dataset stroke
+                datasetStrokeWidth: 2,
+                //Boolean - Whether to fill the dataset with a colour
+                datasetFill: true,
+                animationSteps: 15,
+                animationEasing: 'easeOutElastic',
+                // Function - on animation progress
+                onAnimationProgress: function() {},
+                // Function - on animation complete
+                onAnimationComplete: function() {},
+                //String - A legend template
+                legendTemplate: '<ul class="tc-chart-js-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].strokeColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>'
+
+            };
+        }
+
+        function getPieOptions() {
+            return {
+                // Chart.js options can go here.
+                // Sets the chart to be responsive
+                responsive: false,
+                ///Boolean - Whether grid lines are shown across the chart
+                scaleShowGridLines: true,
+                //String - Colour of the grid lines
+                scaleGridLineColor: 'rgba(0,50,100,.2)',
+                //Number - Width of the grid lines
+                scaleGridLineWidth: 1,
+                //Boolean - Whether the line is curved between points
+                bezierCurve: true,
+                //Number - Tension of the bezier curve between points
+                bezierCurveTension: 0.4,
+                //Boolean - Whether to show a dot for each point
+                pointDot: true,
+                //Number - Radius of each point dot in pixels
+                pointDotRadius: 3,
+                //Number - Pixel width of point dot stroke
+                pointDotStrokeWidth: 1,
+                //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+                pointHitDetectionRadius: 20,
+                //Boolean - Whether to show a stroke for datasets
+                datasetStroke: true,
+                //Number - Pixel width of dataset stroke
+                datasetStrokeWidth: 2,
+                //Boolean - Whether to fill the dataset with a colour
+                datasetFill: true,
+                animationSteps: 15,
+                animationEasing: 'easeOutElastic',
+                // Function - on animation progress
+                onAnimationProgress: function() {},
+                // Function - on animation complete
+                onAnimationComplete: function() {},
+                //String - A legend template
+                legendTemplate: '<ul class="tc-chart-js-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
+            };
+        }
+
+        function getCharts(model) {
+            return [
+            {
+                type: 'bar',
+                title: 'Programming skills at Softhouse',
+                data: getBarChartData(model)
+            },
+            {
+                type: 'pie',
+                title: 'Ratio of users per office at Softhouse',
+                data: getPieChartData(model)
+            }];
+        }
+
+        function getBarChartData(model) {
+            model.views.mostRepresentedSkillsView.skillFrequencyGraph.datasets.forEach(function(dataset) {
+                dataset.fillColor = '#3D606E';
+                dataset.strokeColor = '#3D606E';
+                dataset.highlightFill = 'rgba(220,220,220,0.75)';
+                dataset.highlightStroke = 'rgba(220,220,220,1)';
+            });
+            return model.views.mostRepresentedSkillsView.skillFrequencyGraph;
+        }
+
+        function getPieChartData(model) {
+            var colors = [
+                {color: '#2D628F', highlight: 'rgba(220,220,220,0.75)'},
+                {color: '#4495DB', highlight: 'rgba(220,220,220,0.75)'},
+                {color: '#8F7B2C', highlight: 'rgba(220,220,220,0.75)'},
+                {color: '#DBA444', highlight: 'rgba(220,220,220,0.75)'},
+                {color: '#707070', highlight: 'rgba(220,220,220,0.75)'},
+                {color: '#8F8F8F', highlight: 'rgba(220,220,220,0.75)'},
+                {color: '#000000', highlight: '#rgba(220,220,220,0.75)'}
+            ];
+
+            for (var i = model.views.officePopulationView.userOfficeFrequencyGraph.length - 1; i >= 0; i--) {
+                model.views.officePopulationView.userOfficeFrequencyGraph[i].color = colors[i].color;
+                model.views.officePopulationView.userOfficeFrequencyGraph[i].highlight = colors[i].highlight;
+            };
+            return model.views.officePopulationView.userOfficeFrequencyGraph;
         }
 
         function setLatestUsers(model) {
@@ -44,174 +193,7 @@
             }, waitTime);
         }
 
-        $timeout(function() {
-            vm.loadchart = true;
-        }, 300);
-
-        // Chart.js Data
-        vm.data = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [{
-                label: 'Lines of code written',
-                fillColor: 'rgba(220,220,220,0.0)',
-                strokeColor: '#008C9D',
-                pointColor: '#02D0EA',
-                pointStrokeColor: '#273135',
-                pointHighlightFill: '#fff',
-                pointHighlightStroke: 'rgba(220,220,220,1)',
-                data: [15, 35, 46, 57, 61, 64, 66]
-            }]
-        };
-
-        vm.radardata = {
-            labels: ['C++', 'Java EE', 'Python', 'HTML5', '.NET', 'Haskell', 'COBOL'],
-            datasets: [{
-                label: 'Karlskrona',
-                fillColor: 'rgba(220,220,220,0.2)',
-                strokeColor: 'rgba(220,220,220,1)',
-                pointColor: 'rgba(220,220,220,1)',
-                pointStrokeColor: '#fff',
-                pointHighlightFill: '#fff',
-                pointHighlightStroke: 'rgba(220,220,220,1)',
-                data: [65, 59, 90, 81, 56, 55, 40]
-            }, {
-                label: 'Malmö',
-                fillColor: 'rgba(151,187,205,0.2)',
-                strokeColor: 'rgba(151,187,205,1)',
-                pointColor: 'rgba(151,187,205,1)',
-                pointStrokeColor: '#fff',
-                pointHighlightFill: '#fff',
-                pointHighlightStroke: 'rgba(151,187,205,1)',
-                data: [28, 48, 40, 19, 96, 27, 100]
-            }]
-        };
-
-        vm.barchartdata = {
-            labels: ['C++', 'Java EE', 'Python', 'C#', 'Haskell', 'Perl', 'Ruby'],
-            datasets: [{
-                label: 'Karlskrona',
-                fillColor: '#3D606E',
-                strokeColor: '#3D606E',
-                highlightFill: 'rgba(220,220,220,0.75)',
-                highlightStroke: 'rgba(220,220,220,1)',
-                data: [65, 59, 80, 81, 56, 55, 40]
-            }]
-        };
-
-        vm.piechartdata = [{
-            value: 300,
-            color: '#F7464A',
-            highlight: '#FF5A5E',
-            label: 'Red'
-        }, {
-            value: 50,
-            color: '#46BFBD',
-            highlight: '#5AD3D1',
-            label: 'Green'
-        }, {
-            value: 100,
-            color: '#FDB45C',
-            highlight: '#FFC870',
-            label: 'Yellow'
-        }];
-
-        vm.charts = [{
-            type: 'line',
-            title: 'Pies per month',
-            data: vm.data
-        },
-        {
-            type: 'radar',
-            title: 'Programming skill balance per office',
-            data: vm.radardata
-        },
-        {
-            type: 'bar',
-            title: 'Programming skills in Softhouse',
-            data: vm.barchartdata
-        },
-        {
-            type: 'pie',
-            title: 'Ratio of job titles in Softhouse',
-            data: vm.piechartdata
-        }];
-
-        vm.myOptions = {
-            // Chart.js options can go here.
-            // Sets the chart to be responsive
-            responsive: false,
-            ///Boolean - Whether grid lines are shown across the chart
-            scaleShowGridLines: true,
-            //String - Colour of the grid lines
-            scaleGridLineColor: 'rgba(0,50,100,.2)',
-            //Number - Width of the grid lines
-            scaleGridLineWidth: 1,
-            //Boolean - Whether the line is curved between points
-            bezierCurve: true,
-            //Number - Tension of the bezier curve between points
-            bezierCurveTension: 0.4,
-            //Boolean - Whether to show a dot for each point
-            pointDot: true,
-            //Number - Radius of each point dot in pixels
-            pointDotRadius: 3,
-            //Number - Pixel width of point dot stroke
-            pointDotStrokeWidth: 1,
-            //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-            pointHitDetectionRadius: 20,
-            //Boolean - Whether to show a stroke for datasets
-            datasetStroke: true,
-            //Number - Pixel width of dataset stroke
-            datasetStrokeWidth: 2,
-            //Boolean - Whether to fill the dataset with a colour
-            datasetFill: true,
-            animationSteps: 15,
-            animationEasing: 'easeOutElastic',
-            // Function - on animation progress
-            onAnimationProgress: function() {},
-            // Function - on animation complete
-            onAnimationComplete: function() {},
-            //String - A legend template
-            legendTemplate: '<ul class="tc-chart-js-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].strokeColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>'
-
-        };
-
-        vm.piechartOptions = {
-            // Chart.js options can go here.
-            // Sets the chart to be responsive
-            responsive: false,
-            ///Boolean - Whether grid lines are shown across the chart
-            scaleShowGridLines: true,
-            //String - Colour of the grid lines
-            scaleGridLineColor: 'rgba(0,50,100,.2)',
-            //Number - Width of the grid lines
-            scaleGridLineWidth: 1,
-            //Boolean - Whether the line is curved between points
-            bezierCurve: true,
-            //Number - Tension of the bezier curve between points
-            bezierCurveTension: 0.4,
-            //Boolean - Whether to show a dot for each point
-            pointDot: true,
-            //Number - Radius of each point dot in pixels
-            pointDotRadius: 3,
-            //Number - Pixel width of point dot stroke
-            pointDotStrokeWidth: 1,
-            //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-            pointHitDetectionRadius: 20,
-            //Boolean - Whether to show a stroke for datasets
-            datasetStroke: true,
-            //Number - Pixel width of dataset stroke
-            datasetStrokeWidth: 2,
-            //Boolean - Whether to fill the dataset with a colour
-            datasetFill: true,
-            animationSteps: 15,
-            animationEasing: 'easeOutElastic',
-            // Function - on animation progress
-            onAnimationProgress: function() {},
-            // Function - on animation complete
-            onAnimationComplete: function() {},
-            //String - A legend template
-            legendTemplate: '<ul class="tc-chart-js-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
-        };
+        vm.piechartdata =
 
         vm.newsArticles = [{
             title: 'Sydost hires 4 junior developers',
@@ -227,19 +209,6 @@
             date: 'Sep. 7, 2015'
         }];
 
-        vm.newFaces = [{
-            name: 'Gustav Pihl Bohlin',
-            skills: ['C++', 'Python', 'HTML5', 'CSS', 'Angular'],
-            office: 'Karlskrona',
-            title: 'System developer',
-            img: 'gustavpihl.jpeg'
-        }, {
-            name: 'Rasmus Letterkrantz',
-            skills: ['Ruby', 'Angular', 'HTML5', 'Haskell', 'Hockey'],
-            office: 'Karlskrona',
-            title: 'System developer',
-            img: 'rasmusletterkrantz106.jpeg'
-        }];
 
         $scope.$on('menuToggleFinished', function() {
             $scope.loadchart = false;
