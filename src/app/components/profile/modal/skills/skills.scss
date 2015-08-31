@@ -6,9 +6,25 @@
 	max-height: 420px;
 	overflow: hidden;
 	.edit-skills-list-item {
-		.deletebutton {
-			display: inline-block;
-			color: red;
+		.deletebutton-expander {
+			display: flex;
+			background-color: antiquewhite;
+			width: 100%;
+			.deletebutton {
+				@include transition(all 0.5s ease);
+				max-width: 3px;
+				min-width: 3px;
+				display: inline-block;
+				color: #C74B47;
+				background-color: red;
+			}
+			&:hover {
+				.deletebutton {
+					min-width: 100%;
+					max-width: 100%;
+					background-color: pink;
+				}
+			}
 		}
 		.editbutton {
 			display: inline-block;

@@ -44,8 +44,10 @@
 				<ul class="list-group compact edit-skills-list">
 					<li class="list-group-item edit-skills-list-item" dir-paginate="connector in vm.connectors | itemsPerPage:7">
 						<div class="item-buttons">
-							<div class="deletebutton" ng-click="vm.removeConnector(connector)">
-								<i class="fa fa-minus-circle"></i>
+							<div class="deletebutton-expander">
+								<div class="deletebutton" ng-click="vm.removeConnector(connector)">
+									<i class="fa fa-trash"></i>
+								</div>
 							</div>
 						</div>
 						<div class="item-content">

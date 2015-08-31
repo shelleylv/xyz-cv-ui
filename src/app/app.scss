@@ -310,7 +310,7 @@ body {
         display: flex;
         border: none;
         border-top: 1px solid #ddd;
-        padding: 10px;
+        padding: 0;
         @include border-radius(0);
         margin-top: -1px;
         &:first-child {
@@ -321,12 +321,14 @@ body {
             border-bottom: 1px solid #ddd;
             margin-bottom: -1px;
         }
-    }
-    .item-buttons {
-        width: 20px;
-    }
-    .item-content {
-        width: 100%;
+        .item-buttons {
+            display: flex;
+            width: 20px;
+        }
+        .item-content {
+            padding: 10px;
+            width: 100%;
+        }
     }
 }
 
