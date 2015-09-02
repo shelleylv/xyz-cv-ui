@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>xyzCvUi</title>
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
@@ -52,6 +52,7 @@
     <script src="angular-sanitize/angular-sanitize.js"></script>
     <script src="angular-strap/dist/angular-strap.js"></script>
     <script src="angular-strap/dist/angular-strap.tpl.js"></script>
+    <script src="angular-touch/angular-touch.js"></script>
     <script src="angular-utils-pagination/dirPagination.js"></script>
     <script src="jquery/dist/jquery.js"></script>
     <script src="bootstrap/dist/js/bootstrap.js"></script>
@@ -83,10 +84,10 @@
     <script src="components/profile/modal/skills/skills.controller.js"></script>
     <script src="components/profile/modal/private-info/privateInfo.factory.js"></script>
     <script src="components/profile/modal/private-info/privateInfo.controller.js"></script>
-    <script src="components/profile/modal/general-info/generalInfo.factory.js"></script>
-    <script src="components/profile/modal/general-info/generalInfo.controller.js"></script>
     <script src="components/profile/modal/image/image.factory.js"></script>
     <script src="components/profile/modal/image/image.controller.js"></script>
+    <script src="components/profile/modal/general-info/generalInfo.factory.js"></script>
+    <script src="components/profile/modal/general-info/generalInfo.controller.js"></script>
     <script src="components/profile/modal/assignments/assignments.factory.js"></script>
     <script src="components/profile/modal/assignments/assignments.controller.js"></script>
     <script src="shared/uploader/uploader.module.js"></script>
@@ -103,10 +104,10 @@
     <script src="shared/user-to-office/userToOffice.resource.js"></script>
     <script src="shared/skills/skills.module.js"></script>
     <script src="shared/skills/skills.resource.js"></script>
-    <script src="shared/roles/roles.module.js"></script>
-    <script src="shared/roles/roles.resource.js"></script>
     <script src="shared/resource/resource.module.js"></script>
     <script src="shared/resource/resource.js"></script>
+    <script src="shared/roles/roles.module.js"></script>
+    <script src="shared/roles/roles.resource.js"></script>
     <script src="shared/offices/offices.module.js"></script>
     <script src="shared/offices/offices.service.js"></script>
     <script src="shared/offices/offices.resource.js"></script>
@@ -122,31 +123,6 @@
     <script src="shared/assignments/assignments.resource.js"></script>
     <script src="shared/accesses/accesses.module.js"></script>
     <script src="shared/accesses/accesses.resource.js"></script>
-    <script src="components/profile/profile.module.js"></script>
-    <script src="components/profile/route-config.js"></script>
-    <script src="components/profile/profile.model.js"></script>
-    <script src="components/profile/profile.controller.js"></script>
-    <script src="components/office/office.module.js"></script>
-    <script src="components/office/route-config.js"></script>
-    <script src="components/office/office.model.js"></script>
-    <script src="components/office/office.controller.js"></script>
-    <script src="components/feed/feed.module.js"></script>
-    <script src="components/feed/route-config.js"></script>
-    <script src="components/feed/feed.model.js"></script>
-    <script src="components/feed/feed.controller.js"></script>
-    <script src="components/menu/menu.module.js"></script>
-    <script src="components/menu/menu.controller.js"></script>
-    <script src="components/dashboard/dashboard.module.js"></script>
-    <script src="components/dashboard/route-config.js"></script>
-    <script src="components/dashboard/dashboard.model.js"></script>
-    <script src="components/dashboard/dashboard.controller.js"></script>
-    <script src="components/advancedSearch/advancedSearch.module.js"></script>
-    <script src="components/advancedSearch/search.model.js"></script>
-    <script src="components/advancedSearch/route-config.js"></script>
-    <script src="components/advancedSearch/advancedSearch.controller.js"></script>
-    <script src="components/access/access.module.js"></script>
-    <script src="components/access/route-config.js"></script>
-    <script src="components/access/access.controller.js"></script>
     <script src="core/session/session.module.js"></script>
     <script src="core/session/session.service.js"></script>
     <script src="core/session/authentication.resource.js"></script>
@@ -160,8 +136,34 @@
     <script src="core/exception/exception.service.js"></script>
     <script src="core/exception/exception-handler.provider.js"></script>
     <script src="core/directives/tagcloud.directive.js"></script>
+    <script src="core/directives/swipeAction.directive.js"></script>
     <script src="core/directives/stopEvent.directive.js"></script>
     <script src="core/directives/resize.directives.js"></script>
+    <script src="components/profile/profile.module.js"></script>
+    <script src="components/profile/route-config.js"></script>
+    <script src="components/profile/profile.model.js"></script>
+    <script src="components/profile/profile.controller.js"></script>
+    <script src="components/office/office.module.js"></script>
+    <script src="components/office/route-config.js"></script>
+    <script src="components/office/office.model.js"></script>
+    <script src="components/office/office.controller.js"></script>
+    <script src="components/menu/menu.module.js"></script>
+    <script src="components/menu/menu.controller.js"></script>
+    <script src="components/feed/feed.module.js"></script>
+    <script src="components/feed/route-config.js"></script>
+    <script src="components/feed/feed.model.js"></script>
+    <script src="components/feed/feed.controller.js"></script>
+    <script src="components/dashboard/dashboard.module.js"></script>
+    <script src="components/dashboard/route-config.js"></script>
+    <script src="components/dashboard/dashboard.model.js"></script>
+    <script src="components/dashboard/dashboard.controller.js"></script>
+    <script src="components/advancedSearch/advancedSearch.module.js"></script>
+    <script src="components/advancedSearch/search.model.js"></script>
+    <script src="components/advancedSearch/route-config.js"></script>
+    <script src="components/advancedSearch/advancedSearch.controller.js"></script>
+    <script src="components/access/access.module.js"></script>
+    <script src="components/access/route-config.js"></script>
+    <script src="components/access/access.controller.js"></script>
     <script src="core/core.module.js"></script>
     <script src="core/constants.js"></script>
     <script src="core/config.js"></script>

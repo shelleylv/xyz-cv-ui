@@ -303,9 +303,52 @@ body {
     }
 }
 
+.item-swipe-wrapper {
+    width: 100%;
+
+    .swipe-overlay-left {
+        text-align: center;
+        font-size: 120%;
+        background-color: red;
+        overflow: hidden;
+        text-overflow: clip;
+        width: 0;
+        top: 0;
+        position: absolute;
+        height: 100%;
+        z-index: 10000;
+        color: rgba(255, 255, 255, 0);
+        line-height: 60px;
+    }
+
+    .swipe-overlay-right {
+        text-align: center;
+        font-size: 120%;
+        background-color: #337ab7;
+        overflow: hidden;
+        text-overflow: clip;
+        width: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        z-index: 10000;
+        color: rgba(255, 255, 255, 0);
+        line-height: 60px;
+    }
+
+    .swiper {
+        width: 100%;
+        display:flex;
+    }
+}
+
+
 .compact {
     border: 1px solid #ddd;
     background-color: #eee;
+    overflow: hidden;
+    position: relative;
     .list-group-item {
         display: flex;
         border: none;
@@ -364,7 +407,7 @@ tags-input {
             border: 1px solid #ccc;
             box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
             width: flex;
-            
+
             .input {
                 font: inherit;
             }
@@ -373,7 +416,7 @@ tags-input {
                 background: #0097cf;
                 border: none;
                 color: white;
-                
+
                 .remove-button {
                     color: white;
                 }
@@ -419,5 +462,5 @@ tags-input {
 
 [collapse] {
     transition-timing-function: ease !important;
-    transition-duration: 0.15s;    
+    transition-duration: 0.15s;
 }
