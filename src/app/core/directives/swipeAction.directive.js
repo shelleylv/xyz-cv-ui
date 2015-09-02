@@ -9,9 +9,9 @@
         var directive = {
             transclude: true,
             template: '<div class="item-swipe-wrapper" style="position: relative">' +
-            '<div class="swipe-overlay-left" ng-click="onRemove(item)"><i class="fa fa-trash"></i> Delete</div>' +
+            '<div class="swipe-overlay swipe-overlay-left" ng-click="onRemove(item)"><i class="fa fa-trash"></i> Delete</div>' +
             '<div class="swiper" ng-style="swiperStyle" ng-transclude style="position: relative"></div>' +
-            '<div class="swipe-overlay-right" ng-click="onEdit(item)"><i class="fa fa-edit"></i> Edit</div>' +
+            '<div class="swipe-overlay swipe-overlay-right" ng-click="onEdit(item)"><i class="fa fa-edit"></i> Edit</div>' +
             '</div>',
             link: link,
             scope: {

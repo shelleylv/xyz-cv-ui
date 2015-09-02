@@ -304,37 +304,33 @@ body {
 }
 
 .item-swipe-wrapper {
+    .onion {
+        transition: 0.2s;
+    }
     width: 100%;
 
-    .swipe-overlay-left {
-        text-align: center;
-        font-size: 120%;
-        background-color: red;
+    .swipe-overlay {
+        line-height: 60px;
+        color: rgba(255, 255, 255, 0);
+        height: 100%;
+        position: absolute;
+        top: 0;
+        width: 0;
         overflow: hidden;
         text-overflow: clip;
-        width: 0;
-        top: 0;
-        position: absolute;
-        height: 100%;
+        text-align: center;
+        font-size: 120%;
+    }
+
+    .swipe-overlay-left {
+        background-color: red;
         z-index: 10000;
-        color: rgba(255, 255, 255, 0);
-        line-height: 60px;
     }
 
     .swipe-overlay-right {
-        text-align: center;
-        font-size: 120%;
         background-color: #337ab7;
-        overflow: hidden;
-        text-overflow: clip;
-        width: 0;
-        position: absolute;
         right: 0;
-        top: 0;
-        height: 100%;
         z-index: 10000;
-        color: rgba(255, 255, 255, 0);
-        line-height: 60px;
     }
 
     .swiper {
