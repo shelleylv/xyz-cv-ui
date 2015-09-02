@@ -1,0 +1,44 @@
+@import "styles/_base";
+@import "styles/_colors";
+
+.dashboard {
+
+    input[type=checkbox] { margin-right: 1em }
+	.panel-heading { font-weight: bold }
+	
+	.office { 
+		label { display: block }
+		.panel-body { 
+			height: 200px; 
+			overflow-y: auto;
+		}
+	}
+
+	.skills {
+
+		.panel-heading label { float: right }
+
+		.panel-body { 
+			height: 200px; 
+			overflow-y: auto;
+		}
+
+	 	ul { 
+			-webkit-column-count: 3;
+       		-moz-column-count: 3;
+        	column-count: 3; 
+        }
+	}
+
+	.matrix {
+		button { float: right }
+
+		td,th { text-align: center }
+		.namecolumn { text-align: left }
+
+
+  		.panel-body {	
+        	overflow: auto;
+        }
+    }
+}
