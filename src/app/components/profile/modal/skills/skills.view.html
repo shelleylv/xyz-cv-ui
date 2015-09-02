@@ -16,20 +16,21 @@
 					<div class="form-group">
 						<label class="col-md-3 control-label">Experience</label>
 						<div class="col-md-9">
-							<div class="row">
+							<div class="row buffer-down">
 								<div class="col-md-6">
 									<div class="input-group">
-										<label class="input-group-addon">Level</label>
 										<select class="form-control" ng-model="vm.currentConnector.level" data-html="1" bs-options="level.value as level.label for level in vm.levels" bs-select placeholder="Choose level...">
 									  		Action <span class="caret"></span>
 										</select>
 									</div>
 								</div>
+                            </div>
+                            <div class="row">
 								<div class="col-md-6">
 									<div class="input-group">
-										<label class="input-group-addon">Years</label>
 										<input type="number" min="0" class="form-control" ng-model="vm.currentConnector.years">
-									</div>
+                                        <label class="input-group-addon">Years</label>
+                                    </div>
 								</div>
 							</div>
 						</div>
