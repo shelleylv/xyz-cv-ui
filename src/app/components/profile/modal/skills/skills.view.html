@@ -16,20 +16,21 @@
 					<div class="form-group">
 						<label class="col-md-3 control-label">Experience</label>
 						<div class="col-md-9">
-							<div class="row">
+							<div class="row buffer-down">
 								<div class="col-md-6">
 									<div class="input-group">
-										<label class="input-group-addon">Level</label>
 										<select class="form-control" ng-model="vm.currentConnector.level" data-html="1" bs-options="level.value as level.label for level in vm.levels" bs-select placeholder="Choose level...">
 									  		Action <span class="caret"></span>
 										</select>
 									</div>
 								</div>
+                            </div>
+                            <div class="row">
 								<div class="col-md-6">
 									<div class="input-group">
-										<label class="input-group-addon">Years</label>
 										<input type="number" min="0" class="form-control" ng-model="vm.currentConnector.years">
-									</div>
+                                        <label class="input-group-addon">Years</label>
+                                    </div>
 								</div>
 							</div>
 						</div>
@@ -42,22 +43,26 @@
 					</div>
 				</div>
 				<ul class="list-group compact edit-skills-list">
-					<li class="list-group-item edit-skills-list-item" dir-paginate="connector in vm.connectors | itemsPerPage:7">
-						<div class="item-buttons">
-							<div class="deletebutton" ng-click="vm.removeConnector(connector)">
-								<i class="fa fa-minus-circle"></i>
-							</div>
-						</div>
-						<div class="item-content">
-							<div class="name">{{connector.name}}</div>
-							<div class="level">Level: {{connector.level}}</div>
-							<div class="years">Years: {{connector.years}}</div>
-						</div>
-						<div class="item-buttons">
-							<div class="editbutton" ng-click="vm.setConnectorForEditing(connector)">
-								<i class="fa fa-edit"></i>
-							</div>
-						</div>
+					<li class="list-group-item edit-skills-list-item" swipe-action="" on-remove="vm.removeConnector" on-edit="vm.setConnectorForEditing" item="connector" ng-repeat="connector in vm.connectors">
+                        <div class="item-buttons hidden-xs hidden-sm">
+                            <div class="deletebutton-expander">
+                                <div class="deletebutton" ng-click="vm.removeConnector(connector)">
+                                    <i class="fa fa-trash"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-content">
+                            <div class="name">{{connector.name}}</div>
+                            <div class="level">Level: {{connector.level}}</div>
+                            <div class="years">Years: {{connector.years}}</div>
+                        </div>
+                        <div class="item-buttons hidden-xs hidden-sm">
+                            <div class="editbutton-expander">
+                                <div class="editbutton" ng-click="vm.setConnectorForEditing(connector)">
+                                    <i class="fa fa-edit"></i>
+                                </div>
+                            </div>
+                        </div>
 					</li>
 				</ul>
 				<div class="pagination-container" ng-if="vm.connectors.length > 7">

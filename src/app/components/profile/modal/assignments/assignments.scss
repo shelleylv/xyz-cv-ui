@@ -4,14 +4,73 @@
 .edit-assignments-list {
 	min-height: 400px;
 	max-height: 400px;
+    overflow: hidden;
+    max-width: 100%;
+    zoom: 1;
 	border: 1px solid #ddd;
 	background-color: #eee;
 	.edit-assignments-list-item {
+        width: 100%;
+        zoom: 1;
+        overflow: hidden;
+        text-overflow: clip;
+        white-space:nowrap;
 		display: flex;
 		border:none;
-		padding: 10px;
 		@include border-radius(0);
 		border-top: 1px solid #ddd;
+
+        .swipe-overlay {
+            line-height: 100px;
+        }
+
+        .item-buttons {
+            width: 40px;
+            min-width: 40px;
+        }
+
+        .deletebutton-expander {
+            display: flex;
+            width: 100%;
+            .deletebutton {
+                @include transition(all 0.3s ease);
+                max-width: 3px;
+                min-width: 3px;
+                display: inline-block;
+                color: rgba(255, 255, 255, 0);
+                background-color: red;
+                text-align: center;
+                line-height: 100px;
+                font-size: 20px;
+            }
+            &:hover .deletebutton {
+                min-width: 100%;
+                max-width: 100%;
+                color: rgba(255, 255, 255, 1);
+            }
+        }
+        .editbutton-expander {
+            display: flex;
+            flex-direction: row-reverse;
+            width: 100%;
+            .editbutton {
+                @include transition(all 0.3s ease);
+                max-width: 3px;
+                min-width: 3px;
+                display: inline-block;
+                color: rgba(255, 255, 255, 0);
+                background-color: #337ab7;
+                text-align: center;
+                line-height: 100px;
+                font-size: 20px;
+            }
+            &:hover .editbutton {
+                min-width: 100%;
+                max-width: 100%;
+                color: rgba(255, 255, 255, 1);
+            }
+        }
+
 		&:first-child {
 			border-top: none;
 		}

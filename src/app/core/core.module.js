@@ -6,7 +6,7 @@
          * Angular modules
          */
         'ngAnimate', 'ngRoute', 'ngSanitize', 'ngResource',
-        'ngTagsInput',
+        'ngTagsInput', 'ngTouch',
         /*
          * Our core cross app code modules
          */
@@ -18,6 +18,6 @@
          */
         'ngplus', 'ngStorage', 'ngMessages', 'angular-loading-bar',
         'ngRetina', 'mgcrea.ngStrap', 'btford.modal', 'angularFileUpload',
-        'ngImgCrop', 'angularMoment'
+        'ngImgCrop', 'angularMoment', 'ui.bootstrap.collapse'
     ]);
 })();
