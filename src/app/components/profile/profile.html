@@ -5,7 +5,6 @@
     <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated">
         <div id="general-info" class="panel-wrapper">
             <div class="panel panel-default profile-default">
-
                 <div class="image-panel hidden-xs hidden-sm">
                     <div class="image-wrapper">
                         <img ng-if="vm.generalInfo.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ vm.generalInfo.profileImage.generatedName }}">
@@ -14,6 +13,9 @@
                             <i class="fa fa-picture-o"></i>
                         </div>
                     </div>
+                </div>
+                <div class="editbutton" ng-click="vm.showModal(vm.generalInfoModal, vm.generalInfo)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
+                    <i class="fa fa-edit"></i>
                 </div>
 
                 <div class="data-box">
@@ -26,9 +28,6 @@
                             <div class="name">
                                 <span class="flag-icon" ng-class="'flag-icon-' + (vm.generalInfo.country | flag)"></span>
                                 {{ vm.generalInfo.name }}
-                            </div>
-                            <div class="role pull-right">
-                                {{ vm.generalInfo.role.name }}
                             </div>
                             <div class="title">
                                 {{ vm.generalInfo.position }}
@@ -74,10 +73,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel-footer">
-                    <b>General Info</b>
-                    <i class="fa fa-edit" ng-click="vm.showModal(vm.generalInfoModal, vm.generalInfo)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)"></i>
-                </div>
             </div>
         </div>
     </div>
@@ -85,7 +80,7 @@
     <!-- PRIVATE INFO -->
 
     <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-hide="true">
-    <!-- ng-show="vm.activated && (vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id))" -->
+        <!-- ng-show="vm.activated && (vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id))" -->
         <div id="private-info" class="panel-wrapper">
             <div class="panel panel-default profile-default">
 
@@ -93,6 +88,12 @@
                     <div class="image-wrapper">
                         <i class="fa fa-lock"></i>
                     </div>
+                </div>
+                <div class="editbutton" ng-click="vm.showModal(vm.privateInfoModal, vm.privateInfo)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
+                    <i class="fa fa-edit"></i>
+                </div>
+                <div class="panel-heading">
+                    Private Info
                 </div>
 
                 <div class="data-box">
@@ -153,10 +154,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel-footer">
-                    <b>Private Info</b>
-                    <i class="fa fa-edit" ng-click="vm.showModal(vm.privateInfoModal, vm.privateInfo)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)"></i>
-                </div>
             </div>
         </div>
     </div>
@@ -166,13 +163,17 @@
     <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated">
         <div id="skills" class="panel-wrapper">
             <div class="panel panel-default profile-default">
-
                 <div class="image-panel hidden-xs hidden-sm">
                     <div class="image-wrapper">
                         <i class="fa fa-flask"></i>
                     </div>
                 </div>
-
+                <div class="panel-heading">
+                    Skills
+                </div>
+                <div class="editbutton" ng-click="vm.showModal(vm.skillsModal, vm.skills)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
+                    <i class="fa fa-edit"></i>
+                </div>
                 <div>
                     <div class="itemrow skillrow" ng-class="{'removeTopBorder': $first}" ng-repeat="skill in vm.skills">
                         <div class="image-box">
@@ -218,10 +219,6 @@
                 <div class="panel-body" ng-if="vm.skills.length === 0" ng-click="vm.showModal(vm.skillsModal, vm.skills)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
                     You have not added any skills yet. To add a skill, press the <i class="fa fa-edit"></i> button below.
                 </div>
-                <div class="panel-footer">
-                    <b>Skills</b>
-                    <i class="fa fa-edit" ng-click="vm.showModal(vm.skillsModal, vm.skills)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)"></i>
-                </div>
             </div>
         </div>
     </div>
@@ -231,11 +228,13 @@
     <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="false">
         <div id="certificates" class="panel-wrapper">
             <div class="panel panel-default profile-default">
-
                 <div class="image-panel hidden-xs hidden-sm">
                     <div class="image-wrapper">
                         <i class="fa fa-graduation-cap"></i>
                     </div>
+                </div>
+                <div class="panel-heading">
+                    Certificates
                 </div>
 
                 <div>
@@ -250,9 +249,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel-footer">
-                    <b>Certificates</b>
-                </div>
             </div>
         </div>
     </div>
@@ -262,13 +258,17 @@
     <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="true">
         <div id="assignments" class="panel-wrapper">
             <div class="panel panel-default profile-default">
-
                 <div class="image-panel hidden-xs hidden-sm">
                     <div class="image-wrapper">
                         <i class="fa fa-suitcase"></i>
                     </div>
                 </div>
-
+                <div class="panel-heading">
+                    Assignments
+                </div>
+                <div class="editbutton" ng-click="vm.showModal(vm.assignmentsModal, vm.assignments)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
+                    <i class="fa fa-edit"></i>
+                </div>
                 <div>
                     <div class="itemrow assignmentrow" ng-class="{'removeTopBorder': $first}" ng-repeat="assignment in vm.assignments">
                         <div class="image-box">
@@ -283,10 +283,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="panel-footer">
-                    <b>Assignments</b>
-                    <i class="fa fa-edit" ng-click="vm.showModal(vm.assignmentsModal, vm.assignments)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)"></i>
                 </div>
             </div>
         </div>
