@@ -138,36 +138,6 @@
                     transition();
                 }
             });
-            /*
-             element.bind("touchstart", function(coord, evt) {
-             scope.$apply(function(thing) {
-             console.log(evt);
-             console.log(coord);
-             });
-             });
-
-             element.bind("touchend", function() {
-             scope.$apply(function(evt) {
-             console.log("swipe action ended");
-             });
-             });
-
-             element.bind("touchmove", function() {
-             scope.$apply(function(evt) {
-
-             scope.$parent.currentLetter = element.text();
-             });
-             });
-
-             // For desktops
-             element.bind("mousemove", function(evt, e2) {
-             scope.$apply(function() {
-             console.log(evt);
-             console.log(e2);
-
-             scope.$parent.currentLetter = element.text();
-             });
-             });*/
         }
     }
 })();
