@@ -98,7 +98,7 @@
             function getUserSkillCSV() {
                 var resultArr = [];
 
-                vm9.competenceData.users.map(function(user) {
+                vm.competenceData.users.map(function(user) {
                 	var row = [];
                 	row.push(user.name);
                 	user.skills.map(function(skill) {
