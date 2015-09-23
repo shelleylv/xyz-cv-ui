@@ -106,7 +106,7 @@
             function getSuggestedTags(query) {
                 var result = [];
                 vm.suggestedTags.forEach(function(suggestedTag) {
-                    if (suggestedTag.toLowerCase().match(query.toLowerCase())) {
+                    if (suggestedTag.toLowerCase().indexOf(query.toLowerCase()) > -1) {
                         result.push(suggestedTag);
                     }
                 });
