@@ -4,12 +4,11 @@
 .dashboard {
 
     input[type=checkbox] { margin-right: 1em }
-	.panel-heading { font-weight: bold }
-	
-	.office { 
+
+	.office {
 		label { display: block }
-		.panel-body { 
-			height: 200px; 
+		.panel-body {
+			height: 200px;
 			overflow-y: auto;
 		}
 	}
@@ -18,15 +17,15 @@
 
 		.panel-heading label { float: right }
 
-		.panel-body { 
-			height: 200px; 
+		.panel-body {
+			height: 200px;
 			overflow-y: auto;
 		}
 
-	 	ul { 
+	 	ul {
 			-webkit-column-count: 3;
        		-moz-column-count: 3;
-        	column-count: 3; 
+        	column-count: 3;
         }
 	}
 
@@ -37,8 +36,41 @@
 		.namecolumn { text-align: left }
 
 
-  		.panel-body {	
+  		.panel-body {
         	overflow: auto;
+        }
+    }
+
+    .checklist-type {
+        font-size: 150%;
+        text-align: center;
+    }
+
+    .checklist-select-all {
+        margin-left: 9px;
+        padding-bottom: 5px;
+    }
+
+    .checklist {
+        @include border-radius(0);
+        border: 1px solid #ddd;
+        overflow: scroll;
+        max-height: 400px;
+        .list-group-item {
+            @include border-radius(0);
+            border: none;
+            padding: 0;
+
+            &:nth-child(odd) {
+                background-color: #eaeaea;
+            }
+
+            label {
+                padding: 5px 0px 5px 28px;
+                width: 100%;
+                .checkbox {
+                }
+            }
         }
     }
 }

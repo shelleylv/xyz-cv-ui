@@ -4,5 +4,6 @@ dist/
 .tmp/
 .sass-cache/
 .idea/
+.DS_Store
 
 /src/app/constant.config.js

@@ -220,6 +220,7 @@ body {
         text-align: center;
         display: inline-block;
         font-size: 32px;
+        cursor: pointer;
     }
     .title {
         width: 100%;
@@ -459,4 +460,12 @@ tags-input {
 [collapse] {
     transition-timing-function: ease !important;
     transition-duration: 0.15s;
+}
+
+.panel-default {
+    .panel-heading {
+        background-color: inherit;
+        border-bottom: 1px solid #ddd;
+        font-weight: 400;
+    }
 }

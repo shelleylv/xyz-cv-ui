@@ -17,6 +17,7 @@
             vm.getUserSkillCSV = getUserSkillCSV;
             vm.setCompetenceData = setCompetenceData;
             vm.setAllSkills = setAllSkills;
+            vm.setAllOffices = setAllOffices;
             vm.competenceData = [];
             vm.activated = false;
 
@@ -43,6 +44,12 @@
                     vm.skill[skill] = value;
                 });
                 setCompetenceData();
+            }
+
+            function setAllOffices(value) {
+                _.each(vm.offices, function(element) {
+                    element = value;
+                })
             }
 
             function setCompetenceData() {

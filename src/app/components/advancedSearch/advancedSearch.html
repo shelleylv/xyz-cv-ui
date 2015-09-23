@@ -43,10 +43,12 @@
                     </form>
 
                     <ul class="list-group compact edit-skills-list-search">
-                        <li class="list-group-item edit-skills-list-item" dir-paginate="skill in vm.refinedSkills | itemsPerPage:5">
-                            <div class="item-buttons">
-                                <div class="deletebutton" ng-click="vm.removeSkill(skill)">
-                                    <i class="fa fa-minus-circle"></i>
+                        <li class="list-group-item edit-skills-list-item" swipe-action on-remove="vm.removeSkill" on-edit="vm.editSkill" item="skill" ng-repeat="skill in vm.refinedSkills">
+                            <div class="item-buttons hidden-xs hidden-sm">
+                                <div class="deletebutton-expander">
+                                    <div class="deletebutton" ng-click="vm.removeSkill(skill)">
+                                        <i class="fa fa-trash"></i>
+                                    </div>
                                 </div>
                             </div>
                             <div class="item-content">
@@ -54,9 +56,11 @@
                                 <div class="level">Level: {{skill.level}}</div>
                                 <div class="years">Years: {{skill.years}}</div>
                             </div>
-                            <div class="item-buttons">
-                                <div class="editbutton" ng-click="vm.editSkill(skill)">
-                                    <i class="fa fa-edit"></i>
+                            <div class="item-buttons hidden-xs hidden-sm">
+                                <div class="editbutton-expander">
+                                    <div class="editbutton" ng-click="vm.editSkill(skill)">
+                                        <i class="fa fa-edit"></i>
+                                    </div>
                                 </div>
                             </div>
                         </li>
@@ -127,7 +131,7 @@
                                     <div class="col-md-6">
                                         <div class="office-container" ng-show="person.office">
                                             <i class="fa fa-building"></i>{{ person.office }}
-                                        </div>                              
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -147,7 +151,7 @@
                                 <div class="col-md-3">
                                     <div class="office-container" ng-show="person.office">
                                         {{ person.office }}
-                                    </div>                              
+                                    </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="phone-container" ng-show="person.phoneNumber">

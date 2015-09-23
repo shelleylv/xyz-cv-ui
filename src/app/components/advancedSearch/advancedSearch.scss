@@ -136,15 +136,55 @@ input + .typeahead.ng-hide { display: block !important; visibility: hidden !impo
 }
 
 .edit-skills-list-search {
+    .swipe-overlay {
+        line-height: 37px;
+    }
     min-height: 201px;
     .edit-skills-list-item {
-        .deletebutton {
-            display: inline-block;
-            color: red;
+        .item-buttons {
+            width: 40px;
+            min-width: 40px;
         }
-        .editbutton {
-            display: inline-block;
-            float: right;
+        .deletebutton-expander {
+            display: flex;
+            width: 100%;
+            .deletebutton {
+                @include transition(all 0.3s ease);
+                max-width: 3px;
+                min-width: 3px;
+                display: inline-block;
+                color: rgba(255, 255, 255, 0);
+                background-color: red;
+                text-align: center;
+                font-size: 20px;
+                line-height: 40px;
+            }
+            &:hover .deletebutton {
+                min-width: 100%;
+                max-width: 100%;
+                color: rgba(255, 255, 255, 1);
+            }
+        }
+        .editbutton-expander {
+            display: flex;
+            flex-direction: row-reverse;
+            width: 100%;
+            .editbutton {
+                @include transition(all 0.3s ease);
+                max-width: 3px;
+                min-width: 3px;
+                display: inline-block;
+                color: rgba(255, 255, 255, 0);
+                background-color: #337ab7;
+                text-align: center;
+                font-size: 20px;
+                line-height: 40px;
+            }
+            &:hover .editbutton {
+                min-width: 100%;
+                max-width: 100%;
+                color: rgba(255, 255, 255, 1);
+            }
         }
         .name {
             display: inline-block;
