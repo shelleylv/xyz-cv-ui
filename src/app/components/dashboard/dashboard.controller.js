@@ -7,6 +7,7 @@
 
         function DashboardController(DashboardModel, $filter) {
             var vm = this;
+            window.vm = vm;
 
             vm.competence = {}
             vm.offices = [];
@@ -47,9 +48,10 @@
             }
 
             function setAllOffices(value) {
-                _.each(vm.offices, function(element) {
-                    element = value;
-                })
+                vm.offices[0].offices.map(function(office) {
+                    vm.offices[office] = value;
+                });
+                setCompetenceData();
             }
 
             function setCompetenceData() {
@@ -105,7 +107,7 @@
             function getUserSkillCSV() {
                 var resultArr = [];
 
-                vm9.competenceData.users.map(function(user) {
+                vm.competenceData.users.map(function(user) {
                 	var row = [];
                 	row.push(user.name);
                 	user.skills.map(function(skill) {

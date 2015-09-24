@@ -54,7 +54,7 @@
     .checklist {
         @include border-radius(0);
         border: 1px solid #ddd;
-        overflow: scroll;
+        overflow: auto;
         max-height: 400px;
         .list-group-item {
             @include border-radius(0);

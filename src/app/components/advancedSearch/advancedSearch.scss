@@ -1,6 +1,9 @@
 @import "styles/_base";
 @import "styles/_colors";
 
+$advancedsearchimagesize1: 66px;
+$advancedsearchimagesize2: 105px;
+
 .parameter-window {
     .select-width-hack {
         button {
@@ -73,20 +76,35 @@ input + .typeahead.ng-hide { display: block !important; visibility: hidden !impo
             width: 100%;
             .profile-image {
                 text-align: center;
-                min-width: 61px;
-                max-width: 61px;
-                min-height: 61px;
-                max-height: 61px;
+                min-width: $advancedsearchimagesize1;
+                max-width: $advancedsearchimagesize1;
+                min-height: $advancedsearchimagesize1;
+                max-height: $advancedsearchimagesize1;
                 overflow: hidden;
-                background-color: white;
+                background-color: #eee;
                 .fa.fa-user {
-                    line-height: 61px;
-                    font-size: 32px;
-                    color: #ddd;
+                    line-height: $advancedsearchimagesize1;
+                    font-size: calc(#{$advancedsearchimagesize1} * 0.5);
+                    color: white;
                 }
                 img {
-                    width: 61px;
-                    height: 61px;
+                    width: $advancedsearchimagesize1;
+                    height: $advancedsearchimagesize1;
+                }
+                @media(max-width: 768px) {
+                    min-width: $advancedsearchimagesize2;
+                    max-width: $advancedsearchimagesize2;
+                    min-height: $advancedsearchimagesize2;
+                    max-height: $advancedsearchimagesize2;
+                    .fa.fa-user {
+                        line-height: $advancedsearchimagesize2;
+                        font-size: calc(#{$advancedsearchimagesize2} * 0.5);
+                        color: white;
+                    }
+                    img {
+                        width: $advancedsearchimagesize2;
+                        height: $advancedsearchimagesize2;
+                    }
                 }
             }
             .content {
@@ -106,10 +124,13 @@ input + .typeahead.ng-hide { display: block !important; visibility: hidden !impo
                 }
                 .phone-container {
                     opacity: 0.65;
+                    white-space: nowrap;
                 }
                 .mail-container {
                     display: inline-block;
                     opacity: 0.65;
+                    overflow: hidden;
+                    white-space: nowrap;
                 }
             }
             &:hover {
@@ -122,6 +143,7 @@ input + .typeahead.ng-hide { display: block !important; visibility: hidden !impo
             }
         }
         &:last-child {
+            padding-bottom: 0px;
             .content {
             }
         }
@@ -189,11 +211,9 @@ input + .typeahead.ng-hide { display: block !important; visibility: hidden !impo
         .name {
             display: inline-block;
             font-weight: bold;
-            width: 175px;
         }
         .level {
             display: inline-block;
-            width: 100px;
         }
         .years {
             display: inline-block;

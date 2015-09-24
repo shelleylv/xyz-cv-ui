@@ -10,7 +10,7 @@
                         <i class="fa fa-building"></i> Offices
                     </div>
                     <label class="checkbox-inline checklist-select-all">
-                        <input type="checkbox"> Select
+                        <input type="checkbox" ng-change="vm.setAllOffices(vm.allOffices)" ng-model="vm.allOffices"> Select
                         all
                     </label>
                     <ul class="list-group checklist">
