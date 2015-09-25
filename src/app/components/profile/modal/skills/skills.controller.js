@@ -11,6 +11,7 @@
 
             vm.user = {};
             vm.connectors = [];
+            vm.connectorsPage = [];
             vm.skills = [];
             vm.isValidConnector = isValidConnector;
             vm.hideModal = SkillsModal.deactivate;
@@ -25,6 +26,11 @@
             vm.connectorsToSave = {};
             vm.currentConnector = {};
             vm.isEditMode = isEditMode;
+            vm.nextPage = nextPage;
+            vm.previousPage = previousPage;
+            vm.setPage = setPage;
+            vm.getPageCount = getPageCount;
+            vm.currentPage = 0;
 
             activate();
 
@@ -44,6 +50,8 @@
                         setLevels();
                         setSkills(values.skills);
                         setHashes(values.skills, values.connectors);
+
+                        vm.setPage(0);
                     });
             }
 
@@ -66,6 +74,8 @@
                             vm.connectorsToSave[connector.name] = angular.copy(connector);
                             vm.currentConnector = angular.copy(connector);
                             updateConnectorList();
+
+                            vm.setPage(vm.getPageCount()-1);
                         });
                 }
             }
@@ -217,10 +227,36 @@
 
             function updateConnectorList() {
                 vm.connectors = Object.keys(vm.connectorHash).map(function(key){return vm.connectorHash[key];});
+                vm.setPage(vm.currentPage);
             }
 
             function updateSkillList() {
                 vm.skills = Object.keys(vm.skillHash).map(function(key){return vm.skillHash[key];});
+            }
+
+            function nextPage() {
+                vm.currentPage = vm.currentPage + 1;
+                vm.setPage(vm.currentPage);
+            }
+
+            function previousPage() {
+                vm.currentPage = vm.currentPage - 1;
+                vm.setPage(vm.currentPage);
+            }
+
+            function setPage(pageNumber) {
+                pageNumber = Math.max(pageNumber, 0);
+                pageNumber = Math.min(pageNumber, getPageCount() - 1);
+                vm.currentPage = pageNumber;
+
+                var firstIndex = pageNumber * 10;
+                var lastIndex = Math.min(pageNumber * 10 + 10, vm.connectors.length);
+                var indices = lastIndex - firstIndex;
+                vm.connectorsPage = vm.connectors.slice(firstIndex, lastIndex);
+            }
+
+            function getPageCount() {
+                return Math.ceil(vm.connectors.length / 10);
             }
 
         }

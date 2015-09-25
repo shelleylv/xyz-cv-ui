@@ -7,6 +7,7 @@
 
         function DashboardController(DashboardModel, $filter) {
             var vm = this;
+            window.vm = vm;
 
             vm.competence = {}
             vm.offices = [];
@@ -17,6 +18,7 @@
             vm.getUserSkillCSV = getUserSkillCSV;
             vm.setCompetenceData = setCompetenceData;
             vm.setAllSkills = setAllSkills;
+            vm.setAllOffices = setAllOffices;
             vm.competenceData = [];
             vm.activated = false;
 
@@ -41,6 +43,13 @@
             function setAllSkills(value) {
                 vm.skills[0].skills.map(function(skill) {
                     vm.skill[skill] = value;
+                });
+                setCompetenceData();
+            }
+
+            function setAllOffices(value) {
+                vm.offices[0].offices.map(function(office) {
+                    vm.offices[office] = value;
                 });
                 setCompetenceData();
             }

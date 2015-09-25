@@ -220,6 +220,7 @@ body {
         text-align: center;
         display: inline-block;
         font-size: 32px;
+        cursor: pointer;
     }
     .title {
         width: 100%;
@@ -459,4 +460,60 @@ tags-input {
 [collapse] {
     transition-timing-function: ease !important;
     transition-duration: 0.15s;
+}
+
+.panel-default {
+    .panel-heading {
+        background-color: inherit;
+        border-bottom: 1px solid #ddd;
+        font-weight: 400;
+    }
+}
+
+.modal {
+    overflow-y: visible !important;
+    display: block;
+    .modal-content {
+        @include border-radius(0);
+    }
+
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity .15s linear;
+    &.ng-enter {
+        opacity: .0;
+        &.ng-enter-active {
+            opacity: 1.0;
+        }
+    }
+    &.ng-leave {
+        opacity: 1.0;
+        &.ng-leave-active {
+            opacity: 0;
+        }
+    }
+    .modal-body {
+        >.list-group {
+            margin: 0;
+        }
+    }
+}
+
+.typeahead {
+    z-index: 1051;
+}
+
+.control-label {
+    font-weight: 400;
+}
+
+label {
+    font-weight: 400;
+}
+
+.btn {
+    @include border-radius(0);
+}
+
+.form-control {
+    @include border-radius(0);
 }

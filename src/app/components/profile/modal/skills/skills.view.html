@@ -1,4 +1,4 @@
-<div class="modal">
+<div class="modal skills-modal">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -42,8 +42,8 @@
 						<button class="btn btn-primary pull-right" ng-disabled="!vm.isValidConnector(vm.currentConnector)" ng-click="vm.saveConnector(vm.currentConnector)" ng-if="vm.isEditMode()">Save</button>
 					</div>
 				</div>
-				<ul class="list-group compact edit-skills-list">
-					<li class="list-group-item edit-skills-list-item" swipe-action="" on-remove="vm.removeConnector" on-edit="vm.setConnectorForEditing" item="connector" ng-repeat="connector in vm.connectors">
+                <ul class="list-group compact edit-skills-list">
+					<li class="list-group-item edit-skills-list-item" swipe-action="" on-remove="vm.removeConnector" on-edit="vm.setConnectorForEditing" item="connector" ng-repeat="connector in vm.connectorsPage">
                         <div class="item-buttons hidden-xs hidden-sm">
                             <div class="deletebutton-expander">
                                 <div class="deletebutton" ng-click="vm.removeConnector(connector)">
@@ -65,10 +65,21 @@
                         </div>
 					</li>
 				</ul>
-				<div class="pagination-container" ng-if="vm.connectors.length > 7">
-					<dir-pagination-controls></dir-pagination-controls>
-				</div>
-			</div>
+                <div class="pagination-container" ng-if="vm.getPageCount() > 0">
+                    <ul class="pagination">
+                        <li>
+                            <a aria-label="Previous" ng-click="vm.previousPage()">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a aria-label="Next" ng-click="vm.nextPage()">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 			<div class="modal-footer">
 				<button class="btn btn-default" ng-click="vm.hideModal()">Close</button>
 				<button class="btn btn-primary" ng-click="vm.save()">Confirm changes</button>

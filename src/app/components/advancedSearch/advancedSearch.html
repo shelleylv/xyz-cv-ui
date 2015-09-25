@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12">
+    <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
         <div class="panel panel-default" ng-show="vm.activated">
             <div class="panel-body">
                 <div class="form-group">
@@ -43,20 +43,24 @@
                     </form>
 
                     <ul class="list-group compact edit-skills-list-search">
-                        <li class="list-group-item edit-skills-list-item" dir-paginate="skill in vm.refinedSkills | itemsPerPage:5">
-                            <div class="item-buttons">
-                                <div class="deletebutton" ng-click="vm.removeSkill(skill)">
-                                    <i class="fa fa-minus-circle"></i>
+                        <li class="list-group-item edit-skills-list-item" swipe-action on-remove="vm.removeSkill" on-edit="vm.editSkill" item="skill" ng-repeat="skill in vm.refinedSkills">
+                            <div class="item-buttons hidden-xs hidden-sm">
+                                <div class="deletebutton-expander">
+                                    <div class="deletebutton" ng-click="vm.removeSkill(skill)">
+                                        <i class="fa fa-trash"></i>
+                                    </div>
                                 </div>
                             </div>
                             <div class="item-content">
-                                <div class="name">{{skill.name}}</div>
-                                <div class="level">Level: {{skill.level}}</div>
-                                <div class="years">Years: {{skill.years}}</div>
+                                <div class="name col-sm-4">{{skill.name}}</div>
+                                <div class="level col-sm-4">Level: {{skill.level}}</div>
+                                <div class="years col-sm-4">Years: {{skill.years}}</div>
                             </div>
-                            <div class="item-buttons">
-                                <div class="editbutton" ng-click="vm.editSkill(skill)">
-                                    <i class="fa fa-edit"></i>
+                            <div class="item-buttons hidden-xs hidden-sm">
+                                <div class="editbutton-expander">
+                                    <div class="editbutton" ng-click="vm.editSkill(skill)">
+                                        <i class="fa fa-edit"></i>
+                                    </div>
                                 </div>
                             </div>
                         </li>
@@ -107,27 +111,27 @@
                             </div>
                             <div class="content">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-sm-8">
                                         <div class="name">
                                             {{ person.name }}
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="mail-container" ng-show="person.email">
-                                            {{ person.email }}
+                                    <div class="col-sm-4">
+                                        <div class="phone-container" ng-show="person.phoneNumber">
+                                            <i class="fa fa-phone"></i> {{ person.phoneNumber }}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="phone-container" ng-show="person.phoneNumber">
-                                            <i class="fa fa-phone"></i>{{ person.phoneNumber }}
+                                    <div class="col-sm-8">
+                                        <div class="mail-container" ng-show="person.email">
+                                            <i class="fa fa-envelope"></i> {{ person.email }}
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-sm-4">
                                         <div class="office-container" ng-show="person.office">
-                                            <i class="fa fa-building"></i>{{ person.office }}
-                                        </div>                              
+                                            <i class="fa fa-building"></i> {{ person.office }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -144,17 +148,17 @@
                                         {{ person.name }}
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="office-container" ng-show="person.office">
                                         {{ person.office }}
-                                    </div>                              
+                                    </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="phone-container" ng-show="person.phoneNumber">
                                         {{ person.phoneNumber }}
                                     </div>
                                 </div>
-                                <div class="col-md-4 text-right">
+                                <div class="col-md-5 text-right">
                                     <div class="email" ng-show="person.email">
                                         {{ person.email }}
                                     </div>
