@@ -175,7 +175,7 @@
                     <i class="fa fa-edit"></i>
                 </div>
                 <div>
-                    <div class="itemrow skillrow" ng-class="{'removeTopBorder': $first}" dir-paginate="skill in vm.skills | itemsPerPage: 10">
+                    <div class="itemrow skillrow" ng-class="{'removeTopBorder': $first}" dir-paginate="skill in vm.skills | itemsPerPage: 15">
                         <div class="image-box">
                             <i class="{{ skill.icon }}"></i>
                         </div>
@@ -216,7 +216,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel-footer" ng-if="vm.skills.length > 10">
+                <div class="panel-footer" ng-if="vm.skills.length > 15">
                     <dir-pagination-controls></dir-pagination-controls>
                 </div>
                 <div class="panel-body" ng-if="vm.skills.length === 0" ng-click="vm.showModal(vm.skillsModal, vm.skills)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
