@@ -7,6 +7,7 @@
 
         function ProfileController(ProfileModel, $routeParams, session, API_URL, GeneralInfoModal, ImageModal, PrivateInfoModal, SkillsModal, AssignmentsModal) {
             var vm = this;
+            window.vm = vm;
 
             vm.API_URL = API_URL;
             vm.activated = false;

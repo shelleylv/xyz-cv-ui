@@ -3,7 +3,7 @@
 		<div class="panel">
 			<div class="panel-body">
 				<div class="facts">
-					<div class="fact col-md-3" ng-repeat="chart in vm.charts">
+					<div class="fact col-md-6" ng-repeat="chart in vm.charts">
 						<div class="title">
 							{{chart.title}}
 						</div>
@@ -16,34 +16,36 @@
 					</div>
 				</div>
 			</div>
-			<div class="panel-footer">
-				Interesting facts
-			</div>
 		</div>
 	</div>
 	<div class="col-md-6 col-lg-6">
 		<div class="panel panel-default">
-			<div class="skillcard" ng-repeat="skill in vm.latestSkills">
-				<div class="image-box">
-					<i class="{{skill.icon}}"></i>
-				</div>
-				<div class="data-box">
-					<div class="name">
-						{{ skill.name }}
-					</div>
-					<div class="date pull-right">
-						<span am-time-ago="skill.updatedAt"></span>
-					</div>
-				</div>
-			</div>
-			<div class="panel-footer">
-				Recent skills
-			</div>
+            <div class="panel-heading">
+                Recently added skills
+            </div>
+            <div>
+                <div class="skillcard" ng-repeat="skill in vm.latestSkills">
+                    <div class="image-box">
+                        <i class="{{skill.icon}}"></i>
+                    </div>
+                    <div class="data-box">
+                        <div class="name">
+                            {{ skill.name }}
+                        </div>
+                        <div class="date pull-right">
+                            <span am-time-ago="skill.updatedAt"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 		</div>
 	</div>
 	<div class="col-md-6 col-lg-6">
 		<div class="panel panel-default">
-			<a class="facecard" ng-repeat="user in vm.latestUsers" ng-href="#/profile/{{ user._id }}">
+			<div class="panel-heading">
+                Recent profile updates
+            </div>
+            <a class="facecard" ng-repeat="user in vm.latestUsers" ng-href="#/profile/{{ user._id }}">
 				<div class="image-box">
 					<i class="fa fa-user" ng-hide="user.profileImage"></i>
                 	<img ng-if="user.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ user.profileImage.generatedName }}">
@@ -67,9 +69,6 @@
 					</div>
 				</div>
 			</a>
-			<div class="panel-footer">
-				Recent profiles
-			</div>
 		</div>
 	</div>
 </div>
