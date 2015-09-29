@@ -4,6 +4,7 @@
 $advancedsearchimagesize1: 66px;
 $advancedsearchimagesize2: 105px;
 $advancedsearchimagesize3: 116px;
+$advancedsearchimagesize_mobile: 85px;
 
 .parameter-window {
     .select-width-hack {
@@ -93,18 +94,18 @@ input + .typeahead.ng-hide { display: block !important; visibility: hidden !impo
                     height: $advancedsearchimagesize1;
                 }
                 @media(max-width: 768px) {
-                    min-width: $advancedsearchimagesize2;
-                    max-width: $advancedsearchimagesize2;
-                    min-height: $advancedsearchimagesize2;
-                    max-height: $advancedsearchimagesize2;
+                    min-width: $advancedsearchimagesize_mobile;
+                    max-width: $advancedsearchimagesize_mobile;
+                    min-height: $advancedsearchimagesize_mobile;
+                    max-height: $advancedsearchimagesize_mobile;
                     .fa.fa-user {
-                        line-height: $advancedsearchimagesize2;
-                        font-size: calc(#{$advancedsearchimagesize2} * 0.5);
+                        line-height: $advancedsearchimagesize_mobile;
+                        font-size: calc(#{$advancedsearchimagesize_mobile} * 0.5);
                         color: white;
                     }
                     img {
-                        width: $advancedsearchimagesize2;
-                        height: $advancedsearchimagesize2;
+                        width: $advancedsearchimagesize_mobile;
+                        height: $advancedsearchimagesize_mobile;
                     }
                 }
             }
@@ -112,6 +113,10 @@ input + .typeahead.ng-hide { display: block !important; visibility: hidden !impo
                 width: 100%;
                 padding: 10px;
                 border-top: 1px solid #ddd;
+                overflow: hidden;
+                @media(max-width:768px) {
+                    font-size: 80%;
+                }
                 .fa {
                     padding-right: 2px;
                     color: #3D606E;
