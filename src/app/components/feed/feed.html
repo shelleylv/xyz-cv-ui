@@ -60,10 +60,13 @@
 					<div class="title">
 						{{ user.position }}
 					</div>
-					Skills:
-					<div class="skilltag" ng-repeat="skill in user.skills">
-						{{ skill.name }}
-					</div>
+                    <div ng-if="user.skills.length > 0">
+                        Added <ng-pluralize count="user.skills.length" when="{
+                            '0': 'no skills',
+                            '1': '1 skill',
+                            'other': '{} skills'
+                        }"></ng-pluralize>
+                    </div>
 					<div class="date pull-right">
 						<span am-time-ago="user.updatedAt"></span>
 					</div>

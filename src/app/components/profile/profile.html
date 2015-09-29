@@ -32,21 +32,25 @@
                             <div class="title">
                                 {{ vm.generalInfo.position }}
                             </div>
-                            <div class="location">
-                                <span ng-if="vm.generalInfo.phoneNumber"><i class="fa fa-phone"></i> {{ vm.generalInfo.phoneNumber }}</span>
-                                <span ng-if="vm.generalInfo.email"><i class="fa fa-envelope"></i> {{ vm.generalInfo.email }}</span>
-                                <span ng-if="vm.generalInfo.office">
-                                    <!--
-                                    <span class="flag-icon" ng-if="vm.generalInfo.office.name" ng-class="'flag-icon-' + (vm.generalInfo.office.name | country | flag)"></span>
-                                    -->
-                                    {{ vm.generalInfo.office.name }}
-                                </span>
-                                <span ng-if="vm.generalInfo.closestSuperior"><i class="fa fa-sitemap"></i> {{ vm.generalInfo.closestSuperior }}</span>
+                            <div class="contact row">
+                                <div class="col-md-6">
+                                    <div class="" ng-if="vm.generalInfo.phoneNumber"><i class="fa fa-phone"></i> {{ vm.generalInfo.phoneNumber }}</div>
+                                    <div class="" ng-if="vm.generalInfo.email"><i class="fa fa-envelope"></i> {{ vm.generalInfo.email }}</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="" ng-if="vm.generalInfo.office"><i class="fa fa-building"></i>
+                                        <!--
+                                        <span class="flag-icon" ng-if="vm.generalInfo.office.name" ng-class="'flag-icon-' + (vm.generalInfo.office.name | country | flag)"></span>
+                                        -->
+                                        {{ vm.generalInfo.office.name }}
+                                    </div>
+                                    <div class="" ng-if="vm.generalInfo.closestSuperior"><i class="fa fa-sitemap"></i> {{ vm.generalInfo.closestSuperior }}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row" ng-if="vm.generalInfo.employeeNumber">
                         <div class="col-sm-4 col-md-3 sheet-label">
                             Employee Number
                         </div>
