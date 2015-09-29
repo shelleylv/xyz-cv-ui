@@ -132,17 +132,7 @@
                 font-weight: bold;
                 display: inline-block;
             }
-
             .office {
-                display: inline-block;
-            }
-
-            .skilltag {
-                font-size: 75%;
-                background-color: #B0D3E0;
-                @include border-radius(100px);
-                padding: 2px 6px;
-                margin: 0 2px;
                 display: inline-block;
             }
             .date {
