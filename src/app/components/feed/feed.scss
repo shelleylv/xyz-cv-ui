@@ -153,7 +153,7 @@
         margin: -15px;
         .fact {
             content: " ";
-            min-height: 200px;
+            min-height: 100px;
             padding: 10px;
 
             .title {
@@ -163,7 +163,7 @@
                 margin-bottom: 25px;
             }
             .chart {
-                min-height: 200px;
+                min-height: 100px;
                 height: 100% !important;
                 width: 100% !important;
                 canvas {

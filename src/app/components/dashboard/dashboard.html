@@ -1,84 +1,57 @@
 <div class="dashboard">
-
-    <div class="panel panel-default">
-        <div class="panel-heading">Export</div>
-
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="checklist-type">
-                        <i class="fa fa-building"></i> Offices
-                    </div>
-                    <label class="checkbox-inline checklist-select-all">
-                        <input type="checkbox" ng-change="vm.setAllOffices(vm.allOffices)" ng-model="vm.allOffices"> Select
-                        all
-                    </label>
-                    <ul class="list-group checklist">
-                        <li class="list-group-item" ng-repeat="office in vm.offices[0].offices | orderBy: office">
-                            <label class="checkbox-inline">
-                                <input type="checkbox" name="{{office}}" value="{{office}}"
-                                       ng-change="vm.setCompetenceData()" ng-model="vm.office[office]">{{office}}
-                            </label>
-                        </li>
-                    </ul>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Filters
                 </div>
-                <div class="col-md-6">
-                    <div class="checklist-type">
-                        <i class="fa fa-flask"></i> Skills
-                    </div>
-                    <label class="checkbox-inline checklist-select-all">
-                        <input type="checkbox" ng-change="vm.setAllSkills(vm.allSkills)" ng-model="vm.allSkills"> Select
-                        all
-                    </label>
-                    <ul class="list-group checklist">
-                        <li class="list-group-item" ng-repeat="skill in vm.skills[0].skills">
-                            <label class="checkbox-inline">
-                                <input class="checkbox" type="checkbox" name="{{skill}}" value="{{skill}}" ng-change="vm.setCompetenceData()"
-                                       ng-model="vm.skill[skill]">{{skill}}
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="checklist-type">
+                                <i class="fa fa-building"></i> Offices
+                            </div>
+                            <label class="checkbox-inline checklist-select-all">
+                                <input type="checkbox" ng-change="vm.setAllOffices(vm.allOffices)" ng-model="vm.allOffices"> Select
+                                all
                             </label>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 text-right">
-                    <button class="btn btn-default btn-sm" type="button" ng-csv="vm.getUserSkillCSV()" csv-header="vm.getSelectedSkillsCSV()"
-                            filename="CompetenceMatrix.csv"><i class="fa fa-save"></i> Export
-                    </button>
+                            <ul class="list-group checklist">
+                                <li class="list-group-item" ng-repeat="office in vm.offices[0].offices | orderBy: office">
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="{{office}}" value="{{office}}"
+                                               ng-change="vm.setCompetenceData()" ng-model="vm.office[office]">{{office}}
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="panel panel-default">
-    <div class="panel-heading">Preview
-    </div>
-
-    <div class="panel-body">
-
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th class="namecolumn">Employee</th>
-                <th ng-repeat="skill in vm.competenceData.skills">
-                    {{ skill }}
-                </th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <tr ng-repeat="user in vm.competenceData.users">
-                <td class="namecolumn">
-                    <a ng-href="#/profile/{{usr.userId}}">{{ user.name }}</a>
-                </td>
-
-                <td ng-repeat="skill in user.skills">
-                    {{ skill.level }}
-                </td>
-            </tr>
-            </tbody>
-        </table>
-
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="chart">
+                        <div id="programming-skills" style="width: 100%; height: 400px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="chart">
+                        <div id="soft-skills" style="width: 100%; height: 800px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

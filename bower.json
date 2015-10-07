@@ -19,6 +19,8 @@
     "src"
   ],
   "dependencies": {
+    "amcharts-angular": "*",
+    "amcharts3": "~3.17.1",
     "angular": "1.4.3",
     "angular-animate": "1.4.2",
     "angular-bootstrap": "~0.13.3",
@@ -62,6 +64,12 @@
       "main": [
         "./dist/angular-retina.min.js"
       ]
+    },
+    "amcharts3": {
+        "main": [
+            "./amcharts/amcharts.js",
+            "./amcharts/serial.js"
+        ]
     }
   },
   "devDependencies": {

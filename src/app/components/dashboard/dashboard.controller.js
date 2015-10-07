@@ -5,21 +5,10 @@
         .module('xyz-cv-ui.dashboard')
         .controller('DashboardController', DashboardController);
 
-        function DashboardController(DashboardModel, $filter) {
+        function DashboardController(DashboardModel, $filter, $timeout, $q, $rootScope) {
             var vm = this;
             window.vm = vm;
 
-            vm.competence = {}
-            vm.offices = [];
-            vm.skills = [];
-            vm.skill = [];
-            vm.office = [];
-            vm.getSelectedSkillsCSV = getSelectedSkillsCSV;
-            vm.getUserSkillCSV = getUserSkillCSV;
-            vm.setCompetenceData = setCompetenceData;
-            vm.setAllSkills = setAllSkills;
-            vm.setAllOffices = setAllOffices;
-            vm.competenceData = [];
             vm.activated = false;
 
             activate();
@@ -29,96 +18,428 @@
             function activate() {
                 DashboardModel.get()
                     .$promise.then(function(model) {
-                        vm.competence = model.competence;
-                        vm.offices = model.offices; // $filter('orderBy')(model.offices);
-                        vm.skills = model.skills;
-                        vm.skills[0].skills = $filter('orderBy')(vm.skills[0].skills);
-                        vm.skill = [];
-                        vm.office = [];
-                        vm.competenceData = [];
                         vm.activated = true;
                 });
             }
 
-            function setAllSkills(value) {
-                vm.skills[0].skills.map(function(skill) {
-                    vm.skill[skill] = value;
-                });
-                setCompetenceData();
-            }
-
-            function setAllOffices(value) {
-                vm.offices[0].offices.map(function(office) {
-                    vm.offices[office] = value;
-                });
-                setCompetenceData();
-            }
-
-            function setCompetenceData() {
-            	var resultArr = [];
-
-            	// Matrix x-axis name
-				var competenceData = [];
-
-				// Build list with selected skills
-                competenceData.skills = [];
-                vm.competence.map(function(competence) {
-                    if (vm.skill[competence.skill]) {
-	                    competenceData.skills.push(competence.skill);
+            vm.chart = {
+                "type": "serial",
+                "rotate": true,
+                "categoryField": "category",
+                "colors": [
+                    '#52A9E2',
+                    '#4088B1',
+                    '#367096',
+                    '#2D5D7C',
+                    '#1e5368',
+                ],
+                "categoryAxis": {
+                    "gridPosition": "start",
+                    "gridAlpha": 0
+                },
+                "trendLines": [],
+                "graphs": [
+                    {
+                        "balloonText": "[[title]] of [[category]]:[[value]]",
+                        "fillAlphas": 1,
+                        "id": "AmGraph-1",
+                        "title": "Level 1",
+                        "type": "column",
+                        "valueField": "column-1"
+                    },
+                    {
+                        "balloonText": "[[title]] of [[category]]:[[value]]",
+                        "fillAlphas": 1,
+                        "id": "AmGraph-2",
+                        "title": "Level 2",
+                        "type": "column",
+                        "valueField": "column-2"
+                    },
+                    {
+                        "balloonText": "[[title]] of [[category]]:[[value]]",
+                        "fillAlphas": 1,
+                        "id": "AmGraph-3",
+                        "title": "Level 3",
+                        "type": "column",
+                        "valueField": "column-3"
+                    },
+                    {
+                        "balloonText": "[[title]] of [[category]]:[[value]]",
+                        "fillAlphas": 1,
+                        "id": "AmGraph-4",
+                        "title": "Level 4",
+                        "type": "column",
+                        "valueField": "column-4"
+                    },
+                    {
+                        "balloonText": "[[title]] of [[category]]:[[value]]",
+                        "fillAlphas": 1,
+                        "id": "AmGraph-5",
+                        "title": "Level 5",
+                        "type": "column",
+                        "valueField": "column-5"
                     }
-                });
-                // Sort skills by name
-                competenceData.skills = $filter('orderBy')(competenceData.skills);
+                ],
+                "guides": [],
+                "valueAxes": [
+                    {
+                        "id": "ValueAxis-1",
+                        "stackType": "regular",
+                        "title": "Persons",
+                        "gridAlpha": 0
+                    }
+                ],
+                "allLabels": [],
+                "balloon": {},
+                "legend": {
+                    "useGraphSettings": true
+                },
+                "titles": [
+                    {
+                        "id": "Title-1",
+                        "size": 15,
+                        "text": "Programming languages"
+                    }
+                ],
+                "dataProvider": [
+                    {
+                        "category": "Java",
+                        "column-1": 1,
+                        "column-2": 2,
+                        "column-3": 6,
+                        "column-4": 5,
+                        "column-5": 3
+                    },
+                    {
+                        "category": "JavaScript",
+                        "column-1": 2,
+                        "column-2": 4,
+                        "column-3": 5,
+                        "column-4": 4,
+                        "column-5": 3
+                    },
+                    {
+                        "category": "C++",
+                        "column-1": 5,
+                        "column-2": 4,
+                        "column-3": 3,
+                        "column-4": 2,
+                        "column-5": 1
+                    },
+                    {
+                        "category": "C",
+                        "column-1": 4,
+                        "column-2": 4,
+                        "column-3": 3,
+                        "column-4": 2,
+                        "column-5": 1
+                    },
+                    {
+                        "category": "C#",
+                        "column-1": 2,
+                        "column-2": 4,
+                        "column-3": 2,
+                        "column-4": 3,
+                        "column-5": 2
+                    },
+                    {
+                        "category": "Python",
+                        "column-1": 5,
+                        "column-2": 4,
+                        "column-3": 3,
+                        "column-4": 2,
+                        "column-5": 3
+                    },
+                    {
+                        "category": "Ruby",
+                        "column-1": 2,
+                        "column-2": 2,
+                        "column-3": 3,
+                        "column-4": 1,
+                        "column-5": 0
+                    }
+                ]
+            };
 
-                // Build list with all users
-                competenceData.users = [];
-                vm.competence[0].users.map(function(user) {
-                     if (vm.office[user.office]) {
-                     	var newuser = {'name': user.name, 'skills': [], 'office': user.office, 'userId': user.userId};
-                        competenceData.users.push(newuser);
-                        // Create (selected) skills for each user
-                        competenceData.skills.map(function(skill) {
-                        	// Loop through all skills
-                        	vm.competence.map(function(competence) {
-                        		if (competence.skill === skill) {
-                        			// Find user
-                        			competence.users.map(function(testuser) {
-                        				if (testuser.name === user.name) {
-                        					newuser.skills.push({ 'level': testuser.level });
-                        				}
-                        			});
-                        		}
-                        	});
-                        });
-                     }
-                });
-                // Sort users by name
-                competenceData.users = $filter('orderBy')(competenceData.users,'name');
+            vm.chart2 = {
+                "type": "serial",
+                "rotate": true,
+                "categoryField": "category",
+                "colors": [
+                    '#52A9E2',
+                    '#4088B1',
+                    '#367096',
+                    '#2D5D7C',
+                    '#1e5368',
+                ],
+                "categoryAxis": {
+                    "gridPosition": "start",
+                    "gridAlpha": 0
+                },
+                "trendLines": [],
+                "graphs": [
+                    {
+                        "balloonText": "[[title]] of [[category]]:[[value]]",
+                        "fillAlphas": 1,
+                        "id": "AmGraph-1",
+                        "title": "Level 1",
+                        "type": "column",
+                        "valueField": "column-1"
+                    },
+                    {
+                        "balloonText": "[[title]] of [[category]]:[[value]]",
+                        "fillAlphas": 1,
+                        "id": "AmGraph-2",
+                        "title": "Level 2",
+                        "type": "column",
+                        "valueField": "column-2"
+                    },
+                    {
+                        "balloonText": "[[title]] of [[category]]:[[value]]",
+                        "fillAlphas": 1,
+                        "id": "AmGraph-3",
+                        "title": "Level 3",
+                        "type": "column",
+                        "valueField": "column-3"
+                    },
+                    {
+                        "balloonText": "[[title]] of [[category]]:[[value]]",
+                        "fillAlphas": 1,
+                        "id": "AmGraph-4",
+                        "title": "Level 4",
+                        "type": "column",
+                        "valueField": "column-4"
+                    },
+                    {
+                        "balloonText": "[[title]] of [[category]]:[[value]]",
+                        "fillAlphas": 1,
+                        "id": "AmGraph-5",
+                        "title": "Level 5",
+                        "type": "column",
+                        "valueField": "column-5"
+                    }
+                ],
+                "guides": [],
+                "valueAxes": [
+                    {
+                        "id": "ValueAxis-1",
+                        "stackType": "regular",
+                        "title": "Persons",
+                        "gridAlpha": 0
+                    }
+                ],
+                "allLabels": [],
+                "balloon": {},
+                "legend": {
+                    "useGraphSettings": true
+                },
+                "titles": [
+                    {
+                        "id": "Title-1",
+                        "size": 15,
+                        "text": "Soft skills"
+                    }
+                ],
+                "dataProvider": [
+                    {
+                        "category": "Web Frontend",
+                        "column-1": 1,
+                        "column-2": 2,
+                        "column-3": 6,
+                        "column-4": 5,
+                        "column-5": 3
+                    },
+                    {
+                        "category": "Web Backend",
+                        "column-1": 2,
+                        "column-2": 4,
+                        "column-3": 5,
+                        "column-4": 4,
+                        "column-5": 3
+                    },
+                    {
+                        "category": "Fullstack",
+                        "column-1": 5,
+                        "column-2": 4,
+                        "column-3": 3,
+                        "column-4": 2,
+                        "column-5": 1
+                    },
+                    {
+                        "category": "Embedded",
+                        "column-1": 4,
+                        "column-2": 4,
+                        "column-3": 3,
+                        "column-4": 2,
+                        "column-5": 1
+                    },
+                    {
+                        "category": "Desktop apps",
+                        "column-1": 3,
+                        "column-2": 4,
+                        "column-3": 2,
+                        "column-4": 3,
+                        "column-5": 2
+                    },
+                    {
+                        "category": "Enterprise  Server",
+                        "column-1": 6,
+                        "column-2": 2,
+                        "column-3": 3,
+                        "column-4": 1,
+                        "column-5": 0
+                    },
+                    {
+                        "category": "Mobila Apps",
+                        "column-1": 5,
+                        "column-2": 2,
+                        "column-3": 3,
+                        "column-4": 1,
+                        "column-5": 0
+                    },
+                    {
+                        "category": "Radio- kommunikation",
+                        "column-1": 4,
+                        "column-2": 2,
+                        "column-3": 3,
+                        "column-4": 1,
+                        "column-5": 0
+                    },
+                    {
+                        "category": "BI/CRM",
+                        "column-1": 2,
+                        "column-2": 2,
+                        "column-3": 3,
+                        "column-4": 1,
+                        "column-5": 0
+                    },
+                    {
+                        "category": "Tester",
+                        "column-1": 5,
+                        "column-2": 2,
+                        "column-3": 3,
+                        "column-4": 1,
+                        "column-5": 0
+                    },
+                    {
+                        "category": "Test automation",
+                        "column-1": 1,
+                        "column-2": 2,
+                        "column-3": 3,
+                        "column-4": 1,
+                        "column-5": 0
+                    },
+                    {
+                        "category": "Continuous Delivery",
+                        "column-1": 0,
+                        "column-2": 2,
+                        "column-3": 3,
+                        "column-4": 1,
+                        "column-5": 0
+                    },
+                    {
+                        "category": "Test Manager",
+                        "column-1": 1,
+                        "column-2": 2,
+                        "column-3": 3,
+                        "column-4": 1,
+                        "column-5": 0
+                    },
+                    {
+                        "category": "Release Manager",
+                        "column-1": 0,
+                        "column-2": 2,
+                        "column-3": 3,
+                        "column-4": 1,
+                        "column-5": 0
+                    },
+                    {
+                        "category": "Business Analyst",
+                        "column-1": 8,
+                        "column-2": 2,
+                        "column-3": 3,
+                        "column-4": 1,
+                        "column-5": 0
+                    },
+                    {
+                        "category": "Configuration Manager",
+                        "column-1": 2,
+                        "column-2": 2,
+                        "column-3": 3,
+                        "column-4": 1,
+                        "column-5": 0
+                    },
+                    {
+                        "category": "Project Manager",
+                        "column-1": 2,
+                        "column-2": 6,
+                        "column-3": 3,
+                        "column-4": 1,
+                        "column-5": 0
+                    },
+                    {
+                        "category": "Scrum Master",
+                        "column-1": 7,
+                        "column-2": 2,
+                        "column-3": 3,
+                        "column-4": 1,
+                        "column-5": 0
+                    },
+                    {
+                        "category": "Line Manager",
+                        "column-1": 5,
+                        "column-2": 1,
+                        "column-3": 3,
+                        "column-4": 1,
+                        "column-5": 2
+                    },
+                    {
+                        "category": "Product owner",
+                        "column-1": 6,
+                        "column-2": 2,
+                        "column-3": 1,
+                        "column-4": 1,
+                        "column-5": 0
+                    },
+                    {
+                        "category": "Agile coach",
+                        "column-1": 6,
+                        "column-2": 1,
+                        "column-3": 5,
+                        "column-4": 1,
+                        "column-5": 0
+                    },
+                    {
+                        "category": "Management coach",
+                        "column-1": 7,
+                        "column-2": 3,
+                        "column-3": 3,
+                        "column-4": 1,
+                        "column-5": 0
+                    },
+                    {
+                        "category": "Business Innovation",
+                        "column-1": 2,
+                        "column-2": 2,
+                        "column-3": 5,
+                        "column-4": 1,
+                        "column-5": 2
+                    },
+                    {
+                        "category": "Scaling agile",
+                        "column-1": 2,
+                        "column-2": 1,
+                        "column-3": 2,
+                        "column-4": 1,
+                        "column-5": 0
+                    }
+                ]
+            };
 
-                vm.competenceData = competenceData;
-            }
-
-            function getSelectedSkillsCSV() {
-            	var result = angular.copy(vm.competenceData.skills);
-            	result.unshift('Employee');
-                return result;
-            }
-
-            function getUserSkillCSV() {
-                var resultArr = [];
-
-                vm.competenceData.users.map(function(user) {
-                	var row = [];
-                	row.push(user.name);
-                	user.skills.map(function(skill) {
-                		row.push(skill.level);
-                	});
-                	resultArr.push(row);
-                });
 
 
-                return resultArr;
-            }
+            AmCharts.makeChart("programming-skills", vm.chart);
+            AmCharts.makeChart("soft-skills", vm.chart2);
 
         }
 })();
