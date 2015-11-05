@@ -72,7 +72,9 @@
         }
 
         function isValidConnector(connector) {
-            return connector.name && connector.name.length;
+            return connector.name && connector.name.length
+                && connector.domain && connector.domain.length
+                && connector.customer && connector.customer.length;
         }
 
         function isEditMode() {
@@ -125,7 +127,7 @@
 
         function createDomainIfNotExists(connector) {
             return $q(function(resolve) {
-                if(vm.domainHash[connector.domain]) {
+                if(vm.domainHash[connector.domain] || !(connector.domain && connector.domain.length)) {
                     return resolve(connector);
                 } else {
                     var domain = new Domains({name: connector.domain});
@@ -142,7 +144,7 @@
 
         function createCustomerIfNotExists(connector) {
             return $q(function(resolve) {
-                if(vm.customerHash[connector.customer]) {
+                if(vm.customerHash[connector.customer] || !(connector.customer && connector.customer.length)) {
                     return resolve(connector);
                 } else {
                     var customer = new Customers({name: connector.customer});
@@ -329,40 +331,52 @@
         }
 
         function convertToSkillNames(assignment) {
-            assignment.skills = assignment.skills.map(function(skillId){
-                return vm.skillIdHash[skillId].name;
-            });
+            if (assignment.skills) {
+                assignment.skills = assignment.skills.map(function(skillId){
+                    return vm.skillIdHash[skillId].name;
+                });
+            }
             return assignment;
         }
 
         function convertToSkillIds(assignment) {
-            assignment.skills = assignment.skills.map(function(skillTag) {
-                if(Object.prototype.toString.call(skillTag) === "[object String]") {
-                    return vm.skillHash[skillTag]._id;
-                } else {
-                    return vm.skillHash[skillTag.text]._id;
-                }
-            });
+            if (assignment.skills) {
+                assignment.skills = assignment.skills.map(function(skillTag) {
+                    if(Object.prototype.toString.call(skillTag) === "[object String]") {
+                        return vm.skillHash[skillTag]._id;
+                    } else {
+                        return vm.skillHash[skillTag.text]._id;
+                    }
+                });
+            }
             return assignment;
         }
 
         function convertToDomainName(assignment) {
-            assignment.domain = vm.domainIdHash[assignment.domain].name;
+            if (assignment.domain && assignment.domain.length) {
+                assignment.domain = vm.domainIdHash[assignment.domain].name;
+            }
             return assignment;
         }
 
         function convertToDomainId(assignment) {
-            assignment.domain = vm.domainHash[assignment.domain]._id;
+            if (assignment.domain && assignment.domain.length) {
+                assignment.domain = vm.domainHash[assignment.domain]._id;
+            }
             return assignment;
         }
 
         function convertToCustomerName(assignment) {
-            assignment.customer = vm.customerIdHash[assignment.customer].name;
+            if (assignment.customer && assignment.customer.length) {
+                assignment.customer = vm.customerIdHash[assignment.customer].name;
+            }
             return assignment;
         }
 
         function convertToCustomerId(assignment) {
-            assignment.customer = vm.customerHash[assignment.customer]._id;
+            if (assignment.customer && assignment.customer.length) {
+                assignment.customer = vm.customerHash[assignment.customer]._id;
+            }
             return assignment;
         }
 

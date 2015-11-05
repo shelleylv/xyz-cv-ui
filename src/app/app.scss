@@ -39,6 +39,14 @@ body {
     padding-left: 250px;
 }
 
+.alert {
+    display: block;
+}
+
+.form-error {
+    border-color: #ebccd1;
+}
+
 .sidebar-wrapper {
     z-index: 1000;
     position: fixed;
