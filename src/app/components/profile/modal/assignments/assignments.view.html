@@ -6,23 +6,23 @@
 				<button class="close" ng-click="vm.hideModal()">&times;</button>
 			</div>
 			<div class="modal-body">
-				<form class="form-horizontal">
+				<form class="form-horizontal" name="form">
 					<div class="form-group">
 						<label class="col-md-3 control-label">Name</label>
 						<div class="col-md-9">
-							<input type="text" class="form-control" ng-model="vm.currentConnector.name" bs-options="assignment.name as assignment.name for assignment in vm.assignments" placeholder="Name" ng-change="vm.assignmentNameChanged(vm.currentConnector.name)" bs-typeahead>
+							<input type="text" class="form-control" ng-model="vm.currentConnector.name" bs-options="assignment.name as assignment.name for assignment in vm.assignments" placeholder="Name" ng-change="vm.assignmentNameChanged(vm.currentConnector.name)" bs-typeahead required>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-md-3 control-label">Customer</label>
 						<div class="col-md-9">
-							<input type="text" class="form-control" ng-model="vm.currentConnector.customer" bs-options="customer.name as customer.name for customer in vm.customers" placeholder="Name" bs-typeahead>
+							<input type="text" class="form-control" name="customer" ng-model="vm.currentConnector.customer" bs-options="customer.name as customer.name for customer in vm.customers" placeholder="Customer" bs-typeahead required>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-md-3 control-label">Domain</label>
 						<div class="col-md-9">
-							<input type="text" class="form-control" ng-model="vm.currentConnector.domain" bs-options="domain.name as domain.name for domain in vm.domains" placeholder="Name" bs-typeahead>
+							<input type="text" class="form-control" name="domain" ng-model="vm.currentConnector.domain" bs-options="domain.name as domain.name for domain in vm.domains" placeholder="Domain" bs-typeahead required>
 						</div>
 					</div>
 					<div class="form-group">
