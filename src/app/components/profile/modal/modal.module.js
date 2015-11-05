@@ -5,8 +5,12 @@
         'shared.flags',
         'shared.users',
         'shared.offices',
+        'shared.customers',
+        'shared.domains',
+        'shared.assignments',
         'shared.userToOffice',
         'shared.userToSkill',
+        'shared.userToAssignment',
         'shared.uploader',
         'angularUtils.directives.dirPagination',
         'textAngular'
