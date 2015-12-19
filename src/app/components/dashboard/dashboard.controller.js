@@ -49,7 +49,7 @@
 
             function setAllOffices(value) {
                 vm.offices[0].offices.map(function(office) {
-                    vm.offices[office] = value;
+                    vm.office[office] = value;
                 });
                 setCompetenceData();
             }
