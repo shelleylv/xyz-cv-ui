@@ -25,7 +25,7 @@
                 </a>
             </li>
             <li>
-                <a ng-href="#/dashboard" ng-show="vm.isAllowed('canViewDashboard')">
+                <a ng-href="#/dashboard" ng-show="false">
                     <div class="sidebar-icon pull-left">
                         <i class="fa fa-dashboard"></i>
                     </div>
@@ -54,6 +54,14 @@
                         <i class="fa fa-search"></i>
                     </div>
                     Search People
+                </a>
+            </li>
+            <li>
+                <a ng-href="#/export" ng-show="vm.isAllowed('canViewDashboard')">
+                    <div class="sidebar-icon pull-left">
+                        <i class="fa fa-table"></i>
+                    </div>
+                    Export raw data
                 </a>
             </li>
             <li>

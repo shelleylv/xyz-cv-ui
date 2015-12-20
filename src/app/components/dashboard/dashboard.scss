@@ -1,74 +1,17 @@
-@import "styles/_base";
-@import "styles/_colors";
+@import "../../styles/base";
+@import "../../styles/colors";
 
 .dashboard {
-
-    input[type=checkbox] { margin-right: 1em }
-
-	.office {
-		label { display: block }
-		.panel-body {
-			height: 200px;
-			overflow-y: auto;
-		}
-	}
-
-	.skills {
-
-		.panel-heading label { float: right }
-
-		.panel-body {
-			height: 200px;
-			overflow-y: auto;
-		}
-
-	 	ul {
-			-webkit-column-count: 3;
-       		-moz-column-count: 3;
-        	column-count: 3;
-        }
-	}
-
-	.matrix {
-		button { float: right }
-
-		td,th { text-align: center }
-		.namecolumn { text-align: left }
-
-
-  		.panel-body {
-        	overflow: auto;
-        }
-    }
-
-    .checklist-type {
-        font-size: 150%;
-        text-align: center;
-    }
-
-    .checklist-select-all {
-        margin-left: 9px;
-        padding-bottom: 5px;
-    }
-
-    .checklist {
-        @include border-radius(0);
-        border: 1px solid #ddd;
-        overflow: auto;
-        max-height: 400px;
-        .list-group-item {
-            @include border-radius(0);
-            border: none;
-            padding: 0;
-
-            &:nth-child(odd) {
-                background-color: #eaeaea;
-            }
-
-            label {
-                padding: 5px 0px 5px 28px;
-                width: 100%;
-                .checkbox {
+    .chart {
+        min-height: 100px;
+        height: 100% !important;
+        .amchart {
+            height: 100% !important;
+            .amcharts-main-div {
+                height: 100% !important;
+                .amcharts-chart-div {
+                    min-height: 300px;
+                    height: 100% !important;
                 }
             }
         }

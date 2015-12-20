@@ -526,3 +526,36 @@ label {
 .form-control {
     @include border-radius(0);
 }
+
+.checklist-type {
+    font-size: 150%;
+    text-align: center;
+}
+
+.checklist-select-all {
+    margin-left: 9px;
+    padding-bottom: 5px;
+}
+
+.checklist {
+    @include border-radius(0);
+    border: 1px solid #ddd;
+    overflow: auto;
+    max-height: 400px;
+    .list-group-item {
+        @include border-radius(0);
+        border: none;
+        padding: 0;
+
+        &:nth-child(odd) {
+            background-color: #eaeaea;
+        }
+
+        label {
+            padding: 5px 0px 5px 28px;
+            width: 100%;
+            .checkbox {
+            }
+        }
+    }
+}

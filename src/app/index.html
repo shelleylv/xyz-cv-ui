@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/components/advancedSearch/advancedSearch.css">
     <link rel="stylesheet" href="css/components/dashboard/dashboard.css">
+    <link rel="stylesheet" href="css/components/export/export.css">
     <link rel="stylesheet" href="css/components/feed/feed.css">
     <link rel="stylesheet" href="css/components/profile/profile.css">
     <link rel="stylesheet" href="css/components/profile/modal/assignments/assignments.css">
@@ -39,6 +40,9 @@
     <div data-ng-include="'/xyz-cv-ui/components/menu/menu.html'"></div>
 
     <!-- inject:vendor:js -->
+    <script src="amcharts/dist/amcharts/amcharts.js"></script>
+    <script src="amcharts3/amcharts/amcharts.js"></script>
+    <script src="amcharts3/amcharts/serial.js"></script>
     <script src="angular/angular.js"></script>
     <script src="angular-animate/angular-animate.js"></script>
     <script src="angular-bootstrap/ui-bootstrap-tpls.js"></script>
@@ -72,6 +76,7 @@
     <script src="rangy/rangy-textrange.js"></script>
     <script src="toastr/toastr.js"></script>
     <script src="underscore/underscore.js"></script>
+    <script src="amcharts-angular/dist/amChartsDirective.js"></script>
     <script src="angular-moment/angular-moment.js"></script>
     <script src="boostrap-sass/assets/javascripts/bootstrap.js"></script>
     <script src="tc-angular-chartjs/dist/tc-angular-chartjs.min.js"></script>
@@ -162,6 +167,10 @@
     <script src="components/feed/route-config.js"></script>
     <script src="components/feed/feed.model.js"></script>
     <script src="components/feed/feed.controller.js"></script>
+    <script src="components/export/export.module.js"></script>
+    <script src="components/export/route-config.js"></script>
+    <script src="components/export/export.model.js"></script>
+    <script src="components/export/export.controller.js"></script>
     <script src="components/dashboard/dashboard.module.js"></script>
     <script src="components/dashboard/route-config.js"></script>
     <script src="components/dashboard/dashboard.model.js"></script>

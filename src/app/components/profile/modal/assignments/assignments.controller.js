@@ -203,7 +203,7 @@
                                 connectorToStore = convertToSkillIds(connectorToStore);
                                 vm.connectorHash[connector.name] = angular.copy(connectorToStore);
                                 return resolve(connector);
-                        })
+                        });
                     });
             });
         }
@@ -214,7 +214,7 @@
                 var currentConnector = angular.copy(connector);
                 currentConnector = convertToDomainId(currentConnector);
                 currentConnector = convertToCustomerId(currentConnector);
-                if(assignment.domain !== currentConnector.domain || assignment.customer != currentConnector.customer) {
+                if(assignment.domain !== currentConnector.domain || assignment.customer !== currentConnector.customer) {
                     assignment.domain = currentConnector.domain;
                     assignment.customer = currentConnector.customer;
                     var assignmentToSave = angular.copy(assignment);
@@ -226,7 +226,7 @@
                 } else {
                     return resolve(connector);
                 }
-            })
+            });
         }
 
         // REMOVE
@@ -342,7 +342,7 @@
         function convertToSkillIds(assignment) {
             if (assignment.skills) {
                 assignment.skills = assignment.skills.map(function(skillTag) {
-                    if(Object.prototype.toString.call(skillTag) === "[object String]") {
+                    if(Object.prototype.toString.call(skillTag) === '[object String]') {
                         return vm.skillHash[skillTag]._id;
                     } else {
                         return vm.skillHash[skillTag.text]._id;
@@ -419,7 +419,7 @@
         }
 
         function assignmentNameChanged(name) {
-            var connector = vm.connectorHash[name]
+            var connector = vm.connectorHash[name];
             if (connector) {
                 return setConnectorForEditing(connector);
             }
@@ -460,7 +460,6 @@
 
             var firstIndex = pageNumber * 4;
             var lastIndex = Math.min(pageNumber * 4 + 4, vm.connectors.length);
-            var indices = lastIndex - firstIndex;
             vm.connectorsPage = vm.connectors.slice(firstIndex, lastIndex);
         }
 
