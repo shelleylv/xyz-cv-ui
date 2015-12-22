@@ -45,4 +45,4 @@ Now there's a `./dist` folder with all scripts and stylesheets concatenated and 
 
 TODO  
 
-STRUCTURE
+STRUCTURE  
