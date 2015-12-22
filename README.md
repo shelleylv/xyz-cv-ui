@@ -24,7 +24,7 @@ gulp test
 **Or** first inject all test files into `karma.conf.js` with:
 
 ```bash
-gulp karma-conf
+g ulp karma-conf
 ```
 
 Then you're able to run Karma directly. Example:
@@ -43,6 +43,6 @@ gulp dist
 
 Now there's a `./dist` folder with all scripts and stylesheets concatenated and minified, also third party libraries installed with bower will be concatenated and minified into `vendors.min.js` and `vendors.min.css` respectively.
 
-TODO 
+TODO  
 
 STRUCTURE
