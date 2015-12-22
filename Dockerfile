@@ -16,7 +16,7 @@ ADD config.rb config.rb
 RUN gem install compass
 RUN npm install
 RUN npm install -g gulp
-RUN npm install -g bower
+RUN npm install -g bower@1.5.2
 RUN bower update --allow-root
 RUN NODE_ENV=production gulp dist
 
