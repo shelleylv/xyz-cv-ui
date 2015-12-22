@@ -17,7 +17,8 @@ var gulp = require('gulp'),
     flatten = require('gulp-flatten'),
     change = require('gulp-change'),
     gulpNgConfig = require('gulp-ng-config'),
-    rename = require('gulp-rename');
+    rename = require('gulp-rename'),
+    debug = require('gulp-debug');
 
 var htmlminOpts = {
   removeComments: true,
@@ -125,7 +126,9 @@ gulp.task('vendors', function () {
   var vendorCss = fileTypeFilter(files, 'css');
   var q = new queue({objectMode: true});
   if (vendorJs.length) {
-    q.queue(gulp.src(vendorJs).pipe(dist('js', 'vendors')));
+    q.queue(gulp.src(vendorJs)
+      .pipe(debug({title: 'vendors: '}))
+      .pipe(dist('js', 'vendors')));
   }
   if (vendorCss.length) {
     q.queue(gulp.src(vendorCss).pipe(dist('css', 'vendors')));
