@@ -172,7 +172,7 @@
             for (var i = model.views.officePopulationView.userOfficeFrequencyGraph.length - 1; i >= 0; i--) {
                 model.views.officePopulationView.userOfficeFrequencyGraph[i].color = colors[i].color;
                 model.views.officePopulationView.userOfficeFrequencyGraph[i].highlight = colors[i].highlight;
-            };
+            }
             return model.views.officePopulationView.userOfficeFrequencyGraph;
         }
 
@@ -185,13 +185,6 @@
         }
 
         $scope.$on('sail-resize', redraw, 100);
-
-        function redraw(waitTime) {
-            vm.loadchart = false;
-            $timeout(function() {
-                vm.loadchart = true;
-            }, waitTime);
-        }
 
         vm.piechartdata =
 

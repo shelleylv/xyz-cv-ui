@@ -9,7 +9,7 @@
             var vm = this;
             window.vm = vm;
 
-            vm.competence = {}
+            vm.competence = {};
             vm.offices = [];
             vm.skills = [];
             vm.skill = [];

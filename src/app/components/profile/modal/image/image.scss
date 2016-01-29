@@ -1,0 +1,16 @@
+@import "styles/_base";
+@import "styles/_colors";
+
+.modal-image {
+    .image-upload {
+        margin-top: 15px;
+        .cropArea {
+            background: #E4E4E4;
+            overflow: hidden;
+            width: 500px;
+            height: 500px;
+            @include border-radius(10px);
+            margin: auto;
+        }
+    }
+}
