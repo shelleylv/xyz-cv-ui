@@ -77,7 +77,7 @@
                     leftOverlay.classList.remove('onion');
                     rightOverlay.classList.remove('onion');
                 }, 200);
-            }
+            };
 
             function fullSwipeRight(coords) {
                 return coords.x - startCoords.x > width * 0.50 ? true : false;
