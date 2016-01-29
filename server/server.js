@@ -8,6 +8,6 @@ app.use(cors({credentials: true, origin: true}));
 
 app.use('/', express.static(path.join(__dirname, '../dist/')));
 
-var server = app.listen(9292, function () {
+var server = app.listen(9000, function () {
     console.log('Server started: http://localhost:%s/', server.address().port);
 });
