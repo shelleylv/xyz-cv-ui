@@ -17,7 +17,7 @@
         //////////////
 
         function link (scope, elem, attr, ngModel) {
-            var regex = /^[A-Z åäöÅÄÖ]{0,100}$/i;
+            var regex = /^[A-Z åäöÅÄÖ&]{0,100}$/i;
             ngModel.$parsers.unshift(function(value) {
                 ngModel.$setValidity('validatewords', regex.test(value));
                 return value;
