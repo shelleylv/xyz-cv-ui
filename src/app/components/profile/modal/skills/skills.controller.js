@@ -21,6 +21,7 @@
             vm.removeConnector = removeConnector;
             vm.setConnectorForEditing = setConnectorForEditing;
             vm.levels = [];
+            vm.futureLevels = [];
             vm.connectorHash = {};
             vm.connectorsToRemove = {};
             vm.connectorsToSave = {};
@@ -48,6 +49,7 @@
                         vm.user = values.user;
                         vm.connectors = values.connectors;
                         setLevels();
+                        setFutureLevels();
                         setSkills(values.skills);
                         setHashes(values.skills, values.connectors);
 
@@ -56,7 +58,7 @@
             }
 
             function isValidConnector(connector) {
-                return connector.name && connector.name.length && connector.years && connector.level;
+                return connector.name && connector.name.length && connector.years && connector.level && connector.futureLevel;
             }
 
             function isEditMode() {
@@ -180,6 +182,31 @@
                     label: 'Level 5'
                 }];
             }
+
+            function setFutureLevels() {
+                vm.futureLevels = [
+                {
+                    value: 1,
+                    label: 'Level 1'
+                },
+                {
+                    value: 2,
+                    label: 'Level 2'
+                },
+                {
+                    value: 3,
+                    label: 'Level 3'
+                },
+                {
+                    value: 4,
+                    label: 'Level 4'
+                },
+                {
+                    value: 5,
+                    label: 'Level 5'
+                }];
+            }
+
 
             function setSkills(skills) {
                 vm.skills = skills;
