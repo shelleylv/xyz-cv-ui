@@ -44,12 +44,10 @@
 						<div class="col-md-9">
 							<div class="row">
 								<div class="col-xs-6">
-									<input type="text" class="form-control" ng-model="vm.currentConnector.dateFrom" data-max-date="vm.currentConnector.dateTo" data-date-format = "yyyy-MM-dd"
-									 placeholder="From" bs-datepicker>
+									<input type="text" class="form-control" ng-model="vm.currentConnector.dateFrom" data-max-date="vm.currentConnector.dateTo" data-date-format="yyyy-MM-dd" placeholder="From" data-start-week="1" bs-datepicker>
 								</div>
 								<div class="col-xs-6">
-									<input type="text" class="form-control" ng-model="vm.currentConnector.dateTo" data-min-date="vm.currentConnector.dateFrom" data-date-format = "yyyy-MM-dd"
-									placeholder="Until" bs-datepicker>
+									<input type="text" class="form-control" ng-model="vm.currentConnector.dateTo" data-min-date="vm.currentConnector.dateFrom" data-date-format="yyyy-MM-dd" placeholder="Until" data-start-week="1" bs-datepicker>
 								</div>
 							</div>
 						</div>
