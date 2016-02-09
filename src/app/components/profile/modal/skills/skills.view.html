@@ -43,12 +43,10 @@
 					</div>
 				</div>
                 <ul class="list-group compact edit-skills-list">
-					<li class="list-group-item edit-skills-list-item" swipe-action="" on-remove="vm.removeConnector" on-edit="vm.setConnectorForEditing" item="connector" ng-repeat="connector in vm.connectorsPage">
-                        <div class="item-buttons hidden-xs hidden-sm">
-                            <div class="deletebutton-expander">
-                                <div class="deletebutton" ng-click="vm.removeConnector(connector)">
-                                    <i class="fa fa-trash"></i>
-                                </div>
+					<li class="list-group-item edit-skills-list-item" ng-repeat="connector in vm.connectorsPage">
+                        <div class="item-buttons">
+                            <div class="deletebutton" ng-click="vm.removeConnector(connector)">
+                                <i class="fa fa-trash"></i>
                             </div>
                         </div>
                         <div class="item-content">
@@ -56,11 +54,9 @@
                             <div class="level">Level: {{connector.level}}</div>
                             <div class="years">Years: {{connector.years}}</div>
                         </div>
-                        <div class="item-buttons hidden-xs hidden-sm">
-                            <div class="editbutton-expander">
-                                <div class="editbutton" ng-click="vm.setConnectorForEditing(connector)">
-                                    <i class="fa fa-edit"></i>
-                                </div>
+                        <div class="item-buttons">
+                            <div class="editbutton" ng-click="vm.setConnectorForEditing(connector)">
+                                <i class="fa fa-edit"></i>
                             </div>
                         </div>
 					</li>
