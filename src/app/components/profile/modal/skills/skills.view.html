@@ -66,9 +66,10 @@
                         </div>
                         <div class="item-content">
                             <div class="name">{{connector.name}}</div>
-                            <div class="level">Level: {{connector.level}}</div>
-                            <div class="futureLevel">Future Level: {{connector.futureLevel}}</div>
                             <div class="years">Years: {{connector.years}}</div>
+                            <div class="level">Level: {{connector.level}}</div>
+                            <div class="futureLevel" ng-show="connector.futureLevel != null">Future Level: {{connector.futureLevel}}</div>
+                            
                         </div>
                         <div class="item-buttons hidden-xs hidden-sm">
                             <div class="editbutton-expander">
