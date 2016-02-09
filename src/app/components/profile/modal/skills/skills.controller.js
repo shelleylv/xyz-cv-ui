@@ -58,7 +58,7 @@
             }
 
             function isValidConnector(connector) {
-                return connector.name && connector.name.length && connector.years && connector.level && connector.futureLevel;
+                return connector.name && connector.name.length && connector.years && connector.level;
             }
 
             function isEditMode() {
