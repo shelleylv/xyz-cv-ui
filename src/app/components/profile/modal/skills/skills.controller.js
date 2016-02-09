@@ -276,14 +276,14 @@
                 pageNumber = Math.min(pageNumber, getPageCount() - 1);
                 vm.currentPage = pageNumber;
 
-                var firstIndex = pageNumber * 10;
+                var firstIndex = pageNumber * 7;
                 var lastIndex = Math.min(pageNumber * 10 + 10, vm.connectors.length);
                 var indices = lastIndex - firstIndex;
                 vm.connectorsPage = vm.connectors.slice(firstIndex, lastIndex);
             }
 
             function getPageCount() {
-                return Math.ceil(vm.connectors.length / 10);
+                return Math.ceil(vm.connectors.length / 7);
             }
 
         }
