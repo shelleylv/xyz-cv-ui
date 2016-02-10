@@ -33,11 +33,11 @@
                                 {{ vm.generalInfo.position }}
                             </div>
                             <div class="contact row">
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <div class="" ng-if="vm.generalInfo.phoneNumber"><i class="fa fa-phone"></i> {{ vm.generalInfo.phoneNumber }}</div>
                                     <div class="" ng-if="vm.generalInfo.email"><i class="fa fa-envelope"></i> {{ vm.generalInfo.email }}</div>
-                                </div>
-                                <div class="col-md-6">
+                                <!-- </div>
+                                <div class="col-md-6"> -->
                                     <div class="" ng-if="vm.generalInfo.office"><i class="fa fa-building"></i>
                                         <!--
                                         <span class="flag-icon" ng-if="vm.generalInfo.office.name" ng-class="'flag-icon-' + (vm.generalInfo.office.name | country | flag)"></span>
@@ -83,7 +83,7 @@
 
     <!-- PRIVATE INFO -->
 
-    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-hide="true">
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" <!-- ng-hide="true" -->>
         <!-- ng-show="vm.activated && (vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id))" -->
         <div id="private-info" class="panel-wrapper">
             <div class="panel panel-default profile-default">
