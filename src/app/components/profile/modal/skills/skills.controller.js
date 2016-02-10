@@ -186,6 +186,10 @@
             function setFutureLevels() {
                 vm.futureLevels = [
                 {
+                    value: 0,
+                    label: 'Level 0'
+                },
+                {
                     value: 1,
                     label: 'Level 1'
                 },
