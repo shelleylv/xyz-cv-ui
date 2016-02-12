@@ -21,6 +21,7 @@
             vm.removeConnector = removeConnector;
             vm.setConnectorForEditing = setConnectorForEditing;
             vm.levels = [];
+            vm.futureLevels = [];
             vm.connectorHash = {};
             vm.connectorsToRemove = {};
             vm.connectorsToSave = {};
@@ -48,6 +49,7 @@
                         vm.user = values.user;
                         vm.connectors = values.connectors;
                         setLevels();
+                        setFutureLevels();
                         setSkills(values.skills);
                         setHashes(values.skills, values.connectors);
 
@@ -181,6 +183,35 @@
                 }];
             }
 
+            function setFutureLevels() {
+                vm.futureLevels = [
+                {
+                    value: 0,
+                    label: 'Level 0'
+                },
+                {
+                    value: 1,
+                    label: 'Level 1'
+                },
+                {
+                    value: 2,
+                    label: 'Level 2'
+                },
+                {
+                    value: 3,
+                    label: 'Level 3'
+                },
+                {
+                    value: 4,
+                    label: 'Level 4'
+                },
+                {
+                    value: 5,
+                    label: 'Level 5'
+                }];
+            }
+
+
             function setSkills(skills) {
                 vm.skills = skills;
             }
@@ -249,14 +280,14 @@
                 pageNumber = Math.min(pageNumber, getPageCount() - 1);
                 vm.currentPage = pageNumber;
 
-                var firstIndex = pageNumber * 10;
+                var firstIndex = pageNumber * 7;
                 var lastIndex = Math.min(pageNumber * 10 + 10, vm.connectors.length);
                 var indices = lastIndex - firstIndex;
                 vm.connectorsPage = vm.connectors.slice(firstIndex, lastIndex);
             }
 
             function getPageCount() {
-                return Math.ceil(vm.connectors.length / 10);
+                return Math.ceil(vm.connectors.length / 7);
             }
 
         }
