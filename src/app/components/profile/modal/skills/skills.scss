@@ -14,6 +14,10 @@
             overflow: hidden;
             text-overflow: clip;
             white-space:nowrap;
+            .item-content {
+                display: flex;
+                flex-flow: row wrap;
+            }
             .item-buttons {
                 width: 40px;
                 min-width: 40px;
@@ -43,19 +47,19 @@
                 cursor: pointer;
             }
             .name {
-                display: block;
                 font-weight: bold;
+                flex-basis: 100%;
             }
             .level {
-                display: inline-block;
                 width: 70px;
-            }
-            .futureLevel {
-                display: inline-block;
-                width: 100px;
+                flex-basis: 33%;
             }
             .years {
-                display: inline-block;
+                flex-basis: 33%;
+            }
+            .futureLevel {
+                width: 100px;
+                flex-basis: 33%;
             }
         }
 
