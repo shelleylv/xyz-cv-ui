@@ -33,11 +33,9 @@
                                 {{ vm.generalInfo.position }}
                             </div>
                             <div class="contact row">
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <div class="" ng-if="vm.generalInfo.phoneNumber"><i class="fa fa-phone"></i> {{ vm.generalInfo.phoneNumber }}</div>
                                     <div class="" ng-if="vm.generalInfo.email"><i class="fa fa-envelope"></i> {{ vm.generalInfo.email }}</div>
-                                </div>
-                                <div class="col-md-6">
                                     <div class="" ng-if="vm.generalInfo.office"><i class="fa fa-building"></i>
                                         <!--
                                         <span class="flag-icon" ng-if="vm.generalInfo.office.name" ng-class="'flag-icon-' + (vm.generalInfo.office.name | country | flag)"></span>
@@ -185,26 +183,33 @@
                         </div>
                         <div class="data-box">
                             <div class="row">
-                                <div class="col-xs-6 col-md-6">
+                                <div class="col-xs-12 col-md-12">
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="name">
                                                 {{ skill.name }}
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 year">
+                                            {{ skill.years }}
+                                            <ng-pluralize
+                                                count=skill.years
+                                                when="{'1': ' year',
+                                                       'other': ' years'}" >
+                                            </ng-pluralize>
+                                        </div>
+                                        <div class="col-md-4">
                                             <div class="level" ng-class="'l' + skill.level">
                                                 Level {{ skill.level }}
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="year">
-                                        {{ skill.years }}
-                                        <ng-pluralize
-                                            count=skill.years
-                                            when="{'1': ' year',
-                                                   'other': ' years'}" >
-                                        </ng-pluralize>
+                                        <div class="col-md-4">
+                                            <div class="futureLevel" ng-show ="skill.futureLevel != null"  ng-class="'l' + skill.futureLevel">
+                                                Future level {{ skill.futureLevel }}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-md-6" ng-if="skill.endorsements">

@@ -21,13 +21,13 @@
     <!-- endinject -->
     <!-- inject:css -->
     <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/components/advancedSearch/advancedSearch.css">
     <link rel="stylesheet" href="css/components/dashboard/dashboard.css">
-    <link rel="stylesheet" href="css/components/export/export.css">
+    <link rel="stylesheet" href="css/components/advancedSearch/advancedSearch.css">
     <link rel="stylesheet" href="css/components/feed/feed.css">
+    <link rel="stylesheet" href="css/components/export/export.css">
     <link rel="stylesheet" href="css/components/profile/profile.css">
-    <link rel="stylesheet" href="css/components/profile/modal/assignments/assignments.css">
     <link rel="stylesheet" href="css/components/profile/modal/image/image.css">
+    <link rel="stylesheet" href="css/components/profile/modal/assignments/assignments.css">
     <link rel="stylesheet" href="css/components/profile/modal/skills/skills.css">
     <!-- endinject -->
 
@@ -89,10 +89,10 @@
     <script src="components/profile/modal/modal.module.js"></script>
     <script src="components/profile/modal/skills/skills.factory.js"></script>
     <script src="components/profile/modal/skills/skills.controller.js"></script>
-    <script src="components/profile/modal/private-info/privateInfo.factory.js"></script>
-    <script src="components/profile/modal/private-info/privateInfo.controller.js"></script>
     <script src="components/profile/modal/image/image.factory.js"></script>
     <script src="components/profile/modal/image/image.controller.js"></script>
+    <script src="components/profile/modal/private-info/privateInfo.factory.js"></script>
+    <script src="components/profile/modal/private-info/privateInfo.controller.js"></script>
     <script src="components/profile/modal/general-info/generalInfo.factory.js"></script>
     <script src="components/profile/modal/general-info/generalInfo.controller.js"></script>
     <script src="components/profile/modal/assignments/assignments.factory.js"></script>
@@ -101,6 +101,7 @@
     <script src="shared/uploader/image/imageUploader.factory.js"></script>
     <script src="core/directives/directives.module.js"></script>
     <script src="core/directives/form-validation/validateWords.directive.js"></script>
+    <script src="core/directives/form-validation/validatePhoneNumber.directive.js"></script>
     <script src="core/directives/form-validation/validateNumber.directive.js"></script>
     <script src="core/directives/form-validation/validateName.directive.js"></script>
     <script src="shared/users/users.module.js"></script>
@@ -112,12 +113,14 @@
     <script src="shared/user-to-office/userToOffice.resource.js"></script>
     <script src="shared/user-to-assignment/userToAssignment.module.js"></script>
     <script src="shared/user-to-assignment/userToAssignment.resource.js"></script>
-    <script src="shared/skills/skills.module.js"></script>
-    <script src="shared/skills/skills.resource.js"></script>
     <script src="shared/roles/roles.module.js"></script>
     <script src="shared/roles/roles.resource.js"></script>
+    <script src="shared/skills/skills.module.js"></script>
+    <script src="shared/skills/skills.resource.js"></script>
     <script src="shared/resource/resource.module.js"></script>
     <script src="shared/resource/resource.js"></script>
+    <script src="shared/roles/roles.module.js"></script>
+    <script src="shared/roles/roles.resource.js"></script>
     <script src="shared/offices/offices.module.js"></script>
     <script src="shared/offices/offices.service.js"></script>
     <script src="shared/offices/offices.resource.js"></script>
@@ -129,10 +132,10 @@
     <script src="shared/flags/countries.service.js"></script>
     <script src="shared/files/files.resource.js"></script>
     <script src="shared/files/files.module.js"></script>
-    <script src="shared/domains/domains.module.js"></script>
-    <script src="shared/domains/domains.resource.js"></script>
     <script src="shared/customers/customers.module.js"></script>
     <script src="shared/customers/customers.resource.js"></script>
+    <script src="shared/domains/domains.module.js"></script>
+    <script src="shared/domains/domains.resource.js"></script>
     <script src="shared/assignments/assignments.module.js"></script>
     <script src="shared/assignments/assignments.resource.js"></script>
     <script src="shared/accesses/accesses.module.js"></script>
@@ -142,11 +145,11 @@
     <script src="core/session/authentication.resource.js"></script>
     <script src="core/router/router.module.js"></script>
     <script src="core/router/routerhelper.service.js"></script>
-    <script src="core/logger/logger.module.js"></script>
-    <script src="core/logger/logger.service.js"></script>
     <script src="core/filters/filters.module.js"></script>
     <script src="core/filters/unsafehtml.filter.js"></script>
     <script src="core/filters/capitalize.filter.js"></script>
+    <script src="core/logger/logger.module.js"></script>
+    <script src="core/logger/logger.service.js"></script>
     <script src="core/exception/exception.module.js"></script>
     <script src="core/exception/exception.service.js"></script>
     <script src="core/exception/exception-handler.provider.js"></script>

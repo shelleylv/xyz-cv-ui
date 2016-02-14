@@ -13,7 +13,7 @@
 					<div class="form-group">
 						<label class="col-sm-4 control-label">Name</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" name="name" placeholder="Name" ng-model="vm.generalInfo.name" validatewords>
+							<input type="text" class="form-control" name="name" placeholder="Person Name" ng-model="vm.generalInfo.name" validatewords>
 							<span ng-messages="form.name.$error" ng-show="form.name.$dirty">
 								<span class="alert alert-danger" ng-message="validatewords">Please use a maximum of 100 characters.</span>
 							</span>
@@ -36,7 +36,7 @@
 					<div class="form-group">
 						<label class="col-sm-4 control-label">Manager Name</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" name="closestSuperior" placeholder="" ng-model="vm.generalInfo.closestSuperior" validatewords>
+							<input type="text" class="form-control" name="closestSuperior" placeholder="Manager Name" ng-model="vm.generalInfo.closestSuperior" validatewords>
 							<span ng-messages="form.closestSuperior.$error" ng-show="form.closestSuperior.$dirty">
 								<span class="alert alert-danger" ng-message="validatewords">Please use a maximum of 100 characters.</span>
 							</span>
@@ -48,28 +48,30 @@
 					<div class="form-group">
 						<label class="col-sm-4 control-label">Phone</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" name="phone" placeholder="" ng-model="vm.generalInfo.phoneNumber">
+							<input type="text" class="form-control" name="phone" placeholder="+46 123 45 67 89" ng-model="vm.generalInfo.phoneNumber" validatephonenumber>
+							<span ng-messages="form.phone.$error" ng-show="form.phone.$dirty">
+								<span class="alert alert-danger" ng-message="validatephonenumber">Please use a maximum of 20 digits.</span>
 						</div>
 					</div>
 
 					<!-- EMPLOYEE NUMBER-->
 
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<label class="col-sm-4 control-label">Employee number</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" name="employeeNumber" placeholder="" ng-model="vm.generalInfo.employeeNumber" validatenumber>
+							<input type="text" class="form-control" name="employeeNumber" placeholder="E.g. 123" ng-model="vm.generalInfo.employeeNumber" validateemployeenumber>
 							<span ng-messages="form.employeeNumber.$error" ng-show="form.employeeNumber.$dirty">
-								<span class="alert alert-danger" ng-message="validatenumber">Please use numbers only. A maximum of 20 digits allowed.</span>
+								<span class="alert alert-danger" ng-message="">Please use numbers only. A maximum of 5 digits allowed.</span>
 							</span>
 						</div>
-					</div>
+					</div> -->
 
 					<!-- POSITION -->
 
 					<div class="form-group">
 						<label class="col-sm-4 control-label">Position</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" placeholder="" name="position" ng-model="vm.generalInfo.position" validatewords>
+							<input type="text" class="form-control" placeholder="E.g. Consultant" name="position" ng-model="vm.generalInfo.position" validatewords>
 							<span ng-messages="form.position.$error" ng-show="form.position.$dirty">
 								<span class="alert alert-danger" ng-message="validatewords">Please use a maximum of 100 characters.</span>
 							</span>
@@ -81,7 +83,7 @@
 					<div class="form-group">
 						<label class="col-sm-4 control-label">Country</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" ng-model="vm.generalInfo.country" data-min-length="0" data-html="1" data-auto-select="true" data-animation="am-flip-x" bs-options="country.value as country.label for country in vm.countries" placeholder="Enter country" bs-typeahead>
+							<input type="text" class="form-control" ng-model="vm.generalInfo.country" data-min-length="0" data-html="1" data-auto-select="true" data-animation="am-flip-x" bs-options="country.value as country.label for country in vm.countries" placeholder="Country Name" bs-typeahead>
 						</div>
 					</div>
 
