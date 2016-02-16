@@ -5,7 +5,7 @@
         .module('xyz-cv-ui.profile')
         .controller('ProfileController', ProfileController);
 
-        function ProfileController(ProfileModel, $routeParams, session, API_URL, GeneralInfoModal, ImageModal, PrivateInfoModal, SkillsModal, AssignmentsModal) {
+        function ProfileController(ProfileModel, $routeParams, session, API_URL, GeneralInfoModal, ImageModal, PrivateInfoModal, SummaryModal, SkillsModal, AssignmentsModal) {
             var vm = this;
             window.vm = vm;
 
@@ -20,6 +20,7 @@
 
             /* MODAL */
             vm.generalInfoModal = {};
+            vm.summaryModal = {};
             vm.skillsModal = {};
             vm.assignmentsModal = {};
             vm.showModal = showModal;
@@ -58,6 +59,11 @@
                 ICEInfo: '',
             };
 
+            /* SUMMARY */
+            vm.summary = {
+                summary: ''
+            };
+
             /* SKILLS */
             vm.skills = [];
 
@@ -93,6 +99,7 @@
                     .$promise.then(function(model) {
                         setGeneralInfo(model);
                         setPrivateInfo(model);
+                        setSummary(model);
                         setSkills(model);
                         setCertificates(model);
                         setAssignments(model);
@@ -101,6 +108,7 @@
                         setGeneralInfoModal();
                         setImageModal();
                         setPrivateInfoModal();
+                        setSummaryModal();
                         setSkillsModal();
                         setAssignmentsModal();
                         vm.activated = true;
@@ -139,6 +147,12 @@
                     shirtSize: model.user.shirtSize,
                     addressInfo: getAddressInfo(model),
                     ICEInfo: getICEInfo(model),
+                };
+            }
+
+            function setSummary(model) {
+                vm.summary = {
+                    summary: model.user.summary
                 };
             }
 
@@ -209,6 +223,10 @@
 
             function setPrivateInfoModal() {
                 vm.privateInfoModal = PrivateInfoModal;
+            }
+
+            function setSummaryModal() {
+                vm.summaryModal = SummaryModal;
             }
 
             function setImageModal() {
