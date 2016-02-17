@@ -309,6 +309,12 @@
         }
     }
 
+    #summary {
+        p {
+            word-break: break-word;
+        }
+    }
+
     #tags {
         min-height: 232px;
     }
