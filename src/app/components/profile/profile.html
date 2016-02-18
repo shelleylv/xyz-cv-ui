@@ -5,7 +5,9 @@
     <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated">
         <div id="general-info" class="panel-wrapper">
             <div class="panel panel-default profile-default">
+           
                 <div class="image-panel hidden-xs hidden-sm">
+
                     <div class="image-wrapper">
                         <img ng-if="vm.generalInfo.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ vm.generalInfo.profileImage.generatedName }}">
                         <i class="fa fa-user" ng-if="!vm.generalInfo.profileImage"></i>
@@ -24,10 +26,21 @@
                             <img ng-if="vm.generalInfo.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ vm.generalInfo.profileImage.generatedName }}">
                             <i class="fa fa-user" ng-if="!vm.generalInfo.profileImage"></i>
                         </div>
+
                         <div class="data-panel">
+
+                        <div class="row" ng-if="vm.generalInfo.employeeNumber">
+                        <div class="sheet-label-updated">
+                            Last Update: {{vm.user.updatedAt | date: 'yyyy-MM-dd HH:mm:ss'}}
+                        </div>
+                        </div>
+
+
+
                             <div class="name">
                                 <span class="flag-icon" ng-class="'flag-icon-' + (vm.generalInfo.country | flag)"></span>
                                 {{ vm.generalInfo.name }}
+
                             </div>
                             <div class="title">
                                 {{ vm.generalInfo.position }}

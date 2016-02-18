@@ -364,6 +364,19 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
+    .sheet-label-updated {
+        font-size: 70%;
+        font-weight: normal;
+        height: 20px;
+        line-height: 20px;
+        color: grey;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        float: right;
+        margin-right: 15%;
+    }
     .sheet-value {
     }
 
