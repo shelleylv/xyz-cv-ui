@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
+        <div class="panel panel-default" ng-show="vm.activated">
+            <div class="panel-body">
+                <div class="form-group">
+                    <tags-input class="tagField" ng-model="vm.tagList" placeholder="Enter keywords..." replace-spaces-with-dashes="false" min-length="0" on-tag-added="vm.doAdvancedSearch()" on-tag-removed="vm.doAdvancedSearch()">
+                        <auto-complete source="vm.getSuggestedTags($query)" min-length="1" max-results="10"></auto-complete>
+                    </tags-input>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Office</label>
+                        <div class="col-md-9">
+                            <button type="button" class="btn btn-default search-dropdown" ng-model="vm.refinedOffices" ng-change="vm.doAdvancedSearch()" data-html="1" icon-checkmark="fa fa-check" data-multiple="1" data-animation="am-flip-x" bs-options="office.name as office.name for office in vm.suggestedOffices" placeholder="Select office..." ng-change="vm.doAdvancedSearch()" max-length="2" bs-select>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-show="vm.result.length > 0">
+                <div class="list-group advanced-search-table" ng-if="vm.displayMode == 'table'">
+                    <li class="list-group-item" ng-repeat="person in vm.result | orderBy:'-updatedAt'">
+                        <a ng-href="{{ vm.baseUrl }}{{ person._id }}">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="name">
+                                        {{ person.name }}
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="office-container" ng-show="person.office">
+                                        {{ person.office }}
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div>
+                                        {{ person.updatedAt | date:'yyyy-MM-dd HH:mm:ss' }}
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </div>
+
+                <div class="search-result-paginate-container" ng-if="vm.result.length > 10 && vm.displayMode == 'list'">
+                    <dir-pagination-controls max-size="6"></dir-pagination-controls>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p>{{vm.result.length}} matches found.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body no-results" ng-show="vm.result.length <= 0">
+                No matches were found for your selected combination of parameters and tags.
+            </div>
+        </div>
+    </div>
+</div>

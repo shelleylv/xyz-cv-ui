@@ -255,6 +255,12 @@
         }
 
         function save() {
+
+                vm.user = angular.extend(vm.user, vm.assignments);
+
+                vm.user.$save()
+                    .then(callback);
+
             return saveAssignments()
                 .then(removeAssignments)
                 .then(vm.hideModal)
