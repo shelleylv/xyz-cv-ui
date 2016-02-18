@@ -8,7 +8,6 @@
                     </tags-input>
 
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Office</label>
                         <div class="col-md-9">
                             <button type="button" class="btn btn-default search-dropdown" ng-model="vm.refinedOffices" ng-change="vm.doAdvancedSearch()" data-html="1" icon-checkmark="fa fa-check" data-multiple="1" data-animation="am-flip-x" bs-options="office.name as office.name for office in vm.suggestedOffices" placeholder="Select office..." ng-change="vm.doAdvancedSearch()" max-length="2" bs-select>
                             </button>
@@ -18,23 +17,29 @@
             </div>
 
             <div ng-show="vm.result.length > 0">
+                <div class="advanced-search-view-buttons hidden-xs hidden-sm">
+                        <label class="col-md-4 control-label">Name</label>
+                        <label class="col-md-4 control-label">Office</label>
+                        <label class="col-md-4 control-label">Last Update</label>
+                </div>
                 <div class="list-group advanced-search-table" ng-if="vm.displayMode == 'table'">
+
                     <li class="list-group-item" ng-repeat="person in vm.result | orderBy:'-updatedAt'">
                         <a ng-href="{{ vm.baseUrl }}{{ person._id }}">
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="name">
                                         {{ person.name }}
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-4">
                                     <div class="office-container" ng-show="person.office">
                                         {{ person.office }}
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div>
-                                        {{ person.updatedAt | date:'yyyy-MM-dd HH:mm:ss' }}
+                                <div class="col-md-4">
+                                    <div ng-if="person.updatedAt - new Date()">
+                                        {{ person.updatedAt | date:'yyyy-MM-dd' }}
                                     </div>
                                 </div>
                             </div>
