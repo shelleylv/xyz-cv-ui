@@ -1,0 +1,101 @@
+<div class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				Edit Certificates
+				<button class="close" ng-click="vm.hideModal()">&times;</button>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" name="form">
+					<div class="form-group">
+						<label class="col-md-3 control-label">Name</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" ng-model="vm.currentConnector.name" bs-options="certificate.name as certificate.name for certificate in vm.certificates" placeholder="Name" ng-change="vm.certificateNameChanged(vm.currentConnector.name)" bs-typeahead required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">Customer</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="customer" ng-model="vm.currentConnector.customer" bs-options="customer.name as customer.name for customer in vm.customers" placeholder="Customer" bs-typeahead required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">Domain</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" name="domain" ng-model="vm.currentConnector.domain" bs-options="domain.name as domain.name for domain in vm.domains" placeholder="Domain" bs-typeahead required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">Description</label>
+						<div class="col-md-9">
+							<text-angular ta-toolbar="[['bold','italics'], ['ul', 'ol'], ['insertLink']]" ng-model="vm.currentConnector.description"></text-angular>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">Skills</label>
+						<div class="col-md-9">
+							<tags-input class="tagField" ng-model="vm.currentConnector.skills" placeholder="Enter skills..." replace-spaces-with-dashes="false" min-length="0" add-from-autocomplete-only="true">
+                        		<auto-complete source="vm.loadTags($query, vm.skillSuggestionsList)" min-length="1" max-results="10"></auto-complete>
+                    		</tags-input>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">Period</label>
+						<div class="col-md-9">
+							<div class="row">
+								<div class="col-xs-6">
+									<input type="text" class="form-control" ng-model="vm.currentConnector.dateFrom" data-max-date="{{vm.currentConnector.dateTo}}" data-date-format="yyyy-MM-dd" placeholder="From" data-start-week="1" bs-datepicker>
+								</div>
+								<div class="col-xs-6">
+									<input type="text" class="form-control" ng-model="vm.currentConnector.dateTo" data-min-date="{{vm.currentConnector.dateFrom}}" data-date-format="yyyy-MM-dd" placeholder="Until" data-start-week="1" bs-datepicker>
+								</div>
+							</div>
+						</div>
+					</div> 
+				</form>
+				<div class="row buffer-down">
+					<div class="col-md-12">
+						<button class="btn btn-primary pull-right" ng-disabled="!vm.isValidConnector(vm.currentConnector)" ng-click="vm.addConnector(vm.currentConnector)" ng-if="!vm.isEditMode()">Add</button>
+						<button class="btn btn-primary pull-right" ng-disabled="!vm.isValidConnector(vm.currentConnector)" ng-click="vm.saveConnector(vm.currentConnector)" ng-if="vm.isEditMode()">Save</button>
+					</div>
+				</div>
+				<ul class="list-group compact edit-certificates-list">
+					<li class="list-group-item edit-certificates-list-item" ng-repeat="connector in vm.connectorsPage">
+						<div class="item-buttons">
+                            <div class="deletebutton" ng-click="vm.removeConnector(connector)">
+                                <i class="fa fa-trash"></i>
+                            </div>
+						</div>
+						<div class="item-content">
+							<div class="name">{{connector.name}}</div>
+							<div class="description" ng-bind-html="connector.description | unsafehtml"></div>
+						</div>
+						<div class="item-buttons">
+                            <div class="editbutton" ng-click="vm.setConnectorForEditing(connector)">
+                                <i class="fa fa-edit"></i>
+                            </div>
+						</div>
+					</li>
+				</ul>
+				<div class="pagination-container" ng-if="vm.getPageCount() > 0">
+                    <ul class="pagination">
+                        <li>
+                            <a aria-label="Previous" ng-click="vm.previousPage()">
+                                <span aria-hidden="true">&lsaquo;</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a aria-label="Next" ng-click="vm.nextPage()">
+                                <span aria-hidden="true">&rsaquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-default" ng-click="vm.hideModal()">Close</button>
+				<button class="btn btn-primary" ng-click="vm.save()">Confirm changes</button>
+			</div>
+		</div>
+	</div>
+</div>
