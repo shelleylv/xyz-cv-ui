@@ -5,7 +5,7 @@
         .module('xyz-cv-ui.profile.modal')
         .controller('CertificatesController', CertificatesController);
 
-    function CertificatesController(CertificatesModal, UserToCertificate, Users, Certificates, Customers, Domains, Skills, $q, block, user, callback) {
+    function CertificatesController(CertificatesModal, UserToCertificate, Users, Certificates, Skills, $q, block, user, callback) {
         var vm = this;
         window.vm2 = vm;
 
@@ -17,15 +17,10 @@
         vm.currentCertificates = block;
         vm.currentConnector = {};
         vm.currentPage = 0;
-        vm.customers = [];
         vm.certificates = [];
-        vm.domains = [];
         vm.connectorHash = {};
         vm.certificateHash = {};
-        vm.domainHash = {};
-        vm.domainIdHash = {};
-        vm.customerHash = {};
-        vm.customerIdHash = {};
+
         vm.tagList = [];
 
         vm.hideModal = CertificatesModal.deactivate;
@@ -47,13 +42,12 @@
         vm.setPage = setPage;
         vm.getPageCount = getPageCount;
         vm.certificateNameChanged = certificateNameChanged;
+        vm.certificateDescriptionChanged = certificateDescriptionChanged;
 
         activate();
 
         function activate() {
             var promises = {
-                domains: Domains.query().$promise,
-                customers: Customers.query().$promise,
                 certificates: Certificates.query().$promise,
                 skills: Skills.query().$promise,
                 user: Users.get({_id: user._id}).$promise,
@@ -63,18 +57,14 @@
                 .then(function(values) {
                     vm.user = values.user;
                     vm.certificates = values.certificates;
-                    vm.customers = values.customers;
-                    vm.domains = values.domains;
                     vm.skills = values.skills;
                     vm.connectors = values.connectors;
-                    setHashes(vm.customers, vm.domains, vm.skills, vm.certificates, vm.connectors);
+                    setHashes(vm.skills, vm.certificates, vm.connectors);
                 });
         }
 
         function isValidConnector(connector) {
-            return connector.name && connector.name.length
-                && connector.domain && connector.domain.length
-                && connector.customer && connector.customer.length;
+            return connector.name && connector.name.length;
         }
 
         function isEditMode() {
@@ -92,8 +82,6 @@
                     .then(function(connector) {
                         vm.connectorsToSave[connector.name] = convertToSkillIds(angular.copy(connector));
                         vm.currentConnector = angular.copy(connector);
-                        vm.currentConnector = convertToDomainName(vm.currentConnector);
-                        vm.currentConnector = convertToCustomerName(vm.currentConnector);
                         updateConnectorList();
 
                         vm.setPage(vm.getPageCount()-1);
@@ -106,13 +94,9 @@
                 if (vm.certificateHash[connector.name]) {
                     return resolve(connector);
                 } else {
-                    return createDomainIfNotExists(connector)
-                        .then(createCustomerIfNotExists)
-                        .then(function(connector) {
                             var certificate = new Certificates({
                                 name: connector.name,
-                                domain: vm.domainHash[connector.domain]._id,
-                                customer: vm.customerHash[connector.customer]._id
+                                description: connector.description
                             });
                             certificate.$save()
                                 .then(function(certificate) {
@@ -120,44 +104,12 @@
                                     updateCertificatesList();
                                     return resolve(connector);
                                 });
-                        });
                 }
             });
         }
 
-        function createDomainIfNotExists(connector) {
-            return $q(function(resolve) {
-                if(vm.domainHash[connector.domain] || !(connector.domain && connector.domain.length)) {
-                    return resolve(connector);
-                } else {
-                    var domain = new Domains({name: connector.domain});
-                    domain.$save()
-                        .then(function(domain) {
-                            vm.domainHash[domain.name] = angular.copy(domain);
-                            vm.domainIdHash[domain._id] = angular.copy(domain);
-                            updateDomainsList();
-                            return resolve(connector);
-                        });
-                }
-            });
-        }
+    
 
-        function createCustomerIfNotExists(connector) {
-            return $q(function(resolve) {
-                if(vm.customerHash[connector.customer] || !(connector.customer && connector.customer.length)) {
-                    return resolve(connector);
-                } else {
-                    var customer = new Customers({name: connector.customer});
-                    customer.$save()
-                        .then(function(customer) {
-                            vm.customerHash[customer.name] = angular.copy(customer);
-                            vm.customerIdHash[customer._id] = angular.copy(customer);
-                            updateCustomersList();
-                            return resolve(connector);
-                        });
-                }
-            });
-        }
 
         function createConnector(connector) {
             return $q(function(resolve) {
@@ -165,8 +117,6 @@
                 connector.userId = vm.user._id;
                 connector.certificateId = certificate._id;
                 connector = new UserToCertificate(connector);
-                connector = convertToCustomerId(connector);
-                connector = convertToDomainId(connector);
                 vm.connectorHash[certificate.name] = convertToSkillIds(angular.copy(connector));
                 return resolve(connector);
             });
@@ -191,16 +141,11 @@
             return $q(function(resolve) {
                 var promises = [];
                 var existingConnector = vm.connectorHash[connector.name];
-                promises.push(createDomainIfNotExists(connector));
-                promises.push(createCustomerIfNotExists(connector));
                 $q.all(promises)
                     .then(function(){
                         return editCertificateIfChanged(connector)
                             .then(function(connector) {
                                 var connectorToStore = angular.extend(existingConnector, angular.copy(connector));
-                                connectorToStore = convertToCustomerId(connectorToStore);
-                                connectorToStore = convertToDomainId(connectorToStore);
-                                connectorToStore = convertToSkillIds(connectorToStore);
                                 vm.connectorHash[connector.name] = angular.copy(connectorToStore);
                                 return resolve(connector);
                         });
@@ -212,11 +157,8 @@
             return $q(function(resolve) {
                 var certificate = vm.certificateHash[connector.name];
                 var currentConnector = angular.copy(connector);
-                currentConnector = convertToDomainId(currentConnector);
-                currentConnector = convertToCustomerId(currentConnector);
-                if(certificate.domain !== currentConnector.domain || certificate.customer !== currentConnector.customer) {
-                    certificate.domain = currentConnector.domain;
-                    certificate.customer = currentConnector.customer;
+                if(certificate.description !== connector.description) {
+                    certificate.description = connector.description;
                     var certificateToSave = angular.copy(certificate);
                     certificateToSave.$save()
                         .then(function() {
@@ -249,8 +191,6 @@
         function setConnectorForEditing(connector) {
             vm.currentConnector = angular.copy(connector);
             vm.currentConnector = convertToSkillNames(vm.currentConnector);
-            vm.currentConnector = convertToCustomerName(vm.currentConnector);
-            vm.currentConnector = convertToDomainName(vm.currentConnector);
             vm.editMode = true;
         }
 
@@ -280,32 +220,13 @@
             }
         }
 
-        function setHashes(customers, domains, skills, certificates, connectors) {
+        function setHashes(skills, certificates, connectors) {
             var connectorHash = Object.create(null);
             var certificateHash = Object.create(null);
             var certificateIdHash = Object.create(null);
-            var domainHash = Object.create(null);
-            var customerHash = Object.create(null);
-            var domainIdHash = Object.create(null);
-            var customerIdHash = Object.create(null);
             var skillHash = Object.create(null);
             var skillIdHash = Object.create(null);
 
-            customers.forEach(function(customer) {
-                customerHash[customer.name] = customer;
-                customerIdHash[customer._id] = customer;
-            });
-
-            vm.customerHash = customerHash;
-            vm.customerIdHash = customerIdHash;
-
-            domains.forEach(function(domain) {
-                domainHash[domain.name] = domain;
-                domainIdHash[domain._id] = domain;
-            });
-
-            vm.domainHash = domainHash;
-            vm.domainIdHash = domainIdHash;
 
             skills.forEach(function(skill) {
                 skillHash[skill.name] = skill;
@@ -354,33 +275,8 @@
             return certificate;
         }
 
-        function convertToDomainName(certificate) {
-            if (certificate.domain && certificate.domain.length) {
-                certificate.domain = vm.domainIdHash[certificate.domain].name;
-            }
-            return certificate;
-        }
 
-        function convertToDomainId(certificate) {
-            if (certificate.domain && certificate.domain.length) {
-                certificate.domain = vm.domainHash[certificate.domain]._id;
-            }
-            return certificate;
-        }
-
-        function convertToCustomerName(certificate) {
-            if (certificate.customer && certificate.customer.length) {
-                certificate.customer = vm.customerIdHash[certificate.customer].name;
-            }
-            return certificate;
-        }
-
-        function convertToCustomerId(certificate) {
-            if (certificate.customer && certificate.customer.length) {
-                certificate.customer = vm.customerHash[certificate.customer]._id;
-            }
-            return certificate;
-        }
+      
 
         function updateLists() {
             updateConnectorList();
@@ -396,13 +292,7 @@
             vm.certificates = Object.keys(vm.certificateHash).map(function(key){return vm.certificateHash[key];});
         }
 
-        function updateDomainsList() {
-            vm.domains = Object.keys(vm.domainHash).map(function(key){return vm.domainHash[key];});
-        }
-
-        function updateCustomersList() {
-            vm.customers = Object.keys(vm.customerHash).map(function(key){return vm.customerHash[key];});
-        }
+      
 
         function updateSkillSuggestionsList() {
             vm.skillSuggestionsList.data = Object.keys(vm.skillHash);
@@ -428,8 +318,18 @@
             var certificate = vm.certificateHash[name];
             if (certificate) {
                 vm.currentConnector = angular.copy(certificate);
-                vm.currentConnector = convertToDomainName(vm.currentConnector);
-                vm.currentConnector = convertToCustomerName(vm.currentConnector);
+                delete vm.currentConnector._id;
+            }
+        }
+
+           function certificateDescriptionChanged(description) {
+            var connector = vm.connectorHash[description];
+            if (connector) {
+                return setConnectorForEditing(connector);
+            }
+            var certificate = vm.certificateHash[description];
+            if (certificate) {
+                vm.currentConnector = angular.copy(certificate);
                 delete vm.currentConnector._id;
             }
         }

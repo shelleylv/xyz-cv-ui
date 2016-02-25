@@ -262,7 +262,6 @@
         </div>
     </div>
 
-<<<<<<< f5e141b1c25b2210900d98312932a5af466f3bc7
     <!-- LANGUAGES -->
 
     <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated">
@@ -357,10 +356,7 @@
         </div>
     </div>
 
-    <!-- CERTIFICATES -->
-=======
-    <!-- CERTIFICATES-->
->>>>>>> added certificates modal
+    <!-- CERTIFICATES & EDUCATIONS-->
 
     <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated">
         <div id="certificates" class="panel-wrapper">
@@ -371,7 +367,7 @@
                     </div>
                 </div>
                 <div class="panel-heading">
-                    Certificates
+                    Certificates & Educations
                 </div>
                 <div class="editbutton" ng-click="vm.showModal(vm.certificatesModal, vm.certificates)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
                     <i class="fa fa-edit"></i>
@@ -382,8 +378,18 @@
                             <i class="fa fa-certificate"></i>
                         </div>
                         <div class="data-box">
-                            <div class="name">
+                            <div class="name col-md-12">
                                 {{ certificate.name }}
+                            </div>
+                            <div class="dateFromTo col-md-12" ng-show="certificate.dateFrom && certificate.dateTo">
+                                {{certificate.dateFrom | date: 'yyyy'}} -  {{certificate.dateTo | date :'yyyy'}}
+                            </div>
+
+                            <div class="dateFrom col-md-12" ng-show="certificate.dateFrom && !certificate.dateTo">
+                                {{certificate.dateFrom | date: 'yyyy'}}
+                            </div>
+                            <div class="dateTo col-md-12" ng-show="!certificate.dateFrom && certificate.dateTo">
+                                {{certificate.dateTo | date: 'yyyy'}}
                             </div>
                             <div class="skilltag pull-right" ng-repeat="skill in certificates.skills">
                                 {{ skill.name }}
@@ -394,7 +400,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- ASSIGNMENTS-->
 
@@ -481,16 +486,13 @@
     <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12">
         <div id="cloud" class="panel-wrapper">
             <div class="panel panel-default">
-
                 <div class="image-panel hidden-xs hidden-sm">
                     <div class="image-wrapper">
                         <i class="fa fa-cloud"></i>
                     </div>
                 </div>
-
                 <tagcloud class="profile-cloud" autoResize="true" words="vm.cloud.words" steps="7"></tagcloud>
             </div>
         </div>
     </div>
-
 </div>
