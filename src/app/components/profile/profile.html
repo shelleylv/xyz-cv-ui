@@ -373,27 +373,34 @@
                     <i class="fa fa-edit"></i>
                 </div>
                 <div>
-                    <div class="itemrow certificaterow" ng-class="{'removeTopBorder': $first}" ng-repeat="certificate in vm.certificates">
+                    <div class="itemrow certificaterow" ng-class="{'removeTopBorder': $first}" ng-repeat="certificate in vm.certificates | orderBy:'-dateTo'">
                         <div class="image-box">
                             <i class="fa fa-certificate"></i>
                         </div>
-                        <div class="data-box">
-                            <div class="name col-md-12">
+                        <div class="data-box col-md-12">
+                            <div class="name">
                                 {{ certificate.name }}
                             </div>
-                            <div class="dateFromTo col-md-12" ng-show="certificate.dateFrom && certificate.dateTo">
-                                {{certificate.dateFrom | date: 'yyyy'}} -  {{certificate.dateTo | date :'yyyy'}}
-                            </div>
-
-                            <div class="dateFrom col-md-12" ng-show="certificate.dateFrom && !certificate.dateTo">
-                                {{certificate.dateFrom | date: 'yyyy'}}
-                            </div>
-                            <div class="dateTo col-md-12" ng-show="!certificate.dateFrom && certificate.dateTo">
-                                {{certificate.dateTo | date: 'yyyy'}}
+                            <div class="dates">
+                                <div class="dateFromTo" ng-show="certificate.dateFrom && certificate.dateTo" ng-if="certificate.dateFrom !== certificate.dateTo">
+                                    {{certificate.dateFrom | date: 'yyyy'}} -  {{certificate.dateTo | date :'yyyy'}}
+                                </div>
+                                <div class="dateFromTo" ng-show="certificate.dateFrom && certificate.dateTo" ng-if="certificate.dateFrom === certificate.dateTo">
+                                    {{certificate.dateTo | date :'yyyy'}}
+                                </div>
+                                <div class="dateFrom" ng-show="certificate.dateFrom && !certificate.dateTo">
+                                    {{certificate.dateFrom | date: 'yyyy'}} - In progress
+                                </div>
+                                <div class="dateTo" ng-show="!certificate.dateFrom && certificate.dateTo">
+                                    {{certificate.dateTo | date: 'yyyy'}}
+                                </div>
+                                <div class="noDate" ng-show="!certificate.dateFrom && !certificate.dateTo">
+                                    In progress
+                                </div>
                             </div>
                             <div class="skilltag pull-right" ng-repeat="skill in certificates.skills">
                                 {{ skill.name }}
-                            </div>
+                            </div>    
                         </div>
                     </div>
                 </div>
