@@ -191,6 +191,8 @@
         </div>
     </div>
 
+
+
     <!-- SKILLS -->
 
     <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated">
@@ -211,6 +213,7 @@
                     <div class="itemrow skillrow" ng-class="{'removeTopBorder': $first}" dir-paginate="skill in vm.skills | itemsPerPage: 15">
                         <div class="image-box">
                             <i class="{{ skill.icon }}"></i>
+
                         </div>
                         <div class="data-box">
                             <div class="row">
@@ -218,9 +221,10 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="name">
-                                                {{ skill.name }}
+                                                {{ skill.name }} 
+                                                <p ng-show= {{skill.expertise}} class="fa fa-star"</p> 
                                             </div>
-                                        </div>
+                                            </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4 year">

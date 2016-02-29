@@ -33,6 +33,7 @@
             vm.getPageCount = getPageCount;
             vm.currentPage = 0;
 
+
             activate();
 
             //////////////
@@ -211,7 +212,6 @@
                     label: 'Level 5'
                 }];
             }
-
 
             function setSkills(skills) {
                 vm.skills = skills;
