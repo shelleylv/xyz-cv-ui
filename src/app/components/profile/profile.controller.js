@@ -88,7 +88,7 @@
             vm.assignments = [];
 
             /* CUSTOM HEADERS */
-            vm.customHeaders= [];
+            vm.customHeaders = [];
 
             /* SOCIAL MEDIA */
             vm.socialMedia = {
@@ -286,7 +286,7 @@
                 vm.coursesModal = CoursesModal;
             }
 
-             function setCertificatesModal() {
+            function setCertificatesModal() {
                 vm.certificatesModal = CertificatesModal;
             }
         }

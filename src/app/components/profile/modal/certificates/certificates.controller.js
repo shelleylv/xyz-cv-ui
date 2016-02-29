@@ -84,7 +84,7 @@
                         vm.currentConnector = angular.copy(connector);
                         updateConnectorList();
 
-                        vm.setPage(vm.getPageCount()-1);
+                        vm.setPage(vm.getPageCount() - 1);
                     });
             }
         }
@@ -94,11 +94,11 @@
                 if (vm.certificateHash[connector.name]) {
                     return resolve(connector);
                 } else {
-                            var certificate = new Certificates({
-                                name: connector.name,
-                                description: connector.description
-                            });
-                            certificate.$save()
+                    var certificate = new Certificates({
+                        name: connector.name,
+                        description: connector.description
+                    });
+                    certificate.$save()
                                 .then(function(certificate) {
                                     vm.certificateHash[certificate.name] = angular.copy(certificate);
                                     updateCertificatesList();
@@ -107,9 +107,6 @@
                 }
             });
         }
-
-    
-
 
         function createConnector(connector) {
             return $q(function(resolve) {
@@ -142,13 +139,13 @@
                 var promises = [];
                 var existingConnector = vm.connectorHash[connector.name];
                 $q.all(promises)
-                    .then(function(){
+                    .then(function() {
                         return editCertificateIfChanged(connector)
                             .then(function(connector) {
                                 var connectorToStore = angular.extend(existingConnector, angular.copy(connector));
                                 vm.connectorHash[connector.name] = angular.copy(connectorToStore);
                                 return resolve(connector);
-                        });
+                            });
                     });
             });
         }
@@ -157,7 +154,7 @@
             return $q(function(resolve) {
                 var certificate = vm.certificateHash[connector.name];
                 var currentConnector = angular.copy(connector);
-                if(certificate.description !== connector.description) {
+                if (certificate.description !== connector.description) {
                     certificate.description = connector.description;
                     var certificateToSave = angular.copy(certificate);
                     certificateToSave.$save()
@@ -181,7 +178,7 @@
         }
 
         function connectorExists(connector) {
-            if(vm.connectorHash[connector.name]) {
+            if (vm.connectorHash[connector.name]) {
                 return true;
             } else {
                 return false;
@@ -227,7 +224,6 @@
             var skillHash = Object.create(null);
             var skillIdHash = Object.create(null);
 
-
             skills.forEach(function(skill) {
                 skillHash[skill.name] = skill;
                 skillIdHash[skill._id] = skill;
@@ -255,7 +251,7 @@
 
         function convertToSkillNames(certificate) {
             if (certificate.skills) {
-                certificate.skills = certificate.skills.map(function(skillId){
+                certificate.skills = certificate.skills.map(function(skillId) {
                     return vm.skillIdHash[skillId].name;
                 });
             }
@@ -265,7 +261,7 @@
         function convertToSkillIds(certificate) {
             if (certificate.skills) {
                 certificate.skills = certificate.skills.map(function(skillTag) {
-                    if(Object.prototype.toString.call(skillTag) === '[object String]') {
+                    if (Object.prototype.toString.call(skillTag) === '[object String]') {
                         return vm.skillHash[skillTag]._id;
                     } else {
                         return vm.skillHash[skillTag.text]._id;
@@ -275,24 +271,19 @@
             return certificate;
         }
 
-
-      
-
         function updateLists() {
             updateConnectorList();
             updateSkillSuggestionsList();
         }
 
         function updateConnectorList() {
-            vm.connectors = Object.keys(vm.connectorHash).map(function(key){return vm.connectorHash[key];});
+            vm.connectors = Object.keys(vm.connectorHash).map(function(key) {return vm.connectorHash[key];});
             vm.setPage(vm.currentPage);
         }
 
         function updateCertificatesList() {
-            vm.certificates = Object.keys(vm.certificateHash).map(function(key){return vm.certificateHash[key];});
+            vm.certificates = Object.keys(vm.certificateHash).map(function(key) {return vm.certificateHash[key];});
         }
-
-      
 
         function updateSkillSuggestionsList() {
             vm.skillSuggestionsList.data = Object.keys(vm.skillHash);
@@ -322,7 +313,7 @@
             }
         }
 
-           function certificateDescriptionChanged(description) {
+        function certificateDescriptionChanged(description) {
             var connector = vm.connectorHash[description];
             if (connector) {
                 return setConnectorForEditing(connector);
