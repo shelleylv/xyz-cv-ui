@@ -11,6 +11,7 @@
         'shared.userToOffice',
         'shared.userToSkill',
         'shared.userToAssignment',
+        'shared.userToLanguage',
         'shared.uploader',
         'angularUtils.directives.dirPagination',
         'textAngular'
