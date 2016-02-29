@@ -156,6 +156,7 @@
                 };
             }
 
+
             function setSkills(model) {
                 vm.skills = model.user.skills;
             }
