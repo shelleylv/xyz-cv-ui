@@ -182,10 +182,13 @@
                 <div class="panel-heading">
                     Summary
                 </div>
-                <div class="data-box">
+                <div class="data-box" ng-if="vm.summary.summary">
                     <div ng-repeat="line in (vm.summary.summary | newlines) track by $index">
                         <p>{{line}}</p>
                     </div>
+                </div>
+                <div class="panel-body" ng-if="!vm.summary.summary">
+                        Empty
                 </div>
             </div>
         </div>
@@ -222,7 +225,8 @@
                                         <div class="col-md-12">
                                             <div class="name">
                                                 {{ skill.name }} 
-                                                <p ng-show= {{skill.expertise}} class="fa fa-star"</p> 
+                                                <p id= "expertise" ng-show= {{skill.expertise}} class="fa fa-star"</p> 
+                                                <p id= "experience" ng-show= {{skill.experience}} class="fa fa-arrow-up"</p> 
                                             </div>
                                             </div>
                                     </div>
@@ -263,8 +267,8 @@
                 <div class="panel-footer" ng-if="vm.skills.length > 15">
                     <dir-pagination-controls></dir-pagination-controls>
                 </div>
-                <div class="panel-body" ng-if="vm.skills.length === 0" ng-click="vm.showModal(vm.skillsModal, vm.skills)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
-                    You have not added any skills yet. To add a skill, press the <i class="fa fa-edit"></i> button in the top right corner.
+                <div class="panel-body" ng-if="vm.skills.length === 0">
+                    Empty
                 </div>
             </div>
         </div>
@@ -446,6 +450,10 @@
                             </div>
                         </div>
                     </div>
+                    <div class="panel-body" ng-if="vm.assignments.length === 0">
+                    Empty
+                </div>
+
                 </div>
             </div>
         </div>

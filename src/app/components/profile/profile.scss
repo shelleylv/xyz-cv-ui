@@ -188,9 +188,14 @@
                     font-weight: bold;
                 }
 
-                .name p{
-                color: #FFD700;
+                #expertise{
+                    color: #FFD700;
                 }
+                
+                #experience{
+                    
+                }
+
                 
                 .level {
                     display: inline-block;
@@ -217,6 +222,8 @@
                     display: inline-block;
                 }
             }
+
+
             .endorsements {
                 text-align: right;
                 line-height: 60px;
@@ -409,5 +416,9 @@
                 }
             }
         }
+    }
+
+    .panel-body{
+         color: #999999;
     }
 }
