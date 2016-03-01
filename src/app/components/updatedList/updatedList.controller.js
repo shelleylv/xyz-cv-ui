@@ -5,22 +5,17 @@
         .module('xyz-cv-ui.updatedList')
         .controller('UpdatedListController', UpdatedListController);
 
-        function UpdatedListController(SearchModel, API_URL, $q, Offices) {
+    function UpdatedListController(SearchModel, API_URL, $q, Offices) {
             var vm = this;
 
             vm.API_URL = API_URL;
             vm.baseUrl = '#/profile/';
             vm.result = [];
 
-
             vm.suggestedOffices = [];
-
             vm.refinedOffices = [];
-
             vm.refinedIsShown = false;
-
             vm.doAdvancedSearch = doAdvancedSearch;
-
             vm.activated = false;
             vm.displayMode = 'table';
 
@@ -31,20 +26,17 @@
                 SearchModel.get()
                     .$promise.then(function() {
                         doEmptySearch()
-                                vm.activated = true;
-
+                        vm.activated = true;
                     });
-
 
                 Offices.query().$promise
                     .then(function(offices) {
                         vm.suggestedOffices = offices;
                     });
-
             }
 
             function doEmptySearch() {
-                return SearchModel.query({searchType: 'advancedSearch/','parameters': { refinedOffices: []}})
+                return SearchModel.query({searchType: 'advancedSearch/','parameters': {refinedOffices: []}})
                     .$promise.then(function(value) {
                         vm.result = value;
                         return value;
@@ -52,20 +44,14 @@
             }
 
             function doAdvancedSearch() {
-                var urlObject = {  refinedOffices: vm.refinedOffices};
+                var urlObject = {refinedOffices: vm.refinedOffices};
                 SearchModel.query({searchType: 'advancedSearch/','parameters': urlObject}).$promise
                     .then(function(value) {
-                        
 
                         vm.result = value;
                         return value;
                     })
             }
-
-
-
-
-
 
             function cleanRefined() {
                 var list = [];
@@ -83,11 +69,6 @@
             function isBadFilter(object) {
                 return ((!object) || (!object.name) || (object.name.length === 0));
             }
-
-         
-
-
-
             //////////////
 
             function refresh() {
