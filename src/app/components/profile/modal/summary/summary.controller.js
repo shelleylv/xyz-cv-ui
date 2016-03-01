@@ -5,7 +5,7 @@
         .module('xyz-cv-ui.profile.modal')
         .controller('SummaryController', SummaryController);
 
-        function SummaryController(SummaryModal, Users, block, user, callback, $timeout) {
+    function SummaryController(SummaryModal, Users, block, user, callback, $timeout) {
             var vm = this;
 
             vm.user = {};
@@ -19,7 +19,7 @@
             //////////////
 
             function activate() {
-                Users.get({ _id: user._id }).$promise
+                Users.get({_id: user._id}).$promise
                     .then(function(user) {
                         vm.user = user;
                         vm.active = true;

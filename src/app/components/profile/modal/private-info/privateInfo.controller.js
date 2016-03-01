@@ -5,7 +5,7 @@
         .module('xyz-cv-ui.profile.modal')
         .controller('PrivateInfoController', PrivateInfoController);
 
-        function PrivateInfoController(PrivateInfoModal, Users, Offices, block, user, callback, $timeout) {
+    function PrivateInfoController(PrivateInfoModal, Users, Offices, block, user, callback, $timeout) {
             var vm = this;
 
             vm.offices = [];
@@ -36,7 +36,7 @@
             //////////////
 
             function activate() {
-                Users.get({ _id: user._id }).$promise
+                Users.get({_id: user._id}).$promise
                     .then(function(user) {
                         vm.privateInfo = block;
                         vm.user = user;

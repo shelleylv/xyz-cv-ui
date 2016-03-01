@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-        .module('xyz-cv-ui.profile.modal')
-        .controller('AssignmentsController', AssignmentsController);
+    .module('xyz-cv-ui.profile.modal')
+    .controller('AssignmentsController', AssignmentsController);
 
     function AssignmentsController(AssignmentsModal, UserToAssignment, Users, Assignments, Customers, Domains, Skills, $q, block, user, callback) {
         var vm = this;
@@ -60,21 +60,19 @@
                 connectors: UserToAssignment.query({userId: user._id}).$promise
             };
             $q.all(promises)
-                .then(function(values) {
-                    vm.user = values.user;
-                    vm.assignments = values.assignments;
-                    vm.customers = values.customers;
-                    vm.domains = values.domains;
-                    vm.skills = values.skills;
-                    vm.connectors = values.connectors;
-                    setHashes(vm.customers, vm.domains, vm.skills, vm.assignments, vm.connectors);
-                });
+            .then(function(values) {
+                vm.user = values.user;
+                vm.assignments = values.assignments;
+                vm.customers = values.customers;
+                vm.domains = values.domains;
+                vm.skills = values.skills;
+                vm.connectors = values.connectors;
+                setHashes(vm.customers, vm.domains, vm.skills, vm.assignments, vm.connectors);
+            });
         }
 
         function isValidConnector(connector) {
-            return connector.name && connector.name.length
-                && connector.domain && connector.domain.length
-                && connector.customer && connector.customer.length;
+            return connector.name && connector.name.length && connector.domain && connector.domain.length && connector.customer && connector.customer.length;
         }
 
         function isEditMode() {
@@ -87,17 +85,17 @@
         function addConnector(connector) {
             if (connector && connector.name && !vm.connectorHash[connector.name]) {
                 createAssignmentIfNotExists(connector)
-                    .then(editAssignmentIfChanged)
-                    .then(createConnector)
-                    .then(function(connector) {
-                        vm.connectorsToSave[connector.name] = convertToSkillIds(angular.copy(connector));
-                        vm.currentConnector = angular.copy(connector);
-                        vm.currentConnector = convertToDomainName(vm.currentConnector);
-                        vm.currentConnector = convertToCustomerName(vm.currentConnector);
-                        updateConnectorList();
+                .then(editAssignmentIfChanged)
+                .then(createConnector)
+                .then(function(connector) {
+                    vm.connectorsToSave[connector.name] = convertToSkillIds(angular.copy(connector));
+                    vm.currentConnector = angular.copy(connector);
+                    vm.currentConnector = convertToDomainName(vm.currentConnector);
+                    vm.currentConnector = convertToCustomerName(vm.currentConnector);
+                    updateConnectorList();
 
-                        vm.setPage(vm.getPageCount()-1);
-                    });
+                    vm.setPage(vm.getPageCount() - 1);
+                });
             }
         }
 
@@ -107,54 +105,54 @@
                     return resolve(connector);
                 } else {
                     return createDomainIfNotExists(connector)
-                        .then(createCustomerIfNotExists)
-                        .then(function(connector) {
-                            var assignment = new Assignments({
-                                name: connector.name,
-                                domain: vm.domainHash[connector.domain]._id,
-                                customer: vm.customerHash[connector.customer]._id
-                            });
-                            assignment.$save()
-                                .then(function(assignment) {
-                                    vm.assignmentHash[assignment.name] = angular.copy(assignment);
-                                    updateAssignmentsList();
-                                    return resolve(connector);
-                                });
+                    .then(createCustomerIfNotExists)
+                    .then(function(connector) {
+                        var assignment = new Assignments({
+                            name: connector.name,
+                            domain: vm.domainHash[connector.domain]._id,
+                            customer: vm.customerHash[connector.customer]._id
                         });
+                        assignment.$save()
+                        .then(function(assignment) {
+                            vm.assignmentHash[assignment.name] = angular.copy(assignment);
+                            updateAssignmentsList();
+                            return resolve(connector);
+                        });
+                    });
                 }
             });
         }
 
         function createDomainIfNotExists(connector) {
             return $q(function(resolve) {
-                if(vm.domainHash[connector.domain] || !(connector.domain && connector.domain.length)) {
+                if (vm.domainHash[connector.domain] || !(connector.domain && connector.domain.length)) {
                     return resolve(connector);
                 } else {
                     var domain = new Domains({name: connector.domain});
                     domain.$save()
-                        .then(function(domain) {
-                            vm.domainHash[domain.name] = angular.copy(domain);
-                            vm.domainIdHash[domain._id] = angular.copy(domain);
-                            updateDomainsList();
-                            return resolve(connector);
-                        });
+                    .then(function(domain) {
+                        vm.domainHash[domain.name] = angular.copy(domain);
+                        vm.domainIdHash[domain._id] = angular.copy(domain);
+                        updateDomainsList();
+                        return resolve(connector);
+                    });
                 }
             });
         }
 
         function createCustomerIfNotExists(connector) {
             return $q(function(resolve) {
-                if(vm.customerHash[connector.customer] || !(connector.customer && connector.customer.length)) {
+                if (vm.customerHash[connector.customer] || !(connector.customer && connector.customer.length)) {
                     return resolve(connector);
                 } else {
                     var customer = new Customers({name: connector.customer});
                     customer.$save()
-                        .then(function(customer) {
-                            vm.customerHash[customer.name] = angular.copy(customer);
-                            vm.customerIdHash[customer._id] = angular.copy(customer);
-                            updateCustomersList();
-                            return resolve(connector);
-                        });
+                    .then(function(customer) {
+                        vm.customerHash[customer.name] = angular.copy(customer);
+                        vm.customerIdHash[customer._id] = angular.copy(customer);
+                        updateCustomersList();
+                        return resolve(connector);
+                    });
                 }
             });
         }
@@ -178,12 +176,12 @@
         function saveConnector(connector) {
             if (connector && connector.name && vm.connectorHash[connector.name]) {
                 editConnector(connector)
-                    .then(function(connector) {
-                        vm.connectorsToSave[connector.name] = convertToSkillIds(angular.copy(connector));
-                        delete connector._id;
-                        vm.currentConnector = angular.copy(connector);
-                        updateConnectorList();
-                    });
+                .then(function(connector) {
+                    vm.connectorsToSave[connector.name] = convertToSkillIds(angular.copy(connector));
+                    delete connector._id;
+                    vm.currentConnector = angular.copy(connector);
+                    updateConnectorList();
+                });
             }
         }
 
@@ -194,17 +192,17 @@
                 promises.push(createDomainIfNotExists(connector));
                 promises.push(createCustomerIfNotExists(connector));
                 $q.all(promises)
-                    .then(function(){
-                        return editAssignmentIfChanged(connector)
-                            .then(function(connector) {
-                                var connectorToStore = angular.extend(existingConnector, angular.copy(connector));
-                                connectorToStore = convertToCustomerId(connectorToStore);
-                                connectorToStore = convertToDomainId(connectorToStore);
-                                connectorToStore = convertToSkillIds(connectorToStore);
-                                vm.connectorHash[connector.name] = angular.copy(connectorToStore);
-                                return resolve(connector);
-                        });
+                .then(function() {
+                    return editAssignmentIfChanged(connector)
+                    .then(function(connector) {
+                        var connectorToStore = angular.extend(existingConnector, angular.copy(connector));
+                        connectorToStore = convertToCustomerId(connectorToStore);
+                        connectorToStore = convertToDomainId(connectorToStore);
+                        connectorToStore = convertToSkillIds(connectorToStore);
+                        vm.connectorHash[connector.name] = angular.copy(connectorToStore);
+                        return resolve(connector);
                     });
+                });
             });
         }
 
@@ -214,15 +212,15 @@
                 var currentConnector = angular.copy(connector);
                 currentConnector = convertToDomainId(currentConnector);
                 currentConnector = convertToCustomerId(currentConnector);
-                if(assignment.domain !== currentConnector.domain || assignment.customer !== currentConnector.customer) {
+                if (assignment.domain !== currentConnector.domain || assignment.customer !== currentConnector.customer) {
                     assignment.domain = currentConnector.domain;
                     assignment.customer = currentConnector.customer;
                     var assignmentToSave = angular.copy(assignment);
                     assignmentToSave.$save()
-                        .then(function() {
-                            vm.assignmentHash[assignment.name] = assignment;
-                            return resolve(connector);
-                        });
+                    .then(function() {
+                        vm.assignmentHash[assignment.name] = assignment;
+                        return resolve(connector);
+                    });
                 } else {
                     return resolve(connector);
                 }
@@ -239,7 +237,7 @@
         }
 
         function connectorExists(connector) {
-            if(vm.connectorHash[connector.name]) {
+            if (vm.connectorHash[connector.name]) {
                 return true;
             } else {
                 return false;
@@ -256,9 +254,9 @@
 
         function save() {
             return saveAssignments()
-                .then(removeAssignments)
-                .then(vm.hideModal)
-                .then(callback);
+            .then(removeAssignments)
+            .then(vm.hideModal)
+            .then(callback);
         }
 
         function loadTags(query, suggestions) {
@@ -332,7 +330,7 @@
 
         function convertToSkillNames(assignment) {
             if (assignment.skills) {
-                assignment.skills = assignment.skills.map(function(skillId){
+                assignment.skills = assignment.skills.map(function(skillId) {
                     return vm.skillIdHash[skillId].name;
                 });
             }
@@ -342,7 +340,7 @@
         function convertToSkillIds(assignment) {
             if (assignment.skills) {
                 assignment.skills = assignment.skills.map(function(skillTag) {
-                    if(Object.prototype.toString.call(skillTag) === '[object String]') {
+                    if (Object.prototype.toString.call(skillTag) === '[object String]') {
                         return vm.skillHash[skillTag]._id;
                     } else {
                         return vm.skillHash[skillTag.text]._id;
@@ -386,20 +384,20 @@
         }
 
         function updateConnectorList() {
-            vm.connectors = Object.keys(vm.connectorHash).map(function(key){return vm.connectorHash[key];});
+            vm.connectors = Object.keys(vm.connectorHash).map(function(key) {return vm.connectorHash[key];});
             vm.setPage(vm.currentPage);
         }
 
         function updateAssignmentsList() {
-            vm.assignments = Object.keys(vm.assignmentHash).map(function(key){return vm.assignmentHash[key];});
+            vm.assignments = Object.keys(vm.assignmentHash).map(function(key) {return vm.assignmentHash[key];});
         }
 
         function updateDomainsList() {
-            vm.domains = Object.keys(vm.domainHash).map(function(key){return vm.domainHash[key];});
+            vm.domains = Object.keys(vm.domainHash).map(function(key) {return vm.domainHash[key];});
         }
 
         function updateCustomersList() {
-            vm.customers = Object.keys(vm.customerHash).map(function(key){return vm.customerHash[key];});
+            vm.customers = Object.keys(vm.customerHash).map(function(key) {return vm.customerHash[key];});
         }
 
         function updateSkillSuggestionsList() {
@@ -414,7 +412,7 @@
                     promises.push(connector.$save());
                 });
                 return $q.all(promises)
-                    .then(resolve);
+                .then(resolve);
             });
         }
 
@@ -439,7 +437,7 @@
                     promises.push(vm.connectorsToRemove[key].$delete());
                 });
                 return $q.all(promises)
-                    .then(resolve);
+                .then(resolve);
             });
         }
 
