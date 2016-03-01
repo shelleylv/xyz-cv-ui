@@ -5,7 +5,7 @@
         .module('xyz-cv-ui.profile.modal')
         .controller('GeneralInfoController', GeneralInfoController);
 
-        function GeneralInfoController(GeneralInfoModal, Users, Offices, UserToOffice, flagFilter, block, user, callback, $timeout, $q) {
+    function GeneralInfoController(GeneralInfoModal, Users, Offices, UserToOffice, flagFilter, block, user, callback, $timeout, $q) {
             var vm = this;
 
             vm.offices = [];

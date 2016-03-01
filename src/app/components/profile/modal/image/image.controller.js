@@ -5,7 +5,7 @@
         .module('xyz-cv-ui.profile.modal')
         .controller('ImageController', ImageController);
 
-        function ImageController(ImageModal, ImageUploader, Users, block, user, callback, $timeout, $scope) {
+    function ImageController(ImageModal, ImageUploader, Users, block, user, callback, $timeout, $scope) {
             var vm = this;
 
             vm.user = {};

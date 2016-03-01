@@ -5,7 +5,7 @@
         .module('xyz-cv-ui.profile')
         .controller('ProfileController', ProfileController);
 
-        function ProfileController(ProfileModel, $routeParams, session, API_URL, GeneralInfoModal, ImageModal, PrivateInfoModal, SummaryModal, SkillsModal, AssignmentsModal) {
+    function ProfileController(ProfileModel, $routeParams, session, API_URL, GeneralInfoModal, ImageModal, PrivateInfoModal, SummaryModal, SkillsModal, AssignmentsModal) {
             var vm = this;
             window.vm = vm;
 
@@ -74,7 +74,7 @@
             vm.assignments = [];
 
             /* CUSTOM HEADERS */
-            vm.customHeaders= [];
+            vm.customHeaders = [];
 
             /* SOCIAL MEDIA */
             vm.socialMedia = {
@@ -155,7 +155,6 @@
                     summary: model.user.summary
                 };
             }
-
 
             function setSkills(model) {
                 vm.skills = model.user.skills;
