@@ -190,8 +190,6 @@
         </div>
     </div>
 
-
-
     <!-- SKILLS -->
 
     <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated">
@@ -212,7 +210,6 @@
                     <div class="itemrow skillrow" ng-class="{'removeTopBorder': $first}" dir-paginate="skill in vm.skills | itemsPerPage: 15">
                         <div class="image-box">
                             <i class="{{ skill.icon }}"></i>
-
                         </div>
                         <div class="data-box">
                             <div class="row">
@@ -333,7 +330,6 @@
                     <div class="panel-body" ng-if="vm.assignments.length === 0">
                     Empty
                 </div>
-
                 </div>
             </div>
         </div>
@@ -355,5 +351,4 @@
             </div>
         </div>
     </div>
-
 </div>
