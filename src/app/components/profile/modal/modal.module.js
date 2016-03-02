@@ -10,6 +10,7 @@
         'shared.assignments',
         'shared.userToOffice',
         'shared.userToSkill',
+        'shared.userToOther',
         'shared.userToAssignment',
         'shared.userToLanguage',
         'shared.uploader',

@@ -5,7 +5,8 @@
         .module('xyz-cv-ui.profile')
         .controller('ProfileController', ProfileController);
 
-        function ProfileController(ProfileModel, $routeParams, session, API_URL, GeneralInfoModal, ImageModal, PrivateInfoModal, SummaryModal, SkillsModal, AssignmentsModal,LanguagesModal) {
+        function ProfileController(ProfileModel, $routeParams, session, API_URL, GeneralInfoModal, ImageModal, PrivateInfoModal, SummaryModal, SkillsModal, AssignmentsModal, LanguagesModal, OthersModal) {
+
             var vm = this;
             window.vm = vm;
 
@@ -23,6 +24,7 @@
             vm.summaryModal = {};
             vm.skillsModal = {};
             vm.languagesModal = {};
+            vm.othersModal = {};
             vm.assignmentsModal = {};
             vm.showModal = showModal;
 
@@ -71,6 +73,9 @@
             /* LANGUAGES */
             vm.languages = [];
 
+            /* OTHERS */
+            vm.others = [];
+
             /* CERTIFICATES */
             vm.certificates = [];
 
@@ -106,6 +111,7 @@
                         setSummary(model);
                         setSkills(model);
                         setLanguages(model);
+                        setOthers(model);
                         setCertificates(model);
                         setAssignments(model);
                         setCloud(model);
@@ -116,6 +122,7 @@
                         setSummaryModal();
                         setSkillsModal();
                         setLanguagesModal();
+                        setOthersModal();
                         setAssignmentsModal();
                         vm.activated = true;
                     });
@@ -168,6 +175,10 @@
 
             function setLanguages(model) {
                 vm.languages = model.user.languages;
+            }
+            
+            function setOthers(model) {
+                vm.others = model.user.others;
             }
 
             function setCertificates(model) {
@@ -249,6 +260,10 @@
 
             function setLanguagesModal() {
                 vm.languagesModal = LanguagesModal;
+            }
+
+            function setOthersModal() {
+                vm.othersModal = OthersModal;
             }
 
             function setAssignmentsModal() {

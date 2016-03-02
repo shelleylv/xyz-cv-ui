@@ -1,0 +1,74 @@
+<div class="modal others-modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				Edit Others
+				<button class="close" ng-click="vm.hideModal()">&times;</button>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-md-3 control-label">Name</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" ng-model="vm.currentConnector.name" bs-options="other.name as other.name for other in vm.others" placeholder="Name" bs-typeahead>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">Year</label>
+						<div class="col-md-9">
+                            <div class="row">
+								<div class="col-md-6">
+									<div class="input-group">
+										<input type="text" class="form-control" ng-init="vm.currentConnector.year = ''" ng-model="vm.currentConnector.year" data-date-format="yyyy" placeholder="Year" data-min-view="2" data-start-week="1" bs-datepicker>
+                                    </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+				<div class="row buffer-down">
+					<div class="col-md-12">
+						<button class="btn btn-primary pull-right" ng-disabled="!vm.isValidConnector(vm.currentConnector)" ng-click="vm.addConnector(vm.currentConnector)" ng-if="!vm.isEditMode()">Add</button>
+						<button class="btn btn-primary pull-right" ng-disabled="!vm.isValidConnector(vm.currentConnector)" ng-click="vm.saveConnector(vm.currentConnector)" ng-if="vm.isEditMode()">Save</button>
+					</div>
+				</div>
+                <ul class="list-group compact edit-others-list">
+					<li class="list-group-item edit-others-list-item" ng-repeat="connector in vm.connectorsPage">
+                        <div class="item-buttons">
+                            <div class="deletebutton" ng-click="vm.removeConnector(connector)">
+                                <i class="fa fa-trash"></i>
+                            </div>
+                        </div>
+                        <div class="item-content">
+                            <div class="name">{{connector.name}}</div>
+                            <div class="years">{{connector.year | date:'yyyy'}}</div>
+                        </div>
+                        <div class="item-buttons">
+                            <div class="editbutton" ng-click="vm.setConnectorForEditing(connector)">
+                                <i class="fa fa-edit"></i>
+                            </div>
+                        </div>
+					</li>
+				</ul>
+                <div class="pagination-container" ng-if="vm.getPageCount() > 0">
+                    <ul class="pagination">
+                        <li>
+                            <a aria-label="Previous" ng-click="vm.previousPage()">
+                                <span aria-hidden="true">&lsaquo;</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a aria-label="Next" ng-click="vm.nextPage()">
+                                <span aria-hidden="true">&rsaquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+			<div class="modal-footer">
+				<button class="btn btn-default" ng-click="vm.hideModal()">Close</button>
+				<button class="btn btn-primary" ng-click="vm.save()">Confirm changes</button>
+			</div>
+		</div>
+	</div>
+</div>
