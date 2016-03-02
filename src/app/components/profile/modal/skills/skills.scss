@@ -3,8 +3,8 @@
 
 .skills-modal {
     .edit-skills-list {
-        min-height: 420px;
-        max-height: 420px;
+        min-height: none;
+        max-height: none;
         overflow: hidden;
         max-width: 100%;
         zoom: 1;
@@ -50,7 +50,6 @@
                 font-weight: bold;
                 flex-basis: 100%;
             }
-            
             #expertise {
                 color: #FFD700;
             }
@@ -66,7 +65,6 @@
                 width: 100px;
                 flex-basis: 33%;
             }
-
     }
     .pagination-container {
         line-height: 0;
