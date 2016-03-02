@@ -264,6 +264,15 @@
 
             }
         }
+
+        &.otherrow {
+            .name {
+                font-weight: bold;
+            }
+            .year {
+
+            }
+        }
     }
 
     #general-info, #private-info {

@@ -5,6 +5,7 @@
         'xyz-cv-ui.profile.modal',
         'shared.skills',
         'shared.languages',
+        'shared.others',
         'shared.offices'
     ]);
 
