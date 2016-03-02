@@ -5,7 +5,7 @@
         .module('xyz-cv-ui.profile')
         .controller('ProfileController', ProfileController);
 
-        function ProfileController(ProfileModel, $routeParams, session, API_URL, GeneralInfoModal, ImageModal, PrivateInfoModal, SummaryModal, SkillsModal, AssignmentsModal) {
+        function ProfileController(ProfileModel, $routeParams, session, API_URL, GeneralInfoModal, ImageModal, PrivateInfoModal, SummaryModal, SkillsModal, AssignmentsModal,LanguagesModal) {
             var vm = this;
             window.vm = vm;
 
@@ -22,6 +22,7 @@
             vm.generalInfoModal = {};
             vm.summaryModal = {};
             vm.skillsModal = {};
+            vm.languagesModal = {};
             vm.assignmentsModal = {};
             vm.showModal = showModal;
 
@@ -67,6 +68,9 @@
             /* SKILLS */
             vm.skills = [];
 
+            /* LANGUAGES */
+            vm.languages = [];
+
             /* CERTIFICATES */
             vm.certificates = [];
 
@@ -101,6 +105,7 @@
                         setPrivateInfo(model);
                         setSummary(model);
                         setSkills(model);
+                        setLanguages(model);
                         setCertificates(model);
                         setAssignments(model);
                         setCloud(model);
@@ -110,6 +115,7 @@
                         setPrivateInfoModal();
                         setSummaryModal();
                         setSkillsModal();
+                        setLanguagesModal();
                         setAssignmentsModal();
                         vm.activated = true;
                     });
@@ -158,6 +164,10 @@
 
             function setSkills(model) {
                 vm.skills = model.user.skills;
+            }
+
+            function setLanguages(model) {
+                vm.languages = model.user.languages;
             }
 
             function setCertificates(model) {
@@ -235,6 +245,10 @@
 
             function setSkillsModal() {
                 vm.skillsModal = SkillsModal;
+            }
+
+            function setLanguagesModal() {
+                vm.languagesModal = LanguagesModal;
             }
 
             function setAssignmentsModal() {
