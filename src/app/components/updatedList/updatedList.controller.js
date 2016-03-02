@@ -25,7 +25,7 @@
 
                 SearchModel.get()
                     .$promise.then(function() {
-                        doEmptySearch()
+                        doEmptySearch();
                         vm.activated = true;
                     });
 
@@ -50,29 +50,7 @@
 
                         vm.result = value;
                         return value;
-                    })
-            }
-
-            function cleanRefined() {
-                var list = [];
-                for (var i = 0; i < vm.refinedOffices.length; i++) {
-                    if (!isBadFilter(vm.refinedOffices[i])) {
-                        list.push(vm.refinedOffices[i]);
-                    }
-                }
-                if (list.length === 0) {
-                    return [];
-                }
-                return list;
-            }
-
-            function isBadFilter(object) {
-                return ((!object) || (!object.name) || (object.name.length === 0));
-            }
-            //////////////
-
-            function refresh() {
-                /* */
+                    });
             }
         }
 })();
