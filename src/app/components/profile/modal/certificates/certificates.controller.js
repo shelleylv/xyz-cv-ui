@@ -93,7 +93,8 @@
             return $q(function(resolve) {
                 if (vm.certificateHash[connector.name]) {
                     return resolve(connector);
-                } else {
+                }
+                else {
                     var certificate = new Certificates({
                         name: connector.name,
                         description: connector.description
@@ -192,7 +193,6 @@
         }
 
         function save() {
-
             return saveCertificates()
                 .then(removeCertificates)
                 .then(vm.user.$save())
