@@ -1,10 +1,7 @@
 @import "styles/_base";
 @import "styles/_colors";
 
-$advancedsearchimagesize1: 66px;
-$advancedsearchimagesize2: 105px;
-$advancedsearchimagesize3: 116px;
-$advancedsearchimagesize_mobile: 85px;
+.updatedList {
 
 .parameter-window {
     .select-width-hack {
@@ -19,15 +16,6 @@ $advancedsearchimagesize_mobile: 85px;
     }
 }
 
-.tags {
-    @include border-radius(0);
-    box-shadow: none;
-    width: flex;
-}
-
-.tagField {
-    width: 100%;
-}
 
 input + .typeahead.ng-hide { display: block !important; visibility: hidden !important; overflow: hidden; }
 
@@ -40,33 +28,8 @@ a, a:link, a:visited {
     text-decoration: none;
 
 }
-.advanced-search-table {
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 0;
-    margin-top: 10px;
-    .list-group-item {
-        @include border-radius(0);
-        padding: 0 15px;
-        border: none;
-        margin-bottom: 0;
-        > a {
-            text-decoration: none;
-            color: $textcolor;
-        }
-        .email  {
-            font-size: 80%;
-        }
 
-        &:hover {
-            background-color: #f0f0f0;
-        }
-    }
-}
 
-.skillFilters {
-    padding: 3px;
-}
 
 .search-dropdown {
 }
@@ -77,4 +40,5 @@ a, a:link, a:visited {
 
 .row {
     padding: 8px;
+}
 }
