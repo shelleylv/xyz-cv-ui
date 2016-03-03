@@ -3,42 +3,41 @@
 
 .updatedList {
 
-.parameter-window {
-    .select-width-hack {
-        button {
-            width: 100%;
-            .caret {
-                float: right;
-                margin-top: 9px;
+    .parameter-window {
+        .select-width-hack {
+            button {
+                width: 100%;
+                .caret {
+                    float: right;
+                    margin-top: 9px;
+                }
+                text-align: left;
             }
-            text-align: left;
         }
     }
-}
 
 
-input + .typeahead.ng-hide { display: block !important; visibility: hidden !important; overflow: hidden; }
+    input + .typeahead.ng-hide { display: block !important; visibility: hidden !important; overflow: hidden; }
 
-.list-heading {
-    padding-bottom: 10px;
+    .list-heading {
+        padding-bottom: 10px;
 
-}
-a, a:link, a:visited {
-    display: block;
-    text-decoration: none;
-
-}
+    }
+    a, a:link, a:visited {
+        display: block;
+        text-decoration: none;
+    }
 
 
 
-.search-dropdown {
-}
+    .search-dropdown {
+    }
 
-.no-results {
-    border-top: solid 1px #ddd;
-}
+    .no-results {
+        border-top: solid 1px #ddd;
+    }
 
-.row {
-    padding: 8px;
-}
+    .row {
+        padding: 8px;
+    }
 }

@@ -18,11 +18,10 @@
             vm.doAdvancedSearch = doAdvancedSearch;
             vm.activated = false;
             vm.displayMode = 'table';
-
+            
             activate();
 
             function activate() {
-
                 SearchModel.get()
                     .$promise.then(function() {
                         doEmptySearch();
@@ -47,7 +46,6 @@
                 var urlObject = {refinedOffices: vm.refinedOffices};
                 SearchModel.query({searchType: 'advancedSearch/','parameters': urlObject}).$promise
                     .then(function(value) {
-
                         vm.result = value;
                         return value;
                     });
