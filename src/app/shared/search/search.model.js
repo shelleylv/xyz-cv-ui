@@ -3,10 +3,10 @@
 
     angular
         .module('shared.search')
-        .factory('Search', Search);
+        .factory('SearchModel', SearchModel);
 
-    function Search(Model) {
+    function SearchModel(Model) {
         return new Model('/search/:searchType');
     }
-
+    
 })();
