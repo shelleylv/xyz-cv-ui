@@ -4,6 +4,7 @@
     angular.module('xyz-cv-ui.updatedList', [
         'shared.users',
         'shared.assignments',
-        'shared.roles'
+        'shared.roles',
+        'shared.search'
         ]);
 })();

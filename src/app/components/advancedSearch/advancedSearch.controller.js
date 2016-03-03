@@ -5,7 +5,7 @@
         .module('xyz-cv-ui.advancedSearch')
         .controller('AdvancedSearchController', AdvancedSearchController);
 
-        function AdvancedSearchController(SearchModel, Skills, Files, API_URL, $q, Offices, Assignments, Roles) {
+        function AdvancedSearchController(Search, Skills, Files, API_URL, $q, Offices, Assignments, Roles) {
             var vm = this;
 
             vm.API_URL = API_URL;
@@ -46,7 +46,7 @@
             function activate() {
                 setLevels();
 
-                SearchModel.get()
+                Search.get()
                     .$promise.then(function(value) {
                         vm.suggestedTags = value.tagList;
                         doEmptySearch()
@@ -78,7 +78,7 @@
             }
 
             function doEmptySearch() {
-                return SearchModel.query({searchType: 'advancedSearch/','parameters': {tags: [], refinedSkills: [], refinedRoles: [], refinedOffices: [], refinedAssignments: []}})
+                return Search.query({searchType: 'advancedSearch/','parameters': {tags: [], refinedSkills: [], refinedRoles: [], refinedOffices: [], refinedAssignments: []}})
                     .$promise.then(function(value) {
                         vm.result = value;
                         return value;
@@ -89,7 +89,7 @@
                 var tags = fillTagList();
                 vm.refinedSkills = cleanRefined();
                 var urlObject = {tags: tags, refinedSkills: vm.refinedSkills, refinedOffices: vm.refinedOffices, refinedAssignments: vm.refinedAssignments, refinedRoles: vm.refinedRoles};
-                SearchModel.query({searchType: 'advancedSearch/','parameters': urlObject}).$promise
+                Search.query({searchType: 'advancedSearch/','parameters': urlObject}).$promise
                     .then(function(value) {
                         if (vm.refinedSkills.length === 0) {
                             vm.refinedSkills = [];

@@ -5,7 +5,7 @@
         .module('xyz-cv-ui.updatedList')
         .controller('UpdatedListController', UpdatedListController);
 
-    function UpdatedListController(SearchModel, API_URL, $q, Offices) {
+    function UpdatedListController(API_URL, $q, Offices, Search) {
             var vm = this;
 
             vm.API_URL = API_URL;
@@ -18,12 +18,12 @@
             vm.doAdvancedSearch = doAdvancedSearch;
             vm.activated = false;
             vm.displayMode = 'table';
-            
+
             activate();
 
             function activate() {
-                SearchModel.get()
-                    .$promise.then(function() {
+                Search.get()
+                    .$promise.then(function(search) {
                         doEmptySearch();
                         vm.activated = true;
                     });
@@ -35,7 +35,7 @@
             }
 
             function doEmptySearch() {
-                return SearchModel.query({searchType: 'advancedSearch/','parameters': {refinedOffices: []}})
+                return Search.query({searchType: 'advancedSearch/','parameters': {refinedOffices: []}})
                     .$promise.then(function(value) {
                         vm.result = value;
                         return value;
@@ -44,7 +44,7 @@
 
             function doAdvancedSearch() {
                 var urlObject = {refinedOffices: vm.refinedOffices};
-                SearchModel.query({searchType: 'advancedSearch/','parameters': urlObject}).$promise
+                Search.query({searchType: 'advancedSearch/','parameters': urlObject}).$promise
                     .then(function(value) {
                         vm.result = value;
                         return value;
