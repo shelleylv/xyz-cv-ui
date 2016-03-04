@@ -210,57 +210,55 @@
                 <div class="editbutton" ng-click="vm.showModal(vm.skillsModal, vm.skills)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
                     <i class="fa fa-edit"></i>
                 </div>
-                <div>
-                    <div class="itemrow skillrow" ng-class="{'removeTopBorder': $first}" dir-paginate="skill in vm.skills | itemsPerPage: 15">
-                        <div class="image-box">
-                            <i class="{{ skill.icon }}"></i>
-                        </div>
-                        <div class="data-box">
-                            <div class="row">
-                                <div class="col-xs-12 col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="name">
-                                                {{ skill.name }} 
-                                                <span ng-show= {{skill.expertise}} <i class="fa fa-star"></i></span> 
-                                                <span ng-show= {{skill.experience}} <i class="fa fa-arrow-up"></i></span> 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4 year">
-                                            {{ skill.years }}
-                                            <ng-pluralize
-                                                count=skill.years
-                                                when="{'1': ' year',
-                                                       'other': ' years'}" >
-                                            </ng-pluralize>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="level" ng-class="'l' + skill.level">
-                                                Level {{ skill.level }}
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="futureLevel" ng-show ="skill.futureLevel != null"  ng-class="'l' + skill.futureLevel">
-                                                Future level {{ skill.futureLevel }}
-                                            </div>
+                <div class="itemrow skillrow" ng-class="{'removeTopBorder': $first}" dir-paginate="skill in vm.skills | itemsPerPage: 15">
+                    <div class="image-box">
+                        <i class="{{ skill.icon }}"></i>
+                    </div>
+                    <div class="data-box">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="name">
+                                            {{ skill.name }} 
+                                            <span ng-show= {{skill.expertise}} <i class="fa fa-star"></i></span> 
+                                            <span ng-show= {{skill.experience}} <i class="fa fa-arrow-up"></i></span> 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-6 col-md-6" ng-if="skill.endorsements">
-                                    <div class="endorsements">
-                                        <div class="count">5 <i class="fa fa-thumbs-up"></i></div>
-                                        <div class="endorsement" ng-repeat="pic in ['profilepic.png', 'gimli-cage.jpg', 'legolas-cage.jpg', 'gustavpihl.jpeg']">
-                                            <img ng-src="{{'assets/' + pic}}">
-                                        </div>
-                                        ...
+                                <div class="row">
+                                    <div class="col-md-4 year">
+                                        {{ skill.years }}
+                                        <ng-pluralize
+                                        count=skill.years
+                                        when="{'1': ' year',
+                                        'other': ' years'}" >
+                                    </ng-pluralize>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="level" ng-class="'l' + skill.level">
+                                        Level {{ skill.level }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="futureLevel" ng-show ="skill.futureLevel != null"  ng-class="'l' + skill.futureLevel">
+                                        Future level {{ skill.futureLevel }}
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-xs-6 col-md-6" ng-if="skill.endorsements">
+                            <div class="endorsements">
+                                <div class="count">5 <i class="fa fa-thumbs-up"></i></div>
+                                <div class="endorsement" ng-repeat="pic in ['profilepic.png', 'gimli-cage.jpg', 'legolas-cage.jpg', 'gustavpihl.jpeg']">
+                                    <img ng-src="{{'assets/' + pic}}">
+                                </div>
+                                ...
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
                 <div class="panel-footer" ng-if="vm.skills.length > 15">
                     <dir-pagination-controls></dir-pagination-controls>
                 </div>
