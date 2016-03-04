@@ -222,11 +222,11 @@
                                         <div class="col-md-12">
                                             <div class="name">
                                                 {{ skill.name }} 
-                                                <p id= "expertise" ng-show= {{skill.expertise}} class="fa fa-star"</p> 
-                                                <p id= "experience" ng-show= {{skill.experience}} class="fa fa-arrow-up"</p> 
+                                                <span ng-show= {{skill.expertise}} <i class="fa fa-star"></i></span> 
+                                                    <span ng-show= {{skill.experience}} <i class="fa fa-arrow-up"></i></span> 
+                                                    </div>
+                                                </div>
                                             </div>
-                                            </div>
-                                    </div>
                                     <div class="row">
                                         <div class="col-md-4 year">
                                             {{ skill.years }}

@@ -186,12 +186,11 @@
                 .name {
                     display: inline-block;
                     font-weight: bold;
+                        .fa-star{
+                            display: inline-block;
+                            color: #FFD700;
+                        }
                 }
-
-                #expertise{
-                    color: #FFD700;
-                }
-                
                 .level {
                     display: inline-block;
                     /*padding: 0 5px;
