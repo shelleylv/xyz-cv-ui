@@ -162,7 +162,7 @@
 
     <!-- SUMMARY -->
 
-    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12">
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12 ">
         <!-- ng-show="vm.activated && (vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id))" -->
         <div id="summary" class="panel-wrapper">
             <div class="panel panel-default profile-default">
@@ -356,9 +356,9 @@
         </div>
     </div>
 
-    <!-- CERTIFICATES -->
+    <!-- CERTIFICATES & EDUCATIONS-->
 
-    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="false">
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated">
         <div id="certificates" class="panel-wrapper">
             <div class="panel panel-default profile-default">
                 <div class="image-panel hidden-xs hidden-sm">
@@ -367,18 +367,40 @@
                     </div>
                 </div>
                 <div class="panel-heading">
-                    Certificates
+                    Certificates & Educations
                 </div>
-
+                <div class="editbutton" ng-click="vm.showModal(vm.certificatesModal, vm.certificates)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
+                    <i class="fa fa-edit"></i>
+                </div>
                 <div>
-                    <div class="itemrow certificaterow" ng-class="{'removeTopBorder': $first}" ng-repeat="certificate in vm.certificates">
+                    <div class="itemrow certificaterow" ng-class="{'removeTopBorder': $first}" ng-repeat="certificate in vm.certificates | orderBy:'-dateTo'">
                         <div class="image-box">
-                            <i class="fa fa-graduation-cap"></i>
+                            <i class="fa fa-certificate"></i>
                         </div>
-                        <div class="data-box">
+                        <div class="data-box col-md-12">
                             <div class="name">
-                                {{ certificate }}
+                                {{ certificate.name }}
                             </div>
+                            <div class="dates">
+                                <div class="dateFromTo" ng-show="certificate.dateFrom && certificate.dateTo" ng-if="certificate.dateFrom !== certificate.dateTo">
+                                    {{certificate.dateFrom | date: 'yyyy'}} - {{certificate.dateTo | date :'yyyy'}}
+                                </div>
+                                <div class="dateFromTo" ng-show="certificate.dateFrom && certificate.dateTo" ng-if="certificate.dateFrom === certificate.dateTo">
+                                    {{certificate.dateTo | date :'yyyy'}}
+                                </div>
+                                <div class="dateFrom" ng-show="certificate.dateFrom && !certificate.dateTo">
+                                    {{certificate.dateFrom | date: 'yyyy'}} - In progress
+                                </div>
+                                <div class="dateTo" ng-show="!certificate.dateFrom && certificate.dateTo">
+                                    {{certificate.dateTo | date: 'yyyy'}}
+                                </div>
+                                <div class="noDate" ng-show="!certificate.dateFrom && !certificate.dateTo">
+                                    In progress
+                                </div>
+                            </div>
+                            <div class="skilltag pull-right" ng-repeat="skill in certificates.skills">
+                                {{ skill.name }}
+                            </div>           
                         </div>
                     </div>
                 </div>
@@ -471,16 +493,15 @@
     <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12">
         <div id="cloud" class="panel-wrapper">
             <div class="panel panel-default">
-
                 <div class="image-panel hidden-xs hidden-sm">
                     <div class="image-wrapper">
                         <i class="fa fa-cloud"></i>
                     </div>
                 </div>
-
                 <tagcloud class="profile-cloud" autoResize="true" words="vm.cloud.words" steps="7"></tagcloud>
             </div>
         </div>
     </div>
-
 </div>
+
+

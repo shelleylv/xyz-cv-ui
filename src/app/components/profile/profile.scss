@@ -253,14 +253,6 @@
                 }
             }
         }
-        &.certificaterow {
-            .name {
-                font-weight: bold;
-            }
-            .date {
-
-            }
-        }
         &.otherrow {
             .name {
                 font-weight: bold;
@@ -272,6 +264,22 @@
         &.courserow {
             .name {
                 font-weight: bold;
+            }
+        }
+        &.certificaterow {
+            min-height: 75px;
+            .data-box {
+                .name {
+                    font-weight: bold;
+                }
+                .skilltag {
+                    font-size: 75%;
+                    background-color: $tagcolor;
+                    @include border-radius(100px);
+                    padding: 2px 6px;
+                    margin: 0 2px;
+                    display: inline-block;
+                }
             }
         }
     }
