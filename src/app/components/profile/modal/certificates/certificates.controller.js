@@ -100,11 +100,11 @@
                         description: connector.description
                     });
                     certificate.$save()
-                                .then(function(certificate) {
-                                    vm.certificateHash[certificate.name] = angular.copy(certificate);
-                                    updateCertificatesList();
-                                    return resolve(connector);
-                                });
+                        .then(function(certificate) {
+                            vm.certificateHash[certificate.name] = angular.copy(certificate);
+                            updateCertificatesList();
+                            return resolve(connector);
+                        });
                 }
             });
         }
