@@ -13,6 +13,7 @@
         'shared.userToOther',
         'shared.userToAssignment',
         'shared.userToLanguage',
+        'shared.userToCourse',
         'shared.uploader',
         'angularUtils.directives.dirPagination',
         'textAngular'
