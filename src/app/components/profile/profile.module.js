@@ -6,6 +6,7 @@
         'shared.skills',
         'shared.languages',
         'shared.others',
+        'shared.courses',
         'shared.offices'
     ]);
 

@@ -305,6 +305,57 @@
         </div>
     </div>
 
+    <!-- COURSES -->
+
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated">
+        <div class="panel-wrapper courses">
+            <div class="panel panel-default profile-default">
+                <div class="image-panel hidden-xs hidden-sm">
+                    <div class="image-wrapper">
+                        <i class="fa fa-institution"></i>
+                    </div>
+                </div>
+                <div class="panel-heading">
+                    Courses
+                </div>
+                <div class="editbutton" ng-click="vm.showModal(vm.coursesModal, vm.courses)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
+                    <i class="fa fa-edit"></i>
+                </div>
+                <div>
+                    <div class="itemrow courserow" ng-class="{'removeTopBorder': $first}" dir-paginate="course in vm.courses | itemsPerPage: 15">
+                        <div class="data-box">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="name">
+                                                {{ course.name }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="dateFrom">
+                                                Start: {{ course.dateFrom | date }}
+                                            </div>
+                                            <div class="dateTo">
+                                                End: {{ course.dateTo | date }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer" ng-if="vm.courses.length > 15">
+                    <dir-pagination-controls></dir-pagination-controls>
+                </div>
+                <div class="panel-body" ng-if="vm.courses.length === 0" ng-click="vm.showModal(vm.coursesModal, vm.courses)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
+                    Empty
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- CERTIFICATES -->
 
     <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="false">

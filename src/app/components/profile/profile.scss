@@ -174,7 +174,6 @@
         .data-box {
             width: 100%;
         }
-
         &.skillrow {
             .image-box {
                 color: #3D606E;
@@ -238,7 +237,6 @@
                 }
             }
         }
-
         &.assignmentrow {
             min-height: 75px;
             .data-box {
@@ -255,7 +253,6 @@
                 }
             }
         }
-
         &.certificaterow {
             .name {
                 font-weight: bold;
@@ -264,13 +261,17 @@
 
             }
         }
-
         &.otherrow {
             .name {
                 font-weight: bold;
             }
             .year {
 
+            }
+        }
+        &.courserow {
+            .name {
+                font-weight: bold;
             }
         }
     }

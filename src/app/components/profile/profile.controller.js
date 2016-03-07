@@ -5,7 +5,7 @@
         .module('xyz-cv-ui.profile')
         .controller('ProfileController', ProfileController);
 
-        function ProfileController(ProfileModel, $routeParams, session, API_URL, GeneralInfoModal, ImageModal, PrivateInfoModal, SummaryModal, SkillsModal, AssignmentsModal, LanguagesModal, OthersModal) {
+        function ProfileController(ProfileModel, $routeParams, session, API_URL, GeneralInfoModal, ImageModal, PrivateInfoModal, SummaryModal, SkillsModal, AssignmentsModal, LanguagesModal, OthersModal, CoursesModal) {
 
             var vm = this;
             window.vm = vm;
@@ -26,6 +26,7 @@
             vm.languagesModal = {};
             vm.othersModal = {};
             vm.assignmentsModal = {};
+            vm.coursesModal = {};
             vm.showModal = showModal;
 
             /* GENERAL INFO */
@@ -79,6 +80,9 @@
             /* CERTIFICATES */
             vm.certificates = [];
 
+            /* COURSES */
+            vm.courses = [];
+
             /* ASSIGNMENTS */
             vm.assignments = [];
 
@@ -114,6 +118,7 @@
                         setOthers(model);
                         setCertificates(model);
                         setAssignments(model);
+                        setCourses(model);
                         setCloud(model);
                         setUser(model);
                         setGeneralInfoModal();
@@ -124,6 +129,7 @@
                         setLanguagesModal();
                         setOthersModal();
                         setAssignmentsModal();
+                        setCoursesModal();
                         vm.activated = true;
                     });
             }
@@ -187,6 +193,10 @@
 
             function setAssignments(model) {
                 vm.assignments = model.user.assignments;
+            }
+
+            function setCourses(model) {
+                vm.courses = model.user.courses;
             }
 
             function setCloud(model) {
@@ -268,6 +278,10 @@
 
             function setAssignmentsModal() {
                 vm.assignmentsModal = AssignmentsModal;
+            }
+
+            function setCoursesModal() {
+                vm.coursesModal = CoursesModal;
             }
         }
 })();
