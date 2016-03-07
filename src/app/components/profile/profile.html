@@ -17,7 +17,6 @@
                 <div class="editbutton" ng-click="vm.showModal(vm.generalInfoModal, vm.generalInfo)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
                     <i class="fa fa-edit"></i>
                 </div>
-
                 <div class="data-box">
                     <div class="data-header">
                         <div class="image-panel hidden-md hidden-lg">
@@ -25,6 +24,11 @@
                             <i class="fa fa-user" ng-if="!vm.generalInfo.profileImage"></i>
                         </div>
                         <div class="data-panel">
+                            <div class="row" ng-if="vm.generalInfo.employeeNumber">
+                                <div class="sheet-label-updated">
+                                    Last Update: {{vm.user.updatedAt | date: 'yyyy-MM-dd HH:mm:ss'}}
+                                </div>
+                            </div>
                             <div class="name">
                                 <span class="flag-icon" ng-class="'flag-icon-' + (vm.generalInfo.country | flag)"></span>
                                 {{ vm.generalInfo.name }}

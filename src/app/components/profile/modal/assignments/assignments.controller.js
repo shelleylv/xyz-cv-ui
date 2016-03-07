@@ -257,6 +257,7 @@
         function save() {
             return saveAssignments()
                 .then(removeAssignments)
+                .then(vm.user.$save())
                 .then(vm.hideModal)
                 .then(callback);
         }

@@ -1,0 +1,56 @@
+<div class="updatedList">
+    <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-sm-12">
+        <div class="panel panel-default" ng-show="vm.activated">
+            <div class="panel-body">
+                <div class="form-group">
+                    <div>
+                        <button type="button" class="btn btn-default search-dropdown" ng-model="vm.refinedOffices" ng-change="vm.doAdvancedSearch()" data-html="1" icon-checkmark="fa fa-check" data-multiple="1" data-animation="am-flip-x" bs-options="office.name as office.name for office in vm.suggestedOffices" placeholder="Select office..." ng-change="vm.doAdvancedSearch()" max-length="2" bs-select>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="vm.result.length > 0">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <div class="col-xs-4 col-md-4 heading">
+                            Name
+                        </div>
+                        <div class="col-xs-4 col-md-4 heading">
+                            Last Update
+                        </div>
+                        <div class="col-xs-4 col-md-4 heading">
+                            Office
+                        </div>
+                    </div>
+                </div>
+                <div ng-repeat="person in vm.result | orderBy: '-updatedAt'">
+                    <div class="row person">
+                        <a ng-href="{{ vm.baseUrl }}{{ person._id }}">
+                            <div class="col-xs-12 col-md-12">
+                                <div class="col-xs-4 col-md-4">
+                                    {{ person.name }}
+                                </div>
+                                <div class="col-xs-4 col-md-4">
+                                    {{ person.updatedAt | date:'yyyy-MM-dd' }}
+                                </div>
+                                <div class="col-xs-4 col-md-4">
+                                    {{ person.office }}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>
+                        {{vm.result.length}} matches found.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body no-results" ng-show="vm.result.length <= 0">
+            No matches were found for your selected combination of parameters and tags.
+        </div>
+    </div>
+</div>
