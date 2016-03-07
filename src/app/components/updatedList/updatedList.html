@@ -9,37 +9,40 @@
                     </div>
                 </div>
             </div>
-            <div ng-show="vm.result.length > 0">
-                <div class="row">
-                    <div class="col-xs-12 col-md-12">
-                        <div class="col-xs-4 col-md-4 heading">
-                            Name
-                        </div>
-                        <div class="col-xs-4 col-md-4 heading">
-                            Last Update
-                        </div>
-                        <div class="col-xs-4 col-md-4 heading">
-                            Office
-                        </div>
-                    </div>
-                </div>
-                <div ng-repeat="person in vm.result | orderBy: '-updatedAt'">
-                    <div class="row person">
-                        <a ng-href="{{ vm.baseUrl }}{{ person._id }}">
-                            <div class="col-xs-12 col-md-12">
-                                <div class="col-xs-4 col-md-4">
-                                    {{ person.name }}
+            <div class="list-group advanced-search-list">
+                <li class="list-group-item" dir-paginate="person in vm.result | orderBy:'updatedAt' | itemsPerPage:10">
+                    <a ng-href="{{ vm.baseUrl }}{{ person._id }}">
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="name">
+                                        {{ person.name }}
+                                    </div>
                                 </div>
-                                <div class="col-xs-4 col-md-4">
-                                    {{ person.updatedAt | date:'yyyy-MM-dd' }}
-                                </div>
-                                <div class="col-xs-4 col-md-4">
-                                    {{ person.office }}
+                                 <div class="col-sm-4">
+                                    <div class="updatedAt-container" ng-show="person.updatedAt">
+                                         {{ person.updatedAt | date:'yyyy-MM-dd' }}
+                                    </div>
                                 </div>
                             </div>
-                        </a>
-                    </div>
-                </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="mail-container" ng-show="person.email">
+                                        {{ person.email }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="office-container" ng-show="person.office">
+                                        <i class="fa fa-building"></i> {{ person.office }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </div>
+            <div class="search-result-paginate-container" ng-if="vm.result.length > 10">
+                <dir-pagination-controls max-size="6"></dir-pagination-controls>
             </div>
             <div class="row">
                 <div class="col-md-12 text-center">
