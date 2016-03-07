@@ -17,7 +17,6 @@
         vm.refinedIsShown = false;
         vm.doAdvancedSearch = doAdvancedSearch;
         vm.activated = false;
-        vm.displayMode = 'table';
 
         activate();
 
