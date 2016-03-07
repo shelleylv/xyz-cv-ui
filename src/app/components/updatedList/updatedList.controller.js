@@ -49,6 +49,6 @@
                     vm.result = value;
                     return value;
                 });
-            }
         }
+    }
 })();
