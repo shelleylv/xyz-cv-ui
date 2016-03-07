@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="list-group advanced-search-list">
-                <li class="list-group-item" dir-paginate="person in vm.result | orderBy:'updatedAt' | itemsPerPage:10">
+                <li class="list-group-item" dir-paginate="person in vm.result | orderBy:'-updatedAt' | itemsPerPage:10">
                     <a ng-href="{{ vm.baseUrl }}{{ person._id }}">
                         <div class="content">
                             <div class="row">
