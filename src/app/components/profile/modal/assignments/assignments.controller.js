@@ -255,7 +255,6 @@
         }
 
         function save() {
-
             return saveAssignments()
                 .then(removeAssignments)
                 .then(vm.user.$save())

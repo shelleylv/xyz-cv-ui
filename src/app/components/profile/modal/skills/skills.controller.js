@@ -153,8 +153,7 @@
             }
 
             function save() {
-
-                    return saveSkills()
+                return saveSkills()
                     .then(removeSkills)
                     .then(vm.user.$save())
                     .then(vm.hideModal)

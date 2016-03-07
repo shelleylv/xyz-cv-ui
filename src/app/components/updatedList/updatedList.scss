@@ -2,41 +2,39 @@
 @import "styles/_colors";
 
 .updatedList {
-
     .parameter-window {
         .select-width-hack {
             button {
                 width: 100%;
+                text-align: left;
                 .caret {
                     float: right;
                     margin-top: 9px;
                 }
-                text-align: left;
             }
         }
     }
-
-    input + .typeahead.ng-hide { 
-    display: block !important; visibility: hidden !important; overflow: hidden; 
-    }
-
     .list-heading {
         padding-bottom: 10px;
     }
-
     a, a:link, a:visited {
         display: block;
         text-decoration: none;
     }
-
-    .search-dropdown {
-    }
-
     .no-results {
         border-top: solid 1px #ddd;
     }
-
     .row {
-        padding: 8px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .person {
+        > a {
+            text-decoration: none;
+            color: $textcolor;
+        }
+        &:hover {
+            background-color: #f0f0f0;
+        }
     }
 }
