@@ -2,78 +2,76 @@
 
     <!-- GENERAL INFO -->
 
-    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated">
-        <div id="general-info" class="panel-wrapper">
-            <div class="panel panel-default profile-default">
-                <div class="image-panel hidden-xs hidden-sm">
-                    <div class="image-wrapper">
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12 panel-wrapper general-info" ng-show="vm.activated">
+        <div class="panel panel-default profile-default">
+            <div class="image-panel hidden-xs hidden-sm">
+                <div class="image-wrapper">
+                    <img ng-if="vm.generalInfo.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ vm.generalInfo.profileImage.generatedName }}">
+                    <i class="fa fa-user" ng-if="!vm.generalInfo.profileImage"></i>
+                    <div class="image-overlay" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)" ng-click="vm.showModal(vm.imageModal, vm.generalInfo)">
+                        <i class="fa fa-picture-o"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="editbutton" ng-click="vm.showModal(vm.generalInfoModal, vm.generalInfo)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
+                <i class="fa fa-edit"></i>
+            </div>
+            <div class="data-box">
+                <div class="data-header">
+                    <div class="image-panel hidden-md hidden-lg">
                         <img ng-if="vm.generalInfo.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ vm.generalInfo.profileImage.generatedName }}">
                         <i class="fa fa-user" ng-if="!vm.generalInfo.profileImage"></i>
-                        <div class="image-overlay" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)" ng-click="vm.showModal(vm.imageModal, vm.generalInfo)">
-                            <i class="fa fa-picture-o"></i>
+                    </div>
+                    <div class="data-panel">
+                        <div class="row" ng-if="vm.generalInfo.employeeNumber">
+                            <div class="sheet-label-updated">
+                                Last Update: {{vm.user.updatedAt | date: 'yyyy-MM-dd HH:mm:ss'}}
+                            </div>
+                        </div>
+                        <div class="name">
+                            <span class="flag-icon" ng-class="'flag-icon-' + (vm.generalInfo.country | flag)"></span>
+                            {{ vm.generalInfo.name }}
+                        </div>
+                        <div class="title">
+                            {{ vm.generalInfo.position }}
+                        </div>
+                        <div class="contact row">
+                            <div class="col-md-8">
+                                <div class="" ng-if="vm.generalInfo.phoneNumber"><i class="fa fa-phone"></i> {{ vm.generalInfo.phoneNumber }}</div>
+                                <div class="" ng-if="vm.generalInfo.email"><i class="fa fa-envelope"></i> {{ vm.generalInfo.email }}</div>
+                                <div class="" ng-if="vm.generalInfo.office"><i class="fa fa-building"></i>
+                                    <!--
+                                    <span class="flag-icon" ng-if="vm.generalInfo.office.name" ng-class="'flag-icon-' + (vm.generalInfo.office.name | country | flag)"></span>
+                                    -->
+                                    {{ vm.generalInfo.office.name }}
+                                </div>
+                                <div class="" ng-if="vm.generalInfo.closestSuperior"><i class="fa fa-sitemap"></i> {{ vm.generalInfo.closestSuperior }}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="editbutton" ng-click="vm.showModal(vm.generalInfoModal, vm.generalInfo)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
-                    <i class="fa fa-edit"></i>
+                <div class="row" ng-if="vm.generalInfo.employeeNumber">
+                    <div class="col-sm-4 col-md-3 sheet-label">
+                        Employee Number
+                    </div>
+                    <div class="col-sm-8 col-md-9 sheet-value">
+                        {{ vm.generalInfo.employeeNumber }}
+                    </div>
                 </div>
-                <div class="data-box">
-                    <div class="data-header">
-                        <div class="image-panel hidden-md hidden-lg">
-                            <img ng-if="vm.generalInfo.profileImage" ng-src="{{ vm.API_URL }}/file/thumbnail/{{ vm.generalInfo.profileImage.generatedName }}">
-                            <i class="fa fa-user" ng-if="!vm.generalInfo.profileImage"></i>
-                        </div>
-                        <div class="data-panel">
-                            <div class="row" ng-if="vm.generalInfo.employeeNumber">
-                                <div class="sheet-label-updated">
-                                    Last Update: {{vm.user.updatedAt | date: 'yyyy-MM-dd HH:mm:ss'}}
-                                </div>
-                            </div>
-                            <div class="name">
-                                <span class="flag-icon" ng-class="'flag-icon-' + (vm.generalInfo.country | flag)"></span>
-                                {{ vm.generalInfo.name }}
-                            </div>
-                            <div class="title">
-                                {{ vm.generalInfo.position }}
-                            </div>
-                            <div class="contact row">
-                                <div class="col-md-8">
-                                    <div class="" ng-if="vm.generalInfo.phoneNumber"><i class="fa fa-phone"></i> {{ vm.generalInfo.phoneNumber }}</div>
-                                    <div class="" ng-if="vm.generalInfo.email"><i class="fa fa-envelope"></i> {{ vm.generalInfo.email }}</div>
-                                    <div class="" ng-if="vm.generalInfo.office"><i class="fa fa-building"></i>
-                                        <!--
-                                        <span class="flag-icon" ng-if="vm.generalInfo.office.name" ng-class="'flag-icon-' + (vm.generalInfo.office.name | country | flag)"></span>
-                                        -->
-                                        {{ vm.generalInfo.office.name }}
-                                    </div>
-                                    <div class="" ng-if="vm.generalInfo.closestSuperior"><i class="fa fa-sitemap"></i> {{ vm.generalInfo.closestSuperior }}</div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="row" ng-if="vm.generalInfo.personalInterests" ng-hide="true">
+                    <div class="col-sm-4 col-md-3 sheet-label">
+                        Interests
                     </div>
-                    <div class="row" ng-if="vm.generalInfo.employeeNumber">
-                        <div class="col-sm-4 col-md-3 sheet-label">
-                            Employee Number
-                        </div>
-                        <div class="col-sm-8 col-md-9 sheet-value">
-                            {{ vm.generalInfo.employeeNumber }}
-                        </div>
+                    <div class="col-sm-8 col-md-9 sheet-value">
+                        {{ vm.generalInfo.personalInterests }}
                     </div>
-                    <div class="row" ng-if="vm.generalInfo.personalInterests" ng-hide="true">
-                        <div class="col-sm-4 col-md-3 sheet-label">
-                            Interests
-                        </div>
-                        <div class="col-sm-8 col-md-9 sheet-value">
-                            {{ vm.generalInfo.personalInterests }}
-                        </div>
+                </div>
+                <div class="row" ng-if="vm.generalInfo.description">
+                    <div class="col-sm-4 col-md-3 sheet-label" >
+                        Description
                     </div>
-                    <div class="row" ng-if="vm.generalInfo.description">
-                        <div class="col-sm-4 col-md-3 sheet-label" >
-                            Description
-                        </div>
-                        <div class="col-sm-8 col-md-9 sheet-value">
-                            {{ vm.generalInfo.description }}
-                        </div>
+                    <div class="col-sm-8 col-md-9 sheet-value">
+                        {{ vm.generalInfo.description }}
                     </div>
                 </div>
             </div>
@@ -82,77 +80,75 @@
 
     <!-- PRIVATE INFO -->
 
-    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-hide="true">
-        <!-- ng-show="vm.activated && (vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id))" -->
-        <div id="private-info" class="panel-wrapper">
-            <div class="panel panel-default profile-default">
-                <div class="image-panel hidden-xs hidden-sm">
-                    <div class="image-wrapper">
-                        <i class="fa fa-lock"></i>
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12 panel-wrapper private-info" ng-hide="true">
+    <!-- ng-show="vm.activated && (vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id))" -->
+        <div class="panel panel-default profile-default">
+            <div class="image-panel hidden-xs hidden-sm">
+                <div class="image-wrapper">
+                    <i class="fa fa-lock"></i>
+                </div>
+            </div>
+            <div class="editbutton" ng-click="vm.showModal(vm.privateInfoModal, vm.privateInfo)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
+                <i class="fa fa-edit"></i>
+            </div>
+            <div class="panel-heading">
+                Private Info
+            </div>
+            <div class="data-box">
+                <div class="row">
+                    <div class="col-sm-4 col-md-3 sheet-label">
+                        Personal ID Number
+                    </div>
+                    <div class="col-sm-8 col-md-9 sheet-value">
+                        {{ vm.privateInfo.personalIdNumber }}
                     </div>
                 </div>
-                <div class="editbutton" ng-click="vm.showModal(vm.privateInfoModal, vm.privateInfo)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
-                    <i class="fa fa-edit"></i>
+                <div class="row">
+                    <div class="col-sm-4 col-md-3 sheet-label">
+                        Address
+                    </div>
+                    <div class="col-sm-8 col-md-9 sheet-value">
+                        {{ vm.privateInfo.addressInfo }}
+                    </div>
                 </div>
-                <div class="panel-heading">
-                    Private Info
+                <div class="row">
+                    <div class="col-sm-4 col-md-3 sheet-label">
+                        ICE
+                    </div>
+                    <div class="col-sm-8 col-md-9 sheet-value">
+                        {{ vm.privateInfo.ICEInfo }}
+                    </div>
                 </div>
-                <div class="data-box">
-                    <div class="row">
-                        <div class="col-sm-4 col-md-3 sheet-label">
-                            Personal ID Number
-                        </div>
-                        <div class="col-sm-8 col-md-9 sheet-value">
-                            {{ vm.privateInfo.personalIdNumber }}
-                        </div>
+                <div class="row" ng-if="vm.privateInfo.startDateOfEmployment">
+                    <div class="col-sm-4 col-md-3 sheet-label">
+                        From
                     </div>
-                    <div class="row">
-                        <div class="col-sm-4 col-md-3 sheet-label">
-                            Address
-                        </div>
-                        <div class="col-sm-8 col-md-9 sheet-value">
-                            {{ vm.privateInfo.addressInfo }}
-                        </div>
+                    <div class="col-sm-8 col-md-9 sheet-value">
+                        {{ vm.privateInfo.startDateOfEmployment | date}}
                     </div>
-                    <div class="row">
-                        <div class="col-sm-4 col-md-3 sheet-label">
-                            ICE
-                        </div>
-                        <div class="col-sm-8 col-md-9 sheet-value">
-                            {{ vm.privateInfo.ICEInfo }}
-                        </div>
+                </div>
+                <div class="row" ng-if="vm.privateInfo.endDateOfEmployment">
+                    <div class="col-sm-4 col-md-3 sheet-label">
+                        To
                     </div>
-                    <div class="row" ng-if="vm.privateInfo.startDateOfEmployment">
-                        <div class="col-sm-4 col-md-3 sheet-label">
-                            From
-                        </div>
-                        <div class="col-sm-8 col-md-9 sheet-value">
-                            {{ vm.privateInfo.startDateOfEmployment | date}}
-                        </div>
+                    <div class="col-sm-8 col-md-9 sheet-value">
+                        {{ vm.privateInfo.endDateOfEmployment | date}}
                     </div>
-                    <div class="row" ng-if="vm.privateInfo.endDateOfEmployment">
-                        <div class="col-sm-4 col-md-3 sheet-label">
-                            To
-                        </div>
-                        <div class="col-sm-8 col-md-9 sheet-value">
-                            {{ vm.privateInfo.endDateOfEmployment | date}}
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 col-md-3 sheet-label">
+                        Shirt Size
                     </div>
-                    <div class="row">
-                        <div class="col-sm-4 col-md-3 sheet-label">
-                            Shirt Size
-                        </div>
-                        <div class="col-sm-8 col-md-9 sheet-value">
-                            {{ vm.privateInfo.shirtSize }}
-                        </div>
+                    <div class="col-sm-8 col-md-9 sheet-value">
+                        {{ vm.privateInfo.shirtSize }}
                     </div>
-                    <div class="row" ng-hide="true">
-                        <div class="col-sm-4 col-md-3 sheet-label">
-                            Food Preferences
-                        </div>
-                        <div class="col-sm-8 col-md-9 sheet-value">
-                            {{ vm.privateInfo.foodPreferences }}
-                        </div>
+                </div>
+                <div class="row" ng-hide="true">
+                    <div class="col-sm-4 col-md-3 sheet-label">
+                        Food Preferences
+                    </div>
+                    <div class="col-sm-8 col-md-9 sheet-value">
+                        {{ vm.privateInfo.foodPreferences }}
                     </div>
                 </div>
             </div>
@@ -161,344 +157,329 @@
 
     <!-- SUMMARY -->
 
-    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12 ">
-        <!-- ng-show="vm.activated && (vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id))" -->
-        <div id="summary" class="panel-wrapper">
-            <div class="panel panel-default profile-default">
-                <div class="image-panel hidden-xs hidden-sm">
-                    <div class="image-wrapper">
-                        <i class="fa fa-info"></i>
-                    </div>
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12 panel-wrapper summary">
+    <!-- ng-show="vm.activated && (vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id))" -->
+        <div class="panel panel-default profile-default">
+            <div class="image-panel hidden-xs hidden-sm">
+                <div class="image-wrapper">
+                    <i class="fa fa-info"></i>
                 </div>
-                <div class="editbutton" ng-click="vm.showModal(vm.summaryModal, vm.summary)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
-                    <i class="fa fa-edit"></i>
+            </div>
+            <div class="editbutton" ng-click="vm.showModal(vm.summaryModal, vm.summary)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
+                <i class="fa fa-edit"></i>
+            </div>
+            <div class="panel-heading">
+                Summary
+            </div>
+            <div class="data-box" ng-if="vm.summary.summary">
+                <div ng-repeat="line in (vm.summary.summary | newlines) track by $index">
+                    <p>{{line}}</p>
                 </div>
-                <div class="panel-heading">
-                    Summary
-                </div>
-                <div class="data-box" ng-if="vm.summary.summary">
-                    <div ng-repeat="line in (vm.summary.summary | newlines) track by $index">
-                        <p>{{line}}</p>
-                    </div>
-                </div>
-                <div class="empty-panel-body" ng-if="!vm.summary.summary">
-                    Empty
-                </div>
+            </div>
+            <div class="empty-panel-body" ng-if="!vm.summary.summary">
+                Empty
             </div>
         </div>
     </div>
 
     <!-- SKILLS -->
 
-    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated">
-        <div class="panel-wrapper skills">
-            <div class="panel panel-default profile-default">
-                <div class="image-panel hidden-xs hidden-sm">
-                    <div class="image-wrapper">
-                        <i class="fa fa-flask"></i>
-                    </div>
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12 panel-wrapper skills" ng-show="vm.activated">
+        <div class="panel panel-default profile-default">
+            <div class="image-panel hidden-xs hidden-sm">
+                <div class="image-wrapper">
+                    <i class="fa fa-flask"></i>
                 </div>
-                <div class="panel-heading">
-                    Skills
+            </div>
+            <div class="panel-heading">
+                Skills
+            </div>
+            <div class="editbutton" ng-click="vm.showModal(vm.skillsModal, vm.skills)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
+                <i class="fa fa-edit"></i>
+            </div>
+            <div class="itemrow skillrow" ng-class="{'removeTopBorder': $first}" dir-paginate="skill in vm.skills | itemsPerPage: 15">
+                <div class="image-box">
+                    <i class="{{ skill.icon }}"></i>
                 </div>
-                <div class="editbutton" ng-click="vm.showModal(vm.skillsModal, vm.skills)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
-                    <i class="fa fa-edit"></i>
-                </div>
-                <div class="itemrow skillrow" ng-class="{'removeTopBorder': $first}" dir-paginate="skill in vm.skills | itemsPerPage: 15">
-                    <div class="image-box">
-                        <i class="{{ skill.icon }}"></i>
-                    </div>
-                    <div class="data-box">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-12">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="name">
-                                            {{ skill.name }} 
-                                            <span ng-show= {{skill.expertise}} <i class="fa fa-star"></i></span> 
-                                            <span ng-show= {{skill.experience}} <i class="fa fa-arrow-up"></i></span> 
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4 year">
-                                        {{ skill.years }}
-                                        <ng-pluralize
-                                            count=skill.years
-                                            when="{'1': ' year',
-                                            'other': ' years'}" >
-                                        </ng-pluralize>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="level" ng-class="'l' + skill.level">
-                                            Level {{ skill.level }}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="futureLevel" ng-show ="skill.futureLevel != null"  ng-class="'l' + skill.futureLevel">
-                                            Future level {{ skill.futureLevel }}
-                                        </div>
+                <div class="data-box">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="name">
+                                        {{ skill.name }}
+                                        <i class="fa fa-star" ng-show="skill.expertise"></i>
+                                        <i class="fa fa-arrow-up" ng-show="skill.experience"></i>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-6 col-md-6" ng-if="skill.endorsements">
-                                <div class="endorsements">
-                                    <div class="count">5 <i class="fa fa-thumbs-up"></i></div>
-                                    <div class="endorsement" ng-repeat="pic in ['profilepic.png', 'gimli-cage.jpg', 'legolas-cage.jpg', 'gustavpihl.jpeg']">
-                                        <img ng-src="{{'assets/' + pic}}">
-                                    </div>
-                                    ...
+                            <div class="row">
+                                <div class="col-md-4 year">
+                                    {{ skill.years }}
+                                    <ng-pluralize
+                                        count=skill.years
+                                        when="{'1': ' year',
+                                        'other': ' years'}" >
+                                    </ng-pluralize>
                                 </div>
+                                <div class="col-md-4">
+                                    <div class="level" ng-class="'l' + skill.level">
+                                        Level {{ skill.level }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="futureLevel" ng-show ="skill.futureLevel != null"  ng-class="'l' + skill.futureLevel">
+                                        Future level {{ skill.futureLevel }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-6" ng-if="skill.endorsements">
+                            <div class="endorsements">
+                                <div class="count">5 <i class="fa fa-thumbs-up"></i></div>
+                                <div class="endorsement" ng-repeat="pic in ['profilepic.png', 'gimli-cage.jpg', 'legolas-cage.jpg', 'gustavpihl.jpeg']">
+                                    <img ng-src="{{'assets/' + pic}}">
+                                </div>
+                                ...
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="panel-footer" ng-if="vm.skills.length > 15">
-                    <dir-pagination-controls></dir-pagination-controls>
-                </div>
-                <div class="empty-panel-body" ng-if="vm.skills.length === 0">
-                    Empty
-                </div>
+            </div>
+            <div class="panel-footer" ng-if="vm.skills.length > 15">
+                <dir-pagination-controls></dir-pagination-controls>
+            </div>
+            <div class="empty-panel-body" ng-if="vm.skills.length === 0">
+                Empty
             </div>
         </div>
     </div>
 
     <!-- LANGUAGES -->
 
-    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated">
-        <div class="panel-wrapper languages">
-            <div class="panel panel-default profile-default">
-                <div class="image-panel hidden-xs hidden-sm">
-                    <div class="image-wrapper">
-                        <i class="fa fa-comments-o"></i>
-                    </div>
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12 panel-wrapper languages" ng-show="vm.activated">
+        <div class="panel panel-default profile-default">
+            <div class="image-panel hidden-xs hidden-sm">
+                <div class="image-wrapper">
+                    <i class="fa fa-comments-o"></i>
                 </div>
-                <div class="panel-heading">
-                    Languages
-                </div>
-                <div class="editbutton" ng-click="vm.showModal(vm.languagesModal, vm.languages)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
-                    <i class="fa fa-edit"></i>
-                </div>
-                <div class="itemrow languagerow" ng-class="{'removeTopBorder': $first}" dir-paginate="language in vm.languages | itemsPerPage: 15">
-                    <div class="data-box">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-12">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="name">
-                                            {{ language.name }} ({{ language.level }})
-                                        </div>
+            </div>
+            <div class="panel-heading">
+                Languages
+            </div>
+            <div class="editbutton" ng-click="vm.showModal(vm.languagesModal, vm.languages)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
+                <i class="fa fa-edit"></i>
+            </div>
+            <div class="itemrow languagerow" ng-class="{'removeTopBorder': $first}" dir-paginate="language in vm.languages | itemsPerPage: 15">
+                <div class="data-box">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="name">
+                                        {{ language.name }} ({{ language.level }})
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="panel-footer" ng-if="vm.languages.length > 15">
-                    <dir-pagination-controls></dir-pagination-controls>
-                </div>
-                <div class="empty-panel-body" ng-if="vm.languages.length === 0">
-                    Empty
-                </div>
+            </div>
+            <div class="panel-footer" ng-if="vm.languages.length > 15">
+                <dir-pagination-controls></dir-pagination-controls>
+            </div>
+            <div class="empty-panel-body" ng-if="vm.languages.length === 0">
+                Empty
             </div>
         </div>
     </div>
 
     <!-- COURSES -->
 
-    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated">
-        <div class="panel-wrapper courses">
-            <div class="panel panel-default profile-default">
-                <div class="image-panel hidden-xs hidden-sm">
-                    <div class="image-wrapper">
-                        <i class="fa fa-institution"></i>
-                    </div>
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12 panel-wrapper courses" ng-show="vm.activated">
+        <div class="panel panel-default profile-default">
+            <div class="image-panel hidden-xs hidden-sm">
+                <div class="image-wrapper">
+                    <i class="fa fa-institution"></i>
                 </div>
-                <div class="panel-heading">
-                    Courses
-                </div>
-                <div class="editbutton" ng-click="vm.showModal(vm.coursesModal, vm.courses)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
-                    <i class="fa fa-edit"></i>
-                </div>
-                <div class="itemrow courserow" ng-class="{'removeTopBorder': $first}" dir-paginate="course in vm.courses | itemsPerPage: 15">
-                    <div class="data-box">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-12">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="name">
-                                            {{ course.name }}
-                                        </div>
+            </div>
+            <div class="panel-heading">
+                Courses
+            </div>
+            <div class="editbutton" ng-click="vm.showModal(vm.coursesModal, vm.courses)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
+                <i class="fa fa-edit"></i>
+            </div>
+            <div class="itemrow courserow" ng-class="{'removeTopBorder': $first}" dir-paginate="course in vm.courses | itemsPerPage: 15">
+                <div class="data-box">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="name">
+                                        {{ course.name }}
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="dateFrom">
-                                            Start: {{ course.dateFrom | date }}
-                                        </div>
-                                        <div class="dateTo">
-                                            End: {{ course.dateTo | date }}
-                                        </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="dateFrom">
+                                        Start: {{ course.dateFrom | date }}
+                                    </div>
+                                    <div class="dateTo">
+                                        End: {{ course.dateTo | date }}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="panel-footer" ng-if="vm.courses.length > 15">
-                    <dir-pagination-controls></dir-pagination-controls>
-                </div>
-                <div class="empty-panel-body" ng-if="vm.courses.length === 0">
-                    Empty
-                </div> 
+            </div>
+            <div class="panel-footer" ng-if="vm.courses.length > 15">
+                <dir-pagination-controls></dir-pagination-controls>
+            </div>
+            <div class="empty-panel-body" ng-if="vm.courses.length === 0">
+                Empty
             </div>
         </div>
     </div>
 
     <!-- CERTIFICATES & EDUCATIONS-->
 
-    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated">
-        <div id="certificates" class="panel-wrapper">
-            <div class="panel panel-default profile-default">
-                <div class="image-panel hidden-xs hidden-sm">
-                    <div class="image-wrapper">
-                        <i class="fa fa-graduation-cap"></i>
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12 panel-wrapper certificates" ng-show="vm.activated">
+        <div class="panel panel-default profile-default">
+            <div class="image-panel hidden-xs hidden-sm">
+                <div class="image-wrapper">
+                    <i class="fa fa-graduation-cap"></i>
+                </div>
+            </div>
+            <div class="panel-heading">
+                Certificates & Educations
+            </div>
+            <div class="editbutton" ng-click="vm.showModal(vm.certificatesModal, vm.certificates)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
+                <i class="fa fa-edit"></i>
+            </div>
+            <div class="itemrow certificaterow" ng-class="{'removeTopBorder': $first}" ng-repeat="certificate in vm.certificates | orderBy:'-dateTo'">
+                <div class="image-box">
+                    <i class="fa fa-certificate"></i>
+                </div>
+                <div class="data-box col-md-12">
+                    <div class="name">
+                        {{ certificate.name }}
                     </div>
-                </div>
-                <div class="panel-heading">
-                    Certificates & Educations
-                </div>
-                <div class="editbutton" ng-click="vm.showModal(vm.certificatesModal, vm.certificates)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
-                    <i class="fa fa-edit"></i>
-                </div>
-                <div class="itemrow certificaterow" ng-class="{'removeTopBorder': $first}" ng-repeat="certificate in vm.certificates | orderBy:'-dateTo'">
-                    <div class="image-box">
-                        <i class="fa fa-certificate"></i>
-                    </div>
-                    <div class="data-box col-md-12">
-                        <div class="name">
-                            {{ certificate.name }}
+                    <div class="dates">
+                        <div class="dateFromTo" ng-show="certificate.dateFrom && certificate.dateTo" ng-if="certificate.dateFrom !== certificate.dateTo">
+                            {{certificate.dateFrom | date: 'yyyy'}} - {{certificate.dateTo | date :'yyyy'}}
                         </div>
-                        <div class="dates">
-                            <div class="dateFromTo" ng-show="certificate.dateFrom && certificate.dateTo" ng-if="certificate.dateFrom !== certificate.dateTo">
-                                {{certificate.dateFrom | date: 'yyyy'}} - {{certificate.dateTo | date :'yyyy'}}
-                            </div>
-                            <div class="dateFromTo" ng-show="certificate.dateFrom && certificate.dateTo" ng-if="certificate.dateFrom === certificate.dateTo">
-                                {{certificate.dateTo | date :'yyyy'}}
-                            </div>
-                            <div class="dateFrom" ng-show="certificate.dateFrom && !certificate.dateTo">
-                                {{certificate.dateFrom | date: 'yyyy'}} - In progress
-                            </div>
-                            <div class="dateTo" ng-show="!certificate.dateFrom && certificate.dateTo">
-                                {{certificate.dateTo | date: 'yyyy'}}
-                            </div>
-                            <div class="noDate" ng-show="!certificate.dateFrom && !certificate.dateTo">
-                                In progress
-                            </div>
+                        <div class="dateFromTo" ng-show="certificate.dateFrom && certificate.dateTo" ng-if="certificate.dateFrom === certificate.dateTo">
+                            {{certificate.dateTo | date :'yyyy'}}
                         </div>
-                        <div class="skilltag pull-right" ng-repeat="skill in certificates.skills">
-                            {{ skill.name }}
-                        </div>          
+                        <div class="dateFrom" ng-show="certificate.dateFrom && !certificate.dateTo">
+                            {{certificate.dateFrom | date: 'yyyy'}} - In progress
+                        </div>
+                        <div class="dateTo" ng-show="!certificate.dateFrom && certificate.dateTo">
+                            {{certificate.dateTo | date: 'yyyy'}}
+                        </div>
+                        <div class="noDate" ng-show="!certificate.dateFrom && !certificate.dateTo">
+                            In progress
+                        </div>
+                    </div>
+                    <div class="skilltag pull-right" ng-repeat="skill in certificates.skills">
+                        {{ skill.name }}
                     </div>
                 </div>
-                <div class="empty-panel-body" ng-if="vm.certificates.length === 0">
-                    Empty
-                </div> 
+            </div>
+            <div class="empty-panel-body" ng-if="vm.certificates.length === 0">
+                Empty
             </div>
         </div>
     </div>
 
     <!-- ASSIGNMENTS-->
 
-    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated">
-        <div id="assignments" class="panel-wrapper">
-            <div class="panel panel-default profile-default">
-                <div class="image-panel hidden-xs hidden-sm">
-                    <div class="image-wrapper">
-                        <i class="fa fa-suitcase"></i>
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12 panel-wrapper assignments" ng-show="vm.activated">
+        <div class="panel panel-default profile-default">
+            <div class="image-panel hidden-xs hidden-sm">
+                <div class="image-wrapper">
+                    <i class="fa fa-suitcase"></i>
+                </div>
+            </div>
+            <div class="panel-heading">
+                Assignments
+            </div>
+            <div class="editbutton" ng-click="vm.showModal(vm.assignmentsModal, vm.assignments)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
+                <i class="fa fa-edit"></i>
+            </div>
+            <div class="itemrow assignmentrow" ng-class="{'removeTopBorder': $first}" ng-repeat="assignment in vm.assignments">
+                <div class="image-box">
+                    <i class="fa fa-suitcase"></i>
+                </div>
+                <div class="data-box">
+                    <div class="name">
+                        {{ assignment.name }}
+                    </div>
+                    <div class="skilltag pull-right" ng-repeat="skill in assignment.skills">
+                        {{ skill.name }}
                     </div>
                 </div>
-                <div class="panel-heading">
-                    Assignments
-                </div>
-                <div class="editbutton" ng-click="vm.showModal(vm.assignmentsModal, vm.assignments)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
-                    <i class="fa fa-edit"></i>
-                </div>
-                <div class="itemrow assignmentrow" ng-class="{'removeTopBorder': $first}" ng-repeat="assignment in vm.assignments">
-                    <div class="image-box">
-                        <i class="fa fa-suitcase"></i>
-                    </div>
-                    <div class="data-box">
-                        <div class="name">
-                            {{ assignment.name }}
-                        </div>
-                        <div class="skilltag pull-right" ng-repeat="skill in assignment.skills">
-                            {{ skill.name }}
-                        </div>
-                    </div>
-                </div>
-                <div class="empty-panel-body" ng-if="vm.assignments.length === 0">
-                    Empty
-                </div>
+            </div>
+            <div class="empty-panel-body" ng-if="vm.assignments.length === 0">
+                Empty
             </div>
         </div>
     </div>
 
     <!-- OTHERS -->
 
-    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12" ng-show="vm.activated">
-        <div class="panel-wrapper others">
-            <div class="panel panel-default profile-default">
-                <div class="image-panel hidden-xs hidden-sm">
-                    <div class="image-wrapper">
-                        <i class="fa fa-book"></i>
-                    </div>
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12 panel-wrapper others" ng-show="vm.activated">
+        <div class="panel panel-default profile-default">
+            <div class="image-panel hidden-xs hidden-sm">
+                <div class="image-wrapper">
+                    <i class="fa fa-book"></i>
                 </div>
-                <div class="panel-heading">
-                    Other
-                </div>
-                <div class="editbutton" ng-click="vm.showModal(vm.othersModal, vm.others)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
-                    <i class="fa fa-edit"></i>
-                </div>
-                <div class="itemrow otherrow" ng-class="{'removeTopBorder': $first}" dir-paginate="other in vm.others | itemsPerPage: 15">
-                    <div class="data-box">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-12">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="name">
-                                            {{ other.name }}
-                                        </div>
+            </div>
+            <div class="panel-heading">
+                Other
+            </div>
+            <div class="editbutton" ng-click="vm.showModal(vm.othersModal, vm.others)" ng-show="vm.isAllowed('canEditUser') || vm.isSelf(vm.user._id)">
+                <i class="fa fa-edit"></i>
+            </div>
+            <div class="itemrow otherrow" ng-class="{'removeTopBorder': $first}" dir-paginate="other in vm.others | itemsPerPage: 15">
+                <div class="data-box">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="name">
+                                        {{ other.name }}
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="year">
-                                            {{ other.year | date:'yyyy' }}
-                                        </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="year">
+                                        {{ other.year | date:'yyyy' }}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="empty-panel-body" ng-if="vm.others.length === 0">
-                    Empty
-                </div>
+            </div>
+            <div class="empty-panel-body" ng-if="vm.others.length === 0">
+                Empty
             </div>
         </div>
     </div>
 
     <!-- CLOUD -->
 
-    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12">
-        <div id="cloud" class="panel-wrapper">
-            <div class="panel panel-default">
-                <div class="image-panel hidden-xs hidden-sm">
-                    <div class="image-wrapper">
-                        <i class="fa fa-cloud"></i>
-                    </div>
+    <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-12 panel-wrapper cloud">
+        <div class="panel panel-default">
+            <div class="image-panel hidden-xs hidden-sm">
+                <div class="image-wrapper">
+                    <i class="fa fa-cloud"></i>
                 </div>
-                <tagcloud class="profile-cloud" autoResize="true" words="vm.cloud.words" steps="7"></tagcloud>
             </div>
+            <tagcloud class="profile-cloud" autoResize="true" words="vm.cloud.words" steps="7"></tagcloud>
         </div>
     </div>
+
 </div>
 
 

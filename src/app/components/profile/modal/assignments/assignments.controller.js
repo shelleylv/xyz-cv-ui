@@ -272,13 +272,6 @@
             });
         }
 
-        function skillTagAdded() {
-            var tag = vm.currentConnector.skills.pop();
-            if (vm.skillHash[tag]) {
-                vm.currentConnector.skills.push(tag);
-            }
-        }
-
         function setHashes(customers, domains, skills, assignments, connectors) {
             var connectorHash = Object.create(null);
             var assignmentHash = Object.create(null);

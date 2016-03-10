@@ -184,7 +184,7 @@
             function setLanguages(model) {
                 vm.languages = model.user.languages;
             }
-            
+
             function setOthers(model) {
                 vm.others = model.user.others;
             }

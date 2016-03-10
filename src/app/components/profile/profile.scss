@@ -3,14 +3,16 @@
 
 
 .profile {
-
     .center {
         text-align: center;
     }
-
+    .panel {
+        margin-bottom: 0;
+    }
     .panel-wrapper {
         background: transparent;
         min-height: 116px;
+        margin-bottom: 20px;
     }
     .image-panel {
         text-align: center;
@@ -83,6 +85,8 @@
     }
 
     .profile-default {
+        overflow: hidden;
+        display: block;
         .editbutton {
             position: absolute;
             right: 15px;
@@ -99,8 +103,6 @@
                 background-color: lightgrey;
             }
         }
-        overflow: hidden;
-        display: block;
         .data-header {
             display: flex;
             margin: -15px -15px 0px -15px;
@@ -124,8 +126,11 @@
         .data-box {
             padding: 15px;
             width: 100%;
+            color: lighten($textcolor, 40%);
             .name {
                 display: inline-block;
+                color: black;
+                font-weight: bold;
             }
 
             .office {
@@ -140,6 +145,7 @@
                 padding: 2px 6px;
                 margin: 0 2px;
                 display: inline-block;
+                color: black;
             }
         }
     }
@@ -150,6 +156,7 @@
     }
 
     .itemrow {
+        min-height: 75px;
         overflow: hidden;
         display: flex;
         border-top: 1px solid #ddd;
@@ -171,9 +178,6 @@
                 width: 40px;
             }
         }
-        .data-box {
-            width: 100%;
-        }
         &.skillrow {
             .image-box {
                 color: #3D606E;
@@ -185,7 +189,6 @@
                 padding-left: 0;
                 .name {
                     display: inline-block;
-                    font-weight: bold;
                     .fa-star{
                         display: inline-block;
                         color: #FFD700;
@@ -193,24 +196,6 @@
                 }
                 .level {
                     display: inline-block;
-                    /*padding: 0 5px;
-                    @include box-shadow(0px 1px 0px rgba(0, 0, 0, 0.2));
-
-                    &.l1 {
-                        background-color: #dcedff;
-                    }
-                    &.l2 {
-                        background-color: #a3cdff;
-                    }
-                    &.l3 {
-                        background-color: #93b1ff;
-                    }
-                    &.l4 {
-                        background-color: #4b97ff;
-                    }
-                    &.l5 {
-                        background-color: #347cff;
-                    }*/
                 }
                 .year {
                     display: inline-block;
@@ -244,52 +229,13 @@
         }
         &.assignmentrow {
             min-height: 75px;
-            .data-box {
-                .name {
-                    font-weight: bold;
-                }
-                .skilltag {
-                    font-size: 75%;
-                    background-color: $tagcolor;
-                    @include border-radius(100px);
-                    padding: 2px 6px;
-                    margin: 0 2px;
-                    display: inline-block;
-                }
-            }
-        }
-        &.otherrow {
-            .name {
-                font-weight: bold;
-            }
-            .year {
-
-            }
-        }
-        &.courserow {
-            .name {
-                font-weight: bold;
-            }
         }
         &.certificaterow {
             min-height: 75px;
-            .data-box {
-                .name {
-                    font-weight: bold;
-                }
-                .skilltag {
-                    font-size: 75%;
-                    background-color: $tagcolor;
-                    @include border-radius(100px);
-                    padding: 2px 6px;
-                    margin: 0 2px;
-                    display: inline-block;
-                }
-            }
         }
     }
 
-    #general-info, #private-info {
+    .general-info, .private-info {
         .flag-icon {
             @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
         }
@@ -332,13 +278,13 @@
         }
     }
 
-    #summary {
+    .summary {
         p {
             word-break: break-word;
         }
     }
 
-    #tags {
+    .tags {
         min-height: 232px;
     }
 
@@ -391,7 +337,7 @@
         float: right;
         margin-right: 15%;
     }
-    
+
     .sheet-value {
     }
 
@@ -412,7 +358,7 @@
     }
 
     .empty-panel-body{
-        color: #999999;
         padding: 15px;
+        color: lighten($textcolor, 40%);
     }
 }
