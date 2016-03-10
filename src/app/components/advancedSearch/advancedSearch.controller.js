@@ -33,7 +33,7 @@
             vm.getSuggestedTags = getSuggestedTags;
 
             vm.toggleRefined = toggleRefined;
-            //vm.clearAll = clearAll;
+            vm.clearAll = clearAll;
             vm.addSkill = addSkill;
             vm.removeSkill =removeSkill;
             vm.editSkill = editSkill;
@@ -242,10 +242,5 @@
                 vm.newSkill = angular.copy(skill);
             }
 
-            //////////////
-
-            function refresh() {
-                /* */
-            }
         }
 })();
