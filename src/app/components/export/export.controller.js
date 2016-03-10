@@ -55,8 +55,6 @@
             }
 
             function setCompetenceData() {
-            	var resultArr = [];
-
             	// Matrix x-axis name
 				var competenceData = [];
 

@@ -7,7 +7,7 @@
 
         function newlines() {
             return function(input) {
-                if(input != null) {
+                if(input !== null) {
                     return input.split(/\n/g);
                 }
                 else {

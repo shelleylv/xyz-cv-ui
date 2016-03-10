@@ -46,7 +46,7 @@
                                 <div class="col-md-6">
                                     <div class="input-group">
                                         <label class="checkbox-inline" >
-                                            <input type="checkbox" ng-model="vm.currentConnector.expertise"> Expertise 
+                                            <input type="checkbox" ng-model="vm.currentConnector.expertise"> Expertise
                                         </label>
                                     </div>
                                 </div>
@@ -78,8 +78,8 @@
                         </div>
                         <div class="item-content">
                             <div class="name">{{connector.name}}
-                                <span ng-if="connector.expertise" <i class="fa fa-star"></i></span>
-                                <span ng-if="connector.experience" <i class="fa fa-arrow-up"></i> <span>
+                                <i class="fa fa-star" ng-if="connector.expertise"></i>
+                                <i class="fa fa-arrow-up" ng-if="connector.experience"></i>
                             </div>
                             <div class="years">Years: {{connector.years}}</div>
                             <div class="level">Level: {{connector.level}}</div>

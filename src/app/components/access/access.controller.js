@@ -8,7 +8,5 @@
         function AccessController(Accesses) {
             var vm = this;
             vm.accesses = Accesses.query();
-
-            //////////////
         }
 })();

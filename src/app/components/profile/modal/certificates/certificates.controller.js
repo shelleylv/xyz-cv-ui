@@ -154,7 +154,7 @@
         function editCertificateIfChanged(connector) {
             return $q(function(resolve) {
                 var certificate = vm.certificateHash[connector.name];
-                var currentConnector = angular.copy(connector);
+                vm.currentConnector = angular.copy(connector);
                 if (certificate.description !== connector.description) {
                     certificate.description = connector.description;
                     var certificateToSave = angular.copy(certificate);
@@ -208,13 +208,6 @@
                     return false;
                 }
             });
-        }
-
-        function skillTagAdded() {
-            var tag = vm.currentConnector.skills.pop();
-            if (vm.skillHash[tag]) {
-                vm.currentConnector.skills.push(tag);
-            }
         }
 
         function setHashes(skills, certificates, connectors) {

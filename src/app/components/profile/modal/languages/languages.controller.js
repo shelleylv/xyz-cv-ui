@@ -249,7 +249,6 @@
 
                 var firstIndex = pageNumber * 7;
                 var lastIndex = Math.min(pageNumber * 10 + 10, vm.connectors.length);
-                var indices = lastIndex - firstIndex;
                 vm.connectorsPage = vm.connectors.slice(firstIndex, lastIndex);
             }
 
