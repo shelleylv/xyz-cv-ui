@@ -186,6 +186,10 @@
                 .name {
                     display: inline-block;
                     font-weight: bold;
+                    .fa-star{
+                        display: inline-block;
+                        color: #FFD700;
+                    }
                 }
                 .level {
                     display: inline-block;
@@ -212,6 +216,7 @@
                     display: inline-block;
                 }
             }
+
             .endorsements {
                 text-align: right;
                 line-height: 60px;
@@ -404,5 +409,10 @@
                 }
             }
         }
+    }
+
+    .empty-panel-body{
+        color: #999999;
+        padding: 15px;
     }
 }

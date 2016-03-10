@@ -49,6 +49,10 @@
             .name {
                 font-weight: bold;
                 flex-basis: 100%;
+                .fa-star {
+                    display: inline-block;
+                    color: #FFD700;
+                }
             }
             .level {
                 width: 70px;
@@ -62,12 +66,11 @@
                 flex-basis: 33%;
             }
         }
-
-    }
-    .pagination-container {
-        line-height: 0;
-        ul.pagination {
-            margin: 5px;
+        .pagination-container {
+            line-height: 0;
+            ul.pagination {
+                margin: 5px;
+            }
         }
     }
 }

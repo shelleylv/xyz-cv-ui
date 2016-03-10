@@ -5,7 +5,7 @@
         .module('xyz-cv-ui.profile.modal')
         .controller('SkillsController', SkillsController);
 
-        function SkillsController(SkillsModal, Users, Skills, UserToSkill, block, user, callback, $q) {
+    function SkillsController(SkillsModal, Users, Skills, UserToSkill, block, user, callback, $q) {
             var vm = this;
             window.vm2 = vm;
 
@@ -39,8 +39,8 @@
 
             function activate() {
                 var promises = {
-                    user: Users.get({ _id: user._id }).$promise,
-                    connectors: UserToSkill.query({ userId: user._id }).$promise,
+                    user: Users.get({_id: user._id}).$promise,
+                    connectors: UserToSkill.query({userId: user._id}).$promise,
                     skills: Skills.query().$promise
                 };
 
@@ -77,7 +77,7 @@
                             vm.currentConnector = angular.copy(connector);
                             updateConnectorList();
 
-                            vm.setPage(vm.getPageCount()-1);
+                            vm.setPage(vm.getPageCount() - 1);
                         });
                 }
             }
@@ -140,7 +140,7 @@
             }
 
             function connectorExists(connector) {
-                if(vm.connectorHash[connector.name]) {
+                if (vm.connectorHash[connector.name]) {
                     return true;
                 } else {
                     return false;
@@ -212,7 +212,6 @@
                 }];
             }
 
-
             function setSkills(skills) {
                 vm.skills = skills;
             }
@@ -258,12 +257,12 @@
             }
 
             function updateConnectorList() {
-                vm.connectors = Object.keys(vm.connectorHash).map(function(key){return vm.connectorHash[key];});
+                vm.connectors = Object.keys(vm.connectorHash).map(function(key) {return vm.connectorHash[key];});
                 vm.setPage(vm.currentPage);
             }
 
             function updateSkillList() {
-                vm.skills = Object.keys(vm.skillHash).map(function(key){return vm.skillHash[key];});
+                vm.skills = Object.keys(vm.skillHash).map(function(key) {return vm.skillHash[key];});
             }
 
             function nextPage() {
