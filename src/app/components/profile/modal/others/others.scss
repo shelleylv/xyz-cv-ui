@@ -60,7 +60,10 @@
                 flex-basis: 33%;
             }
         }
-
+        .empty-panel-body {
+            text-align: center;
+            padding: 15px;
+        }
     }
     .pagination-container {
         line-height: 0;
